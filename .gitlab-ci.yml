@@ -1,0 +1,22 @@
+image: ubuntu:16.04
+
+before_script:
+- apt-get update
+- apt-get install -y make g++ libboost-all-dev
+
+stages:
+- build
+
+build:
+   stage: build
+
+   script:
+   - cd /builds/ADvISE/QUA-Services
+   - make test-build
+
+   only:
+   - master
+
+   tags:
+   - ubuntu
+   - docker

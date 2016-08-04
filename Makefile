@@ -1,5 +1,6 @@
-build-static:
-	g++ main.cpp -o bin/main.o -I "lib/" -Wl,-Bstatic -lboost_system -Wl,-Bdynamic
+test-build:
+	g++ test/src/main.cpp -o test/bin/main.o -I "." -Wl,-Bstatic -lboost_system -Wl,-Bdynamic
+	test/bin/main.o
 
-build-dynamic:
-	g++ main.cpp -o bin/main.o -lboost_system
+build:
+	# dynamic library compilation here
