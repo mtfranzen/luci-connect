@@ -5,14 +5,27 @@ before_script:
 - apt-get install -y make g++ libboost-all-dev
 
 stages:
+- test
 - build
+
+test:
+   stage: test
+
+   script:
+   - make test-service
+
+   only:
+   - master
+
+   tags:
+   - ubuntu
+   - docker
 
 build:
    stage: build
 
    script:
-   - cd /builds/ADvISE/QUA-Services
-   - make test-build
+   - make build
 
    only:
    - master
