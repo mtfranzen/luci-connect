@@ -3,6 +3,7 @@
 
 #include <string>
 #include <boost/asio.hpp>
+#include <iostream>
 
 namespace lc2pp {
   class Connection {
@@ -13,8 +14,6 @@ namespace lc2pp {
     virtual void send(std::string message);
     virtual std::string wait_recv();
   };
-
-  Connection* connect(std::string host, unsigned short port) {};
 }
 
 #endif
