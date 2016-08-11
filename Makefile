@@ -18,4 +18,4 @@ docs:
 	doxygen doc/Doxyfile
 
 clean:
-	rm -r -f bin/*.o test/bin/*.o doc/*
+	rm -r -f bin/*.o test/bin/*.o doc/html doc/latex
