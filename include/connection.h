@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <boost/asio.hpp>
+#include "lib/json/src/json.hpp"
 
 namespace lc2pp {
   namespace connection {

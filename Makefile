@@ -3,6 +3,8 @@ CXXFLAGS=-Wall -std=c++11
 LDFLAGS=-Wl,-Bstatic -lboost_system -Wl,-Bdynamic -lpthread
 INCLUDE="."
 
+.PHONY: all build test docs clean
+
 all: build test docs clean
 
 build:
@@ -13,7 +15,7 @@ test:
 	test/bin/main.o
 
 docs:
-	doxygen
+	doxygen doc/Doxyfile
 
 clean:
 	rm -r -f bin/*.o test/bin/*.o doc/*
