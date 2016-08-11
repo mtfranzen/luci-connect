@@ -13,7 +13,7 @@ test:
    stage: test
 
    script:
-   - make test-service
+   - make test
 
    only:
    - master
