@@ -1,13 +1,15 @@
-## Building
+## Building from source
+1. Clone the repository including submodules using the `--recursive` tag:
+```
+git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
+```
+2. Install the following requirements:
+ * *g++*
+ * *boost-dev*
+3. Run:
+```make build```
 
-## Ubuntu 16.04
-```
-$ apt-get install -y libboost-all-dev
-$ make build
-```
+## Documentation
 
-To generate the documentation under `/doc/` use
-```
-$ apt-get install -y doxygen graphviz
-$ make docs
-```
+Install *graphviz* and *doxygen* and run:
+```make docs```
