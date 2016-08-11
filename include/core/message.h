@@ -1,7 +1,7 @@
 #ifndef LC2PP_MESSAGE_H
 #define LC2PP_MESSAGE_H
 
-#include "lib/json/src/json.hpp"
+#include "json/src/json.hpp"
 
 #include <vector>
 #include <string>
@@ -16,7 +16,7 @@ namespace lc2pp {
     */
     typedef struct Attachment {
       size_t size;
-      char* data;
+      const char* data;
     } Attachment;
 
     /** The message class is primarily intendet for conveniently contain,
@@ -53,15 +53,15 @@ namespace lc2pp {
       size_t GetNumAttachments();
 
       /** Returns the attachment at position `index`. */
-      Attachment GetAttachment(uint index);
+      Attachment GetAttachment(size_t index);
 
       /** Adds an attachment to the message and returns the index of the
       * newly added attachment.
       */
-      uint AddAttachment(Attachment attachment);
+      void AddAttachment(Attachment attachment);
 
     private:
-      json body;
+      json header;
       std::vector<Attachment> attachments;
     };
   }

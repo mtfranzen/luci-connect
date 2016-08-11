@@ -25,7 +25,7 @@ namespace lc2pp {
      *
      * // compose message
      * Message* message = new Message(header);
-     * message->add_attachment(attachment);
+     * message->AddAttachment(attachment);
      *
      * // send message
      * connection->Send(message);
