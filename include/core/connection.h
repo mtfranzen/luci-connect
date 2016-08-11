@@ -62,15 +62,23 @@ namespace lc2pp {
 
       // the message that is currently being processed. Used for both sending
       // and receiving.
-      std::string tmp_message_;
+      Message* tmp_message_;
 
       // member functions for message receiving
       uint8_t ReceiveHeaderSize(); // x = 1 byte
       uint8_t ReceiveBodySize(); // y = 1 byte
-      char* ReceiveHeader(size_t length); // x bytes
+      char* ReceiveHeader(uint8_t length); // x bytes
       uint8_t ReceiveNumberOfAttachments(); // N = 1 byte
       uint8_t ReceiveAttachmentSize(); // yi = 1 byte
-      char* ReceiveAttachment(size_t length); // yi bytes
+      char* ReceiveAttachment(uint8_t length); // yi bytes
+
+      // member functions for message sending
+      void SendHeaderSize(Message* message);
+      void SendBodySize(Message* message);
+      void SendHeader(Message* message);
+      void SendNumberOfAttachments(Message* message);
+      void SendAttachmentSize(Message* message);
+      void SendAttachment(Message* message);
     };
 
     /** Connects to a LC2 instance given its host address and tcp port. The host

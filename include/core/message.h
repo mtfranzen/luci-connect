@@ -15,7 +15,7 @@ namespace lc2pp {
     * contain arbitrary binary data.
     */
     typedef struct Attachment {
-      size_t length;
+      size_t size;
       char* data;
     } Attachment;
 
@@ -24,42 +24,41 @@ namespace lc2pp {
      * header and a number of attachments. The header must be a json container
      * while attachments can have an arbitrary binary format.
      *
-     * Usage:
+     * Composing a message:
      * ```
      * json header = {{"name", "test"}, {"abc", "def"}};
      * Attachment attachment = {5, "abcde"};
      *
      * // compose message
      * Message* message = new Message(header);
-     * message->add_attachment(attachment);
+     * message->AddAttachment(attachment);
+     * ```
      *
+     * Reading a message:
+     * ```
+     * json header = message->GetHeader();
+     * for(int i = 0; i < message->GetNumAttachments(); i++) {
+     *   Attachment attachment = message->GetAttachment(i);
+     * }
      * ``` */
     class Message {
     public:
       /** Creates a new message object with the specified header. */
       Message(json header);
 
+      /** Returns the message header. */
+      json GetHeader();
+
+      /** Returns the number of attachments */
+      size_t GetNumAttachments();
+
+      /** Returns the attachment at position `index`. */
+      Attachment GetAttachment(uint index);
+
       /** Adds an attachment to the message and returns the index of the
       * newly added attachment.
       */
-      unsigned int add_attachment(Attachment attachment);
-
-      /**
-      * Removes the attachment at position `index`.
-      */
-      void remove_attachment(unsigned int index);
-
-      /**
-      * Returns the attachment at position `index`.
-      */
-      Attachment get_attachment(unsigned int index);
-
-    protected:
-      /** Deserializes a message object from a string. */
-      static Message* deserialize(std::string serialized);
-
-      /** Serializes a message to a string. */
-      static std::string serialize(Message* message);
+      uint AddAttachment(Attachment attachment);
 
     private:
       json body;
