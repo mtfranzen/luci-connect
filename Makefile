@@ -1,29 +1,17 @@
 CXX=g++
 CXXFLAGS=-Wall -std=c++11
 LDFLAGS=-Wl,-Bstatic -lboost_system -Wl,-Bdynamic -lpthread
-INCLUDE=-I include -I lib
+INCLUDE=-I include
 
 .PHONY: all build test docs clean
 all: build test docs clean
 
 build:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o obj/liblc2pp.so src/core/message.cc src/core/connection.cc
-
-install:
-	# requires sudo
-	cp obj/liblc2pp.so /usr/lib/
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc
 
 test:
-	# shared library compilation: Requires install!
-	#$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Lobj/ -llc2pp $(LDFLAGS)
-	# test/bin/main.o
-
-	# static library compilation:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o\
-		test/src/main.cc\
-		src/core/message.cc\
-		src/core/connection.cc $(LDFLAGS)
-	test/bin/main.o
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS)
+	LD_LIBRARY_PATH=lib/ test/bin/main.o
 
 docs:
 	doxygen doc/Doxyfile

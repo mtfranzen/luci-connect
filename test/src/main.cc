@@ -20,7 +20,10 @@ public:
 };
 
 int main(int args, const char* argv[]) {
-  json header = {{"name", "test"}, {"abc", "def"}};
+  json header = {
+    {"name", "test"},
+    {"abc", 5}
+  };
   string binary_data = "abcde";
   lc2pp::core::Attachment attachment = {5, binary_data.c_str()};
 
