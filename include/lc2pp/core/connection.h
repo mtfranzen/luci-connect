@@ -85,8 +85,13 @@ namespace lc2pp {
       void SendBodySize(Message* message);
       void SendHeader(Message* message);
       void SendNumberOfAttachments(Message* message);
-      void SendAttachmentSize(Message* message);
-      void SendAttachment(Message* message);
+      void SendAttachmentSize(Message* message, size_t index);
+      void SendAttachment(Message* message, size_t index);
+
+      // Low-Level functions
+      void SendString(std::string data);
+      void SendInt64(int64_t data);
+      void SendBuffer(boost::asio::const_buffers_1 data);
     };
 
     /** Connects to a LC2 instance given its host address and tcp port. The host

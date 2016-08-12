@@ -6,15 +6,14 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {
-    /**
-    * The method creates an LC2 connection instance using the assigned host,
-    * port and timeout.
-    */
+    // TODO: Make connection class asynchronous
+
     Connection::Connection(std::string host, uint8_t port, uint timeout = 10) {
       this->host_ = host;
       this->port_ = port;
@@ -25,13 +24,8 @@ namespace lc2pp {
       this->iterator_ = resolver.resolve({host, std::to_string(port)});
     }
 
-    /**
-     * The method creates a new socket to the specified address. If there is
-     * an existing socket, it makes sure to close it before opening up
-     * a new connection.
-    */
     void Connection::Open() {
-      // TODO: Add timeout and make asynchronous
+      // TODO: Add timeout to socket connection
 
       if (this->socket_ != NULL) {
         this->Close();
@@ -44,7 +38,7 @@ namespace lc2pp {
         this->socket_->set_option(option);
       }
       catch (std::exception& err) {
-        // TODO: log error
+        // TODO: Handle error when connection failed
       }
     }
 
@@ -53,7 +47,76 @@ namespace lc2pp {
       this->socket_->close(ec);
 
       if (ec) {
-        // TODO: log error
+        // TODO: Handle error when closing socket failed
+      }
+    }
+
+    void Connection::Send(Message* message) {
+      // TODO: Test UTF-8 support for message sending / Receiving
+      this->SendHeaderSize(message);
+      this->SendBodySize(message);
+      this->SendHeader(message);
+      this->SendNumberOfAttachments(message);
+      for (size_t i = 0; i < message->GetNumAttachments(); i++) {
+        this->SendAttachmentSize(message, i);
+        this->SendAttachment(message, i);
+      }
+    }
+
+    void Connection::SendHeaderSize(Message* message) {
+      std::string header = message->GetHeader().dump();
+      int64_t header_size = header.size() * sizeof(char);
+      this->SendInt64(header_size);
+    };
+
+    void Connection::SendBodySize(Message* message) {
+      int64_t body_size = 8;
+      for (size_t i = 0; i < message->GetNumAttachments(); i++)
+        body_size += message->GetAttachment(i).size;
+      this->SendInt64(body_size);
+    };
+
+    void Connection::SendHeader(Message* message) {
+      std::string header = message->GetHeader().dump();
+      this->SendString(header);
+    };
+
+    void Connection::SendNumberOfAttachments(Message* message) {
+      int64_t num_attachments = message->GetNumAttachments();
+      this->SendInt64(num_attachments);
+    };
+
+    void Connection::SendAttachmentSize(Message* message, size_t index) {
+      int64_t attachment_size = message->GetAttachment(index).size;
+      this->SendInt64(attachment_size);
+    };
+
+    void Connection::SendAttachment(Message* message, size_t index) {
+      // TODO: Handle error when attachment pointer is null
+      std::string attachment(message->GetAttachment(index).data);
+      this->SendString(attachment);
+    };
+
+    void Connection::SendInt64(int64_t data) {
+      // we are converting the data here to a constant so both SendInt64 and
+      // SendString share the same buffer output type (const_buffers_1).
+      // TODO: Check if int64_t needs to be reversed as in old library.
+      const int64_t c_data = data;
+      this->SendBuffer(boost::asio::buffer(&c_data, sizeof(int64_t)));
+    }
+
+    void Connection::SendString(std::string data) {
+      const char* c_data = data.c_str();
+      this->SendBuffer(boost::asio::buffer(c_data, data.size()));
+    }
+
+    void Connection::SendBuffer(boost::asio::const_buffers_1 data) {
+      try {
+        this->socket_->set_option(boost::asio::ip::tcp::no_delay(true));
+        boost::asio::write(*(this->socket_), data);
+      }
+      catch (std::exception& e) {
+        // TODO: Handle error when sending failed.
       }
     }
 

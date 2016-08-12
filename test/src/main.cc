@@ -1,7 +1,10 @@
 #include "lc2pp/service.h"
 #include "lc2pp/core/message.h"
+#include "lc2pp/core/connection.h"
 
 #include "json/src/json.hpp"
+
+#include <clocale>
 
 #include <iostream>
 #include <string>
@@ -23,10 +26,10 @@ public:
 
 int main(int args, const char* argv[]) {
   json header = {
-    {"name", "test"},
+    {"name", "testϮ"},
     {"abc", 5}
   };
-  string binary_data = "abcde";
+  string binary_data = "abcdeϮ";
   lc2pp::core::Attachment attachment = {5, binary_data.c_str()};
 
   // compose message
@@ -35,4 +38,10 @@ int main(int args, const char* argv[]) {
 
   SimpleService* node = new SimpleService("simple_service_name");
   node->PrintName();
+
+  // connect somewhere
+  lc2pp::core::Connection* connection = new lc2pp::core::Connection("google.com", 80, 10);
+  connection->Open();
+  connection->Send(message);
+  connection->Close();
 }
