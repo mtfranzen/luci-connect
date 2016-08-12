@@ -15,7 +15,7 @@ namespace lc2pp {
     * contain arbitrary binary data.
     */
     typedef struct Attachment {
-      size_t size;
+      int64_t size;
       const char* data;
     } Attachment;
 

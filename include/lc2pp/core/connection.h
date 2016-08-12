@@ -73,12 +73,12 @@ namespace lc2pp {
       Message* tmp_message_;
 
       // member functions for message receiving
-      uint8_t ReceiveHeaderSize(); // x = 1 byte
-      uint8_t ReceiveBodySize(); // y = 1 byte
-      char* ReceiveHeader(uint8_t length); // x bytes
-      uint8_t ReceiveNumberOfAttachments(); // N = 1 byte
-      uint8_t ReceiveAttachmentSize(); // yi = 1 byte
-      char* ReceiveAttachment(uint8_t length); // yi bytes
+      int64_t ReceiveHeaderSize(); // x = 8 byte bigendian signed
+      int64_t ReceiveBodySize(); // y = 8 byte bigendian signed
+      std::string ReceiveHeader(size_t length); // x bytes bigendian
+      int64_t ReceiveNumberOfAttachments(); // N = 8 byte bigendian signed
+      int64_t ReceiveAttachmentSize(); // yi = 8 byte bigendian signed
+      char* ReceiveAttachmentData(size_t length); // yi bytes bigendian
 
       // member functions for message sending
       void SendHeaderSize(Message* message);
@@ -88,7 +88,12 @@ namespace lc2pp {
       void SendAttachmentSize(Message* message, size_t index);
       void SendAttachment(Message* message, size_t index);
 
-      // Low-Level functions
+      // Low-Level receive functions
+      int64_t ReceiveInt64();
+      std::string ReceiveString(size_t length);
+      char* ReceiveBinary(size_t length);
+
+      // Low-Level send functions
       void SendString(std::string data);
       void SendInt64(int64_t data);
       void SendBuffer(boost::asio::const_buffers_1 data);
