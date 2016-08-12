@@ -6,6 +6,10 @@ INCLUDE=-I include
 .PHONY: all build test docs clean
 all: build test docs clean
 
+debug:
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -g -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -g -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS)
+
 build:
 	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc
 
