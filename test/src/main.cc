@@ -1,6 +1,8 @@
-#include "service.h"
-#include "core/message.h"
+#include "lc2pp/service.h"
+#include "lc2pp/core/message.h"
+
 #include "json/src/json.hpp"
+
 #include <iostream>
 #include <string>
 

@@ -1,4 +1,4 @@
-#include "core/message.h"
+#include "lc2pp/core/message.h"
 
 #include "json/src/json.hpp"
 
