@@ -40,7 +40,7 @@ namespace lc2pp {
        * The port should be an unsigned short. The timeout is specified in
        * seconds and determines the timeout of the tcp connection **and** when
        * receiving parts of a message. */
-      Connection(std::string host, uint8_t port, uint timeout = 10);
+      Connection(std::string host, uint8_t port, uint timeout);
 
       /** Opens up the connection to the LC2 instance */
       void Open();
@@ -54,11 +54,19 @@ namespace lc2pp {
       /** Returns the last successfully parsed message from Luci */
       Message* Receive();
 
+      /** Closes all left-over sockets and cleanly destroys the object */
+      ~Connection();
+
     private:
       // connection parameters
-      const std::string host_;
-      const uint8_t port_;
-      const uint timeout_;
+      std::string host_;
+      uint8_t port_;
+      uint timeout_;
+
+      // socket stuff
+      boost::asio::io_service io_service_;
+      boost::asio::ip::tcp::resolver::iterator iterator_;
+      boost::asio::ip::tcp::socket* socket_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.
