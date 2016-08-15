@@ -6,7 +6,8 @@
 
 #include <vector>
 #include <string>
-#include <iostream>
+#include <iostream> // std::cout, std::endl
+#include <algorithm> // std::reverse
 
 using json = nlohmann::json;
 
@@ -14,7 +15,7 @@ namespace lc2pp {
   namespace core {
     // TODO: Make connection class asynchronous
 
-    Connection::Connection(std::string host, uint8_t port, uint timeout = 10) {
+    Connection::Connection(std::string host, uint16_t port, uint timeout = 10) {
       this->host_ = host;
       this->port_ = port;
       this->timeout_ = timeout;
@@ -28,7 +29,7 @@ namespace lc2pp {
       // TODO: Add timeout to socket connection
 
       if (this->socket_ != NULL) {
-        this->Close();
+        // TODO: Handle connection opening when socket still open
       }
       this->socket_ = new boost::asio::ip::tcp::socket(this->io_service_);
 
@@ -100,9 +101,14 @@ namespace lc2pp {
     void Connection::SendInt64(int64_t data) {
       // we are converting the data here to a constant so both SendInt64 and
       // SendString share the same buffer output type (const_buffers_1).
-      // TODO: Check if int64_t needs to be reversed as in old library.
-      const int64_t c_data = data;
-      this->SendBuffer(boost::asio::buffer(&c_data, sizeof(int64_t)));
+
+      // TODO: Check if Big-Endian when sending int64.
+      char c_data[sizeof(int64_t)];
+      std::memcpy(c_data, &data, sizeof(int64_t));
+      std::reverse(c_data, c_data + sizeof(int64_t));
+
+      const char* r_data = c_data;
+      this->SendBuffer(boost::asio::buffer(r_data, sizeof(int64_t)));
     }
 
     void Connection::SendString(std::string data) {
@@ -143,7 +149,7 @@ namespace lc2pp {
       }
 
       if (body_size != validation_size) {
-        // TODO: validate received message.
+        // TODO: Validate received messages
       }
       return message;
     }
@@ -169,21 +175,27 @@ namespace lc2pp {
     }
 
     char* Connection::ReceiveAttachmentData(size_t length) {
-      return this->ReceiveBinary(length);
+      std::string attachment = this->ReceiveString(length);
+      const char* attachment_binary = attachment.c_str();
+      return (char*)attachment_binary;
     }
 
     int64_t Connection::ReceiveInt64() {
-      char* buffer = this->ReceiveBinary(sizeof(int64_t));
-      return (int64_t)buffer;
+      std::string buffer = this->ReceiveString(sizeof(int64_t));
+      const char* c_buffer = buffer.c_str();
+
+      // TODO: Check if Big-Endian whenreceiving int64
+      int64_t tmp;
+      std::memcpy(&tmp, c_buffer, sizeof(int64_t));
+      char c_data[sizeof(int64_t)];
+      std::memcpy(c_data, &tmp, sizeof(int64_t));
+      std::reverse(c_data, c_data + sizeof(int64_t));
+      std::memcpy(&tmp, c_data, sizeof(int64_t));
+
+      return tmp;
     }
 
     std::string Connection::ReceiveString(size_t length) {
-      // assumes data is null-terminated
-      char* c_data = this->ReceiveBinary(length);
-      return std::string(c_data);
-    }
-
-    char* Connection::ReceiveBinary(size_t length) {
       boost::system::error_code ec;
 
       std::vector<char> buffer(length);
@@ -198,8 +210,11 @@ namespace lc2pp {
         // TODO: Handle error when socket raises exception while reading
       }
 
-      return buffer.data();
+      // convert output to char pointer
+      std::string s_data(buffer.begin(), buffer.end());
+      return s_data;
     }
+
 
     Connection::~Connection() {
       this->Close();

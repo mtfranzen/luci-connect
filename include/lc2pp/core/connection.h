@@ -40,7 +40,7 @@ namespace lc2pp {
        * The port should be an unsigned short. The timeout is specified in
        * seconds and determines the timeout of the tcp connection **and** when
        * receiving parts of a message. */
-      Connection(std::string host, uint8_t port, uint timeout);
+      Connection(std::string host, uint16_t port, uint timeout);
 
       /** Opens up the connection to the LC2 instance */
       void Open();
@@ -60,7 +60,7 @@ namespace lc2pp {
     private:
       // connection parameters
       std::string host_;
-      uint8_t port_;
+      uint16_t port_;
       uint timeout_;
 
       // socket stuff
@@ -91,7 +91,6 @@ namespace lc2pp {
       // Low-Level receive functions
       int64_t ReceiveInt64();
       std::string ReceiveString(size_t length);
-      char* ReceiveBinary(size_t length);
 
       // Low-Level send functions
       void SendString(std::string data);

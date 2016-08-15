@@ -25,7 +25,7 @@ public:
 };
 
 int main(int args, const char* argv[]) {
-  json header = { {"run", "test.Randomly", "input", { "amount", 1} } };
+  json header = { {"run", "test.Randomly"}, {"input", { "amount", 1} } };
   //string binary_data = "abcdeϮ";
   //lc2pp::core::Attachment attachment = {5, binary_data.c_str()};
 
@@ -37,7 +37,7 @@ int main(int args, const char* argv[]) {
   node->PrintName();
 
   // connect somewhere
-  lc2pp::core::Connection* connection = new lc2pp::core::Connection("0.0.0.0", 7654, 10);
+  lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
   connection->Open();
   connection->Send(message);
   lc2pp::core::Message* reply = connection->Receive();
