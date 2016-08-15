@@ -2,11 +2,13 @@
 #define LC2PP_MESSAGE_H
 
 #include "json/src/json.hpp"
+using json = nlohmann::json;
+
+#include "easylogging/src/easylogging++.h"
 
 #include <vector>
 #include <string>
 
-using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {

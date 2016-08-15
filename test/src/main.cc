@@ -3,6 +3,7 @@
 #include "lc2pp/core/connection.h"
 
 #include "json/src/json.hpp"
+#include "easylogging/src/easylogging++.h"
 
 #include <clocale>
 
@@ -10,6 +11,8 @@
 #include <string>
 
 using namespace std;
+
+INITIALIZE_EASYLOGGINGPP
 
 class SimpleService: lc2pp::Service {
 public:
@@ -24,7 +27,9 @@ public:
   }
 };
 
-int main(int args, const char* argv[]) {
+int main(int argc, const char* argv[]) {
+  START_EASYLOGGINGPP(argc, argv);
+
   json header = { {"run", "test.Randomly"}, { "amount", 3} };
   std::string binary_data = "abcdeϮ";
   lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str()};

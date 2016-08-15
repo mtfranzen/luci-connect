@@ -1,12 +1,5 @@
 #include "lc2pp/core/message.h"
 
-#include "json/src/json.hpp"
-
-#include <vector>
-#include <string>
-
-using json = nlohmann::json;
-
 namespace lc2pp {
   namespace core {
     Message::Message(json header) {
@@ -20,7 +13,9 @@ namespace lc2pp {
     }
 
     Attachment Message::GetAttachment(size_t index) {
-      // TODO: Handle error when index is out of bounds
+      if (index >= this->attachments.size()) {
+        throw "Index out of bounds.";
+      }
       return this->attachments.at(index);
     }
 

@@ -1,10 +1,17 @@
 #ifndef LC2PP_CONNECTION_H
 #define LC2PP_CONNECTION_H
 
-#include <boost/asio.hpp>
-#include <string>
+#include "lc2pp/core/message.h"
 
-#include "message.h"
+#include "json/src/json.hpp"
+using json = nlohmann::json;
+
+#include "easylogging/src/easylogging++.h"
+
+#include <boost/asio.hpp>
+#include <vector>
+#include <string>
+#include <algorithm> // std::reverse
 
 namespace lc2pp {
   namespace core {
@@ -62,6 +69,7 @@ namespace lc2pp {
       std::string host_;
       uint16_t port_;
       uint timeout_;
+      bool is_connected_;
 
       // socket stuff
       boost::asio::io_service io_service_;

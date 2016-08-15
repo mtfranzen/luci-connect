@@ -1,3 +1,6 @@
 [submodule "lib/json"]
 	path = include/json
 	url = https://github.com/nlohmann/json.git
+[submodule "include/easylogging"]
+	path = include/easylogging
+	url = https://github.com/easylogging/easyloggingpp.git

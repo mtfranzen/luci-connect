@@ -11,10 +11,10 @@ debug:
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -g -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS)
 
 build:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc -DELPP_DISABLE_DEBUG_LOGS
 
 test:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS) -DELPP_DISABLE_DEBUG_LOGS
 	LD_LIBRARY_PATH=lib/ test/bin/main.o
 
 docs:

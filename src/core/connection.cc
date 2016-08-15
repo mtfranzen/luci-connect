@@ -1,15 +1,4 @@
 #include "lc2pp/core/connection.h"
-#include "lc2pp/core/message.h"
-#include "json/src/json.hpp"
-
-#include <boost/asio.hpp>
-
-#include <vector>
-#include <string>
-#include <iostream> // std::cout, std::endl
-#include <algorithm> // std::reverse
-
-using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {
@@ -19,6 +8,7 @@ namespace lc2pp {
       this->host_ = host;
       this->port_ = port;
       this->timeout_ = timeout;
+      this->is_connected_ = false;
 
       // create I/O iterator from host / port
       boost::asio::ip::tcp::resolver resolver(this->io_service_);
@@ -28,32 +18,46 @@ namespace lc2pp {
     void Connection::Open() {
       // TODO: Add timeout to socket connection
 
-      if (this->socket_ != NULL) {
-        // TODO: Handle connection opening when socket still open
+      if (this->is_connected_) {
+        LOG(WARNING) << "Socket already opened. Reestablishing connection.";
+        this->Close();
       }
       this->socket_ = new boost::asio::ip::tcp::socket(this->io_service_);
 
       try {
+        LOG(INFO) << "Connecting to " << std::string(this->host_) << ":" << std::to_string(this->port_);
         boost::asio::connect(*(this->socket_), this->iterator_);
         boost::asio::socket_base::keep_alive option(true);
         this->socket_->set_option(option);
+        this->is_connected_ = true;
+        LOG(INFO) << "Connection established.";
       }
       catch (std::exception& err) {
-        // TODO: Handle error when connection failed
+        LOG(ERROR) << "Connection could not be established.";
+        throw "Connection could not be established.";
       }
     }
 
     void Connection::Close() {
+      if (!this->is_connected_) {
+        LOG(WARNING) << "Socket already closed.";
+      }
+
+      LOG(INFO) << "Closing connection.";
       boost::system::error_code ec;
       this->socket_->close(ec);
+      this->is_connected_ = false;
 
       if (ec) {
-        // TODO: Handle error when closing socket failed
+        LOG(WARNING) << "An error occured while closing connection: " << ec;
+      }
+      else {
+        LOG(INFO) << "Connection closed.";
       }
     }
 
     void Connection::Send(Message* message) {
-      // TODO: Test UTF-8 support for message sending / Receiving
+      LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
       this->SendHeaderSize(message);
       this->SendBodySize(message);
       this->SendHeader(message);
@@ -67,6 +71,8 @@ namespace lc2pp {
     void Connection::SendHeaderSize(Message* message) {
       std::string header = message->GetHeader().dump();
       int64_t header_size = header.size() * sizeof(char);
+
+      LOG(DEBUG) << "Sending header size " << std::to_string(header_size);
       this->SendInt64(header_size);
     }
 
@@ -74,27 +80,36 @@ namespace lc2pp {
       int64_t body_size = 8;
       for (size_t i = 0; i < message->GetNumAttachments(); i++)
         body_size += message->GetAttachment(i).size + 8;
+
+      LOG(DEBUG) << "Sending body size " << std::to_string(body_size);
       this->SendInt64(body_size);
     }
 
     void Connection::SendHeader(Message* message) {
       std::string header = message->GetHeader().dump();
+
+      LOG(DEBUG) << "Sending header " << header;
       this->SendString(header);
     }
 
     void Connection::SendNumberOfAttachments(Message* message) {
       int64_t num_attachments = message->GetNumAttachments();
+
+      LOG(DEBUG) << "Sending number of attachments " << std::to_string(num_attachments);
       this->SendInt64(num_attachments);
     }
 
     void Connection::SendAttachmentSize(Message* message, size_t index) {
       int64_t attachment_size = message->GetAttachment(index).size;
+
+      LOG(DEBUG) << "Sending attachment size #" << std::to_string(index) << ": " << std::to_string(attachment_size);
       this->SendInt64(attachment_size);
     }
 
     void Connection::SendAttachment(Message* message, size_t index) {
-      // TODO: Handle error when attachment pointer is null
       std::string attachment(message->GetAttachment(index).data);
+
+      LOG(DEBUG) << "Sending attachment #" << std::to_string(index);
       this->SendString(attachment);
     }
 
@@ -117,12 +132,18 @@ namespace lc2pp {
     }
 
     void Connection::SendBuffer(boost::asio::const_buffers_1 data) {
+      if (!this->is_connected_) {
+        LOG(ERROR) << "Trying to send while connection is closed.";
+        throw "Trying to send a message while connection is closed.";
+      }
+
       try {
         this->socket_->set_option(boost::asio::ip::tcp::no_delay(true));
         boost::asio::write(*(this->socket_), data);
       }
-      catch (std::exception& e) {
-        // TODO: Handle error when sending failed.
+      catch (std::exception& err) {
+        LOG(ERROR) << "An error occured when sending a message.";
+        throw "An error occured when sending a message.";
       }
     }
 
@@ -150,33 +171,51 @@ namespace lc2pp {
       }
 
       if (body_size != validation_size) {
-        // TODO: Validate received messages
+        LOG(WARNING) << "Message validation failed. Entering panic mode.";
+        // TODO: Enter panic mode when message vakudatuib fauked
       }
       return message;
     }
 
     int64_t Connection::ReceiveHeaderSize() {
-      return this->ReceiveInt64();
+      LOG(DEBUG) << "Receiving header size";
+      int64_t header_size = this->ReceiveInt64();
+      LOG(DEBUG) << "Received header size: " << std::to_string(header_size);
+      return header_size;
     }
 
     int64_t Connection::ReceiveBodySize() {
-      return this->ReceiveInt64();
+      LOG(DEBUG) << "Receiving body size";
+      int64_t  body_size = this->ReceiveInt64();
+      LOG(DEBUG) << "Received body size: " << std::to_string(body_size);
+      return body_size;
     }
 
     std::string Connection::ReceiveHeader(size_t length) {
-      return this->ReceiveString(length);
+      LOG(DEBUG) << "Receiving header of length " << std::to_string(length);
+      std::string header = this->ReceiveString(length);
+      LOG(DEBUG) << "Received header: " << header;
+      return header;
     }
 
     int64_t Connection::ReceiveNumberOfAttachments() {
-      return this->ReceiveInt64();
+      LOG(DEBUG) << "Receiving number of attachments";
+      int64_t  num_attachments = this->ReceiveInt64();
+      LOG(DEBUG) << "Received number of attachments: " << std::to_string(num_attachments);
+      return num_attachments;
     }
 
     int64_t Connection::ReceiveAttachmentSize() {
-      return this->ReceiveInt64();
+      LOG(DEBUG) << "Receiving attachment size";
+      int64_t attachment_size = this->ReceiveInt64();
+      LOG(DEBUG) << "Received attachment size: " << std::to_string(attachment_size);
+      return attachment_size;
     }
 
     char* Connection::ReceiveAttachmentData(size_t length) {
+      LOG(DEBUG) << "Receiving attachment of size " << std::to_string(length);
       std::string attachment = this->ReceiveString(length);
+      LOG(DEBUG) << "Received attachment.";
       const char* attachment_binary = attachment.c_str();
       return (char*)attachment_binary;
     }
@@ -197,18 +236,20 @@ namespace lc2pp {
     }
 
     std::string Connection::ReceiveString(size_t length) {
+      if (!this->is_connected_) {
+        LOG(ERROR) << "Trying to receive a message while connection is closed.";
+        throw "Trying to receive a message while connection is closed.";
+      }
+
       boost::system::error_code ec;
 
       std::vector<char> buffer(length);
       try {
         boost::asio::read(*(this->socket_), boost::asio::buffer(buffer));
-        if (ec != NULL) {
-          // TODO: Handle error when socket unexpectedly closes
-          this->Close();
-        }
       }
       catch(std::exception& e) {
-        // TODO: Handle error when socket raises exception while reading
+        LOG(ERROR) << "An error occured while trying to receive.";
+        throw "An error occured while trying to receive.";
       }
 
       // convert output to char pointer
