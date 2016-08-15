@@ -73,7 +73,7 @@ namespace lc2pp {
     void Connection::SendBodySize(Message* message) {
       int64_t body_size = 8;
       for (size_t i = 0; i < message->GetNumAttachments(); i++)
-        body_size += message->GetAttachment(i).size;
+        body_size += message->GetAttachment(i).size + 8;
       this->SendInt64(body_size);
     }
 
@@ -129,19 +129,20 @@ namespace lc2pp {
     Message* Connection::Receive() {
       int64_t validation_size = 8; // see LC2 documentation
 
-      // receive header
+      // Receive header
       int64_t header_size = this->ReceiveHeaderSize();
       int64_t body_size = this->ReceiveBodySize();
+
       // TODO: Handle error when received header is corrupted
       json header = json::parse(this->ReceiveHeader(header_size));
 
-      // construct message
+      // Construct message
       Message* message = new Message(header);
 
-      // add attachments
+      // Add attachments
       int64_t num_attachments = this->ReceiveNumberOfAttachments();
       for (int i = 0; i < num_attachments; i++) {
-        int64_t attachment_size = this->ReceiveAttachmentSize();
+        size_t attachment_size = this->ReceiveAttachmentSize();
         validation_size += attachment_size + 8;
         char* attachment_data = this->ReceiveAttachmentData(attachment_size);
 

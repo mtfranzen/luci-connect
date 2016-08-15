@@ -21,4 +21,4 @@ docs:
 	doxygen doc/Doxyfile
 
 clean:
-	rm -r -f bin/*.o test/bin/*.o obj/* doc/html doc/latex
+	rm -r -f bin/*.o test/bin/*.o obj/* doc/html doc/latex lib/*

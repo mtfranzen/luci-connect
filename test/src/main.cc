@@ -25,13 +25,13 @@ public:
 };
 
 int main(int args, const char* argv[]) {
-  json header = { {"run", "test.Randomly"}, {"input", { "amount", 1} } };
-  //string binary_data = "abcdeϮ";
-  //lc2pp::core::Attachment attachment = {5, binary_data.c_str()};
+  json header = { {"run", "test.Randomly"}, { "amount", 3} };
+  std::string binary_data = "abcdeϮ";
+  lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str()};
 
   // compose message
   lc2pp::core::Message* message = new lc2pp::core::Message(header);
-  //message->AddAttachment(attachment);
+  message->AddAttachment(attachment);
 
   SimpleService* node = new SimpleService("simple_service_name");
   node->PrintName();
@@ -40,7 +40,9 @@ int main(int args, const char* argv[]) {
   lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
   connection->Open();
   connection->Send(message);
-  lc2pp::core::Message* reply = connection->Receive();
-  std::cout << reply->GetHeader() << std::endl;
+  while (true) {
+    lc2pp::core::Message* reply = connection->Receive();
+    std::cout << reply->GetHeader().dump() << std::endl;
+  }
   connection->Close();
 }
