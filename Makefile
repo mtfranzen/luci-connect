@@ -2,19 +2,20 @@ CXX=g++
 CXXFLAGS=-Wall -std=c++11
 LDFLAGS=-Wl,-Bstatic -lboost_system -Wl,-Bdynamic -lpthread
 INCLUDE=-I include
+LOGFLAGS=-DELPP_THREAD_SAFE
 
 .PHONY: all build test docs clean
 all: build test docs clean
 
 debug:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -g -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -g -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -g -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc $(LOGFLAGS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -g -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS) $(LOGFLAGS)
 
 build:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc -DELPP_DISABLE_DEBUG_LOGS
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc $(LOGFLAGS) -DELPP_DISABLE_DEBUG_LOGS
 
 test:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS) -DELPP_DISABLE_DEBUG_LOGS
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS) $(LOGFLAGS) -DELPP_DISABLE_DEBUG_LOGS
 	LD_LIBRARY_PATH=lib/ test/bin/main.o
 
 docs:

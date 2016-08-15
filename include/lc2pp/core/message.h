@@ -8,6 +8,7 @@ using json = nlohmann::json;
 
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 
 namespace lc2pp {
@@ -19,6 +20,9 @@ namespace lc2pp {
     typedef struct Attachment {
       size_t size;
       const char* data;
+      std::string format;
+      std::string name;
+      std::unordered_map<std::string, std::string> keys;
     } Attachment;
 
     /** The message class is primarily intendet for conveniently contain,
@@ -60,11 +64,11 @@ namespace lc2pp {
       /** Adds an attachment to the message and returns the index of the
       * newly added attachment.
       */
-      void AddAttachment(Attachment attachment);
+      size_t AddAttachment(Attachment attachment);
 
     private:
-      json header;
-      std::vector<Attachment> attachments;
+      json header_;
+      std::vector<Attachment> attachments_;
     };
   }
 }

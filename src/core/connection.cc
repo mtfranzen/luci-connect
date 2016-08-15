@@ -117,7 +117,6 @@ namespace lc2pp {
       // we are converting the data here to a constant so both SendInt64 and
       // SendString share the same buffer output type (const_buffers_1).
 
-      // TODO: Check if Big-Endian when sending int64.
       char c_data[sizeof(int64_t)];
       std::memcpy(c_data, &data, sizeof(int64_t));
       std::reverse(c_data, c_data + sizeof(int64_t));
@@ -154,8 +153,14 @@ namespace lc2pp {
       int64_t header_size = this->ReceiveHeaderSize();
       int64_t body_size = this->ReceiveBodySize();
 
-      // TODO: Handle error when received header is corrupted
-      json header = json::parse(this->ReceiveHeader(header_size));
+      json header;
+      try {
+        header = json::parse(this->ReceiveHeader(header_size));
+      }
+      catch (std::exception& err) {
+        LOG(WARNING) << "Message parsing failed: header corrupted.";
+        throw "Message parsing failed: header corrupted.";
+      }
 
       // Construct message
       Message* message = new Message(header);
@@ -167,12 +172,18 @@ namespace lc2pp {
         validation_size += attachment_size + 8;
         char* attachment_data = this->ReceiveAttachmentData(attachment_size);
 
+        // XXX: Parse attachment meta data
+        // search in header for the attachment meta-data
+        for (json element : header) {
+
+        }
+
         message->AddAttachment({attachment_size, attachment_data});
       }
 
       if (body_size != validation_size) {
         LOG(WARNING) << "Message validation failed. Entering panic mode.";
-        // TODO: Enter panic mode when message vakudatuib fauked
+        // TODO: Enter panic mode when message validation fails
       }
       return message;
     }
@@ -224,7 +235,6 @@ namespace lc2pp {
       std::string buffer = this->ReceiveString(sizeof(int64_t));
       const char* c_buffer = buffer.c_str();
 
-      // TODO: Check if Big-Endian whenreceiving int64
       int64_t tmp;
       std::memcpy(&tmp, c_buffer, sizeof(int64_t));
       char c_data[sizeof(int64_t)];

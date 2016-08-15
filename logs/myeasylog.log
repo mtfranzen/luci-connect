@@ -718,3 +718,289 @@
 2016-08-15 13:49:23,803 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
 2016-08-15 13:49:33,167 INFO  [default] Connecting to 127.0.0.1:7654
 2016-08-15 13:49:33,167 ERROR [default] Connection could not be established.
+2016-08-15 13:54:32,741 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 13:54:32,742 ERROR [default] Connection could not be established.
+2016-08-15 13:54:46,990 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 13:54:46,990 INFO  [default] Connection established.
+2016-08-15 13:54:46,990 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:54:49,031 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 13:54:49,031 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 13:57:09,349 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 13:57:09,349 INFO  [default] Connection established.
+2016-08-15 13:57:09,349 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:57:14,352 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 13:57:14,352 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 13:58:12,629 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 13:58:12,629 INFO  [default] Connection established.
+2016-08-15 13:58:12,629 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:58:15,585 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 13:58:15,585 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 13:58:35,573 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 13:58:35,574 INFO  [default] Connection established.
+2016-08-15 13:58:35,574 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [void lc2pp::core::Connection::SendHeaderSize(lc2pp::core::Message*)] [src/core/connection.cc:75] Sending header size 34
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [void lc2pp::core::Connection::SendBodySize(lc2pp::core::Message*)] [src/core/connection.cc:84] Sending body size 23
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [void lc2pp::core::Connection::SendHeader(lc2pp::core::Message*)] [src/core/connection.cc:91] Sending header {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [void lc2pp::core::Connection::SendNumberOfAttachments(lc2pp::core::Message*)] [src/core/connection.cc:98] Sending number of attachments 1
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [void lc2pp::core::Connection::SendAttachmentSize(lc2pp::core::Message*, size_t)] [src/core/connection.cc:105] Sending attachment size #0: 7
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [void lc2pp::core::Connection::SendAttachment(lc2pp::core::Message*, size_t)] [src/core/connection.cc:112] Sending attachment #0
+2016-08-15 13:58:35,574 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:58:35,575 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 15
+2016-08-15 13:58:35,575 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 13:58:35,575 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 13:58:35,575 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 15
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"newCallID":4}
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 95
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 95
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"callID":4,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 126
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 126
+2016-08-15 13:58:35,576 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"result":{"randomNumbers":[756126236,532231730,1286381043]},"callID":4,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-15 13:58:35,577 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 13:58:35,577 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 13:58:35,577 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:58:46,674 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 13:58:46,674 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 13:59:43,463 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 13:59:43,463 INFO  [default] Connection established.
+2016-08-15 13:59:43,463 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:59:43,464 TRACE [default] [void lc2pp::core::Connection::SendHeaderSize(lc2pp::core::Message*)] [src/core/connection.cc:75] Sending header size 34
+2016-08-15 13:59:43,464 TRACE [default] [void lc2pp::core::Connection::SendBodySize(lc2pp::core::Message*)] [src/core/connection.cc:84] Sending body size 23
+2016-08-15 13:59:43,464 TRACE [default] [void lc2pp::core::Connection::SendHeader(lc2pp::core::Message*)] [src/core/connection.cc:91] Sending header {"amount":3,"run":"test.Randomly"}
+2016-08-15 13:59:43,464 TRACE [default] [void lc2pp::core::Connection::SendNumberOfAttachments(lc2pp::core::Message*)] [src/core/connection.cc:98] Sending number of attachments 1
+2016-08-15 13:59:43,464 TRACE [default] [void lc2pp::core::Connection::SendAttachmentSize(lc2pp::core::Message*, size_t)] [src/core/connection.cc:105] Sending attachment size #0: 7
+2016-08-15 13:59:43,464 TRACE [default] [void lc2pp::core::Connection::SendAttachment(lc2pp::core::Message*, size_t)] [src/core/connection.cc:112] Sending attachment #0
+2016-08-15 13:59:43,464 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:59:43,472 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 15
+2016-08-15 13:59:43,472 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 13:59:43,472 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 13:59:43,472 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 15
+2016-08-15 13:59:43,472 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"newCallID":5}
+2016-08-15 13:59:43,473 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 13:59:43,473 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 95
+2016-08-15 13:59:43,473 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 13:59:43,473 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 95
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"callID":5,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-15 13:59:43,473 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 13:59:43,473 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 127
+2016-08-15 13:59:43,473 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 13:59:43,473 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 13:59:43,473 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 127
+2016-08-15 13:59:43,474 DEBUG [default] [mfranzen@unknown-host] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"result":{"randomNumbers":[1102078136,203923493,1208105931]},"callID":5,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-15 13:59:43,474 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 13:59:43,474 DEBUG [default] [mfranzen@unknown-host] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 13:59:43,474 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 13:59:54,187 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 13:59:54,187 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 14:00:41,302 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 14:00:41,302 INFO  [default] Connection established.
+2016-08-15 14:00:41,302 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:00:41,302 TRACE [default] [void lc2pp::core::Connection::SendHeaderSize(lc2pp::core::Message*)] [src/core/connection.cc:75] Sending header size 34
+2016-08-15 14:00:41,303 TRACE [default] [void lc2pp::core::Connection::SendBodySize(lc2pp::core::Message*)] [src/core/connection.cc:84] Sending body size 23
+2016-08-15 14:00:41,303 TRACE [default] [void lc2pp::core::Connection::SendHeader(lc2pp::core::Message*)] [src/core/connection.cc:91] Sending header {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:00:41,303 TRACE [default] [void lc2pp::core::Connection::SendNumberOfAttachments(lc2pp::core::Message*)] [src/core/connection.cc:98] Sending number of attachments 1
+2016-08-15 14:00:41,303 TRACE [default] [void lc2pp::core::Connection::SendAttachmentSize(lc2pp::core::Message*, size_t)] [src/core/connection.cc:105] Sending attachment size #0: 7
+2016-08-15 14:00:41,303 TRACE [default] [void lc2pp::core::Connection::SendAttachment(lc2pp::core::Message*, size_t)] [src/core/connection.cc:112] Sending attachment #0
+2016-08-15 14:00:41,303 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 14:00:41,310 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 15
+2016-08-15 14:00:41,310 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 14:00:41,310 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 14:00:41,310 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 15
+2016-08-15 14:00:41,310 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"newCallID":6}
+2016-08-15 14:00:41,310 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 95
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 14:00:41,311 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 95
+2016-08-15 14:00:41,311 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"callID":6,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:190] Received header size: 126
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:195] Receiving body size
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveBodySize()] [src/core/connection.cc:197] Received body size: 8
+2016-08-15 14:00:41,311 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:202] Receiving header of length 126
+2016-08-15 14:00:41,311 TRACE [default] [std::__cxx11::string lc2pp::core::Connection::ReceiveHeader(size_t)] [src/core/connection.cc:204] Received header: {"result":{"randomNumbers":[140564217,1854611449,696261742]},"callID":6,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:209] Receiving number of attachments
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveNumberOfAttachments()] [src/core/connection.cc:211] Received number of attachments: 0
+2016-08-15 14:00:41,311 TRACE [default] [int64_t lc2pp::core::Connection::ReceiveHeaderSize()] [src/core/connection.cc:188] Receiving header size
+2016-08-15 14:00:55,795 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 14:00:55,795 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 14:01:34,318 INFO  [default] Connecting to 127.0.0.1:7654
+2016-08-15 14:01:34,319 INFO  [default] Connection established.
+2016-08-15 14:01:34,319 INFO  [default] Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:01:37,434 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 14:01:37,435 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 14:03:51,916 INFO  Connecting to 127.0.0.1:7654
+2016-08-15 14:03:51,917 INFO  Connection established.
+2016-08-15 14:03:51,917 INFO  Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:03:51,917 DEBUG Sending header size 34
+2016-08-15 14:03:51,917 DEBUG Sending body size 23
+2016-08-15 14:03:51,917 DEBUG Sending header {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:03:51,917 DEBUG Sending number of attachments 1
+2016-08-15 14:03:51,917 DEBUG Sending attachment size #0: 7
+2016-08-15 14:03:51,917 DEBUG Sending attachment #0
+2016-08-15 14:03:51,918 DEBUG Receiving header size
+2016-08-15 14:03:51,924 DEBUG Received header size: 15
+2016-08-15 14:03:51,924 DEBUG Receiving body size
+2016-08-15 14:03:51,924 DEBUG Received body size: 8
+2016-08-15 14:03:51,924 DEBUG Receiving header of length 15
+2016-08-15 14:03:51,925 DEBUG Received header: {"newCallID":8}
+2016-08-15 14:03:51,925 DEBUG Receiving number of attachments
+2016-08-15 14:03:51,925 DEBUG Received number of attachments: 0
+2016-08-15 14:03:51,925 DEBUG Receiving header size
+2016-08-15 14:03:51,925 DEBUG Received header size: 95
+2016-08-15 14:03:51,925 DEBUG Receiving body size
+2016-08-15 14:03:51,925 DEBUG Received body size: 8
+2016-08-15 14:03:51,925 DEBUG Receiving header of length 95
+2016-08-15 14:03:51,925 DEBUG Received header: {"callID":8,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:03:51,925 DEBUG Receiving number of attachments
+2016-08-15 14:03:51,925 DEBUG Received number of attachments: 0
+2016-08-15 14:03:51,925 DEBUG Receiving header size
+2016-08-15 14:03:51,925 DEBUG Received header size: 127
+2016-08-15 14:03:51,925 DEBUG Receiving body size
+2016-08-15 14:03:51,925 DEBUG Received body size: 8
+2016-08-15 14:03:51,925 DEBUG Receiving header of length 127
+2016-08-15 14:03:51,925 DEBUG Received header: {"result":{"randomNumbers":[1570700605,483212440,1167466623]},"callID":8,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:03:51,925 DEBUG Receiving number of attachments
+2016-08-15 14:03:51,925 DEBUG Received number of attachments: 0
+2016-08-15 14:03:51,925 DEBUG Receiving header size
+2016-08-15 14:03:58,853 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 14:03:58,853 WARN  [default] Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 14:04:47,788 INFO  Connecting to 127.0.0.1:7654
+2016-08-15 14:04:47,788 INFO  Connection established.
+2016-08-15 14:04:47,788 INFO  Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:04:47,788 DEBUG Sending header size 34
+2016-08-15 14:04:47,788 DEBUG Sending body size 23
+2016-08-15 14:04:47,788 DEBUG Sending header {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:04:47,788 DEBUG Sending number of attachments 1
+2016-08-15 14:04:47,788 DEBUG Sending attachment size #0: 7
+2016-08-15 14:04:47,788 DEBUG Sending attachment #0
+2016-08-15 14:04:47,788 DEBUG Receiving header size
+2016-08-15 14:04:47,790 DEBUG Received header size: 15
+2016-08-15 14:04:47,790 DEBUG Receiving body size
+2016-08-15 14:04:47,790 DEBUG Received body size: 8
+2016-08-15 14:04:47,790 DEBUG Receiving header of length 15
+2016-08-15 14:04:47,790 DEBUG Received header: {"newCallID":9}
+2016-08-15 14:04:47,790 DEBUG Receiving number of attachments
+2016-08-15 14:04:47,790 DEBUG Received number of attachments: 0
+2016-08-15 14:04:47,790 DEBUG Receiving header size
+2016-08-15 14:04:47,790 DEBUG Received header size: 95
+2016-08-15 14:04:47,790 DEBUG Receiving body size
+2016-08-15 14:04:47,790 DEBUG Received body size: 8
+2016-08-15 14:04:47,790 DEBUG Receiving header of length 95
+2016-08-15 14:04:47,790 DEBUG Received header: {"callID":9,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:04:47,790 DEBUG Receiving number of attachments
+2016-08-15 14:04:47,790 DEBUG Received number of attachments: 0
+2016-08-15 14:04:47,791 DEBUG Receiving header size
+2016-08-15 14:04:47,792 DEBUG Received header size: 125
+2016-08-15 14:04:47,792 DEBUG Receiving body size
+2016-08-15 14:04:47,792 DEBUG Received body size: 8
+2016-08-15 14:04:47,792 DEBUG Receiving header of length 125
+2016-08-15 14:04:47,792 DEBUG Received header: {"result":{"randomNumbers":[796819717,783211818,149416769]},"callID":9,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:04:47,792 DEBUG Receiving number of attachments
+2016-08-15 14:04:47,792 DEBUG Received number of attachments: 0
+2016-08-15 14:04:47,793 DEBUG Receiving header size
+2016-08-15 14:04:52,181 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 14:04:52,181 WARN  Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 14:05:23,581 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 14:05:23,581 [INFO ]: Connection established.
+2016-08-15 14:05:23,581 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:05:23,581 [DEBUG]: Sending header size 34
+2016-08-15 14:05:23,581 [DEBUG]: Sending body size 23
+2016-08-15 14:05:23,582 [DEBUG]: Sending header {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:05:23,582 [DEBUG]: Sending number of attachments 1
+2016-08-15 14:05:23,582 [DEBUG]: Sending attachment size #0: 7
+2016-08-15 14:05:23,582 [DEBUG]: Sending attachment #0
+2016-08-15 14:05:23,582 [DEBUG]: Receiving header size
+2016-08-15 14:05:23,588 [DEBUG]: Received header size: 16
+2016-08-15 14:05:23,589 [DEBUG]: Receiving body size
+2016-08-15 14:05:23,589 [DEBUG]: Received body size: 8
+2016-08-15 14:05:23,589 [DEBUG]: Receiving header of length 16
+2016-08-15 14:05:23,589 [DEBUG]: Received header: {"newCallID":10}
+2016-08-15 14:05:23,589 [DEBUG]: Receiving number of attachments
+2016-08-15 14:05:23,589 [DEBUG]: Received number of attachments: 0
+2016-08-15 14:05:23,589 [DEBUG]: Receiving header size
+2016-08-15 14:05:23,591 [DEBUG]: Received header size: 96
+2016-08-15 14:05:23,591 [DEBUG]: Receiving body size
+2016-08-15 14:05:23,591 [DEBUG]: Received body size: 8
+2016-08-15 14:05:23,591 [DEBUG]: Receiving header of length 96
+2016-08-15 14:05:23,591 [DEBUG]: Received header: {"callID":10,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:05:23,591 [DEBUG]: Receiving number of attachments
+2016-08-15 14:05:23,591 [DEBUG]: Received number of attachments: 0
+2016-08-15 14:05:23,591 [DEBUG]: Receiving header size
+2016-08-15 14:05:23,591 [DEBUG]: Received header size: 127
+2016-08-15 14:05:23,591 [DEBUG]: Receiving body size
+2016-08-15 14:05:23,591 [DEBUG]: Received body size: 8
+2016-08-15 14:05:23,591 [DEBUG]: Receiving header of length 127
+2016-08-15 14:05:23,591 [DEBUG]: Received header: {"result":{"randomNumbers":[903054710,1765048477,447246555]},"callID":10,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-15 14:05:23,592 [DEBUG]: Receiving number of attachments
+2016-08-15 14:05:23,592 [DEBUG]: Received number of attachments: 0
+2016-08-15 14:05:23,592 [DEBUG]: Receiving header size
+2016-08-15 14:05:44,974 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 14:05:44,974 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 14:06:11,416 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 14:06:11,417 [INFO ]: Connection established.
+2016-08-15 14:06:11,417 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 14:06:13,866 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 14:06:13,866 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 15:29:53,461 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 15:29:53,461 [INFO ]: Connection established.
+2016-08-15 15:29:53,461 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly"}
+2016-08-15 15:29:56,771 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 15:29:56,771 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 15:46:08,374 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 15:46:08,374 [INFO ]: Connection established.
+2016-08-15 15:46:08,374 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"length":7,"position":0},"format":"float32 array","name":"testname"}}
+2016-08-15 15:46:17,302 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 15:46:17,302 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 15:46:24,932 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 15:46:24,933 [INFO ]: Connection established.
+2016-08-15 15:46:24,933 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"length":7,"position":0},"format":"float32 array","name":"testname"}}
+2016-08-15 15:46:41,372 [ERROR]: An error occured while trying to receive.
+2016-08-15 15:46:48,671 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 15:46:48,671 [ERROR]: Connection could not be established.
+2016-08-15 15:51:39,395 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 15:51:39,395 [ERROR]: Connection could not be established.
+2016-08-15 15:51:58,274 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 15:51:58,274 [INFO ]: Connection established.
+2016-08-15 15:51:58,275 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"1234","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-15 15:52:03,346 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 15:52:03,346 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 16:07:55,070 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 16:07:55,070 [INFO ]: Connection established.
+2016-08-15 16:07:55,070 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-15 16:08:00,541 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 16:08:00,541 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 16:13:23,203 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 16:13:23,204 [INFO ]: Connection established.
+2016-08-15 16:13:23,204 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-15 16:13:32,225 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 16:13:32,225 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 16:14:58,690 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 16:14:58,690 [INFO ]: Connection established.
+2016-08-15 16:14:58,690 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-15 16:15:02,562 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 16:15:02,562 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-15 16:20:23,878 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-15 16:20:23,879 [INFO ]: Connection established.
+2016-08-15 16:20:23,879 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-15 16:20:28,430 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-15 16:20:28,430 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]

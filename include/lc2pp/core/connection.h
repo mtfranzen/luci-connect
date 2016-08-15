@@ -13,6 +13,8 @@ using json = nlohmann::json;
 #include <string>
 #include <algorithm> // std::reverse
 
+// TODO: Add logging configuration
+
 namespace lc2pp {
   namespace core {
     /** The connection class handles all low-level tcp communication with the

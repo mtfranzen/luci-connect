@@ -28,11 +28,19 @@ public:
 };
 
 int main(int argc, const char* argv[]) {
-  START_EASYLOGGINGPP(argc, argv);
+  // logging configuration
+  el::Configurations defaultConf;
+  defaultConf.setToDefault();
+  defaultConf.set(el::Level::Debug, el::ConfigurationType::Format, "%datetime [%level]: %msg");
+  defaultConf.set(el::Level::Info, el::ConfigurationType::Format, "%datetime [%level]: %msg");
+  defaultConf.set(el::Level::Warning, el::ConfigurationType::Format, "%datetime [%level]: %msg");
+  defaultConf.set(el::Level::Error, el::ConfigurationType::Format, "%datetime [%level]: %msg");
+
+  el::Loggers::reconfigureLogger("default", defaultConf);
 
   json header = { {"run", "test.Randomly"}, { "amount", 3} };
   std::string binary_data = "abcdeϮ";
-  lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str()};
+  lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
 
   // compose message
   lc2pp::core::Message* message = new lc2pp::core::Message(header);
