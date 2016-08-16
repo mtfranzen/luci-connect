@@ -4,6 +4,7 @@
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
+#include "gtest/gtest.h"
 
 #include <clocale>
 
@@ -14,72 +15,48 @@ using namespace std;
 
 INITIALIZE_EASYLOGGINGPP
 
-class SimpleService: lc2pp::Service {
-public:
-  string name;
+namespace {
 
-  SimpleService(string name) {
-    this->name = name;
+// The fixture for testing class Foo.
+class FooTest : public ::testing::Test {
+ protected:
+  // You can remove any or all of the following functions if its body
+  // is empty.
+
+  FooTest() {
+    // You can do set-up work for each test here.
   }
 
-  void PrintName() {
-    cout << this->name << endl;
+  virtual ~FooTest() {
+    // You can do clean-up work that doesn't throw exceptions here.
   }
+
+  // If the constructor and destructor are not enough for setting up
+  // and cleaning up each test, you can define the following methods:
+
+  virtual void SetUp() {
+    // Code here will be called immediately after the constructor (right
+    // before each test).
+  }
+
+  virtual void TearDown() {
+    // Code here will be called immediately after each test (right
+    // before the destructor).
+  }
+
+  // Objects declared here can be used by all tests in the test case for Foo.
 };
 
-void testRandomId() {
-    json header = { {"run", "test.Randomly"}, { "amount", 3} };
-    std::string binary_data = "abcdeϮ";
-    lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
-
-    // compose message
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
-    message->AddAttachment(attachment);
-
-    SimpleService* node = new SimpleService("simple_service_name");
-    node->PrintName();
-
-    // connect somewhere
-    lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
-    connection->Open();
-    connection->Send(message);
-    lc2pp::core::Message* reply = connection->Receive();
-    reply = connection->Receive();
-    connection->Close();
+// Tests that the Foo::Bar() method does Abc.
+TEST(ConnectionTest, EstablishConnection) {
+  lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
+  connection->Open();
+  connection->Close();
 }
 
-void testFileEcho() {
-    json header = { {"run", "test.FileEcho"}};
-    std::string binary_data = "abcdeϮf";
-    lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
-
-    // compose message
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
-    message->AddAttachment(attachment);
-
-    SimpleService* node = new SimpleService("simple_service_name");
-    node->PrintName();
-
-    // connect somewhere
-    lc2pp::core::Connection* connection = new lc2pp::core::Connection("129.132.6.94", 7654, 10);
-    connection->Open();
-    connection->Send(message);
-    while(true) {
-      lc2pp::core::Message* reply = connection->Receive();
-    }
-    connection->Close();
 }
 
-int main(int argc, const char* argv[]) {
-  // logging configuration
-  el::Configurations defaultConf;
-  defaultConf.setToDefault();
-  defaultConf.set(el::Level::Debug, el::ConfigurationType::Format, "%datetime [%level]: %msg");
-  defaultConf.set(el::Level::Info, el::ConfigurationType::Format, "%datetime [%level]: %msg");
-  defaultConf.set(el::Level::Warning, el::ConfigurationType::Format, "%datetime [%level]: %msg");
-  defaultConf.set(el::Level::Error, el::ConfigurationType::Format, "%datetime [%level]: %msg");
-
-  el::Loggers::reconfigureLogger("default", defaultConf);
-
-  testFileEcho();
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

@@ -8,9 +8,9 @@ namespace lc2pp {
     }
 
     size_t Message::AddAttachment(Attachment attachment) {
-      // TODO: Parse header for attachment meta data
       size_t position = this->attachments_.size();
 
+      // TODO: Overwrite checksum when attachment is added.
       bool attachment_header_missing = true;
       for (json element : this->header_) {
         if (element.count("attachment") > 0) {

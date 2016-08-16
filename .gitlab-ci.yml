@@ -4,7 +4,7 @@ before_script:
 - apt-get update
 - apt-get install -y git
 - git submodule update --init
-- apt-get install -y make g++ libboost-all-dev
+- apt-get install -y make cmake g++ libboost-all-dev
 - apt-get install -y doxygen graphviz
 
 stages:

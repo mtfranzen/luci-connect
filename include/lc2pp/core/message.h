@@ -19,6 +19,7 @@ namespace lc2pp {
     * contain arbitrary binary data.
     */
     typedef struct Attachment {
+      // TODO: Document attachment attributes
       size_t size;
       const char* data;
       std::string format;
@@ -63,7 +64,9 @@ namespace lc2pp {
       Attachment GetAttachment(size_t index);
 
       /** Adds an attachment to the message and returns the index of the
-      * newly added attachment.
+      * newly added attachment. If a header attribute is specified that
+      * describes the attachment at the newly created position, the
+      * data within the attachment is overwritten by the header data.
       */
       size_t AddAttachment(Attachment attachment);
 
