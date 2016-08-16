@@ -4,12 +4,25 @@
 git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
 ```
 2. Install the following requirements:
+ * *make*
+ * *libasio-dev*
  * *g++*
- * *boost-dev*
+
 3. Run:
 ```make build```
 
-## Documentation
+## Tests
+1. Install the following requirements:
+ * *openjdk-9-jdk*
+ * *maven*
 
-Install *graphviz* and *doxygen* and run:
+2. Run:
+```make test```
+
+## Documentation
+1. Install the following requirements:
+ * *graphviz*
+ * *doxygen*
+
+2. Run:
 ```make docs```
