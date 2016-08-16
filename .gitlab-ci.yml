@@ -28,7 +28,7 @@ test:
    stage: test
 
    script:
-   - apt-get install -y openjdk-9-jdk maven
+   - apt-get install -y openjdk-8-jdk maven
    - make test
 
    only:

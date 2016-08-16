@@ -7,7 +7,6 @@ git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
  * *make*
  * *libasio-dev*
  * *g++*
-
 3. Run:
 ```make build```
 
@@ -15,7 +14,6 @@ git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
 1. Install the following requirements:
  * *openjdk-9-jdk*
  * *maven*
-
 2. Run:
 ```make test```
 
@@ -23,6 +21,5 @@ git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
 1. Install the following requirements:
  * *graphviz*
  * *doxygen*
-
 2. Run:
 ```make docs```
