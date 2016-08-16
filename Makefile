@@ -13,16 +13,16 @@ TESTFLAGS=-Iinclude -I$(GMOCK_DIR)/include -I$(GTEST_DIR)/include -DELPP_DISABLE
 all: build docs
 
 build:
-	$(CXX) $(CXXFLAGS) $(BUILDFLAGS) -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc include/md5/md5.cpp
+	$(CXX) $(CXXFLAGS) $(BUILDFLAGS) -o lib/liblc2pp.a src/core/message.cc src/core/connection.cc include/md5/md5.cpp
 
 debug:
-	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc include/md5/md5.cpp
+	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -o lib/liblc2pp.a src/core/message.cc src/core/connection.cc include/md5/md5.cpp
 
 test:
 	#compile googletest library
-	g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o $(GTEST_DIR)/gtest-all.o
-	g++ -isystem $(GMOCK_DIR)/include -I$(GMOCK_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GMOCK_DIR)/src/gmock-all.cc -o $(GMOCK_DIR)/gmock-all.o
-	ar -rv test/lib/libgmock.a $(GTEST_DIR)/gtest-all.o $(GMOCK_DIR)/gmock-all.o
+	g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o test/bin/gtest-all.o
+	g++ -isystem $(GMOCK_DIR)/include -I$(GMOCK_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GMOCK_DIR)/src/gmock-all.cc -o test/bin/gmock-all.o
+	ar -rv test/lib/libgmock.a test/bin/gtest-all.o test/bin/gmock-all.o
 
 	# compile test file
 	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
