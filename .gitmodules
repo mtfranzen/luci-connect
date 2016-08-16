@@ -7,3 +7,6 @@
 [submodule "test/include/googletest"]
 	path = test/include/googletest
 	url = https://github.com/google/googletest.git
+[submodule "test/bin/luci2"]
+	path = test/bin/luci2
+	url = https://bitbucket.org/treyerl/luci2.git

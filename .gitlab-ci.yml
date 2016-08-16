@@ -6,6 +6,7 @@ before_script:
 - git submodule update --init
 - apt-get install -y make cmake g++ libboost-all-dev
 - apt-get install -y doxygen graphviz
+- apt-get install -y openjdk-9-jdk maven
 
 stages:
 - test
