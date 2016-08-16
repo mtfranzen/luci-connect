@@ -9,8 +9,7 @@ DEBUGFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC
 BUILDFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC -DELPP_DISABLE_LOGS
 TESTFLAGS=-Iinclude -I$(GMOCK_DIR)/include -I$(GTEST_DIR)/include -DELPP_DISABLE_LOGS
 
-.PHONY: all build test docs clean
-all: build docs
+.PHONY: build test docs clean
 
 build:
 	$(CXX) $(CXXFLAGS) $(BUILDFLAGS) -o lib/liblc2pp.a src/core/message.cc src/core/connection.cc include/md5/md5.cpp
@@ -18,12 +17,12 @@ build:
 debug:
 	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -o lib/liblc2pp.a src/core/message.cc src/core/connection.cc include/md5/md5.cpp
 
-test:
+test: build
 	# compiling luci2
 	mvn -f test/bin/luci2/pom.xml clean install
 
 	# starting luci2 test server
-	(cd test/bin/luci2 && mvn exec:java -pl core >> /dev/null & echo $$!> /tmp/luci2.pid)
+	(cd test/bin/luci2 && (mvn exec:java -pl core >> /dev/null & echo $$!> /tmp/luci2.pid))
 
 	# compiling googletest library
 	g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o test/bin/gtest-all.o

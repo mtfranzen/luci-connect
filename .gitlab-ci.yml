@@ -9,14 +9,14 @@ before_script:
 - apt-get install -y openjdk-9-jdk maven
 
 stages:
-- test
 - build
+- test
 
-test:
-   stage: test
+build:
+   stage: build
 
    script:
-   - make test
+   - make build
 
    only:
    - master
@@ -25,11 +25,11 @@ test:
    - ubuntu
    - docker
 
-build:
-   stage: build
+test:
+   stage: test
 
    script:
-   - make build
+   - make test
 
    only:
    - master
