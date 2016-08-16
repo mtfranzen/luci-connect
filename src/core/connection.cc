@@ -11,7 +11,7 @@ namespace lc2pp {
       this->is_connected_ = false;
 
       // create I/O iterator from host / port
-      boost::asio::ip::tcp::resolver resolver(this->io_service_);
+      asio::ip::tcp::resolver resolver(this->io_service_);
       this->iterator_ = resolver.resolve({host, std::to_string(port)});
     }
 
@@ -22,12 +22,12 @@ namespace lc2pp {
         LOG(WARNING) << "Socket already opened. Reestablishing connection.";
         this->Close();
       }
-      this->socket_ = new boost::asio::ip::tcp::socket(this->io_service_);
+      this->socket_ = new asio::ip::tcp::socket(this->io_service_);
 
       try {
         LOG(INFO) << "Connecting to " << std::string(this->host_) << ":" << std::to_string(this->port_);
-        boost::asio::connect(*(this->socket_), this->iterator_);
-        boost::asio::socket_base::keep_alive option(true);
+        asio::connect(*(this->socket_), this->iterator_);
+        asio::socket_base::keep_alive option(true);
         this->socket_->set_option(option);
         this->is_connected_ = true;
         LOG(INFO) << "Connection established.";
@@ -44,7 +44,7 @@ namespace lc2pp {
       }
 
       LOG(INFO) << "Closing connection.";
-      boost::system::error_code ec;
+      asio::error_code ec;
       this->socket_->close(ec);
       this->is_connected_ = false;
 
@@ -122,23 +122,23 @@ namespace lc2pp {
       std::reverse(c_data, c_data + sizeof(int64_t));
 
       const char* r_data = c_data;
-      this->SendBuffer(boost::asio::buffer(r_data, sizeof(int64_t)));
+      this->SendBuffer(asio::buffer(r_data, sizeof(int64_t)));
     }
 
     void Connection::SendString(std::string data) {
       const char* c_data = data.c_str();
-      this->SendBuffer(boost::asio::buffer(c_data, data.size()));
+      this->SendBuffer(asio::buffer(c_data, data.size()));
     }
 
-    void Connection::SendBuffer(boost::asio::const_buffers_1 data) {
+    void Connection::SendBuffer(asio::const_buffers_1 data) {
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to send while connection is closed.";
         throw "Trying to send a message while connection is closed.";
       }
 
       try {
-        this->socket_->set_option(boost::asio::ip::tcp::no_delay(true));
-        boost::asio::write(*(this->socket_), data);
+        this->socket_->set_option(asio::ip::tcp::no_delay(true));
+        asio::write(*(this->socket_), data);
       }
       catch (std::exception& err) {
         LOG(ERROR) << "An error occured when sending a message.";
@@ -244,11 +244,11 @@ namespace lc2pp {
         throw "Trying to receive a message while connection is closed.";
       }
 
-      boost::system::error_code ec;
+      asio::error_code ec;
 
       std::vector<char> buffer(length);
       try {
-        boost::asio::read(*(this->socket_), boost::asio::buffer(buffer));
+        asio::read(*(this->socket_), asio::buffer(buffer));
       }
       catch(std::exception& e) {
         LOG(ERROR) << "An error occured while trying to receive.";

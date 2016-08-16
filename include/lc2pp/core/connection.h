@@ -8,7 +8,7 @@ using json = nlohmann::json;
 
 #include "easylogging/src/easylogging++.h"
 
-#include <boost/asio.hpp>
+#include <asio.hpp>
 #include <vector>
 #include <string>
 #include <algorithm> // std::reverse
@@ -74,9 +74,9 @@ namespace lc2pp {
       bool is_connected_;
 
       // socket stuff
-      boost::asio::io_service io_service_;
-      boost::asio::ip::tcp::resolver::iterator iterator_;
-      boost::asio::ip::tcp::socket* socket_;
+      asio::io_service io_service_;
+      asio::ip::tcp::resolver::iterator iterator_;
+      asio::ip::tcp::socket* socket_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.
@@ -105,7 +105,7 @@ namespace lc2pp {
       // Low-Level send functions
       void SendString(std::string data);
       void SendInt64(int64_t data);
-      void SendBuffer(boost::asio::const_buffers_1 data);
+      void SendBuffer(asio::const_buffers_1 data);
     };
 
     /** Connects to a LC2 instance given its host address and tcp port. The host

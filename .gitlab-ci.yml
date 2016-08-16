@@ -4,9 +4,8 @@ before_script:
 - apt-get update
 - apt-get install -y git
 - git submodule update --init
-- apt-get install -y make cmake g++ libboost-all-dev
+- apt-get install -y make g++ libasio-dev
 - apt-get install -y doxygen graphviz
-- apt-get install -y openjdk-9-jdk maven
 
 stages:
 - build
@@ -29,6 +28,7 @@ test:
    stage: test
 
    script:
+   - apt-get install -y openjdk-9-jdk maven
    - make test
 
    only:

@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-Wall -std=c++11
-LDFLAGS=-Wl,-Bstatic -lboost_system -Wl,-Bdynamic -lpthread
+LDFLAGS=-Wl,-Bdynamic -lpthread
 LOGFLAGS=-DELPP_THREAD_SAFE
 GMOCK_DIR=test/include/googletest/googlemock
 GTEST_DIR=test/include/googletest/googletest
