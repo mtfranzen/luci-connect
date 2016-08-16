@@ -1004,3 +1004,2523 @@
 2016-08-15 16:20:23,879 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
 2016-08-15 16:20:28,430 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
 2016-08-15 16:20:28,430 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 09:27:11,812 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 09:27:11,977 [ERROR]: Connection could not be established.
+2016-08-16 09:28:02,852 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 09:28:02,852 [INFO ]: Connection established.
+2016-08-16 09:28:02,852 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 09:28:39,887 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 09:28:39,887 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 09:29:31,108 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 09:29:31,109 [INFO ]: Connection established.
+2016-08-16 09:29:31,109 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 09:29:31,109 [DEBUG]: Sending header size 175
+2016-08-16 09:29:31,109 [DEBUG]: Sending body size 23
+2016-08-16 09:29:31,109 [DEBUG]: Sending header {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 09:29:31,109 [DEBUG]: Sending number of attachments 1
+2016-08-16 09:29:31,109 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 09:29:31,109 [DEBUG]: Sending attachment #0
+2016-08-16 09:29:31,110 [DEBUG]: Receiving header size
+2016-08-16 09:29:31,116 [DEBUG]: Received header size: 15
+2016-08-16 09:29:31,116 [DEBUG]: Receiving body size
+2016-08-16 09:29:31,116 [DEBUG]: Received body size: 8
+2016-08-16 09:29:31,116 [DEBUG]: Receiving header of length 15
+2016-08-16 09:29:31,116 [DEBUG]: Received header: {"newCallID":2}
+2016-08-16 09:29:31,117 [DEBUG]: Receiving number of attachments
+2016-08-16 09:29:31,117 [DEBUG]: Received number of attachments: 0
+2016-08-16 09:29:31,117 [DEBUG]: Receiving header size
+2016-08-16 09:29:31,117 [DEBUG]: Received header size: 95
+2016-08-16 09:29:31,117 [DEBUG]: Receiving body size
+2016-08-16 09:29:31,117 [DEBUG]: Received body size: 8
+2016-08-16 09:29:31,117 [DEBUG]: Receiving header of length 95
+2016-08-16 09:29:31,117 [DEBUG]: Received header: {"callID":2,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-16 09:29:31,117 [DEBUG]: Receiving number of attachments
+2016-08-16 09:29:31,117 [DEBUG]: Received number of attachments: 0
+2016-08-16 09:29:31,117 [DEBUG]: Receiving header size
+2016-08-16 09:29:31,117 [DEBUG]: Received header size: 126
+2016-08-16 09:29:31,117 [DEBUG]: Receiving body size
+2016-08-16 09:29:31,117 [DEBUG]: Received body size: 8
+2016-08-16 09:29:31,117 [DEBUG]: Receiving header of length 126
+2016-08-16 09:29:31,117 [DEBUG]: Received header: {"result":{"randomNumbers":[1067777255,816916123,752940409]},"callID":2,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-16 09:29:31,117 [DEBUG]: Receiving number of attachments
+2016-08-16 09:29:31,117 [DEBUG]: Received number of attachments: 0
+2016-08-16 09:29:31,117 [DEBUG]: Receiving header size
+2016-08-16 09:59:50,488 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 09:59:50,488 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:00:06,850 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:00:06,850 [INFO ]: Connection established.
+2016-08-16 10:00:06,850 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:00:06,851 [DEBUG]: Sending header size 175
+2016-08-16 10:00:06,851 [DEBUG]: Sending body size 23
+2016-08-16 10:00:06,851 [DEBUG]: Sending header {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:00:06,851 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:00:06,851 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:00:06,851 [DEBUG]: Sending attachment #0
+2016-08-16 10:00:06,851 [DEBUG]: Receiving header size
+2016-08-16 10:00:06,862 [DEBUG]: Received header size: 15
+2016-08-16 10:00:06,862 [DEBUG]: Receiving body size
+2016-08-16 10:00:06,862 [DEBUG]: Received body size: 8
+2016-08-16 10:00:06,862 [DEBUG]: Receiving header of length 15
+2016-08-16 10:00:06,862 [DEBUG]: Received header: {"newCallID":3}
+2016-08-16 10:00:06,862 [DEBUG]: Receiving number of attachments
+2016-08-16 10:00:06,862 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:00:06,862 [DEBUG]: Receiving header size
+2016-08-16 10:00:06,862 [DEBUG]: Received header size: 95
+2016-08-16 10:00:06,862 [DEBUG]: Receiving body size
+2016-08-16 10:00:06,862 [DEBUG]: Received body size: 8
+2016-08-16 10:00:06,862 [DEBUG]: Receiving header of length 95
+2016-08-16 10:00:06,862 [DEBUG]: Received header: {"callID":3,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-16 10:00:06,863 [DEBUG]: Receiving number of attachments
+2016-08-16 10:00:06,863 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:00:06,863 [DEBUG]: Receiving header size
+2016-08-16 10:00:06,864 [DEBUG]: Received header size: 126
+2016-08-16 10:00:06,864 [DEBUG]: Receiving body size
+2016-08-16 10:00:06,864 [DEBUG]: Received body size: 8
+2016-08-16 10:00:06,864 [DEBUG]: Receiving header of length 126
+2016-08-16 10:00:06,864 [DEBUG]: Received header: {"result":{"randomNumbers":[639975516,972116011,2117818841]},"callID":3,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-16 10:00:06,864 [DEBUG]: Receiving number of attachments
+2016-08-16 10:00:06,864 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:00:06,864 [DEBUG]: Receiving header size
+2016-08-16 10:00:26,878 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:00:26,878 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:03:25,223 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:03:25,223 [INFO ]: Connection established.
+2016-08-16 10:03:25,223 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:03:25,224 [DEBUG]: Sending header size 175
+2016-08-16 10:03:25,224 [DEBUG]: Sending body size 23
+2016-08-16 10:03:25,224 [DEBUG]: Sending header {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:03:25,224 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:03:25,224 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:03:25,224 [DEBUG]: Sending attachment #0
+2016-08-16 10:03:25,224 [DEBUG]: Receiving header size
+2016-08-16 10:03:25,231 [DEBUG]: Received header size: 15
+2016-08-16 10:03:25,231 [DEBUG]: Receiving body size
+2016-08-16 10:03:25,231 [DEBUG]: Received body size: 8
+2016-08-16 10:03:25,231 [DEBUG]: Receiving header of length 15
+2016-08-16 10:03:25,231 [DEBUG]: Received header: {"newCallID":4}
+2016-08-16 10:03:25,231 [DEBUG]: Receiving number of attachments
+2016-08-16 10:03:25,231 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:03:25,231 [DEBUG]: Receiving header size
+2016-08-16 10:03:25,231 [DEBUG]: Received header size: 95
+2016-08-16 10:03:25,231 [DEBUG]: Receiving body size
+2016-08-16 10:03:25,231 [DEBUG]: Received body size: 8
+2016-08-16 10:03:25,231 [DEBUG]: Receiving header of length 95
+2016-08-16 10:03:25,231 [DEBUG]: Received header: {"callID":4,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-16 10:03:25,232 [DEBUG]: Receiving number of attachments
+2016-08-16 10:03:25,232 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:03:25,232 [DEBUG]: Receiving header size
+2016-08-16 10:03:25,232 [DEBUG]: Received header size: 127
+2016-08-16 10:03:25,232 [DEBUG]: Receiving body size
+2016-08-16 10:03:25,232 [DEBUG]: Received body size: 8
+2016-08-16 10:03:25,232 [DEBUG]: Receiving header of length 127
+2016-08-16 10:03:25,232 [DEBUG]: Received header: {"result":{"randomNumbers":[511112208,1387954364,1821895852]},"callID":4,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-16 10:03:25,232 [DEBUG]: Receiving number of attachments
+2016-08-16 10:03:25,232 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:03:25,232 [DEBUG]: Receiving header size
+2016-08-16 10:03:26,593 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:03:26,594 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:24:07,956 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:24:07,957 [INFO ]: Connection established.
+2016-08-16 10:24:07,957 [INFO ]: Starting to send Message {"run":"test.FileEcho","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:24:07,957 [DEBUG]: Sending header size 164
+2016-08-16 10:24:07,957 [DEBUG]: Sending body size 23
+2016-08-16 10:24:07,957 [DEBUG]: Sending header {"run":"test.FileEcho","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:24:07,958 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:24:07,958 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:24:07,958 [DEBUG]: Sending attachment #0
+2016-08-16 10:24:07,958 [DEBUG]: Receiving header size
+2016-08-16 10:24:07,965 [DEBUG]: Received header size: 15
+2016-08-16 10:24:07,965 [DEBUG]: Receiving body size
+2016-08-16 10:24:07,965 [DEBUG]: Received body size: 8
+2016-08-16 10:24:07,965 [DEBUG]: Receiving header of length 15
+2016-08-16 10:24:07,965 [DEBUG]: Received header: {"newCallID":5}
+2016-08-16 10:24:07,965 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:07,966 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:07,966 [INFO ]: Starting to send Message {"newCallID":5}
+2016-08-16 10:24:07,966 [DEBUG]: Sending header size 15
+2016-08-16 10:24:07,966 [DEBUG]: Sending body size 8
+2016-08-16 10:24:07,966 [DEBUG]: Sending header {"newCallID":5}
+2016-08-16 10:24:07,966 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:07,966 [DEBUG]: Receiving header size
+2016-08-16 10:24:07,966 [DEBUG]: Received header size: 95
+2016-08-16 10:24:07,966 [DEBUG]: Receiving body size
+2016-08-16 10:24:07,966 [DEBUG]: Received body size: 8
+2016-08-16 10:24:07,967 [DEBUG]: Receiving header of length 95
+2016-08-16 10:24:07,967 [DEBUG]: Received header: {"callID":5,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:24:07,967 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:07,967 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:07,967 [INFO ]: Starting to send Message {"callID":5,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:24:07,967 [DEBUG]: Sending header size 95
+2016-08-16 10:24:07,967 [DEBUG]: Sending body size 8
+2016-08-16 10:24:07,967 [DEBUG]: Sending header {"callID":5,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:24:07,967 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:07,968 [DEBUG]: Receiving header size
+2016-08-16 10:24:07,973 [DEBUG]: Received header size: 218
+2016-08-16 10:24:07,973 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,009 [DEBUG]: Received body size: 23
+2016-08-16 10:24:08,009 [DEBUG]: Receiving header of length 218
+2016-08-16 10:24:08,010 [DEBUG]: Received header: {"result":{"testname":{"attachment":{"length":7,"checksum":"9c66e8382ee9c2a0154101510430e168","position":1},"format":"float32 array","name":"testname"}},"callID":5,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:24:08,010 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,010 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:24:08,010 [DEBUG]: Receiving attachment size
+2016-08-16 10:24:08,010 [DEBUG]: Received attachment size: 7
+2016-08-16 10:24:08,010 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:24:08,010 [DEBUG]: Received attachment.
+2016-08-16 10:24:08,010 [INFO ]: Starting to send Message {"":{"attachment":{"checksum":"ef8e40f0152e34528efc34becd823333","length":7,"position":1},"format":"","name":""},"callID":5,"duration":0,"result":{"testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:24:08,010 [DEBUG]: Sending header size 330
+2016-08-16 10:24:08,010 [DEBUG]: Sending body size 23
+2016-08-16 10:24:08,010 [DEBUG]: Sending header {"":{"attachment":{"checksum":"ef8e40f0152e34528efc34becd823333","length":7,"position":1},"format":"","name":""},"callID":5,"duration":0,"result":{"testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:24:08,011 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:24:08,011 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:24:08,011 [DEBUG]: Sending attachment #0
+2016-08-16 10:24:08,011 [DEBUG]: Receiving header size
+2016-08-16 10:24:08,011 [DEBUG]: Received header size: 15
+2016-08-16 10:24:08,011 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,011 [DEBUG]: Received body size: 8
+2016-08-16 10:24:08,011 [DEBUG]: Receiving header of length 15
+2016-08-16 10:24:08,011 [DEBUG]: Received header: {"newCallID":6}
+2016-08-16 10:24:08,011 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,011 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:08,011 [INFO ]: Starting to send Message {"newCallID":6}
+2016-08-16 10:24:08,011 [DEBUG]: Sending header size 15
+2016-08-16 10:24:08,011 [DEBUG]: Sending body size 8
+2016-08-16 10:24:08,011 [DEBUG]: Sending header {"newCallID":6}
+2016-08-16 10:24:08,011 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:08,011 [DEBUG]: Receiving header size
+2016-08-16 10:24:08,011 [DEBUG]: Received header size: 69
+2016-08-16 10:24:08,011 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,011 [DEBUG]: Received body size: 8
+2016-08-16 10:24:08,011 [DEBUG]: Receiving header of length 69
+2016-08-16 10:24:08,011 [DEBUG]: Received header: {"callID":6,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,011 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,011 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:08,011 [INFO ]: Starting to send Message {"callID":6,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,011 [DEBUG]: Sending header size 69
+2016-08-16 10:24:08,011 [DEBUG]: Sending body size 8
+2016-08-16 10:24:08,012 [DEBUG]: Sending header {"callID":6,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,012 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:08,012 [DEBUG]: Receiving header size
+2016-08-16 10:24:08,012 [DEBUG]: Received header size: 15
+2016-08-16 10:24:08,012 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,012 [DEBUG]: Received body size: 8
+2016-08-16 10:24:08,012 [DEBUG]: Receiving header of length 15
+2016-08-16 10:24:08,012 [DEBUG]: Received header: {"newCallID":7}
+2016-08-16 10:24:08,012 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,012 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:08,012 [INFO ]: Starting to send Message {"newCallID":7}
+2016-08-16 10:24:08,012 [DEBUG]: Sending header size 15
+2016-08-16 10:24:08,012 [DEBUG]: Sending body size 8
+2016-08-16 10:24:08,012 [DEBUG]: Sending header {"newCallID":7}
+2016-08-16 10:24:08,012 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:08,012 [DEBUG]: Receiving header size
+2016-08-16 10:24:08,012 [DEBUG]: Received header size: 69
+2016-08-16 10:24:08,012 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,012 [DEBUG]: Received body size: 8
+2016-08-16 10:24:08,012 [DEBUG]: Receiving header of length 69
+2016-08-16 10:24:08,012 [DEBUG]: Received header: {"callID":7,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,012 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,012 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:08,012 [INFO ]: Starting to send Message {"callID":7,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,012 [DEBUG]: Sending header size 69
+2016-08-16 10:24:08,012 [DEBUG]: Sending body size 8
+2016-08-16 10:24:08,012 [DEBUG]: Sending header {"callID":7,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,013 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:08,013 [DEBUG]: Receiving header size
+2016-08-16 10:24:08,015 [DEBUG]: Received header size: 15
+2016-08-16 10:24:08,015 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,053 [DEBUG]: Received body size: 8
+2016-08-16 10:24:08,053 [DEBUG]: Receiving header of length 15
+2016-08-16 10:24:08,053 [DEBUG]: Received header: {"newCallID":8}
+2016-08-16 10:24:08,054 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,054 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:08,054 [INFO ]: Starting to send Message {"newCallID":8}
+2016-08-16 10:24:08,054 [DEBUG]: Sending header size 15
+2016-08-16 10:24:08,054 [DEBUG]: Sending body size 8
+2016-08-16 10:24:08,054 [DEBUG]: Sending header {"newCallID":8}
+2016-08-16 10:24:08,054 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:08,054 [DEBUG]: Receiving header size
+2016-08-16 10:24:08,054 [DEBUG]: Received header size: 69
+2016-08-16 10:24:08,054 [DEBUG]: Receiving body size
+2016-08-16 10:24:08,054 [DEBUG]: Received body size: 8
+2016-08-16 10:24:08,054 [DEBUG]: Receiving header of length 69
+2016-08-16 10:24:08,054 [DEBUG]: Received header: {"callID":8,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,054 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:08,054 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:08,054 [INFO ]: Starting to send Message {"callID":8,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,054 [DEBUG]: Sending header size 69
+2016-08-16 10:24:08,054 [DEBUG]: Sending body size 8
+2016-08-16 10:24:08,054 [DEBUG]: Sending header {"callID":8,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:24:08,054 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:08,054 [DEBUG]: Receiving header size
+2016-08-16 10:24:09,139 [DEBUG]: Received header size: 139
+2016-08-16 10:24:09,139 [DEBUG]: Receiving body size
+2016-08-16 10:24:09,178 [DEBUG]: Received body size: 8
+2016-08-16 10:24:09,178 [DEBUG]: Receiving header of length 139
+2016-08-16 10:24:09,178 [DEBUG]: Received header: {"error":"class luci.connect.AttachmentAsArray: Checksums don't match: ef8e40f0152e34528efc34becd823333, 7DA303B4BA035369D7568D4A35432BC2"}
+2016-08-16 10:24:09,178 [DEBUG]: Receiving number of attachments
+2016-08-16 10:24:09,178 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:24:09,178 [INFO ]: Starting to send Message {"error":"class luci.connect.AttachmentAsArray: Checksums don't match: ef8e40f0152e34528efc34becd823333, 7DA303B4BA035369D7568D4A35432BC2"}
+2016-08-16 10:24:09,178 [DEBUG]: Sending header size 139
+2016-08-16 10:24:09,178 [DEBUG]: Sending body size 8
+2016-08-16 10:24:09,178 [DEBUG]: Sending header {"error":"class luci.connect.AttachmentAsArray: Checksums don't match: ef8e40f0152e34528efc34becd823333, 7DA303B4BA035369D7568D4A35432BC2"}
+2016-08-16 10:24:09,178 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:24:09,178 [DEBUG]: Receiving header size
+2016-08-16 10:24:10,252 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:24:10,252 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:25:54,819 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:25:54,820 [INFO ]: Connection established.
+2016-08-16 10:25:54,820 [INFO ]: Starting to send Message {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:25:54,820 [DEBUG]: Sending header size 175
+2016-08-16 10:25:54,820 [DEBUG]: Sending body size 23
+2016-08-16 10:25:54,820 [DEBUG]: Sending header {"amount":3,"run":"test.Randomly","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:25:54,820 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:25:54,820 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:25:54,820 [DEBUG]: Sending attachment #0
+2016-08-16 10:25:54,820 [DEBUG]: Receiving header size
+2016-08-16 10:25:54,826 [DEBUG]: Received header size: 15
+2016-08-16 10:25:54,827 [DEBUG]: Receiving body size
+2016-08-16 10:25:54,827 [DEBUG]: Received body size: 8
+2016-08-16 10:25:54,827 [DEBUG]: Receiving header of length 15
+2016-08-16 10:25:54,827 [DEBUG]: Received header: {"newCallID":9}
+2016-08-16 10:25:54,827 [DEBUG]: Receiving number of attachments
+2016-08-16 10:25:54,827 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:25:54,827 [DEBUG]: Receiving header size
+2016-08-16 10:25:54,830 [DEBUG]: Received header size: 95
+2016-08-16 10:25:54,830 [DEBUG]: Receiving body size
+2016-08-16 10:25:54,830 [DEBUG]: Received body size: 8
+2016-08-16 10:25:54,830 [DEBUG]: Receiving header of length 95
+2016-08-16 10:25:54,830 [DEBUG]: Received header: {"callID":9,"duration":0,"percentage":0,"progress":{},"serviceName":"test.Randomly","taskID":0}
+2016-08-16 10:25:54,830 [DEBUG]: Receiving number of attachments
+2016-08-16 10:25:54,830 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:25:54,830 [DEBUG]: Receiving header size
+2016-08-16 10:25:54,830 [DEBUG]: Received header size: 128
+2016-08-16 10:25:54,830 [DEBUG]: Receiving body size
+2016-08-16 10:25:54,830 [DEBUG]: Received body size: 8
+2016-08-16 10:25:54,830 [DEBUG]: Receiving header of length 128
+2016-08-16 10:25:54,830 [DEBUG]: Received header: {"result":{"randomNumbers":[1391835868,1977748102,1311191287]},"callID":9,"duration":0,"serviceName":"test.Randomly","taskID":0}
+2016-08-16 10:25:54,830 [DEBUG]: Receiving number of attachments
+2016-08-16 10:25:54,830 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:25:54,830 [DEBUG]: Receiving header size
+2016-08-16 10:25:57,876 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:25:57,877 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:26:34,192 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:26:34,192 [INFO ]: Connection established.
+2016-08-16 10:26:34,193 [INFO ]: Starting to send Message {"run":"test.FileEcho","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:26:34,193 [DEBUG]: Sending header size 164
+2016-08-16 10:26:34,193 [DEBUG]: Sending body size 23
+2016-08-16 10:26:34,193 [DEBUG]: Sending header {"run":"test.FileEcho","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:26:34,193 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:26:34,194 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:26:34,194 [DEBUG]: Sending attachment #0
+2016-08-16 10:26:34,194 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,200 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,200 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,200 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,200 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,200 [DEBUG]: Received header: {"newCallID":10}
+2016-08-16 10:26:34,201 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,201 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,201 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,201 [DEBUG]: Received header size: 96
+2016-08-16 10:26:34,201 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,201 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,201 [DEBUG]: Receiving header of length 96
+2016-08-16 10:26:34,201 [DEBUG]: Received header: {"callID":10,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:26:34,201 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,201 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,201 [INFO ]: Starting to send Message {"callID":10,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:26:34,201 [DEBUG]: Sending header size 96
+2016-08-16 10:26:34,201 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,201 [DEBUG]: Sending header {"callID":10,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:26:34,201 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,201 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,201 [DEBUG]: Received header size: 219
+2016-08-16 10:26:34,201 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,201 [DEBUG]: Received body size: 23
+2016-08-16 10:26:34,201 [DEBUG]: Receiving header of length 219
+2016-08-16 10:26:34,201 [DEBUG]: Received header: {"result":{"testname":{"attachment":{"length":7,"checksum":"9c66e8382ee9c2a0154101510430e168","position":1},"format":"float32 array","name":"testname"}},"callID":10,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:26:34,201 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,202 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:26:34,202 [DEBUG]: Receiving attachment size
+2016-08-16 10:26:34,202 [DEBUG]: Received attachment size: 7
+2016-08-16 10:26:34,202 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:26:34,202 [DEBUG]: Received attachment.
+2016-08-16 10:26:34,202 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,202 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,202 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,241 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,241 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,241 [DEBUG]: Received header: {"newCallID":11}
+2016-08-16 10:26:34,242 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,242 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,242 [INFO ]: Starting to send Message {"newCallID":11}
+2016-08-16 10:26:34,242 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,242 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,242 [DEBUG]: Sending header {"newCallID":11}
+2016-08-16 10:26:34,242 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,242 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,242 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,242 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,242 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,242 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,242 [DEBUG]: Received header: {"callID":11,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,242 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,242 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,242 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,242 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,242 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,281 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,281 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,281 [DEBUG]: Received header: {"newCallID":12}
+2016-08-16 10:26:34,281 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,282 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,282 [INFO ]: Starting to send Message {"newCallID":12}
+2016-08-16 10:26:34,282 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,282 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,282 [DEBUG]: Sending header {"newCallID":12}
+2016-08-16 10:26:34,282 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,282 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,282 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,282 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,282 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,282 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,282 [DEBUG]: Received header: {"callID":12,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,282 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,282 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,282 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,287 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,287 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,325 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,325 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,325 [DEBUG]: Received header: {"newCallID":13}
+2016-08-16 10:26:34,325 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,325 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,326 [INFO ]: Starting to send Message {"newCallID":13}
+2016-08-16 10:26:34,326 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,326 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,326 [DEBUG]: Sending header {"newCallID":13}
+2016-08-16 10:26:34,326 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,326 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,326 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,326 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,326 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,326 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,326 [DEBUG]: Received header: {"callID":13,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,326 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,326 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,326 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,326 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,326 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,365 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,365 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,365 [DEBUG]: Received header: {"newCallID":14}
+2016-08-16 10:26:34,366 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,366 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,366 [INFO ]: Starting to send Message {"newCallID":14}
+2016-08-16 10:26:34,366 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,366 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,366 [DEBUG]: Sending header {"newCallID":14}
+2016-08-16 10:26:34,366 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,366 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,366 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,366 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,366 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,366 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,366 [DEBUG]: Received header: {"callID":14,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,366 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,366 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,366 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,371 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,371 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,409 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,409 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,409 [DEBUG]: Received header: {"newCallID":15}
+2016-08-16 10:26:34,410 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,410 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,410 [INFO ]: Starting to send Message {"newCallID":15}
+2016-08-16 10:26:34,410 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,410 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,410 [DEBUG]: Sending header {"newCallID":15}
+2016-08-16 10:26:34,410 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,410 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,410 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,410 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,410 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,410 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,410 [DEBUG]: Received header: {"callID":15,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,410 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,410 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,410 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,415 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,415 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,453 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,453 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,453 [DEBUG]: Received header: {"newCallID":16}
+2016-08-16 10:26:34,453 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,454 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,454 [INFO ]: Starting to send Message {"newCallID":16}
+2016-08-16 10:26:34,454 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,454 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,454 [DEBUG]: Sending header {"newCallID":16}
+2016-08-16 10:26:34,454 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,454 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,454 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,454 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,454 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,454 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,454 [DEBUG]: Received header: {"callID":16,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,454 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,454 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,454 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,454 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,454 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,493 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,493 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,493 [DEBUG]: Received header: {"newCallID":17}
+2016-08-16 10:26:34,493 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,493 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,494 [INFO ]: Starting to send Message {"newCallID":17}
+2016-08-16 10:26:34,494 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,494 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,494 [DEBUG]: Sending header {"newCallID":17}
+2016-08-16 10:26:34,494 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,494 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,494 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,494 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,494 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,494 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,494 [DEBUG]: Received header: {"callID":17,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,494 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,494 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,494 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,499 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,499 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,537 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,537 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,537 [DEBUG]: Received header: {"newCallID":18}
+2016-08-16 10:26:34,537 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,538 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,538 [INFO ]: Starting to send Message {"newCallID":18}
+2016-08-16 10:26:34,538 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,538 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,538 [DEBUG]: Sending header {"newCallID":18}
+2016-08-16 10:26:34,538 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,538 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,538 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,538 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,538 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,538 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,538 [DEBUG]: Received header: {"callID":18,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,538 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,538 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,538 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,538 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,538 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,577 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,577 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,577 [DEBUG]: Received header: {"newCallID":19}
+2016-08-16 10:26:34,577 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,577 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,578 [INFO ]: Starting to send Message {"newCallID":19}
+2016-08-16 10:26:34,578 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,578 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,578 [DEBUG]: Sending header {"newCallID":19}
+2016-08-16 10:26:34,578 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,578 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,578 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,578 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,578 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,578 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,578 [DEBUG]: Received header: {"callID":19,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,578 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,578 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,578 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,578 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,578 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,617 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,617 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,617 [DEBUG]: Received header: {"newCallID":20}
+2016-08-16 10:26:34,618 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,618 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,618 [INFO ]: Starting to send Message {"newCallID":20}
+2016-08-16 10:26:34,618 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,618 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,618 [DEBUG]: Sending header {"newCallID":20}
+2016-08-16 10:26:34,618 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,618 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,618 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,618 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,618 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,618 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,618 [DEBUG]: Received header: {"callID":20,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,618 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,618 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,618 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,618 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,618 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,657 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,657 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,657 [DEBUG]: Received header: {"newCallID":21}
+2016-08-16 10:26:34,657 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,658 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,658 [INFO ]: Starting to send Message {"newCallID":21}
+2016-08-16 10:26:34,658 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,658 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,658 [DEBUG]: Sending header {"newCallID":21}
+2016-08-16 10:26:34,658 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,658 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,658 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,658 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,658 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,658 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,658 [DEBUG]: Received header: {"callID":21,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,658 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,658 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,658 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,658 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,658 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,697 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,697 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,697 [DEBUG]: Received header: {"newCallID":22}
+2016-08-16 10:26:34,697 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,697 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,698 [INFO ]: Starting to send Message {"newCallID":22}
+2016-08-16 10:26:34,698 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,698 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,698 [DEBUG]: Sending header {"newCallID":22}
+2016-08-16 10:26:34,698 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,698 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,698 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,698 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,698 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,698 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,698 [DEBUG]: Received header: {"callID":22,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,698 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,698 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,698 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,703 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,703 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,741 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,741 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,741 [DEBUG]: Received header: {"newCallID":23}
+2016-08-16 10:26:34,741 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,741 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,742 [INFO ]: Starting to send Message {"newCallID":23}
+2016-08-16 10:26:34,742 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,742 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,742 [DEBUG]: Sending header {"newCallID":23}
+2016-08-16 10:26:34,742 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,742 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,742 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,742 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,742 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,742 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,742 [DEBUG]: Received header: {"callID":23,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,742 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,742 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,742 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,747 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,747 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,785 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,785 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,785 [DEBUG]: Received header: {"newCallID":24}
+2016-08-16 10:26:34,785 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,786 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,786 [INFO ]: Starting to send Message {"newCallID":24}
+2016-08-16 10:26:34,786 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,786 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,786 [DEBUG]: Sending header {"newCallID":24}
+2016-08-16 10:26:34,786 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,786 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,786 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,786 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,786 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,786 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,786 [DEBUG]: Received header: {"callID":24,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,786 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,786 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,786 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,791 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,791 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,829 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,829 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,829 [DEBUG]: Received header: {"newCallID":25}
+2016-08-16 10:26:34,829 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,829 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,830 [INFO ]: Starting to send Message {"newCallID":25}
+2016-08-16 10:26:34,830 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,830 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,830 [DEBUG]: Sending header {"newCallID":25}
+2016-08-16 10:26:34,830 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,830 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,830 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,830 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,830 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,830 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,830 [DEBUG]: Received header: {"callID":25,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,830 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,830 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,830 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,835 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,835 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,873 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,873 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,873 [DEBUG]: Received header: {"newCallID":26}
+2016-08-16 10:26:34,873 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,873 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,874 [INFO ]: Starting to send Message {"newCallID":26}
+2016-08-16 10:26:34,874 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,874 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,874 [DEBUG]: Sending header {"newCallID":26}
+2016-08-16 10:26:34,874 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,874 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,874 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,874 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,874 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,874 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,874 [DEBUG]: Received header: {"callID":26,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,874 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,874 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,874 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,874 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,874 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,913 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,913 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,913 [DEBUG]: Received header: {"newCallID":27}
+2016-08-16 10:26:34,914 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,914 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,914 [INFO ]: Starting to send Message {"newCallID":27}
+2016-08-16 10:26:34,914 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,914 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,914 [DEBUG]: Sending header {"newCallID":27}
+2016-08-16 10:26:34,914 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,914 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,914 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,914 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,914 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,914 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,914 [DEBUG]: Received header: {"callID":27,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,914 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,914 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,914 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,920 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,920 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,957 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,957 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,957 [DEBUG]: Received header: {"newCallID":28}
+2016-08-16 10:26:34,958 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,958 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,958 [INFO ]: Starting to send Message {"newCallID":28}
+2016-08-16 10:26:34,958 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,958 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,958 [DEBUG]: Sending header {"newCallID":28}
+2016-08-16 10:26:34,958 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,958 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,958 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,958 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,958 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,958 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,958 [DEBUG]: Received header: {"callID":28,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,958 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,958 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,958 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,958 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,958 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,997 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,997 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:34,997 [DEBUG]: Received header: {"newCallID":29}
+2016-08-16 10:26:34,997 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,998 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,998 [INFO ]: Starting to send Message {"newCallID":29}
+2016-08-16 10:26:34,998 [DEBUG]: Sending header size 16
+2016-08-16 10:26:34,998 [DEBUG]: Sending body size 8
+2016-08-16 10:26:34,998 [DEBUG]: Sending header {"newCallID":29}
+2016-08-16 10:26:34,998 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:34,998 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,998 [DEBUG]: Received header size: 70
+2016-08-16 10:26:34,998 [DEBUG]: Receiving body size
+2016-08-16 10:26:34,998 [DEBUG]: Received body size: 8
+2016-08-16 10:26:34,998 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:34,998 [DEBUG]: Received header: {"callID":29,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:34,998 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:34,998 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:34,998 [DEBUG]: Receiving header size
+2016-08-16 10:26:34,998 [DEBUG]: Received header size: 16
+2016-08-16 10:26:34,998 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,037 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,037 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,037 [DEBUG]: Received header: {"newCallID":30}
+2016-08-16 10:26:35,037 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,038 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,038 [INFO ]: Starting to send Message {"newCallID":30}
+2016-08-16 10:26:35,038 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,038 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,038 [DEBUG]: Sending header {"newCallID":30}
+2016-08-16 10:26:35,038 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,038 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,038 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,038 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,038 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,038 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,038 [DEBUG]: Received header: {"callID":30,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,038 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,038 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,038 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,043 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,043 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,081 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,081 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,081 [DEBUG]: Received header: {"newCallID":31}
+2016-08-16 10:26:35,081 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,081 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,082 [INFO ]: Starting to send Message {"newCallID":31}
+2016-08-16 10:26:35,082 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,082 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,082 [DEBUG]: Sending header {"newCallID":31}
+2016-08-16 10:26:35,082 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,082 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,082 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,082 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,082 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,082 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,082 [DEBUG]: Received header: {"callID":31,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,082 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,082 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,082 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,087 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,087 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,125 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,125 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,125 [DEBUG]: Received header: {"newCallID":32}
+2016-08-16 10:26:35,125 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,125 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,126 [INFO ]: Starting to send Message {"newCallID":32}
+2016-08-16 10:26:35,126 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,126 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,126 [DEBUG]: Sending header {"newCallID":32}
+2016-08-16 10:26:35,126 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,126 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,126 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,126 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,126 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,126 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,126 [DEBUG]: Received header: {"callID":32,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,126 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,126 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,126 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,131 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,131 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,169 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,169 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,169 [DEBUG]: Received header: {"newCallID":33}
+2016-08-16 10:26:35,169 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,169 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,169 [INFO ]: Starting to send Message {"newCallID":33}
+2016-08-16 10:26:35,170 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,170 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,170 [DEBUG]: Sending header {"newCallID":33}
+2016-08-16 10:26:35,170 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,170 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,170 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,170 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,170 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,170 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,170 [DEBUG]: Received header: {"callID":33,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,170 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,170 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,170 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,175 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,175 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,213 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,213 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,213 [DEBUG]: Received header: {"newCallID":34}
+2016-08-16 10:26:35,213 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,213 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,214 [INFO ]: Starting to send Message {"newCallID":34}
+2016-08-16 10:26:35,214 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,214 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,214 [DEBUG]: Sending header {"newCallID":34}
+2016-08-16 10:26:35,214 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,214 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,214 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,214 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,214 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,214 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,214 [DEBUG]: Received header: {"callID":34,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,214 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,214 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,214 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,219 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,219 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,257 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,257 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,257 [DEBUG]: Received header: {"newCallID":35}
+2016-08-16 10:26:35,257 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,257 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,258 [INFO ]: Starting to send Message {"newCallID":35}
+2016-08-16 10:26:35,258 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,258 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,258 [DEBUG]: Sending header {"newCallID":35}
+2016-08-16 10:26:35,258 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,258 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,258 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,258 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,258 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,258 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,258 [DEBUG]: Received header: {"callID":35,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,258 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,258 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,258 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,263 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,263 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,301 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,301 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,301 [DEBUG]: Received header: {"newCallID":36}
+2016-08-16 10:26:35,301 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,301 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,302 [INFO ]: Starting to send Message {"newCallID":36}
+2016-08-16 10:26:35,302 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,302 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,302 [DEBUG]: Sending header {"newCallID":36}
+2016-08-16 10:26:35,302 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,302 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,302 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,302 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,302 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,302 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,302 [DEBUG]: Received header: {"callID":36,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,302 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,302 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,302 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,307 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,307 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,345 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,345 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,345 [DEBUG]: Received header: {"newCallID":37}
+2016-08-16 10:26:35,346 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,346 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,346 [INFO ]: Starting to send Message {"newCallID":37}
+2016-08-16 10:26:35,346 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,346 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,346 [DEBUG]: Sending header {"newCallID":37}
+2016-08-16 10:26:35,346 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,346 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,346 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,346 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,346 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,346 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,346 [DEBUG]: Received header: {"callID":37,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,346 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,346 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,346 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,351 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,351 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,389 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,389 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,389 [DEBUG]: Received header: {"newCallID":38}
+2016-08-16 10:26:35,390 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,390 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,390 [INFO ]: Starting to send Message {"newCallID":38}
+2016-08-16 10:26:35,390 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,390 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,390 [DEBUG]: Sending header {"newCallID":38}
+2016-08-16 10:26:35,390 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,390 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,390 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,390 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,390 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,390 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,390 [DEBUG]: Received header: {"callID":38,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,390 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,390 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,390 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,390 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,390 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,429 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,429 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,429 [DEBUG]: Received header: {"newCallID":39}
+2016-08-16 10:26:35,430 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,430 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,430 [INFO ]: Starting to send Message {"newCallID":39}
+2016-08-16 10:26:35,430 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,430 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,430 [DEBUG]: Sending header {"newCallID":39}
+2016-08-16 10:26:35,430 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,430 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,430 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,430 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,430 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,430 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,430 [DEBUG]: Received header: {"callID":39,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,430 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,430 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,430 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,435 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,435 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,473 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,473 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,473 [DEBUG]: Received header: {"newCallID":40}
+2016-08-16 10:26:35,474 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,474 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,474 [INFO ]: Starting to send Message {"newCallID":40}
+2016-08-16 10:26:35,474 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,474 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,474 [DEBUG]: Sending header {"newCallID":40}
+2016-08-16 10:26:35,474 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,474 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,474 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,474 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,474 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,474 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,474 [DEBUG]: Received header: {"callID":40,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,474 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,474 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,474 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,479 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,479 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,517 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,517 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,517 [DEBUG]: Received header: {"newCallID":41}
+2016-08-16 10:26:35,517 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,517 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,518 [INFO ]: Starting to send Message {"newCallID":41}
+2016-08-16 10:26:35,518 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,518 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,518 [DEBUG]: Sending header {"newCallID":41}
+2016-08-16 10:26:35,518 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,518 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,518 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,518 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,518 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,518 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,518 [DEBUG]: Received header: {"callID":41,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,518 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,518 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,518 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,523 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,523 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,561 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,561 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,561 [DEBUG]: Received header: {"newCallID":42}
+2016-08-16 10:26:35,561 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,561 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,562 [INFO ]: Starting to send Message {"newCallID":42}
+2016-08-16 10:26:35,562 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,562 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,562 [DEBUG]: Sending header {"newCallID":42}
+2016-08-16 10:26:35,562 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,562 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,562 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,562 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,562 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,562 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,562 [DEBUG]: Received header: {"callID":42,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,562 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,562 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,562 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,567 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,567 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,605 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,605 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,605 [DEBUG]: Received header: {"newCallID":43}
+2016-08-16 10:26:35,605 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,605 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,606 [INFO ]: Starting to send Message {"newCallID":43}
+2016-08-16 10:26:35,606 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,606 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,606 [DEBUG]: Sending header {"newCallID":43}
+2016-08-16 10:26:35,606 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,606 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,606 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,606 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,606 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,606 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,606 [DEBUG]: Received header: {"callID":43,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,606 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,606 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,606 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,611 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,611 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,649 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,649 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,649 [DEBUG]: Received header: {"newCallID":44}
+2016-08-16 10:26:35,649 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,649 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,650 [INFO ]: Starting to send Message {"newCallID":44}
+2016-08-16 10:26:35,650 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,650 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,650 [DEBUG]: Sending header {"newCallID":44}
+2016-08-16 10:26:35,650 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,650 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,650 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,650 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,650 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,650 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,650 [DEBUG]: Received header: {"callID":44,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,650 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,650 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,650 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,655 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,655 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,693 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,693 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,693 [DEBUG]: Received header: {"newCallID":45}
+2016-08-16 10:26:35,693 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,693 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,694 [INFO ]: Starting to send Message {"newCallID":45}
+2016-08-16 10:26:35,694 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,694 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,694 [DEBUG]: Sending header {"newCallID":45}
+2016-08-16 10:26:35,694 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,694 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,694 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,694 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,694 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,694 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,694 [DEBUG]: Received header: {"callID":45,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,694 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,694 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,694 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,699 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,699 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,737 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,737 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,737 [DEBUG]: Received header: {"newCallID":46}
+2016-08-16 10:26:35,737 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,737 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,738 [INFO ]: Starting to send Message {"newCallID":46}
+2016-08-16 10:26:35,738 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,738 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,738 [DEBUG]: Sending header {"newCallID":46}
+2016-08-16 10:26:35,738 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,738 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,738 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,738 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,738 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,738 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,738 [DEBUG]: Received header: {"callID":46,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,738 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,738 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,738 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,743 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,743 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,781 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,781 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,781 [DEBUG]: Received header: {"newCallID":47}
+2016-08-16 10:26:35,781 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,781 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,782 [INFO ]: Starting to send Message {"newCallID":47}
+2016-08-16 10:26:35,782 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,782 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,782 [DEBUG]: Sending header {"newCallID":47}
+2016-08-16 10:26:35,782 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,782 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,782 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,782 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,782 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,782 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,782 [DEBUG]: Received header: {"callID":47,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,782 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,782 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,782 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,782 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,782 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,821 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,821 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,821 [DEBUG]: Received header: {"newCallID":48}
+2016-08-16 10:26:35,822 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,822 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,822 [INFO ]: Starting to send Message {"newCallID":48}
+2016-08-16 10:26:35,822 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,822 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,822 [DEBUG]: Sending header {"newCallID":48}
+2016-08-16 10:26:35,822 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,822 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,822 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,822 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,822 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,822 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,822 [DEBUG]: Received header: {"callID":48,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,822 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,822 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,822 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,822 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,822 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,861 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,861 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,862 [DEBUG]: Received header: {"newCallID":49}
+2016-08-16 10:26:35,862 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,862 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,862 [INFO ]: Starting to send Message {"newCallID":49}
+2016-08-16 10:26:35,862 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,862 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,862 [DEBUG]: Sending header {"newCallID":49}
+2016-08-16 10:26:35,862 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,862 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,862 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,862 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,862 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,862 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,862 [DEBUG]: Received header: {"callID":49,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,862 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,862 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,862 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,862 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,862 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,901 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,901 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,901 [DEBUG]: Received header: {"newCallID":50}
+2016-08-16 10:26:35,902 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,902 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,902 [INFO ]: Starting to send Message {"newCallID":50}
+2016-08-16 10:26:35,902 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,902 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,902 [DEBUG]: Sending header {"newCallID":50}
+2016-08-16 10:26:35,902 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,902 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,902 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,902 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,902 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,902 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,902 [DEBUG]: Received header: {"callID":50,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,902 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,902 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,902 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,907 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,907 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,945 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,945 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,945 [DEBUG]: Received header: {"newCallID":51}
+2016-08-16 10:26:35,946 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,946 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,946 [INFO ]: Starting to send Message {"newCallID":51}
+2016-08-16 10:26:35,946 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,946 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,946 [DEBUG]: Sending header {"newCallID":51}
+2016-08-16 10:26:35,946 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,946 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,946 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,946 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,946 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,946 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,946 [DEBUG]: Received header: {"callID":51,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,946 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,946 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,946 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,951 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,951 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,989 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,989 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:35,989 [DEBUG]: Received header: {"newCallID":52}
+2016-08-16 10:26:35,990 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,990 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,990 [INFO ]: Starting to send Message {"newCallID":52}
+2016-08-16 10:26:35,990 [DEBUG]: Sending header size 16
+2016-08-16 10:26:35,990 [DEBUG]: Sending body size 8
+2016-08-16 10:26:35,990 [DEBUG]: Sending header {"newCallID":52}
+2016-08-16 10:26:35,990 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:35,990 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,990 [DEBUG]: Received header size: 70
+2016-08-16 10:26:35,990 [DEBUG]: Receiving body size
+2016-08-16 10:26:35,990 [DEBUG]: Received body size: 8
+2016-08-16 10:26:35,990 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:35,990 [DEBUG]: Received header: {"callID":52,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:35,990 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:35,990 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:35,990 [DEBUG]: Receiving header size
+2016-08-16 10:26:35,995 [DEBUG]: Received header size: 16
+2016-08-16 10:26:35,995 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,033 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,033 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,033 [DEBUG]: Received header: {"newCallID":53}
+2016-08-16 10:26:36,033 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,034 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,034 [INFO ]: Starting to send Message {"newCallID":53}
+2016-08-16 10:26:36,034 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,034 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,034 [DEBUG]: Sending header {"newCallID":53}
+2016-08-16 10:26:36,034 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,034 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,034 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,034 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,034 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,034 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,034 [DEBUG]: Received header: {"callID":53,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,034 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,034 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,034 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,034 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,034 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,073 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,073 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,073 [DEBUG]: Received header: {"newCallID":54}
+2016-08-16 10:26:36,073 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,073 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,074 [INFO ]: Starting to send Message {"newCallID":54}
+2016-08-16 10:26:36,074 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,074 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,074 [DEBUG]: Sending header {"newCallID":54}
+2016-08-16 10:26:36,074 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,074 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,074 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,074 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,074 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,074 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,074 [DEBUG]: Received header: {"callID":54,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,074 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,074 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,074 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,079 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,079 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,117 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,117 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,117 [DEBUG]: Received header: {"newCallID":55}
+2016-08-16 10:26:36,117 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,117 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,118 [INFO ]: Starting to send Message {"newCallID":55}
+2016-08-16 10:26:36,118 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,118 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,118 [DEBUG]: Sending header {"newCallID":55}
+2016-08-16 10:26:36,118 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,118 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,118 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,118 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,118 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,118 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,118 [DEBUG]: Received header: {"callID":55,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,118 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,118 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,118 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,123 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,123 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,161 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,161 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,161 [DEBUG]: Received header: {"newCallID":56}
+2016-08-16 10:26:36,161 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,161 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,162 [INFO ]: Starting to send Message {"newCallID":56}
+2016-08-16 10:26:36,162 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,162 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,162 [DEBUG]: Sending header {"newCallID":56}
+2016-08-16 10:26:36,162 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,162 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,162 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,162 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,162 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,162 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,162 [DEBUG]: Received header: {"callID":56,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,162 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,162 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,162 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,167 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,167 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,205 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,205 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,205 [DEBUG]: Received header: {"newCallID":57}
+2016-08-16 10:26:36,205 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,205 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,206 [INFO ]: Starting to send Message {"newCallID":57}
+2016-08-16 10:26:36,206 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,206 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,206 [DEBUG]: Sending header {"newCallID":57}
+2016-08-16 10:26:36,206 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,206 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,206 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,206 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,206 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,206 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,206 [DEBUG]: Received header: {"callID":57,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,206 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,206 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,206 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,211 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,211 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,249 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,249 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,249 [DEBUG]: Received header: {"newCallID":58}
+2016-08-16 10:26:36,249 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,249 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,250 [INFO ]: Starting to send Message {"newCallID":58}
+2016-08-16 10:26:36,250 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,250 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,250 [DEBUG]: Sending header {"newCallID":58}
+2016-08-16 10:26:36,250 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,250 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,250 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,250 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,250 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,250 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,250 [DEBUG]: Received header: {"callID":58,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,250 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,250 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,250 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,255 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,255 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,293 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,293 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,293 [DEBUG]: Received header: {"newCallID":59}
+2016-08-16 10:26:36,293 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,293 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,293 [INFO ]: Starting to send Message {"newCallID":59}
+2016-08-16 10:26:36,294 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,294 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,294 [DEBUG]: Sending header {"newCallID":59}
+2016-08-16 10:26:36,294 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,294 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,294 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,294 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,294 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,294 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,294 [DEBUG]: Received header: {"callID":59,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,294 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,294 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,294 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,299 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,299 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,337 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,337 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,337 [DEBUG]: Received header: {"newCallID":60}
+2016-08-16 10:26:36,337 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,337 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,338 [INFO ]: Starting to send Message {"newCallID":60}
+2016-08-16 10:26:36,338 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,338 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,338 [DEBUG]: Sending header {"newCallID":60}
+2016-08-16 10:26:36,338 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,338 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,338 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,338 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,338 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,338 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,338 [DEBUG]: Received header: {"callID":60,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,338 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,338 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,338 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,343 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,343 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,381 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,381 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,381 [DEBUG]: Received header: {"newCallID":61}
+2016-08-16 10:26:36,382 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,382 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,382 [INFO ]: Starting to send Message {"newCallID":61}
+2016-08-16 10:26:36,382 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,382 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,382 [DEBUG]: Sending header {"newCallID":61}
+2016-08-16 10:26:36,382 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,382 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,382 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,382 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,382 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,382 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,382 [DEBUG]: Received header: {"callID":61,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,382 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,382 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,382 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,387 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,387 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,425 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,425 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,425 [DEBUG]: Received header: {"newCallID":62}
+2016-08-16 10:26:36,426 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,426 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,426 [INFO ]: Starting to send Message {"newCallID":62}
+2016-08-16 10:26:36,426 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,426 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,426 [DEBUG]: Sending header {"newCallID":62}
+2016-08-16 10:26:36,426 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,426 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,426 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,426 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,426 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,426 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,426 [DEBUG]: Received header: {"callID":62,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,426 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,426 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,426 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,426 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,426 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,465 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,465 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,465 [DEBUG]: Received header: {"newCallID":63}
+2016-08-16 10:26:36,466 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,466 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,466 [INFO ]: Starting to send Message {"newCallID":63}
+2016-08-16 10:26:36,466 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,466 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,466 [DEBUG]: Sending header {"newCallID":63}
+2016-08-16 10:26:36,466 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,466 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,466 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,466 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,466 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,466 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,466 [DEBUG]: Received header: {"callID":63,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,466 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,466 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,466 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,471 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,471 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,509 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,509 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,509 [DEBUG]: Received header: {"newCallID":64}
+2016-08-16 10:26:36,509 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,509 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,510 [INFO ]: Starting to send Message {"newCallID":64}
+2016-08-16 10:26:36,510 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,510 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,510 [DEBUG]: Sending header {"newCallID":64}
+2016-08-16 10:26:36,510 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,510 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,510 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,510 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,510 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,510 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,510 [DEBUG]: Received header: {"callID":64,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,510 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,510 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,510 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,515 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,515 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,553 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,553 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,553 [DEBUG]: Received header: {"newCallID":65}
+2016-08-16 10:26:36,553 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,553 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,554 [INFO ]: Starting to send Message {"newCallID":65}
+2016-08-16 10:26:36,554 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,554 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,554 [DEBUG]: Sending header {"newCallID":65}
+2016-08-16 10:26:36,554 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,554 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,554 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,554 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,554 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,554 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,554 [DEBUG]: Received header: {"callID":65,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,554 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,554 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,554 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,559 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,559 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,597 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,597 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,597 [DEBUG]: Received header: {"newCallID":66}
+2016-08-16 10:26:36,597 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,597 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,598 [INFO ]: Starting to send Message {"newCallID":66}
+2016-08-16 10:26:36,598 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,598 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,598 [DEBUG]: Sending header {"newCallID":66}
+2016-08-16 10:26:36,598 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,598 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,598 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,598 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,598 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,598 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,598 [DEBUG]: Received header: {"callID":66,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,598 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,598 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,598 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,603 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,603 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,641 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,641 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,641 [DEBUG]: Received header: {"newCallID":67}
+2016-08-16 10:26:36,641 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,641 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,642 [INFO ]: Starting to send Message {"newCallID":67}
+2016-08-16 10:26:36,642 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,642 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,642 [DEBUG]: Sending header {"newCallID":67}
+2016-08-16 10:26:36,642 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,642 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,642 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,642 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,642 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,642 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,642 [DEBUG]: Received header: {"callID":67,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,642 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,642 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,642 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,647 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,647 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,685 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,685 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,685 [DEBUG]: Received header: {"newCallID":68}
+2016-08-16 10:26:36,685 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,685 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,685 [INFO ]: Starting to send Message {"newCallID":68}
+2016-08-16 10:26:36,686 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,686 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,686 [DEBUG]: Sending header {"newCallID":68}
+2016-08-16 10:26:36,686 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,686 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,686 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,686 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,686 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,686 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,686 [DEBUG]: Received header: {"callID":68,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,686 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,686 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,686 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,691 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,691 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,729 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,729 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,729 [DEBUG]: Received header: {"newCallID":69}
+2016-08-16 10:26:36,730 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,730 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,730 [INFO ]: Starting to send Message {"newCallID":69}
+2016-08-16 10:26:36,730 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,730 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,730 [DEBUG]: Sending header {"newCallID":69}
+2016-08-16 10:26:36,730 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,730 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,730 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,730 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,730 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,730 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,730 [DEBUG]: Received header: {"callID":69,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,730 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,730 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,730 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,730 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,730 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,769 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,769 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,769 [DEBUG]: Received header: {"newCallID":70}
+2016-08-16 10:26:36,769 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,769 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,770 [INFO ]: Starting to send Message {"newCallID":70}
+2016-08-16 10:26:36,770 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,770 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,770 [DEBUG]: Sending header {"newCallID":70}
+2016-08-16 10:26:36,770 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,770 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,770 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,770 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,770 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,770 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,770 [DEBUG]: Received header: {"callID":70,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,770 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,770 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,770 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,775 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,775 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,813 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,813 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,813 [DEBUG]: Received header: {"newCallID":71}
+2016-08-16 10:26:36,814 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,814 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,814 [INFO ]: Starting to send Message {"newCallID":71}
+2016-08-16 10:26:36,814 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,814 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,814 [DEBUG]: Sending header {"newCallID":71}
+2016-08-16 10:26:36,814 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,814 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,814 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,814 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,814 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,814 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,814 [DEBUG]: Received header: {"callID":71,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,814 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,814 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,814 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,819 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,819 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,857 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,857 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,857 [DEBUG]: Received header: {"newCallID":72}
+2016-08-16 10:26:36,857 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,857 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,858 [INFO ]: Starting to send Message {"newCallID":72}
+2016-08-16 10:26:36,858 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,858 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,858 [DEBUG]: Sending header {"newCallID":72}
+2016-08-16 10:26:36,858 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,858 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,858 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,858 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,858 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,858 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,858 [DEBUG]: Received header: {"callID":72,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,858 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,858 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,858 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,863 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,863 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,901 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,901 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,901 [DEBUG]: Received header: {"newCallID":73}
+2016-08-16 10:26:36,901 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,901 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,901 [INFO ]: Starting to send Message {"newCallID":73}
+2016-08-16 10:26:36,902 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,902 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,902 [DEBUG]: Sending header {"newCallID":73}
+2016-08-16 10:26:36,902 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,902 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,902 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,902 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,902 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,902 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,902 [DEBUG]: Received header: {"callID":73,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,902 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,902 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,902 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,907 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,907 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,945 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,945 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,945 [DEBUG]: Received header: {"newCallID":74}
+2016-08-16 10:26:36,945 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,946 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,946 [INFO ]: Starting to send Message {"newCallID":74}
+2016-08-16 10:26:36,946 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,946 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,946 [DEBUG]: Sending header {"newCallID":74}
+2016-08-16 10:26:36,946 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,946 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,946 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,946 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,946 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,946 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,946 [DEBUG]: Received header: {"callID":74,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,946 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,946 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,946 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,946 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,946 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,985 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,985 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:36,986 [DEBUG]: Received header: {"newCallID":75}
+2016-08-16 10:26:36,986 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,986 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,986 [INFO ]: Starting to send Message {"newCallID":75}
+2016-08-16 10:26:36,986 [DEBUG]: Sending header size 16
+2016-08-16 10:26:36,986 [DEBUG]: Sending body size 8
+2016-08-16 10:26:36,986 [DEBUG]: Sending header {"newCallID":75}
+2016-08-16 10:26:36,986 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:36,986 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,986 [DEBUG]: Received header size: 70
+2016-08-16 10:26:36,986 [DEBUG]: Receiving body size
+2016-08-16 10:26:36,986 [DEBUG]: Received body size: 8
+2016-08-16 10:26:36,986 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:36,986 [DEBUG]: Received header: {"callID":75,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:36,986 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:36,986 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:36,986 [DEBUG]: Receiving header size
+2016-08-16 10:26:36,986 [DEBUG]: Received header size: 16
+2016-08-16 10:26:36,986 [DEBUG]: Receiving body size
+2016-08-16 10:26:37,025 [DEBUG]: Received body size: 8
+2016-08-16 10:26:37,025 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:37,025 [DEBUG]: Received header: {"newCallID":76}
+2016-08-16 10:26:37,025 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:37,025 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:37,026 [INFO ]: Starting to send Message {"newCallID":76}
+2016-08-16 10:26:37,026 [DEBUG]: Sending header size 16
+2016-08-16 10:26:37,026 [DEBUG]: Sending body size 8
+2016-08-16 10:26:37,026 [DEBUG]: Sending header {"newCallID":76}
+2016-08-16 10:26:37,026 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:37,026 [DEBUG]: Receiving header size
+2016-08-16 10:26:37,026 [DEBUG]: Received header size: 70
+2016-08-16 10:26:37,026 [DEBUG]: Receiving body size
+2016-08-16 10:26:37,026 [DEBUG]: Received body size: 8
+2016-08-16 10:26:37,026 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:37,026 [DEBUG]: Received header: {"callID":76,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:37,026 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:37,026 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:37,026 [DEBUG]: Receiving header size
+2016-08-16 10:26:37,031 [DEBUG]: Received header size: 16
+2016-08-16 10:26:37,031 [DEBUG]: Receiving body size
+2016-08-16 10:26:37,069 [DEBUG]: Received body size: 8
+2016-08-16 10:26:37,069 [DEBUG]: Receiving header of length 16
+2016-08-16 10:26:37,070 [DEBUG]: Received header: {"newCallID":77}
+2016-08-16 10:26:37,070 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:37,070 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:26:37,070 [INFO ]: Starting to send Message {"newCallID":77}
+2016-08-16 10:26:37,070 [DEBUG]: Sending header size 16
+2016-08-16 10:26:37,070 [DEBUG]: Sending body size 8
+2016-08-16 10:26:37,070 [DEBUG]: Sending header {"newCallID":77}
+2016-08-16 10:26:37,070 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:26:37,070 [DEBUG]: Receiving header size
+2016-08-16 10:26:37,070 [DEBUG]: Received header size: 70
+2016-08-16 10:26:37,070 [DEBUG]: Receiving body size
+2016-08-16 10:26:37,070 [DEBUG]: Received body size: 8
+2016-08-16 10:26:37,070 [DEBUG]: Receiving header of length 70
+2016-08-16 10:26:37,070 [DEBUG]: Received header: {"callID":77,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:26:37,070 [DEBUG]: Receiving number of attachments
+2016-08-16 10:26:37,070 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:26:37,070 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:27:45,069 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:27:45,069 [INFO ]: Connection established.
+2016-08-16 10:27:45,069 [INFO ]: Starting to send Message {"run":"test.FileEcho","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:27:45,069 [DEBUG]: Sending header size 164
+2016-08-16 10:27:45,069 [DEBUG]: Sending body size 23
+2016-08-16 10:27:45,069 [DEBUG]: Sending header {"run":"test.FileEcho","testname":{"attachment":{"checksum":"9c66e8382ee9c2a0154101510430e168","length":7,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 10:27:45,069 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:27:45,069 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:27:45,069 [DEBUG]: Sending attachment #0
+2016-08-16 10:27:45,069 [DEBUG]: Receiving header size
+2016-08-16 10:27:45,076 [DEBUG]: Received header size: 16
+2016-08-16 10:27:45,076 [DEBUG]: Receiving body size
+2016-08-16 10:27:45,076 [DEBUG]: Received body size: 8
+2016-08-16 10:27:45,076 [DEBUG]: Receiving header of length 16
+2016-08-16 10:27:45,076 [DEBUG]: Received header: {"newCallID":79}
+2016-08-16 10:27:45,076 [DEBUG]: Receiving number of attachments
+2016-08-16 10:27:45,076 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:27:45,076 [DEBUG]: Receiving header size
+2016-08-16 10:27:45,076 [DEBUG]: Received header size: 96
+2016-08-16 10:27:45,076 [DEBUG]: Receiving body size
+2016-08-16 10:27:45,076 [DEBUG]: Received body size: 8
+2016-08-16 10:27:45,076 [DEBUG]: Receiving header of length 96
+2016-08-16 10:27:45,076 [DEBUG]: Received header: {"callID":79,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:27:45,076 [DEBUG]: Receiving number of attachments
+2016-08-16 10:27:45,076 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:27:45,076 [INFO ]: Starting to send Message {"callID":79,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:27:45,076 [DEBUG]: Sending header size 96
+2016-08-16 10:27:45,076 [DEBUG]: Sending body size 8
+2016-08-16 10:27:45,076 [DEBUG]: Sending header {"callID":79,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:27:45,076 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:27:45,076 [INFO ]: Closing connection.
+2016-08-16 10:27:45,076 [INFO ]: Connection closed.
+2016-08-16 10:31:41,419 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:31:41,419 [INFO ]: Connection established.
+2016-08-16 10:31:41,419 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:31:41,419 [DEBUG]: Sending header size 23
+2016-08-16 10:31:41,419 [DEBUG]: Sending body size 23
+2016-08-16 10:31:41,419 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:31:41,419 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:31:41,420 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:31:41,420 [DEBUG]: Sending attachment #0
+2016-08-16 10:31:41,420 [DEBUG]: Receiving header size
+2016-08-16 10:31:41,425 [DEBUG]: Received header size: 16
+2016-08-16 10:31:41,425 [DEBUG]: Receiving body size
+2016-08-16 10:31:41,426 [DEBUG]: Received body size: 8
+2016-08-16 10:31:41,426 [DEBUG]: Receiving header of length 16
+2016-08-16 10:31:41,426 [DEBUG]: Received header: {"newCallID":81}
+2016-08-16 10:31:41,426 [DEBUG]: Receiving number of attachments
+2016-08-16 10:31:41,426 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:31:41,426 [DEBUG]: Receiving header size
+2016-08-16 10:31:41,426 [DEBUG]: Received header size: 96
+2016-08-16 10:31:41,426 [DEBUG]: Receiving body size
+2016-08-16 10:31:41,426 [DEBUG]: Received body size: 8
+2016-08-16 10:31:41,426 [DEBUG]: Receiving header of length 96
+2016-08-16 10:31:41,426 [DEBUG]: Received header: {"callID":81,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:31:41,426 [DEBUG]: Receiving number of attachments
+2016-08-16 10:31:41,426 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:31:41,426 [INFO ]: Starting to send Message {"callID":81,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:31:41,426 [DEBUG]: Sending header size 96
+2016-08-16 10:31:41,426 [DEBUG]: Sending body size 8
+2016-08-16 10:31:41,427 [DEBUG]: Sending header {"callID":81,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:31:41,427 [DEBUG]: Sending number of attachments 0
+2016-08-16 10:31:41,427 [INFO ]: Closing connection.
+2016-08-16 10:31:41,427 [INFO ]: Connection closed.
+2016-08-16 10:32:16,585 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:32:16,585 [INFO ]: Connection established.
+2016-08-16 10:32:16,585 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:32:16,585 [DEBUG]: Sending header size 23
+2016-08-16 10:32:16,585 [DEBUG]: Sending body size 23
+2016-08-16 10:32:16,585 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:32:16,585 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:32:16,586 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:32:16,586 [DEBUG]: Sending attachment #0
+2016-08-16 10:32:16,586 [DEBUG]: Receiving header size
+2016-08-16 10:32:16,590 [DEBUG]: Received header size: 16
+2016-08-16 10:32:16,591 [DEBUG]: Receiving body size
+2016-08-16 10:32:16,591 [DEBUG]: Received body size: 8
+2016-08-16 10:32:16,591 [DEBUG]: Receiving header of length 16
+2016-08-16 10:32:16,591 [DEBUG]: Received header: {"newCallID":83}
+2016-08-16 10:32:16,591 [DEBUG]: Receiving number of attachments
+2016-08-16 10:32:16,591 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:32:16,591 [DEBUG]: Receiving header size
+2016-08-16 10:32:16,591 [DEBUG]: Received header size: 96
+2016-08-16 10:32:16,591 [DEBUG]: Receiving body size
+2016-08-16 10:32:16,591 [DEBUG]: Received body size: 8
+2016-08-16 10:32:16,591 [DEBUG]: Receiving header of length 96
+2016-08-16 10:32:16,591 [DEBUG]: Received header: {"callID":83,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:32:16,591 [DEBUG]: Receiving number of attachments
+2016-08-16 10:32:16,591 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:32:16,591 [DEBUG]: Receiving header size
+2016-08-16 10:32:16,591 [DEBUG]: Received header size: 79
+2016-08-16 10:32:16,591 [DEBUG]: Receiving body size
+2016-08-16 10:32:16,591 [DEBUG]: Received body size: 16
+2016-08-16 10:32:16,591 [DEBUG]: Receiving header of length 79
+2016-08-16 10:32:16,591 [DEBUG]: Received header: {"result":{},"callID":83,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:32:16,591 [DEBUG]: Receiving number of attachments
+2016-08-16 10:32:16,592 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:32:16,592 [DEBUG]: Receiving attachment size
+2016-08-16 10:32:16,592 [DEBUG]: Received attachment size: 7
+2016-08-16 10:32:16,592 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:32:16,592 [DEBUG]: Received attachment.
+2016-08-16 10:32:16,592 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 10:32:16,592 [INFO ]: Starting to send Message {"callID":83,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:32:16,592 [DEBUG]: Sending header size 79
+2016-08-16 10:32:16,593 [DEBUG]: Sending body size 23
+2016-08-16 10:32:16,593 [DEBUG]: Sending header {"callID":83,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:32:16,593 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:32:16,593 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:32:16,593 [DEBUG]: Sending attachment #0
+2016-08-16 10:32:16,593 [INFO ]: Closing connection.
+2016-08-16 10:32:16,593 [INFO ]: Connection closed.
+2016-08-16 10:32:45,196 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:32:45,196 [INFO ]: Connection established.
+2016-08-16 10:32:45,196 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:32:45,196 [DEBUG]: Sending header size 23
+2016-08-16 10:32:45,197 [DEBUG]: Sending body size 23
+2016-08-16 10:32:45,197 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:32:45,197 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:32:45,197 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:32:45,197 [DEBUG]: Sending attachment #0
+2016-08-16 10:32:45,197 [DEBUG]: Receiving header size
+2016-08-16 10:32:57,787 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:32:57,787 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:33:11,245 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:33:11,245 [INFO ]: Connection established.
+2016-08-16 10:33:11,246 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:33:11,246 [DEBUG]: Sending header size 23
+2016-08-16 10:33:11,246 [DEBUG]: Sending body size 23
+2016-08-16 10:33:11,246 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:33:11,246 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:33:11,246 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:33:11,246 [DEBUG]: Sending attachment #0
+2016-08-16 10:33:11,246 [DEBUG]: Receiving header size
+2016-08-16 10:33:11,246 [DEBUG]: Received header size: 36
+2016-08-16 10:33:11,246 [DEBUG]: Receiving body size
+2016-08-16 10:33:11,246 [DEBUG]: Received body size: 8
+2016-08-16 10:33:11,246 [DEBUG]: Receiving header of length 36
+2016-08-16 10:33:11,246 [DEBUG]: Received header: {"error":"Timer already cancelled."}
+2016-08-16 10:33:11,246 [DEBUG]: Receiving number of attachments
+2016-08-16 10:33:11,246 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:33:11,246 [DEBUG]: Receiving header size
+2016-08-16 10:33:19,562 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:33:19,563 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:33:56,275 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:33:56,275 [INFO ]: Connection established.
+2016-08-16 10:33:56,275 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:33:56,275 [DEBUG]: Sending header size 23
+2016-08-16 10:33:56,275 [DEBUG]: Sending body size 23
+2016-08-16 10:33:56,275 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:33:56,275 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:33:56,276 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:33:56,276 [DEBUG]: Sending attachment #0
+2016-08-16 10:33:56,276 [DEBUG]: Receiving header size
+2016-08-16 10:33:56,276 [DEBUG]: Received header size: 36
+2016-08-16 10:33:56,276 [DEBUG]: Receiving body size
+2016-08-16 10:33:56,276 [DEBUG]: Received body size: 8
+2016-08-16 10:33:56,276 [DEBUG]: Receiving header of length 36
+2016-08-16 10:33:56,276 [DEBUG]: Received header: {"error":"Timer already cancelled."}
+2016-08-16 10:33:56,276 [DEBUG]: Receiving number of attachments
+2016-08-16 10:33:56,276 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:33:56,276 [DEBUG]: Receiving header size
+2016-08-16 10:33:58,323 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:33:58,323 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:34:07,613 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:34:07,613 [INFO ]: Connection established.
+2016-08-16 10:34:07,613 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:34:07,613 [DEBUG]: Sending header size 23
+2016-08-16 10:34:07,613 [DEBUG]: Sending body size 23
+2016-08-16 10:34:07,613 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:34:07,613 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:34:07,613 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:34:07,613 [DEBUG]: Sending attachment #0
+2016-08-16 10:34:07,613 [DEBUG]: Receiving header size
+2016-08-16 10:34:07,634 [DEBUG]: Received header size: 15
+2016-08-16 10:34:07,634 [DEBUG]: Receiving body size
+2016-08-16 10:34:07,634 [DEBUG]: Received body size: 8
+2016-08-16 10:34:07,635 [DEBUG]: Receiving header of length 15
+2016-08-16 10:34:07,635 [DEBUG]: Received header: {"newCallID":1}
+2016-08-16 10:34:07,635 [DEBUG]: Receiving number of attachments
+2016-08-16 10:34:07,635 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:34:07,635 [DEBUG]: Receiving header size
+2016-08-16 10:34:07,635 [DEBUG]: Received header size: 95
+2016-08-16 10:34:07,635 [DEBUG]: Receiving body size
+2016-08-16 10:34:07,635 [DEBUG]: Received body size: 8
+2016-08-16 10:34:07,635 [DEBUG]: Receiving header of length 95
+2016-08-16 10:34:07,635 [DEBUG]: Received header: {"callID":1,"duration":0,"percentage":0,"progress":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:34:07,635 [DEBUG]: Receiving number of attachments
+2016-08-16 10:34:07,635 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:34:07,635 [DEBUG]: Receiving header size
+2016-08-16 10:34:07,635 [DEBUG]: Received header size: 78
+2016-08-16 10:34:07,635 [DEBUG]: Receiving body size
+2016-08-16 10:34:07,635 [DEBUG]: Received body size: 16
+2016-08-16 10:34:07,635 [DEBUG]: Receiving header of length 78
+2016-08-16 10:34:07,635 [DEBUG]: Received header: {"result":{},"callID":1,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:34:07,635 [DEBUG]: Receiving number of attachments
+2016-08-16 10:34:07,635 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:34:07,635 [DEBUG]: Receiving attachment size
+2016-08-16 10:34:07,637 [DEBUG]: Received attachment size: 7
+2016-08-16 10:34:07,637 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:34:07,637 [DEBUG]: Received attachment.
+2016-08-16 10:34:07,637 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 10:34:07,637 [INFO ]: Starting to send Message {"callID":1,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:34:07,637 [DEBUG]: Sending header size 78
+2016-08-16 10:34:07,637 [DEBUG]: Sending body size 23
+2016-08-16 10:34:07,637 [DEBUG]: Sending header {"callID":1,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:34:07,637 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:34:07,637 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:34:07,637 [DEBUG]: Sending attachment #0
+2016-08-16 10:34:07,637 [DEBUG]: Receiving header size
+2016-08-16 10:34:07,641 [DEBUG]: Received header size: 15
+2016-08-16 10:34:07,641 [DEBUG]: Receiving body size
+2016-08-16 10:34:07,677 [DEBUG]: Received body size: 8
+2016-08-16 10:34:07,677 [DEBUG]: Receiving header of length 15
+2016-08-16 10:34:07,677 [DEBUG]: Received header: {"newCallID":2}
+2016-08-16 10:34:07,678 [DEBUG]: Receiving number of attachments
+2016-08-16 10:34:07,678 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:34:07,678 [DEBUG]: Receiving header size
+2016-08-16 10:34:07,678 [DEBUG]: Received header size: 69
+2016-08-16 10:34:07,678 [DEBUG]: Receiving body size
+2016-08-16 10:34:07,678 [DEBUG]: Received body size: 8
+2016-08-16 10:34:07,678 [DEBUG]: Receiving header of length 69
+2016-08-16 10:34:07,678 [DEBUG]: Received header: {"callID":2,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:34:07,678 [DEBUG]: Receiving number of attachments
+2016-08-16 10:34:07,678 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:34:07,678 [DEBUG]: Receiving header size
+2016-08-16 10:34:28,493 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:34:28,493 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:50:56,503 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:50:56,503 [INFO ]: Connection established.
+2016-08-16 10:50:56,503 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:50:56,504 [DEBUG]: Sending header size 23
+2016-08-16 10:50:56,504 [DEBUG]: Sending body size 23
+2016-08-16 10:50:56,504 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:50:56,504 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:50:56,504 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:50:56,504 [DEBUG]: Sending attachment #0
+2016-08-16 10:50:56,504 [DEBUG]: Receiving header size
+2016-08-16 10:50:56,589 [DEBUG]: Received header size: 15
+2016-08-16 10:50:56,589 [DEBUG]: Receiving body size
+2016-08-16 10:50:56,589 [DEBUG]: Received body size: 8
+2016-08-16 10:50:56,589 [DEBUG]: Receiving header of length 15
+2016-08-16 10:50:56,589 [DEBUG]: Received header: {"newCallID":1}
+2016-08-16 10:50:56,589 [DEBUG]: Receiving number of attachments
+2016-08-16 10:50:56,589 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:50:56,589 [DEBUG]: Receiving header size
+2016-08-16 10:50:56,589 [DEBUG]: Received header size: 79
+2016-08-16 10:50:56,589 [DEBUG]: Receiving body size
+2016-08-16 10:50:56,589 [DEBUG]: Received body size: 8
+2016-08-16 10:50:56,589 [DEBUG]: Receiving header of length 79
+2016-08-16 10:50:56,589 [DEBUG]: Received header: {"callID":1,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:50:56,589 [DEBUG]: Receiving number of attachments
+2016-08-16 10:50:56,589 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:50:56,590 [DEBUG]: Receiving header size
+2016-08-16 10:50:56,591 [DEBUG]: Received header size: 78
+2016-08-16 10:50:56,591 [DEBUG]: Receiving body size
+2016-08-16 10:50:56,591 [DEBUG]: Received body size: 16
+2016-08-16 10:50:56,591 [DEBUG]: Receiving header of length 78
+2016-08-16 10:50:56,591 [DEBUG]: Received header: {"result":{},"callID":1,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:50:56,591 [DEBUG]: Receiving number of attachments
+2016-08-16 10:50:56,591 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:50:56,591 [DEBUG]: Receiving attachment size
+2016-08-16 10:50:56,593 [DEBUG]: Received attachment size: 7
+2016-08-16 10:50:56,593 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:50:56,593 [DEBUG]: Received attachment.
+2016-08-16 10:50:56,593 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 10:50:56,593 [INFO ]: Starting to send Message {"callID":1,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:50:56,593 [DEBUG]: Sending header size 78
+2016-08-16 10:50:56,593 [DEBUG]: Sending body size 23
+2016-08-16 10:50:56,593 [DEBUG]: Sending header {"callID":1,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:50:56,593 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:50:56,593 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:50:56,593 [DEBUG]: Sending attachment #0
+2016-08-16 10:50:56,593 [DEBUG]: Receiving header size
+2016-08-16 10:50:56,598 [DEBUG]: Received header size: 15
+2016-08-16 10:50:56,598 [DEBUG]: Receiving body size
+2016-08-16 10:50:56,637 [DEBUG]: Received body size: 8
+2016-08-16 10:50:56,637 [DEBUG]: Receiving header of length 15
+2016-08-16 10:50:56,637 [DEBUG]: Received header: {"newCallID":2}
+2016-08-16 10:50:56,638 [DEBUG]: Receiving number of attachments
+2016-08-16 10:50:56,638 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:50:56,638 [DEBUG]: Receiving header size
+2016-08-16 10:50:56,638 [DEBUG]: Received header size: 69
+2016-08-16 10:50:56,638 [DEBUG]: Receiving body size
+2016-08-16 10:50:56,638 [DEBUG]: Received body size: 8
+2016-08-16 10:50:56,638 [DEBUG]: Receiving header of length 69
+2016-08-16 10:50:56,638 [DEBUG]: Received header: {"callID":2,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:50:56,638 [DEBUG]: Receiving number of attachments
+2016-08-16 10:50:56,638 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:50:56,638 [DEBUG]: Receiving header size
+2016-08-16 10:50:58,784 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:50:58,784 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:51:28,251 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:51:28,252 [INFO ]: Connection established.
+2016-08-16 10:51:28,252 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:51:28,252 [DEBUG]: Sending header size 23
+2016-08-16 10:51:28,252 [DEBUG]: Sending body size 23
+2016-08-16 10:51:28,252 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:51:28,252 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:51:28,252 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:51:28,252 [DEBUG]: Sending attachment #1
+2016-08-16 10:51:28,252 [DEBUG]: Receiving header size
+2016-08-16 10:51:28,254 [DEBUG]: Received header size: 15
+2016-08-16 10:51:28,254 [DEBUG]: Receiving body size
+2016-08-16 10:51:28,254 [DEBUG]: Received body size: 8
+2016-08-16 10:51:28,254 [DEBUG]: Receiving header of length 15
+2016-08-16 10:51:28,254 [DEBUG]: Received header: {"newCallID":3}
+2016-08-16 10:51:28,254 [DEBUG]: Receiving number of attachments
+2016-08-16 10:51:28,254 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:51:28,254 [DEBUG]: Receiving header size
+2016-08-16 10:51:28,254 [DEBUG]: Received header size: 79
+2016-08-16 10:51:28,254 [DEBUG]: Receiving body size
+2016-08-16 10:51:28,254 [DEBUG]: Received body size: 8
+2016-08-16 10:51:28,254 [DEBUG]: Receiving header of length 79
+2016-08-16 10:51:28,254 [DEBUG]: Received header: {"callID":3,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:51:28,254 [DEBUG]: Receiving number of attachments
+2016-08-16 10:51:28,254 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:51:28,254 [DEBUG]: Receiving header size
+2016-08-16 10:51:28,254 [DEBUG]: Received header size: 78
+2016-08-16 10:51:28,254 [DEBUG]: Receiving body size
+2016-08-16 10:51:28,254 [DEBUG]: Received body size: 16
+2016-08-16 10:51:28,254 [DEBUG]: Receiving header of length 78
+2016-08-16 10:51:28,254 [DEBUG]: Received header: {"result":{},"callID":3,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:51:28,254 [DEBUG]: Receiving number of attachments
+2016-08-16 10:51:28,255 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:51:28,255 [DEBUG]: Receiving attachment size
+2016-08-16 10:51:28,255 [DEBUG]: Received attachment size: 7
+2016-08-16 10:51:28,255 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:51:28,255 [DEBUG]: Received attachment.
+2016-08-16 10:51:28,255 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 10:51:28,255 [INFO ]: Starting to send Message {"callID":3,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:51:28,255 [DEBUG]: Sending header size 78
+2016-08-16 10:51:28,255 [DEBUG]: Sending body size 23
+2016-08-16 10:51:28,255 [DEBUG]: Sending header {"callID":3,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:51:28,255 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:51:28,255 [DEBUG]: Sending attachment size #0: 7
+2016-08-16 10:51:28,255 [DEBUG]: Sending attachment #1
+2016-08-16 10:51:28,255 [DEBUG]: Receiving header size
+2016-08-16 10:51:28,261 [DEBUG]: Received header size: 15
+2016-08-16 10:51:28,261 [DEBUG]: Receiving body size
+2016-08-16 10:51:28,297 [DEBUG]: Received body size: 8
+2016-08-16 10:51:28,297 [DEBUG]: Receiving header of length 15
+2016-08-16 10:51:28,298 [DEBUG]: Received header: {"newCallID":4}
+2016-08-16 10:51:28,298 [DEBUG]: Receiving number of attachments
+2016-08-16 10:51:28,298 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:51:28,298 [DEBUG]: Receiving header size
+2016-08-16 10:51:28,298 [DEBUG]: Received header size: 69
+2016-08-16 10:51:28,298 [DEBUG]: Receiving body size
+2016-08-16 10:51:28,298 [DEBUG]: Received body size: 8
+2016-08-16 10:51:28,298 [DEBUG]: Receiving header of length 69
+2016-08-16 10:51:28,298 [DEBUG]: Received header: {"callID":4,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:51:28,298 [DEBUG]: Receiving number of attachments
+2016-08-16 10:51:28,298 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:51:28,298 [DEBUG]: Receiving header size
+2016-08-16 10:51:32,336 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:51:32,336 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:55:22,137 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:55:22,138 [INFO ]: Connection established.
+2016-08-16 10:55:22,138 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:55:22,138 [DEBUG]: Sending header size 23
+2016-08-16 10:55:22,138 [DEBUG]: Sending body size 23
+2016-08-16 10:55:22,138 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:55:22,138 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:55:22,138 [DEBUG]: Sending attachment size #1: 7
+2016-08-16 10:55:22,139 [DEBUG]: Sending attachment #1
+2016-08-16 10:55:22,139 [DEBUG]: Receiving header size
+2016-08-16 10:55:22,146 [DEBUG]: Received header size: 15
+2016-08-16 10:55:22,146 [DEBUG]: Receiving body size
+2016-08-16 10:55:22,146 [DEBUG]: Received body size: 8
+2016-08-16 10:55:22,146 [DEBUG]: Receiving header of length 15
+2016-08-16 10:55:22,146 [DEBUG]: Received header: {"newCallID":5}
+2016-08-16 10:55:22,146 [DEBUG]: Receiving number of attachments
+2016-08-16 10:55:22,146 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:55:22,146 [DEBUG]: Receiving header size
+2016-08-16 10:55:22,146 [DEBUG]: Received header size: 79
+2016-08-16 10:55:22,146 [DEBUG]: Receiving body size
+2016-08-16 10:55:22,146 [DEBUG]: Received body size: 8
+2016-08-16 10:55:22,146 [DEBUG]: Receiving header of length 79
+2016-08-16 10:55:22,146 [DEBUG]: Received header: {"callID":5,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:55:22,146 [DEBUG]: Receiving number of attachments
+2016-08-16 10:55:22,146 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:55:22,146 [DEBUG]: Receiving header size
+2016-08-16 10:55:22,146 [DEBUG]: Received header size: 78
+2016-08-16 10:55:22,146 [DEBUG]: Receiving body size
+2016-08-16 10:55:22,146 [DEBUG]: Received body size: 16
+2016-08-16 10:55:22,146 [DEBUG]: Receiving header of length 78
+2016-08-16 10:55:22,146 [DEBUG]: Received header: {"result":{},"callID":5,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:55:22,147 [DEBUG]: Receiving number of attachments
+2016-08-16 10:55:22,147 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:55:22,147 [DEBUG]: Receiving attachment size
+2016-08-16 10:55:22,147 [DEBUG]: Received attachment size: 7
+2016-08-16 10:55:22,147 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:55:22,147 [DEBUG]: Received attachment.
+2016-08-16 10:55:22,147 [INFO ]: 7
+2016-08-16 10:55:22,147 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 10:55:22,147 [INFO ]: Starting to send Message {"callID":5,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:55:22,147 [DEBUG]: Sending header size 78
+2016-08-16 10:55:22,147 [DEBUG]: Sending body size 23
+2016-08-16 10:55:22,147 [DEBUG]: Sending header {"callID":5,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:55:22,147 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:55:22,147 [DEBUG]: Sending attachment size #1: 7
+2016-08-16 10:55:22,147 [DEBUG]: Sending attachment #1
+2016-08-16 10:55:22,147 [DEBUG]: Receiving header size
+2016-08-16 10:55:22,153 [DEBUG]: Received header size: 15
+2016-08-16 10:55:22,153 [DEBUG]: Receiving body size
+2016-08-16 10:55:22,189 [DEBUG]: Received body size: 8
+2016-08-16 10:55:22,189 [DEBUG]: Receiving header of length 15
+2016-08-16 10:55:22,189 [DEBUG]: Received header: {"newCallID":6}
+2016-08-16 10:55:22,190 [DEBUG]: Receiving number of attachments
+2016-08-16 10:55:22,190 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:55:22,190 [DEBUG]: Receiving header size
+2016-08-16 10:55:22,190 [DEBUG]: Received header size: 69
+2016-08-16 10:55:22,190 [DEBUG]: Receiving body size
+2016-08-16 10:55:22,190 [DEBUG]: Received body size: 8
+2016-08-16 10:55:22,190 [DEBUG]: Receiving header of length 69
+2016-08-16 10:55:22,190 [DEBUG]: Received header: {"callID":6,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:55:22,190 [DEBUG]: Receiving number of attachments
+2016-08-16 10:55:22,190 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:55:22,190 [DEBUG]: Receiving header size
+2016-08-16 10:55:24,340 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:55:24,340 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 10:56:16,494 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 10:56:16,494 [INFO ]: Connection established.
+2016-08-16 10:56:16,494 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 10:56:16,494 [DEBUG]: Sending header size 23
+2016-08-16 10:56:16,494 [DEBUG]: Sending body size 23
+2016-08-16 10:56:16,494 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 10:56:16,494 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:56:16,494 [DEBUG]: Sending attachment size #1: 7
+2016-08-16 10:56:16,494 [DEBUG]: Sending attachment #1
+2016-08-16 10:56:16,494 [DEBUG]: Receiving header size
+2016-08-16 10:56:16,500 [DEBUG]: Received header size: 15
+2016-08-16 10:56:16,500 [DEBUG]: Receiving body size
+2016-08-16 10:56:16,500 [DEBUG]: Received body size: 8
+2016-08-16 10:56:16,500 [DEBUG]: Receiving header of length 15
+2016-08-16 10:56:16,500 [DEBUG]: Received header: {"newCallID":7}
+2016-08-16 10:56:16,500 [DEBUG]: Receiving number of attachments
+2016-08-16 10:56:16,500 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:56:16,500 [DEBUG]: Receiving header size
+2016-08-16 10:56:16,501 [DEBUG]: Received header size: 79
+2016-08-16 10:56:16,501 [DEBUG]: Receiving body size
+2016-08-16 10:56:16,501 [DEBUG]: Received body size: 8
+2016-08-16 10:56:16,501 [DEBUG]: Receiving header of length 79
+2016-08-16 10:56:16,501 [DEBUG]: Received header: {"callID":7,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:56:16,501 [DEBUG]: Receiving number of attachments
+2016-08-16 10:56:16,501 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:56:16,501 [DEBUG]: Receiving header size
+2016-08-16 10:56:16,501 [DEBUG]: Received header size: 78
+2016-08-16 10:56:16,501 [DEBUG]: Receiving body size
+2016-08-16 10:56:16,501 [DEBUG]: Received body size: 16
+2016-08-16 10:56:16,501 [DEBUG]: Receiving header of length 78
+2016-08-16 10:56:16,501 [DEBUG]: Received header: {"result":{},"callID":7,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:56:16,501 [DEBUG]: Receiving number of attachments
+2016-08-16 10:56:16,501 [DEBUG]: Received number of attachments: 1
+2016-08-16 10:56:16,501 [DEBUG]: Receiving attachment size
+2016-08-16 10:56:16,501 [DEBUG]: Received attachment size: 7
+2016-08-16 10:56:16,501 [DEBUG]: Receiving attachment of size 7
+2016-08-16 10:56:16,501 [DEBUG]: Received attachment.
+2016-08-16 10:56:16,501 [INFO ]: Starting to send Message {"callID":7,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:56:16,501 [DEBUG]: Sending header size 78
+2016-08-16 10:56:16,501 [DEBUG]: Sending body size 23
+2016-08-16 10:56:16,501 [DEBUG]: Sending header {"callID":7,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 10:56:16,501 [DEBUG]: Sending number of attachments 1
+2016-08-16 10:56:16,501 [DEBUG]: Sending attachment size #1: 7
+2016-08-16 10:56:16,501 [DEBUG]: Sending attachment #1
+2016-08-16 10:56:16,502 [DEBUG]: Receiving header size
+2016-08-16 10:56:16,502 [DEBUG]: Received header size: 15
+2016-08-16 10:56:16,502 [DEBUG]: Receiving body size
+2016-08-16 10:56:16,541 [DEBUG]: Received body size: 8
+2016-08-16 10:56:16,541 [DEBUG]: Receiving header of length 15
+2016-08-16 10:56:16,541 [DEBUG]: Received header: {"newCallID":8}
+2016-08-16 10:56:16,542 [DEBUG]: Receiving number of attachments
+2016-08-16 10:56:16,542 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:56:16,542 [DEBUG]: Receiving header size
+2016-08-16 10:56:16,542 [DEBUG]: Received header size: 69
+2016-08-16 10:56:16,542 [DEBUG]: Receiving body size
+2016-08-16 10:56:16,542 [DEBUG]: Received body size: 8
+2016-08-16 10:56:16,542 [DEBUG]: Receiving header of length 69
+2016-08-16 10:56:16,542 [DEBUG]: Received header: {"callID":8,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 10:56:16,542 [DEBUG]: Receiving number of attachments
+2016-08-16 10:56:16,542 [DEBUG]: Received number of attachments: 0
+2016-08-16 10:56:16,542 [DEBUG]: Receiving header size
+2016-08-16 10:56:21,406 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 10:56:21,406 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 11:01:24,879 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 11:01:24,879 [ERROR]: Connection could not be established.
+2016-08-16 11:02:47,724 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 11:02:47,724 [INFO ]: Connection established.
+2016-08-16 11:02:47,724 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 11:02:47,724 [DEBUG]: Sending header size 23
+2016-08-16 11:02:47,724 [DEBUG]: Sending body size 23
+2016-08-16 11:02:47,724 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 11:02:47,724 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:02:47,724 [DEBUG]: Sending attachment size #1: 7
+2016-08-16 11:02:47,724 [DEBUG]: Sending attachment #1
+2016-08-16 11:02:47,724 [DEBUG]: Receiving header size
+2016-08-16 11:02:47,788 [DEBUG]: Received header size: 15
+2016-08-16 11:02:47,788 [DEBUG]: Receiving body size
+2016-08-16 11:02:47,788 [DEBUG]: Received body size: 8
+2016-08-16 11:02:47,788 [DEBUG]: Receiving header of length 15
+2016-08-16 11:02:47,788 [DEBUG]: Received header: {"newCallID":1}
+2016-08-16 11:02:47,788 [DEBUG]: Receiving number of attachments
+2016-08-16 11:02:47,788 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:02:47,788 [DEBUG]: Receiving header size
+2016-08-16 11:02:47,788 [DEBUG]: Received header size: 79
+2016-08-16 11:02:47,788 [DEBUG]: Receiving body size
+2016-08-16 11:02:47,788 [DEBUG]: Received body size: 8
+2016-08-16 11:02:47,788 [DEBUG]: Receiving header of length 79
+2016-08-16 11:02:47,788 [DEBUG]: Received header: {"callID":1,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:02:47,788 [DEBUG]: Receiving number of attachments
+2016-08-16 11:02:47,788 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:02:47,788 [DEBUG]: Receiving header size
+2016-08-16 11:02:47,789 [DEBUG]: Received header size: 78
+2016-08-16 11:02:47,789 [DEBUG]: Receiving body size
+2016-08-16 11:02:47,789 [DEBUG]: Received body size: 16
+2016-08-16 11:02:47,789 [DEBUG]: Receiving header of length 78
+2016-08-16 11:02:47,789 [DEBUG]: Received header: {"result":{},"callID":1,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:02:47,789 [DEBUG]: Receiving number of attachments
+2016-08-16 11:02:47,789 [DEBUG]: Received number of attachments: 1
+2016-08-16 11:02:47,789 [DEBUG]: Receiving attachment size
+2016-08-16 11:02:47,790 [DEBUG]: Received attachment size: 7
+2016-08-16 11:02:47,790 [DEBUG]: Receiving attachment of size 7
+2016-08-16 11:02:47,790 [DEBUG]: Received attachment.
+2016-08-16 11:02:47,790 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 11:02:47,791 [INFO ]: Starting to send Message {"callID":1,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:02:47,791 [DEBUG]: Sending header size 78
+2016-08-16 11:02:47,791 [DEBUG]: Sending body size 23
+2016-08-16 11:02:47,791 [DEBUG]: Sending header {"callID":1,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:02:47,791 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:02:47,791 [DEBUG]: Sending attachment size #1: 7
+2016-08-16 11:02:47,791 [DEBUG]: Sending attachment #1
+2016-08-16 11:02:47,791 [DEBUG]: Receiving header size
+2016-08-16 11:02:47,794 [DEBUG]: Received header size: 15
+2016-08-16 11:02:47,794 [DEBUG]: Receiving body size
+2016-08-16 11:02:47,833 [DEBUG]: Received body size: 8
+2016-08-16 11:02:47,833 [DEBUG]: Receiving header of length 15
+2016-08-16 11:02:47,833 [DEBUG]: Received header: {"newCallID":2}
+2016-08-16 11:02:47,834 [DEBUG]: Receiving number of attachments
+2016-08-16 11:02:47,834 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:02:47,834 [DEBUG]: Receiving header size
+2016-08-16 11:02:47,834 [DEBUG]: Received header size: 69
+2016-08-16 11:02:47,834 [DEBUG]: Receiving body size
+2016-08-16 11:02:47,834 [DEBUG]: Received body size: 8
+2016-08-16 11:02:47,834 [DEBUG]: Receiving header of length 69
+2016-08-16 11:02:47,834 [DEBUG]: Received header: {"callID":2,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 11:02:47,834 [DEBUG]: Receiving number of attachments
+2016-08-16 11:02:47,834 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:02:47,834 [DEBUG]: Receiving header size
+2016-08-16 11:02:48,632 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 11:02:48,633 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 11:13:03,051 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 11:13:03,051 [INFO ]: Connection established.
+2016-08-16 11:13:03,051 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 11:13:03,051 [DEBUG]: Sending header size 23
+2016-08-16 11:13:03,051 [DEBUG]: Sending body size 24
+2016-08-16 11:13:03,051 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 11:13:03,051 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:13:03,051 [DEBUG]: Sending attachment size #1: 8
+2016-08-16 11:13:03,051 [DEBUG]: Sending attachment #1
+2016-08-16 11:13:03,052 [DEBUG]: Receiving header size
+2016-08-16 11:13:03,053 [DEBUG]: Received header size: 15
+2016-08-16 11:13:03,053 [DEBUG]: Receiving body size
+2016-08-16 11:13:03,053 [DEBUG]: Received body size: 8
+2016-08-16 11:13:03,053 [DEBUG]: Receiving header of length 15
+2016-08-16 11:13:03,053 [DEBUG]: Received header: {"newCallID":3}
+2016-08-16 11:13:03,053 [DEBUG]: Receiving number of attachments
+2016-08-16 11:13:03,053 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:13:03,053 [DEBUG]: Receiving header size
+2016-08-16 11:13:03,053 [DEBUG]: Received header size: 79
+2016-08-16 11:13:03,053 [DEBUG]: Receiving body size
+2016-08-16 11:13:03,053 [DEBUG]: Received body size: 8
+2016-08-16 11:13:03,053 [DEBUG]: Receiving header of length 79
+2016-08-16 11:13:03,053 [DEBUG]: Received header: {"callID":3,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:13:03,053 [DEBUG]: Receiving number of attachments
+2016-08-16 11:13:03,053 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:13:03,053 [DEBUG]: Receiving header size
+2016-08-16 11:13:03,054 [DEBUG]: Received header size: 78
+2016-08-16 11:13:03,054 [DEBUG]: Receiving body size
+2016-08-16 11:13:03,054 [DEBUG]: Received body size: 16
+2016-08-16 11:13:03,054 [DEBUG]: Receiving header of length 78
+2016-08-16 11:13:03,054 [DEBUG]: Received header: {"result":{},"callID":3,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:13:03,054 [DEBUG]: Receiving number of attachments
+2016-08-16 11:13:03,054 [DEBUG]: Received number of attachments: 1
+2016-08-16 11:13:03,054 [DEBUG]: Receiving attachment size
+2016-08-16 11:13:03,054 [DEBUG]: Received attachment size: 8
+2016-08-16 11:13:03,054 [DEBUG]: Receiving attachment of size 8
+2016-08-16 11:13:03,054 [DEBUG]: Received attachment.
+2016-08-16 11:13:03,054 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 11:13:03,054 [INFO ]: Starting to send Message {"callID":3,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:13:03,054 [DEBUG]: Sending header size 78
+2016-08-16 11:13:03,054 [DEBUG]: Sending body size 24
+2016-08-16 11:13:03,054 [DEBUG]: Sending header {"callID":3,"duration":0,"result":{},"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:13:03,054 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:13:03,054 [DEBUG]: Sending attachment size #1: 8
+2016-08-16 11:13:03,054 [DEBUG]: Sending attachment #1
+2016-08-16 11:13:03,054 [DEBUG]: Receiving header size
+2016-08-16 11:13:03,055 [DEBUG]: Received header size: 15
+2016-08-16 11:13:03,055 [DEBUG]: Receiving body size
+2016-08-16 11:13:03,093 [DEBUG]: Received body size: 8
+2016-08-16 11:13:03,093 [DEBUG]: Receiving header of length 15
+2016-08-16 11:13:03,094 [DEBUG]: Received header: {"newCallID":4}
+2016-08-16 11:13:03,094 [DEBUG]: Receiving number of attachments
+2016-08-16 11:13:03,094 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:13:03,094 [DEBUG]: Receiving header size
+2016-08-16 11:13:03,094 [DEBUG]: Received header size: 69
+2016-08-16 11:13:03,094 [DEBUG]: Receiving body size
+2016-08-16 11:13:03,094 [DEBUG]: Received body size: 8
+2016-08-16 11:13:03,094 [DEBUG]: Receiving header of length 69
+2016-08-16 11:13:03,094 [DEBUG]: Received header: {"callID":4,"error":"message does not contain 'run' or 'cancel' key"}
+2016-08-16 11:13:03,094 [DEBUG]: Receiving number of attachments
+2016-08-16 11:13:03,094 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:13:03,094 [DEBUG]: Receiving header size
+2016-08-16 11:13:08,546 [ERROR]: An error occured while trying to receive.
+2016-08-16 11:17:16,816 [INFO ]: Connecting to 127.0.0.1:7654
+2016-08-16 11:17:16,816 [INFO ]: Connection established.
+2016-08-16 11:17:16,816 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 11:17:16,816 [DEBUG]: Sending header size 23
+2016-08-16 11:17:16,816 [DEBUG]: Sending body size 24
+2016-08-16 11:17:16,816 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 11:17:16,816 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:17:16,816 [DEBUG]: Sending attachment size #1: 8
+2016-08-16 11:17:16,816 [DEBUG]: Sending attachment #1
+2016-08-16 11:17:16,816 [DEBUG]: Receiving header size
+2016-08-16 11:17:16,890 [DEBUG]: Received header size: 15
+2016-08-16 11:17:16,890 [DEBUG]: Receiving body size
+2016-08-16 11:17:16,890 [DEBUG]: Received body size: 8
+2016-08-16 11:17:16,890 [DEBUG]: Receiving header of length 15
+2016-08-16 11:17:16,890 [DEBUG]: Received header: {"newCallID":1}
+2016-08-16 11:17:16,890 [DEBUG]: Receiving number of attachments
+2016-08-16 11:17:16,890 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:17:16,890 [DEBUG]: Receiving header size
+2016-08-16 11:17:16,890 [DEBUG]: Received header size: 79
+2016-08-16 11:17:16,890 [DEBUG]: Receiving body size
+2016-08-16 11:17:16,890 [DEBUG]: Received body size: 8
+2016-08-16 11:17:16,890 [DEBUG]: Receiving header of length 79
+2016-08-16 11:17:16,890 [DEBUG]: Received header: {"callID":1,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:17:16,890 [DEBUG]: Receiving number of attachments
+2016-08-16 11:17:16,890 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:17:16,890 [DEBUG]: Receiving header size
+2016-08-16 11:17:16,892 [DEBUG]: Received header size: 78
+2016-08-16 11:17:16,892 [DEBUG]: Receiving body size
+2016-08-16 11:17:16,892 [DEBUG]: Received body size: 16
+2016-08-16 11:17:16,892 [DEBUG]: Receiving header of length 78
+2016-08-16 11:17:16,892 [DEBUG]: Received header: {"result":{},"callID":1,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:17:16,892 [DEBUG]: Receiving number of attachments
+2016-08-16 11:17:16,892 [DEBUG]: Received number of attachments: 1
+2016-08-16 11:17:16,892 [DEBUG]: Receiving attachment size
+2016-08-16 11:17:16,893 [DEBUG]: Received attachment size: 8
+2016-08-16 11:17:16,893 [DEBUG]: Receiving attachment of size 8
+2016-08-16 11:17:16,893 [DEBUG]: Received attachment.
+2016-08-16 11:17:16,893 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 11:17:16,893 [DEBUG]: Receiving header size
+2016-08-16 11:30:25,610 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 11:30:25,610 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 11:30:39,505 [INFO ]: Connecting to 129.132.6.94:7654
+2016-08-16 11:30:39,539 [INFO ]: Connection established.
+2016-08-16 11:30:39,539 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 11:30:39,540 [DEBUG]: Sending header size 23
+2016-08-16 11:30:39,540 [DEBUG]: Sending body size 24
+2016-08-16 11:30:39,540 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 11:30:39,540 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:30:39,540 [DEBUG]: Sending attachment size #1: 8
+2016-08-16 11:30:39,540 [DEBUG]: Sending attachment #1
+2016-08-16 11:30:39,540 [DEBUG]: Receiving header size
+2016-08-16 11:31:37,526 [DEBUG]: Received header size: 15
+2016-08-16 11:31:37,526 [DEBUG]: Receiving body size
+2016-08-16 11:31:37,528 [DEBUG]: Received body size: 8
+2016-08-16 11:31:37,528 [DEBUG]: Receiving header of length 15
+2016-08-16 11:31:37,528 [DEBUG]: Received header: {"newCallID":1}
+2016-08-16 11:31:37,528 [DEBUG]: Receiving number of attachments
+2016-08-16 11:31:37,528 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:31:37,528 [DEBUG]: Receiving header size
+2016-08-16 11:31:54,105 [DEBUG]: Received header size: 79
+2016-08-16 11:31:54,105 [DEBUG]: Receiving body size
+2016-08-16 11:31:54,108 [DEBUG]: Received body size: 8
+2016-08-16 11:31:54,108 [DEBUG]: Receiving header of length 79
+2016-08-16 11:31:54,108 [DEBUG]: Received header: {"callID":1,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:31:54,108 [DEBUG]: Receiving number of attachments
+2016-08-16 11:31:54,108 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:31:54,108 [DEBUG]: Receiving header size
+2016-08-16 11:34:32,999 [DEBUG]: Received header size: 78
+2016-08-16 11:34:32,999 [DEBUG]: Receiving body size
+2016-08-16 11:34:43,919 [DEBUG]: Received body size: 24
+2016-08-16 11:34:43,919 [DEBUG]: Receiving header of length 78
+2016-08-16 11:35:08,621 [DEBUG]: Received header: {"result":{},"callID":1,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:35:08,621 [DEBUG]: Receiving number of attachments
+2016-08-16 11:35:08,621 [DEBUG]: Received number of attachments: 1
+2016-08-16 11:35:08,622 [DEBUG]: Receiving attachment size
+2016-08-16 11:35:08,622 [DEBUG]: Received attachment size: 8
+2016-08-16 11:35:08,622 [DEBUG]: Receiving attachment of size 8
+2016-08-16 11:35:08,622 [ERROR]: An error occured while trying to receive.
+2016-08-16 11:35:49,105 [INFO ]: Connecting to 129.132.6.94:7654
+2016-08-16 11:35:49,201 [INFO ]: Connection established.
+2016-08-16 11:35:49,201 [INFO ]: Starting to send Message {"run":"test.FileEcho"}
+2016-08-16 11:35:49,201 [DEBUG]: Sending header size 23
+2016-08-16 11:35:49,201 [DEBUG]: Sending body size 24
+2016-08-16 11:35:49,201 [DEBUG]: Sending header {"run":"test.FileEcho"}
+2016-08-16 11:35:49,201 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:35:49,201 [DEBUG]: Sending attachment size #1: 8
+2016-08-16 11:35:49,201 [DEBUG]: Sending attachment #1
+2016-08-16 11:35:49,202 [DEBUG]: Receiving header size
+2016-08-16 11:35:49,213 [DEBUG]: Received header size: 15
+2016-08-16 11:35:49,213 [DEBUG]: Receiving body size
+2016-08-16 11:35:49,214 [DEBUG]: Received body size: 8
+2016-08-16 11:35:49,214 [DEBUG]: Receiving header of length 15
+2016-08-16 11:35:49,214 [DEBUG]: Received header: {"newCallID":2}
+2016-08-16 11:35:49,214 [DEBUG]: Receiving number of attachments
+2016-08-16 11:35:49,214 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:35:49,214 [DEBUG]: Receiving header size
+2016-08-16 11:35:49,214 [DEBUG]: Received header size: 79
+2016-08-16 11:35:49,214 [DEBUG]: Receiving body size
+2016-08-16 11:35:49,214 [DEBUG]: Received body size: 8
+2016-08-16 11:35:49,214 [DEBUG]: Receiving header of length 79
+2016-08-16 11:35:49,214 [DEBUG]: Received header: {"callID":2,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:35:49,214 [DEBUG]: Receiving number of attachments
+2016-08-16 11:35:49,214 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:35:49,214 [DEBUG]: Receiving header size
+2016-08-16 11:35:49,215 [DEBUG]: Received header size: 78
+2016-08-16 11:35:49,215 [DEBUG]: Receiving body size
+2016-08-16 11:35:49,215 [DEBUG]: Received body size: 16
+2016-08-16 11:35:49,215 [DEBUG]: Receiving header of length 78
+2016-08-16 11:35:49,215 [DEBUG]: Received header: {"result":{},"callID":2,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:35:49,215 [DEBUG]: Receiving number of attachments
+2016-08-16 11:35:49,215 [DEBUG]: Received number of attachments: 1
+2016-08-16 11:35:49,215 [DEBUG]: Receiving attachment size
+2016-08-16 11:35:49,215 [DEBUG]: Received attachment size: 8
+2016-08-16 11:35:49,215 [DEBUG]: Receiving attachment of size 8
+2016-08-16 11:35:49,217 [DEBUG]: Received attachment.
+2016-08-16 11:35:49,217 [WARN ]: Message validation failed. Entering panic mode.
+2016-08-16 11:35:49,217 [DEBUG]: Receiving header size
+2016-08-16 11:36:04,751 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 11:36:04,751 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]
+2016-08-16 11:39:35,316 [INFO ]: Connecting to 129.132.6.94:7654
+2016-08-16 11:39:35,405 [INFO ]: Connection established.
+2016-08-16 11:39:35,405 [INFO ]: Starting to send Message {"run":"test.FileEcho","testname":{"attachment":{"checksum":"b0ccb248a08035149a34415eb589ca12","length":8,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 11:39:35,405 [DEBUG]: Sending header size 164
+2016-08-16 11:39:35,405 [DEBUG]: Sending body size 24
+2016-08-16 11:39:35,406 [DEBUG]: Sending header {"run":"test.FileEcho","testname":{"attachment":{"checksum":"b0ccb248a08035149a34415eb589ca12","length":8,"position":1},"format":"float32 array","name":"testname"}}
+2016-08-16 11:39:35,406 [DEBUG]: Sending number of attachments 1
+2016-08-16 11:39:35,406 [DEBUG]: Sending attachment size #1: 8
+2016-08-16 11:39:35,406 [DEBUG]: Sending attachment #1
+2016-08-16 11:39:35,406 [DEBUG]: Receiving header size
+2016-08-16 11:39:35,420 [DEBUG]: Received header size: 15
+2016-08-16 11:39:35,420 [DEBUG]: Receiving body size
+2016-08-16 11:39:35,421 [DEBUG]: Received body size: 8
+2016-08-16 11:39:35,421 [DEBUG]: Receiving header of length 15
+2016-08-16 11:39:35,421 [DEBUG]: Received header: {"newCallID":3}
+2016-08-16 11:39:35,421 [DEBUG]: Receiving number of attachments
+2016-08-16 11:39:35,421 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:39:35,421 [DEBUG]: Receiving header size
+2016-08-16 11:39:35,421 [DEBUG]: Received header size: 79
+2016-08-16 11:39:35,421 [DEBUG]: Receiving body size
+2016-08-16 11:39:35,421 [DEBUG]: Received body size: 8
+2016-08-16 11:39:35,421 [DEBUG]: Receiving header of length 79
+2016-08-16 11:39:35,421 [DEBUG]: Received header: {"callID":3,"duration":0,"progress":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:39:35,421 [DEBUG]: Receiving number of attachments
+2016-08-16 11:39:35,421 [DEBUG]: Received number of attachments: 0
+2016-08-16 11:39:35,421 [DEBUG]: Receiving header size
+2016-08-16 11:39:35,422 [DEBUG]: Received header size: 218
+2016-08-16 11:39:35,422 [DEBUG]: Receiving body size
+2016-08-16 11:39:35,422 [DEBUG]: Received body size: 24
+2016-08-16 11:39:35,422 [DEBUG]: Receiving header of length 218
+2016-08-16 11:39:35,422 [DEBUG]: Received header: {"result":{"testname":{"attachment":{"length":8,"checksum":"b0ccb248a08035149a34415eb589ca12","position":1},"format":"float32 array","name":"testname"}},"callID":3,"duration":0,"serviceName":"test.FileEcho","taskID":0}
+2016-08-16 11:39:35,422 [DEBUG]: Receiving number of attachments
+2016-08-16 11:39:35,423 [DEBUG]: Received number of attachments: 1
+2016-08-16 11:39:35,423 [DEBUG]: Receiving attachment size
+2016-08-16 11:39:35,423 [DEBUG]: Received attachment size: 8
+2016-08-16 11:39:35,423 [DEBUG]: Receiving attachment of size 8
+2016-08-16 11:39:35,423 [DEBUG]: Received attachment.
+2016-08-16 11:39:35,423 [DEBUG]: Receiving header size
+2016-08-16 11:43:28,980 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-08-16 11:43:28,980 [WARN ]: Aborting application. Reason: Fatal log at [include/easylogging/src/easylogging++.h:5627]

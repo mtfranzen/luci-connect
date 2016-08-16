@@ -27,6 +27,49 @@ public:
   }
 };
 
+void testRandomId() {
+    json header = { {"run", "test.Randomly"}, { "amount", 3} };
+    std::string binary_data = "abcdeϮ";
+    lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
+
+    // compose message
+    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    message->AddAttachment(attachment);
+
+    SimpleService* node = new SimpleService("simple_service_name");
+    node->PrintName();
+
+    // connect somewhere
+    lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
+    connection->Open();
+    connection->Send(message);
+    lc2pp::core::Message* reply = connection->Receive();
+    reply = connection->Receive();
+    connection->Close();
+}
+
+void testFileEcho() {
+    json header = { {"run", "test.FileEcho"}};
+    std::string binary_data = "abcdeϮf";
+    lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
+
+    // compose message
+    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    message->AddAttachment(attachment);
+
+    SimpleService* node = new SimpleService("simple_service_name");
+    node->PrintName();
+
+    // connect somewhere
+    lc2pp::core::Connection* connection = new lc2pp::core::Connection("129.132.6.94", 7654, 10);
+    connection->Open();
+    connection->Send(message);
+    while(true) {
+      lc2pp::core::Message* reply = connection->Receive();
+    }
+    connection->Close();
+}
+
 int main(int argc, const char* argv[]) {
   // logging configuration
   el::Configurations defaultConf;
@@ -38,24 +81,5 @@ int main(int argc, const char* argv[]) {
 
   el::Loggers::reconfigureLogger("default", defaultConf);
 
-  json header = { {"run", "test.Randomly"}, { "amount", 3} };
-  std::string binary_data = "abcdeϮ";
-  lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
-
-  // compose message
-  lc2pp::core::Message* message = new lc2pp::core::Message(header);
-  message->AddAttachment(attachment);
-
-  SimpleService* node = new SimpleService("simple_service_name");
-  node->PrintName();
-
-  // connect somewhere
-  lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
-  connection->Open();
-  connection->Send(message);
-  while (true) {
-    lc2pp::core::Message* reply = connection->Receive();
-    std::cout << reply->GetHeader().dump() << std::endl;
-  }
-  connection->Close();
+  testFileEcho();
 }

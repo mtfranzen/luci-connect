@@ -102,14 +102,14 @@ namespace lc2pp {
     void Connection::SendAttachmentSize(Message* message, size_t index) {
       int64_t attachment_size = message->GetAttachment(index).size;
 
-      LOG(DEBUG) << "Sending attachment size #" << std::to_string(index) << ": " << std::to_string(attachment_size);
+      LOG(DEBUG) << "Sending attachment size #" << std::to_string(index+1) << ": " << std::to_string(attachment_size);
       this->SendInt64(attachment_size);
     }
 
     void Connection::SendAttachment(Message* message, size_t index) {
       std::string attachment(message->GetAttachment(index).data);
 
-      LOG(DEBUG) << "Sending attachment #" << std::to_string(index);
+      LOG(DEBUG) << "Sending attachment #" << std::to_string(index+1);
       this->SendString(attachment);
     }
 
@@ -171,13 +171,6 @@ namespace lc2pp {
         size_t attachment_size = this->ReceiveAttachmentSize();
         validation_size += attachment_size + 8;
         char* attachment_data = this->ReceiveAttachmentData(attachment_size);
-
-        // XXX: Parse attachment meta data
-        // search in header for the attachment meta-data
-        for (json element : header) {
-
-        }
-
         message->AddAttachment({attachment_size, attachment_data});
       }
 
@@ -197,7 +190,7 @@ namespace lc2pp {
 
     int64_t Connection::ReceiveBodySize() {
       LOG(DEBUG) << "Receiving body size";
-      int64_t  body_size = this->ReceiveInt64();
+      int64_t body_size = this->ReceiveInt64();
       LOG(DEBUG) << "Received body size: " << std::to_string(body_size);
       return body_size;
     }

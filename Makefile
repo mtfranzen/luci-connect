@@ -8,11 +8,10 @@ LOGFLAGS=-DELPP_THREAD_SAFE
 all: build test docs clean
 
 debug:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -g -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc $(LOGFLAGS)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -g -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS) $(LOGFLAGS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -g -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc include/md5/md5.cpp $(LOGFLAGS)
 
 build:
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc $(LOGFLAGS) -DELPP_DISABLE_DEBUG_LOGS
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -shared -fPIC -o lib/liblc2pp.so src/core/message.cc src/core/connection.cc include/md5/md5.cpp $(LOGFLAGS) -DELPP_DISABLE_DEBUG_LOGS
 
 test:
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp $(LDFLAGS) $(LOGFLAGS) -DELPP_DISABLE_DEBUG_LOGS

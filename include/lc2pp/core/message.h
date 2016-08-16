@@ -1,5 +1,6 @@
 #ifndef LC2PP_MESSAGE_H
 #define LC2PP_MESSAGE_H
+#include "md5/md5.h"
 
 #include "json/src/json.hpp"
 using json = nlohmann::json;
