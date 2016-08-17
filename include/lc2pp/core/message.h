@@ -11,7 +11,6 @@ using json = nlohmann::json;
 #include <string>
 #include <unordered_map>
 
-
 namespace lc2pp {
   namespace core {
     /**
@@ -20,12 +19,21 @@ namespace lc2pp {
     */
     typedef struct Attachment {
       // TODO: Document attachment attributes
+      // TODO: Add keys to attachments
+      // TODO: Handle incomplete attachments
+      // TODO: Handle corrupt attachments
       size_t size;
       const char* data;
       std::string format;
       std::string name;
-      std::unordered_map<std::string, std::string> keys;
     } Attachment;
+
+    inline bool operator==(const Attachment& atc1, const Attachment& atc2) {
+      return atc1.size == atc2.size && \
+        atc1.data == atc2.data && \
+        atc1.format == atc2.format && \
+        atc1.name == atc2.name;
+    }
 
     /** The message class is primarily intendet for conveniently contain,
      * serialize and deserialize messages for LC2. A message consists of a

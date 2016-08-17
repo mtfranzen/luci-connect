@@ -8,6 +8,8 @@ namespace lc2pp {
     }
 
     size_t Message::AddAttachment(Attachment attachment) {
+      // TODO: Accept pointer instead of object.
+
       size_t position = this->attachments_.size();
 
       // TODO: Overwrite checksum when attachment is added.
@@ -23,6 +25,7 @@ namespace lc2pp {
       }
 
       if (attachment_header_missing) {
+        // TODO: Add handling of incomplete attachments in AddAttachment
         // if it has not been found, create header field for it
         MD5 md5;
 
@@ -34,8 +37,8 @@ namespace lc2pp {
         attachmentjson["format"] = attachment.format;
         attachmentjson["attachment"] = { {"length", attachment.size}, {"position", position+1}, {"checksum", checksum}};
         attachmentjson["name"] = attachment.name;
-        for (std::pair<std::string, std::string> key_value_pair : attachment.keys)
-          attachmentjson[key_value_pair.first] = key_value_pair.second;
+        //for (std::pair<std::string, std::string> key_value_pair : attachment.keys)
+        //  attachmentjson[key_value_pair.first] = key_value_pair.second;
 
         this->header_[attachment.name] = attachmentjson;
       }
@@ -48,7 +51,7 @@ namespace lc2pp {
       if (index >= this->attachments_.size()) {
         throw "Index out of bounds.";
       }
-      return this->attachments_.at(index);
+      return this->attachments_[index];
     }
 
     size_t Message::GetNumAttachments() {

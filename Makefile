@@ -1,13 +1,13 @@
 CXX=g++
 CXXFLAGS=-Wall -std=c++11
 LDFLAGS=-Wl,-Bdynamic -lpthread
-LOGFLAGS=-DELPP_THREAD_SAFE
+LOGFLAGS=-DELPP_THREAD_SAFE -DELPP_DISABLE_DEFAULT_CRASH_HANDLING
 GMOCK_DIR=test/include/googletest/googlemock
 GTEST_DIR=test/include/googletest/googletest
 
 DEBUGFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC
 BUILDFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC -DELPP_DISABLE_LOGS
-TESTFLAGS=-Iinclude -I$(GMOCK_DIR)/include -I$(GTEST_DIR)/include -DELPP_DISABLE_LOGS
+TESTFLAGS=-Iinclude -Itest/include -I$(GMOCK_DIR)/include -I$(GTEST_DIR)/include
 
 .PHONY: build test docs clean
 
@@ -30,7 +30,7 @@ test: build
 	ar -rv test/lib/libgmock.a test/bin/gtest-all.o test/bin/gmock-all.o
 
 	# compiling test file
-	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/main.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
+	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/messagetest.cc test/src/connectiontest.cc test/src/main.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
 
 	# run tests
 	LD_LIBRARY_PATH=lib/ test/bin/main.o

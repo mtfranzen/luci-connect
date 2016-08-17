@@ -19,8 +19,8 @@ namespace lc2pp {
       // TODO: Add timeout to socket connection
 
       if (this->is_connected_) {
-        LOG(WARNING) << "Socket already opened. Reestablishing connection.";
-        this->Close();
+        LOG(ERROR) << "Socket already opened.";
+        throw "Socket already opened.";
       }
       this->socket_ = new asio::ip::tcp::socket(this->io_service_);
 
@@ -49,7 +49,8 @@ namespace lc2pp {
       this->is_connected_ = false;
 
       if (ec) {
-        LOG(WARNING) << "An error occured while closing connection: " << ec;
+        LOG(ERROR) << "An error occured while closing connection: " << ec;
+        throw "An error occured while closing connection.";
       }
       else {
         LOG(INFO) << "Connection closed.";
