@@ -1,15 +1,15 @@
 #ifndef LC2PP_MESSAGE_H
 #define LC2PP_MESSAGE_H
+
 #include "md5/md5.h"
-
 #include "json/src/json.hpp"
-using json = nlohmann::json;
-
 #include "easylogging/src/easylogging++.h"
 
 #include <vector>
 #include <string>
 #include <unordered_map>
+
+using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {
@@ -18,16 +18,38 @@ namespace lc2pp {
     * contain arbitrary binary data.
     */
     typedef struct Attachment {
-      // TODO: Document attachment attributes
-      // TODO: Add keys to attachments
-      // TODO: Handle incomplete attachments
-      // TODO: Handle corrupt attachments
-      size_t size;
-      const char* data;
+      // TODO: Add attribute "keys" to attachments
+      // TODO: Add extra enum for attachment formats
+
+      Attachment(size_t s, char* d) : size(s), data(d) {}
+      Attachment(size_t s, char* d, std::string f, std::string n) : size(s), data(d), format(f), name(n) {}
+      Attachment(size_t s, const char* d) : size(s), data(d) {}
+      Attachment(size_t s, const char* d, std::string f, std::string n) : size(s), data(d), format(f), name(n) {}
+
+      /**
+      * The attribute describes the attachment's size in bytes
+      */
+      size_t size = 0;
+
+      /**
+      * The attribute contains the attachment's data
+      */
+      const char* data = "";
+
+      /**
+      * The attribute describes the attachment's data format
+      */
       std::string format;
+
+      /**
+      * The attribute describes an attachment's name.
+      */
       std::string name;
     } Attachment;
 
+    /**
+    * The operator compares two attachments element-wise.
+    */
     inline bool operator==(const Attachment& atc1, const Attachment& atc2) {
       return atc1.size == atc2.size && \
         atc1.data == atc2.data && \
@@ -82,6 +104,20 @@ namespace lc2pp {
       json header_;
       std::vector<Attachment> attachments_;
     };
+
+    /**
+    * The operator compares two messages element-wise including attachments.
+    */
+    inline bool operator==(Message& msg1, Message& other) {
+      bool eq = msg1.GetHeader() == other.GetHeader();
+      eq &= msg1.GetNumAttachments() == other.GetNumAttachments();
+
+      if (!eq) return false;
+      for (size_t i = 0; i < msg1.GetNumAttachments(); i++)
+        eq &= msg1.GetAttachment(i) == other.GetAttachment(i);
+
+      return eq;
+    }
   }
 }
 #endif

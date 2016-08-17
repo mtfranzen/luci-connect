@@ -4,8 +4,6 @@
 #include "lc2pp/core/message.h"
 
 #include "json/src/json.hpp"
-using json = nlohmann::json;
-
 #include "easylogging/src/easylogging++.h"
 
 #include <asio.hpp>
@@ -13,7 +11,7 @@ using json = nlohmann::json;
 #include <string>
 #include <algorithm> // std::reverse
 
-// TODO: Add logging configuration
+using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {

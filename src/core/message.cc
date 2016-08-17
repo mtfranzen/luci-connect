@@ -8,11 +8,13 @@ namespace lc2pp {
     }
 
     size_t Message::AddAttachment(Attachment attachment) {
-      // TODO: Accept pointer instead of object.
+      // TODO: Accept pointer instead of object when adding an attachment to a message
 
-      size_t position = this->attachments_.size();
+      // position + 1 because the position argument starts at 1 in Luci
+      size_t position = this->attachments_.size() + 1;
 
-      // TODO: Overwrite checksum when attachment is added.
+      // TODO: Validate checksum when an attachment is added to a message
+      // TODO: Add procedure to allow arbitrary names for attachments in the header
       bool attachment_header_missing = true;
       for (json element : this->header_) {
         if (element.count("attachment") > 0) {
@@ -25,20 +27,18 @@ namespace lc2pp {
       }
 
       if (attachment_header_missing) {
-        // TODO: Add handling of incomplete attachments in AddAttachment
-        // if it has not been found, create header field for it
+        // TODO: Add handling of incomplete attachments when adding an attachment
         MD5 md5;
-
-        // compute checksum
-        std::string checksum = md5(attachment.data, attachment.size);
 
         // construct header data for attachment
         json attachmentjson;
         attachmentjson["format"] = attachment.format;
-        attachmentjson["attachment"] = { {"length", attachment.size}, {"position", position+1}, {"checksum", checksum}};
+        attachmentjson["attachment"] = {
+          {"length", attachment.size},
+          {"position", position},
+          {"checksum", md5(attachment.data, attachment.size)}
+        };
         attachmentjson["name"] = attachment.name;
-        //for (std::pair<std::string, std::string> key_value_pair : attachment.keys)
-        //  attachmentjson[key_value_pair.first] = key_value_pair.second;
 
         this->header_[attachment.name] = attachmentjson;
       }

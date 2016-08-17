@@ -132,4 +132,8 @@ namespace {
     for (lc2pp::core::Connection* connection : connections)
       connection->Close();
   }
+
+  TEST(ConnectionTest, ConnectivityConsistencyTest) {
+    // TODO: Check whether the state of a connection is always consistent
+  }
 }
