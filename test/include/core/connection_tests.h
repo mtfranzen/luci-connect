@@ -1,7 +1,6 @@
 #ifndef LC2PP_TEST_CONNECTION_H
 #define LC2PP_TEST_CONNECTION_H
 
-#include "lc2pp/service.h"
 #include "lc2pp/core/message.h"
 #include "lc2pp/core/connection.h"
 
