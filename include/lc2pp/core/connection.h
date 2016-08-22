@@ -93,8 +93,8 @@ namespace lc2pp {
       void SendBodySize(Message* message);
       void SendHeader(Message* message);
       void SendNumberOfAttachments(Message* message);
-      void SendAttachmentSize(Message* message, size_t index);
-      void SendAttachment(Message* message, size_t index);
+      void SendAttachmentSize(Message* message, size_t position);
+      void SendAttachment(Message* message, size_t position);
 
       // Low-Level receive functions
       int64_t ReceiveInt64();

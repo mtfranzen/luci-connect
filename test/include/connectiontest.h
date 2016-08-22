@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 // Only a stub for later use
 class ConnectionTest : public ::testing::Test {

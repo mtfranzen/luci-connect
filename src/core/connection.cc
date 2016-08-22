@@ -80,7 +80,7 @@ namespace lc2pp {
     void Connection::SendBodySize(Message* message) {
       int64_t body_size = 8;
       for (size_t i = 0; i < message->GetNumAttachments(); i++)
-        body_size += message->GetAttachment(i).size + 8;
+        body_size += message->GetAttachment(i)->size + 8;
 
       LOG(DEBUG) << "Sending body size " << std::to_string(body_size);
       this->SendInt64(body_size);
@@ -101,14 +101,14 @@ namespace lc2pp {
     }
 
     void Connection::SendAttachmentSize(Message* message, size_t index) {
-      int64_t attachment_size = message->GetAttachment(index).size;
+      int64_t attachment_size = message->GetAttachment(index)->size;
 
       LOG(DEBUG) << "Sending attachment size #" << std::to_string(index+1) << ": " << std::to_string(attachment_size);
       this->SendInt64(attachment_size);
     }
 
     void Connection::SendAttachment(Message* message, size_t index) {
-      std::string attachment(message->GetAttachment(index).data);
+      std::string attachment(message->GetAttachment(index)->data);
 
       LOG(DEBUG) << "Sending attachment #" << std::to_string(index+1);
       this->SendString(attachment);
@@ -172,7 +172,8 @@ namespace lc2pp {
         size_t attachment_size = this->ReceiveAttachmentSize();
         validation_size += attachment_size + 8;
         char* attachment_data = this->ReceiveAttachmentData(attachment_size);
-        message->AddAttachment({attachment_size, attachment_data});
+        Attachment attachment = {attachment_size, attachment_data};
+        message->AddAttachment(&attachment);
       }
 
       if (body_size != validation_size) {

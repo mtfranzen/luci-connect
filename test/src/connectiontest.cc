@@ -45,7 +45,7 @@ namespace {
     std::string binary_data = "abcdeϮ";
     lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
     lc2pp::core::Message* message = new lc2pp::core::Message(header);
-    message->AddAttachment(attachment);
+    message->AddAttachment(&attachment);
     connection->Send(message);
     connection->Close();
   }

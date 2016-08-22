@@ -7,49 +7,65 @@ namespace lc2pp {
       this->header_ = header;
     }
 
-    size_t Message::AddAttachment(Attachment attachment) {
-      // TODO: Accept pointer instead of object when adding an attachment to a message
+    size_t Message::AddAttachment(Attachment* attachment) {
+      size_t index = this->attachments_.size();
+      size_t position = index + 1; // LC2 position starts at 1
 
-      // position + 1 because the position argument starts at 1 in Luci
-      size_t position = this->attachments_.size() + 1;
+      MD5 md5;
+      std::string md5sum = md5(attachment->data, attachment->size);
 
-      // TODO: Validate checksum when an attachment is added to a message
       // TODO: Add procedure to allow arbitrary names for attachments in the header
       bool attachment_header_missing = true;
       for (json element : this->header_) {
-        if (element.count("attachment") > 0) {
-          if (element["attachment"]["position"] == position) {
-              attachment_header_missing = false;
-              attachment.format = element["format"];
-              attachment.name = element["attachment"]["name"];
-          }
+        if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {
+            if (element.count("format") == 0  || element.count("name") == 0) {
+              LOG(ERROR) << "Attachment header is incomplete";
+              throw "Attachment header is incomplete";
+            }
+
+            if (element["attachment"].count("length") == 0  || element["attachment"].count("checksum") == 0) {
+              LOG(ERROR) << "Attachment subheader is incomplete";
+              throw "Attachment subheader is incomplete";
+            }
+
+            // validate
+            if (md5sum != element["attachment"]["checksum"]) {
+              LOG(ERROR) << "Attachment checksums do not match up";
+              throw "Attachment checksums do not match up";
+            }
+
+            if (attachment->size != element["attachment"]["length"]) {
+              LOG(ERROR) << "Attachment sizes do not match up.";
+              throw "Attachment sizes do not match up";
+            }
+
+            attachment_header_missing = false;
+            attachment->format = element["format"];
+            attachment->name = element["name"];
         }
       }
 
       if (attachment_header_missing) {
-        // TODO: Add handling of incomplete attachments when adding an attachment
-        MD5 md5;
-
         // construct header data for attachment
         json attachmentjson;
-        attachmentjson["format"] = attachment.format;
+        attachmentjson["format"] = attachment->format;
         attachmentjson["attachment"] = {
-          {"length", attachment.size},
+          {"length", attachment->size},
           {"position", position},
-          {"checksum", md5(attachment.data, attachment.size)}
+          {"checksum", md5sum}
         };
-        attachmentjson["name"] = attachment.name;
+        attachmentjson["name"] = attachment->name;
 
-        this->header_[attachment.name] = attachmentjson;
+        this->header_[attachment->name] = attachmentjson;
       }
 
       this->attachments_.push_back(attachment);
-      return position;
+      return index;
     }
 
-    Attachment Message::GetAttachment(size_t index) {
+    Attachment* Message::GetAttachment(size_t index) {
       if (index >= this->attachments_.size()) {
-        throw "Index out of bounds.";
+        throw "Index out of bounds";
       }
       return this->attachments_[index];
     }

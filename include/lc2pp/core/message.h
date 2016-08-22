@@ -50,11 +50,18 @@ namespace lc2pp {
     /**
     * The operator compares two attachments element-wise.
     */
-    inline bool operator==(const Attachment& atc1, const Attachment& atc2) {
+    inline bool operator==(Attachment atc1, Attachment atc2) {
       return atc1.size == atc2.size && \
         atc1.data == atc2.data && \
         atc1.format == atc2.format && \
         atc1.name == atc2.name;
+    }
+
+    /**
+    * The operator compares two attachments element-wise.
+    */
+    inline bool operator!=(Attachment atc1, Attachment atc2) {
+      return !(atc1 == atc2);
     }
 
     /** The message class is primarily intendet for conveniently contain,
@@ -90,33 +97,43 @@ namespace lc2pp {
       /** Returns the number of attachments */
       size_t GetNumAttachments();
 
-      /** Returns the attachment at position `index`. */
-      Attachment GetAttachment(size_t index);
+      /**
+      * Returns the attachment at a certain index. Note that the index starts
+      * with 0.
+      */
+      Attachment* GetAttachment(size_t index);
 
       /** Adds an attachment to the message and returns the index of the
       * newly added attachment. If a header attribute is specified that
       * describes the attachment at the newly created position, the
       * data within the attachment is overwritten by the header data.
       */
-      size_t AddAttachment(Attachment attachment);
+      size_t AddAttachment(Attachment* attachment);
 
     private:
       json header_;
-      std::vector<Attachment> attachments_;
+      std::vector<Attachment*> attachments_;
     };
 
     /**
     * The operator compares two messages element-wise including attachments.
     */
-    inline bool operator==(Message& msg1, Message& other) {
-      bool eq = msg1.GetHeader() == other.GetHeader();
-      eq &= msg1.GetNumAttachments() == other.GetNumAttachments();
+    inline bool operator==(Message msg1, Message msg2) {
+      bool eq = msg1.GetHeader() == msg2.GetHeader();
+      eq &= msg1.GetNumAttachments() == msg2.GetNumAttachments();
 
       if (!eq) return false;
       for (size_t i = 0; i < msg1.GetNumAttachments(); i++)
-        eq &= msg1.GetAttachment(i) == other.GetAttachment(i);
+        eq &= *msg1.GetAttachment(i) == *msg2.GetAttachment(i);
 
       return eq;
+    }
+
+    /**
+    * The operator compares two messages element-wise including attachments.
+    */
+    inline bool operator!=(Message msg1, Message msg2) {
+      return !(msg1 == msg2);
     }
   }
 }

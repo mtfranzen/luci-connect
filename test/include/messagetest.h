@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 // Only a stub for later use
 class MessageTest : public ::testing::Test {
