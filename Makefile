@@ -12,10 +12,10 @@ TESTFLAGS=-Iinclude -Itest/include -I$(GMOCK_DIR)/include -I$(GTEST_DIR)/include
 .PHONY: build test docs clean
 
 build:
-	$(CXX) $(CXXFLAGS) $(BUILDFLAGS) -o lib/liblc2pp.a src/core/message.cc src/core/connection.cc include/md5/md5.cpp
+	$(CXX) $(CXXFLAGS) $(BUILDFLAGS) -o lib/liblc2pp.a src/core/*.cc src/*.cc include/md5/md5.cpp
 
 debug:
-	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -o lib/liblc2pp.a src/core/message.cc src/core/connection.cc include/md5/md5.cpp
+	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -o lib/liblc2pp.a src/core/*.cc src/*.cc include/md5/md5.cpp
 
 test: build
 	# compiling luci2

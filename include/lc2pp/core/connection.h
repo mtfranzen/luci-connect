@@ -64,6 +64,9 @@ namespace lc2pp {
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
 
+    protected:
+      void DelegateMessage();
+
     private:
       // connection parameters
       std::string host_;

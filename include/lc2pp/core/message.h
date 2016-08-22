@@ -30,7 +30,7 @@ namespace lc2pp {
     */
     typedef struct Attachment {
       // TODO: Add attribute "keys" to attachments
-
+      // TODO: Document different message types.
       Attachment(size_t s, char* d) : size(s), data(d) {}
       Attachment(size_t s, char* d, std::string f, std::string n) : size(s), data(d), format(f), name(n) {}
       Attachment(size_t s, const char* d) : size(s), data(d) {}
