@@ -145,7 +145,7 @@ namespace lc2pp {
 
     bool Message::ValidateCancelMessage() {
       try {
-        return this->header_["cancel"] == NULL\
+        return this->header_["cancel"] == nullptr\
          || this->header_["cancel"] == (json){}\
          || this->header_["cancel"] == this->header_["callID"];
       }
