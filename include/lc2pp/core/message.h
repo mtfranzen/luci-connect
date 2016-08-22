@@ -14,12 +14,22 @@ using json = nlohmann::json;
 namespace lc2pp {
   namespace core {
     /**
+    * An enum representing the different message types that Luci understands.
+    */
+    typedef enum MessageType {
+      run,
+      cancel,
+      result,
+      progress,
+      error
+    } MessageType;
+
+    /**
     * The attachment structure is a container for LC2 attachments that can
     * contain arbitrary binary data.
     */
     typedef struct Attachment {
       // TODO: Add attribute "keys" to attachments
-      // TODO: Add extra enum for attachment formats
 
       Attachment(size_t s, char* d) : size(s), data(d) {}
       Attachment(size_t s, char* d, std::string f, std::string n) : size(s), data(d), format(f), name(n) {}
@@ -46,23 +56,6 @@ namespace lc2pp {
       */
       std::string name;
     } Attachment;
-
-    /**
-    * The operator compares two attachments element-wise.
-    */
-    inline bool operator==(Attachment atc1, Attachment atc2) {
-      return atc1.size == atc2.size && \
-        atc1.data == atc2.data && \
-        atc1.format == atc2.format && \
-        atc1.name == atc2.name;
-    }
-
-    /**
-    * The operator compares two attachments element-wise.
-    */
-    inline bool operator!=(Attachment atc1, Attachment atc2) {
-      return !(atc1 == atc2);
-    }
 
     /** The message class is primarily intendet for conveniently contain,
      * serialize and deserialize messages for LC2. A message consists of a
@@ -113,7 +106,33 @@ namespace lc2pp {
     private:
       json header_;
       std::vector<Attachment*> attachments_;
+      uint64_t callId_;
+      MessageType type_;
+
+      bool ValidateHeader();
+      bool ValidateRunMessage();
+      bool ValidateCancelMessage();
+      bool ValidateResultMessage();
+      bool ValidateProgressMessage();
+      bool ValidateErrorMessage();
     };
+
+    /**
+    * The operator compares two attachments element-wise.
+    */
+    inline bool operator==(Attachment atc1, Attachment atc2) {
+      return atc1.size == atc2.size && \
+        atc1.data == atc2.data && \
+        atc1.format == atc2.format && \
+        atc1.name == atc2.name;
+    }
+
+    /**
+    * The operator compares two attachments element-wise.
+    */
+    inline bool operator!=(Attachment atc1, Attachment atc2) {
+      return !(atc1 == atc2);
+    }
 
     /**
     * The operator compares two messages element-wise including attachments.

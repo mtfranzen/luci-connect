@@ -1,28 +1,10 @@
-#include "messagetest.h"
-
-// TODO: Restructure the tests to find bottle necks.
+#include "core/message_tests.h"
 
 /**
 * Contains tests for constructing messages.
 */
 namespace {
-  TEST(MessageTest, CreateEmptyMessage) {
-    json header = {};
-    new lc2pp::core::Message(header);
-  }
-
-  TEST(MessageTest, CreateMessageAndGetHeader) {
-    json header = {
-      {"run", "test.Randomly"},
-      {"test", {0,1,2}}
-    };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
-
-    json header2 = message->GetHeader();
-    ASSERT_EQ(header, header2);
-  }
-
-  TEST(MessageTest, CreateCompleteAttachments) {
+  TEST_F(MessageTest, CreateCompleteAttachments) {
     lc2pp::core::Attachment attachment = {
       5,
       "abcde",
@@ -31,11 +13,11 @@ namespace {
     };
   }
 
-  TEST(MessageTest, CreateIncompleteAttachment) {
+  TEST_F(MessageTest, CreateIncompleteAttachment) {
       lc2pp::core::Attachment atc1(5, "abcde");
   }
 
-  TEST(MessageTest, CompareCompleteAttachments) {
+  TEST_F(MessageTest, CompareCompleteAttachments) {
     lc2pp::core::Attachment atc1(5, "abcde", "format", "name");
     lc2pp::core::Attachment atc2(5, "abcde", "format", "name");
     lc2pp::core::Attachment atc3(5, "edcba", "format", "name");
@@ -58,7 +40,7 @@ namespace {
     ASSERT_EQ(atc9, atc10);
   }
 
-  TEST(MessageTest, CompareIncompleteAttachments) {
+  TEST_F(MessageTest, CompareIncompleteAttachments) {
     lc2pp::core::Attachment atc1(5, "abcde");
     lc2pp::core::Attachment atc2(5, "abcde");
     lc2pp::core::Attachment atc3(5, "edfba");
@@ -69,40 +51,33 @@ namespace {
     ASSERT_NE(atc3, atc4);
   }
 
-  TEST(MessageTest, ChangeAttachment) {
+  TEST_F(MessageTest, ChangeAttachment) {
     lc2pp::core::Attachment attachment = {5, "Test1"};
     attachment.data = "Test2";
 
     ASSERT_EQ(attachment.data, "Test2");
   }
 
-  TEST(MessageTest, AddCompleteAttachmentWithoutHeader) {
+  TEST_F(MessageTest, AddCompleteAttachmentWithoutHeader) {
     lc2pp::core::Attachment atc1(5, "abcde", "format", "name");
-    json header = {
-      {"run", "test.Randomly"},
-      {"test", {0,1,2}}
-    };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
-  TEST(MessageTest, AddIncompleteAttachmentWithoutHeader) {
+  TEST_F(MessageTest, AddIncompleteAttachmentWithoutHeader) {
     lc2pp::core::Attachment atc1(5, "abcde");
-    json header = {
-      {"run", "test.Randomly"},
-      {"test", {0,1,2}}
-    };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
-  TEST(MessageTest, AddCompleteAttachmentWithHeader) {
+  TEST_F(MessageTest, AddCompleteAttachmentWithHeader) {
     lc2pp::core::Attachment atc1(5, "abcde", "format", "atc1");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
+      {"callID", 0},
       {"atc1", {
         {"attachment", {
               {"length", 5},
@@ -118,11 +93,12 @@ namespace {
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
-  TEST(MessageTest, AddIncompleteAttachmentWithHeader) {
+  TEST_F(MessageTest, AddIncompleteAttachmentWithHeader) {
     lc2pp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
+      {"callID", 0},
       {"atc1", {
           {"attachment", {
               {"length", 5},
@@ -141,11 +117,12 @@ namespace {
     ASSERT_EQ(atc2, *message->GetAttachment(0));
   }
 
-  TEST(MessageTest, AddAttachmentWrongChecksumInHeader) {
+  TEST_F(MessageTest, AddAttachmentWrongChecksumInHeader) {
     lc2pp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
+      {"callID", 0},
       {"atc1", {
           {"attachment", {
               {"length", 5},
@@ -160,11 +137,12 @@ namespace {
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
   }
 
-  TEST(MessageTest, AddAttachmentWrongLengthInHeader) {
+  TEST_F(MessageTest, AddAttachmentWrongLengthInHeader) {
     lc2pp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
+      {"callID", 0},
       {"atc1", {
           {"attachment", {
               {"length", 6},
@@ -179,11 +157,12 @@ namespace {
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
   }
 
-  TEST(MessageTest, AddAttachmentIncompleteHeader) {
+  TEST_F(MessageTest, AddAttachmentIncompleteHeader) {
     lc2pp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
+      {"callID", 0},
       {"atc1", {
           {"attachment", {
               {"position", 1}
@@ -211,8 +190,8 @@ namespace {
     message->AddAttachment(&atc1);
   }
 
-  TEST(MessageTest, AddMultipleAttachments) {
-    lc2pp::core::Message* message = new lc2pp::core::Message({});
+  TEST_F(MessageTest, AddMultipleAttachments) {
+    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
     std::vector<lc2pp::core::Attachment*> attachments;
 
     size_t N = 64;
@@ -224,32 +203,5 @@ namespace {
 
     for(size_t i = 0; i < N; i++)
       ASSERT_EQ(attachments[i], message->GetAttachment(i));
-  }
-
-  TEST(MessageTest, CompareMessage) {
-    lc2pp::core::Attachment atc1(1, "a", "float32 array", "atc1");
-    lc2pp::core::Attachment atc2(1, "a", "float32 array", "atc2");;
-
-    json hd1 = {{"a", "b"}};
-    json hd2 = {{"b", "b"}};
-
-    lc2pp::core::Message* msg1 = new lc2pp::core::Message(hd1);
-    lc2pp::core::Message* msg2 = new lc2pp::core::Message(hd1);
-    msg1->AddAttachment(&atc1);
-    ASSERT_NE(*msg1, *msg2);
-    msg2->AddAttachment(&atc1);
-    ASSERT_EQ(*msg1, *msg2);
-    msg1->AddAttachment(&atc1);
-    ASSERT_NE(*msg1, *msg2);
-    msg2->AddAttachment(&atc1);
-    ASSERT_EQ(*msg1, *msg2);
-    msg1->AddAttachment(&atc2);
-    ASSERT_NE(*msg1, *msg2);
-    msg2->AddAttachment(&atc1);
-    ASSERT_NE(*msg1, *msg2);
-
-    // different header
-    lc2pp::core::Message* msg3 = new lc2pp::core::Message(hd2);
-    ASSERT_NE(*msg1, *msg3);
   }
 }

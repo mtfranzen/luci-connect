@@ -23,10 +23,16 @@ class ConnectionTest : public ::testing::Test {
   }
 
   virtual void SetUp() {
+    simple_header_ = {
+      {"run", "testService"},
+      {"callID", 0}
+    };
   }
 
   virtual void TearDown() {
   }
+
+  json simple_header_;
 };
 
 #endif

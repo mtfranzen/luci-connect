@@ -1,5 +1,5 @@
-#include "connectiontest.h"
-#include "messagetest.h"
+#include "core/connection_tests.h"
+#include "core/message_tests.h"
 
 INITIALIZE_EASYLOGGINGPP
 

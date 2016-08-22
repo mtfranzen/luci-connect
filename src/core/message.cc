@@ -3,8 +3,12 @@
 namespace lc2pp {
   namespace core {
     Message::Message(json header) {
-      // TODO: Parse header for different message types
       this->header_ = header;
+
+      if(!this->ValidateHeader()) {
+        LOG(ERROR) << "Header validation failed";
+        throw "Header validation failed";
+      }
     }
 
     size_t Message::AddAttachment(Attachment* attachment) {
@@ -78,6 +82,125 @@ namespace lc2pp {
       // copy header
       json header = json::parse(this->header_.dump());
       return header;
+    }
+
+    bool Message::ValidateHeader() {
+      if (this->header_.count("callID") != 1) {
+        LOG(WARNING) << "Message does not contain a callID.";
+        return false;
+      }
+      this->callId_ = this->header_["callID"];
+
+      size_t runC, cancelC, resultC, progressC, errorC;
+      runC = this->header_.count("run");
+      cancelC = this->header_.count("cancel");
+      resultC = this->header_.count("result");
+      progressC = this->header_.count("progress");
+      errorC = this->header_.count("error");
+
+      if (runC + cancelC + resultC + progressC + errorC != 1) {
+        LOG(WARNING) << "Message contains more than two type keywords.";
+        return false;
+      }
+
+      if (runC) {
+        this->type_ = MessageType::run;
+        return ValidateRunMessage();
+      }
+
+      if (cancelC) {
+        this->type_ = MessageType::cancel;
+        return ValidateCancelMessage();
+      }
+
+      if (resultC) {
+        this->type_ = MessageType::result;
+        return ValidateResultMessage();
+      }
+
+      if (progressC) {
+        this->type_ = MessageType::progress;
+        return ValidateProgressMessage();
+      }
+
+      if (errorC) {
+        this->type_ = MessageType::error;
+        return ValidateErrorMessage();
+      }
+
+      return false;
+    }
+
+    bool Message::ValidateRunMessage() {
+      std::string serviceName;
+      try {
+        serviceName = this->header_["run"];
+        return !serviceName.empty();
+      }
+      catch (std::exception& err) {
+        LOG(WARNING) << "Message of type `run` - validation failed";
+        return false;
+      }
+    }
+
+    bool Message::ValidateCancelMessage() {
+      try {
+        return this->header_["cancel"] == NULL\
+         || this->header_["cancel"] == (json){}\
+         || this->header_["cancel"] == this->header_["callID"];
+      }
+      catch (std::exception& err) {
+        LOG(WARNING) << "Message of type `cancel` - validation failed";
+        return false;
+      }
+    }
+
+    bool Message::ValidateResultMessage() {
+      json result;
+      std::string serviceName;
+
+      try {
+        result = this->header_["result"];
+        serviceName = this->header_["serviceName"];
+        (int64_t)this->header_["callID"];
+        (int64_t)this->header_["taskID"];
+        return true;
+      }
+      catch (std::exception& err) {
+        LOG(WARNING) << "Message of type `result` - validation failed";
+        return false;
+      }
+    }
+
+    bool Message::ValidateProgressMessage() {
+      json progress;
+      std::string serviceName;
+
+      try {
+        progress = this->header_["progress"];
+        serviceName = this->header_["serviceName"];
+        (int64_t)this->header_["callID"];
+        (int64_t)this->header_["taskID"];
+        (int64_t)this->header_["percentage"];
+        return true;
+      }
+      catch (std::exception& err) {
+        LOG(WARNING) << "Message of type `progress` - validation failed";
+        return false;
+      }
+    }
+
+    bool Message::ValidateErrorMessage() {
+      std::string error;
+
+      try {
+        error = this->header_["error"];
+        return true;
+      }
+      catch (std::exception& err) {
+        LOG(WARNING) << "Message of type `error` - validation failed";
+        return false;
+      }
     }
   }
 }

@@ -30,7 +30,7 @@ test: build
 	ar -rv test/lib/libgmock.a test/bin/gtest-all.o test/bin/gmock-all.o
 
 	# compiling test file
-	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/messagetest.cc test/src/connectiontest.cc test/src/main.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
+	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/core/*.cc test/src/*.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
 
 	# run tests
 	LD_LIBRARY_PATH=lib/ test/bin/main.o
