@@ -1,5 +1,7 @@
 #include "connectiontest.h"
 
+// TODO: Restructure the tests to find bottle necks.
+
 /**
 * Contains tests for establishing a connection (low-level), see protocoltest.cc
 * for tests on protocol level.

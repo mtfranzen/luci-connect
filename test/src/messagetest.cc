@@ -1,5 +1,7 @@
 #include "messagetest.h"
 
+// TODO: Restructure the tests to find bottle necks.
+
 /**
 * Contains tests for constructing messages.
 */
