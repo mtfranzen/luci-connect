@@ -25,8 +25,8 @@ test: build
 	(cd test/bin/luci2 && (mvn exec:java -pl core >> /dev/null & echo $$!> /tmp/luci2.pid))
 
 	# compiling googletest library
-	g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o test/bin/gtest-all.o
-	g++ -isystem $(GMOCK_DIR)/include -I$(GMOCK_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GMOCK_DIR)/src/gmock-all.cc -o test/bin/gmock-all.o
+	$(CXX) -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o test/bin/gtest-all.o
+	$(CXX) -isystem $(GMOCK_DIR)/include -I$(GMOCK_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GMOCK_DIR)/src/gmock-all.cc -o test/bin/gmock-all.o
 	ar -rv test/lib/libgmock.a test/bin/gtest-all.o test/bin/gmock-all.o
 
 	# compiling test file
