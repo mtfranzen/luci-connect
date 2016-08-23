@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <algorithm> // std::reverse
+#include <functional>
 
 using json = nlohmann::json;
 
@@ -47,7 +48,7 @@ namespace lc2pp {
        * The port should be an unsigned short. The timeout is specified in
        * seconds and determines the timeout of the tcp connection **and** when
        * receiving parts of a message. */
-      Connection(std::string host, uint16_t port, uint timeout);
+      Connection(std::string host, uint16_t port);
 
       /** Opens up the connection to the LC2 instance */
       void Open();
@@ -61,23 +62,34 @@ namespace lc2pp {
       /** Returns the last successfully parsed message from Luci */
       Message* Receive();
 
+      /**
+      * The method registers a handler method for asynchronous message receiving.
+      * If a message is received, the type is checked and forwarded to the
+      * appointed callback functions. Not that multiple functions can
+      * handle a certain message type.
+      */
+      void RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback);
+
+      /**
+      * A handler for asynchronous message receival. The method is called
+      * whenever the socket has accepted a TCP PSH message. It then receives the
+      * message and forwards it to all registered delegates.
+      */
+      void HandleAsynchronousReceive(asio::error_code ec);
+
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
-
-    protected:
-      void DelegateMessage();
 
     private:
       // connection parameters
       std::string host_;
       uint16_t port_;
-      uint timeout_;
       bool is_connected_;
 
       // socket stuff
-      asio::io_service io_service_;
       asio::ip::tcp::resolver::iterator iterator_;
       asio::ip::tcp::socket* socket_;
+      asio::io_service* io_service_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.

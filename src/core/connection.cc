@@ -4,25 +4,23 @@ namespace lc2pp {
   namespace core {
     // TODO: Make connection class asynchronous
 
-    Connection::Connection(std::string host, uint16_t port, uint timeout = 10) {
+    Connection::Connection(std::string host, uint16_t port) {
       this->host_ = host;
       this->port_ = port;
-      this->timeout_ = timeout;
       this->is_connected_ = false;
 
       // create I/O iterator from host / port
-      asio::ip::tcp::resolver resolver(this->io_service_);
+      this->io_service_ = new asio::io_service();
+      asio::ip::tcp::resolver resolver(*this->io_service_);
       this->iterator_ = resolver.resolve({host, std::to_string(port)});
     }
 
     void Connection::Open() {
-      // TODO: Add timeout to socket connection
-
       if (this->is_connected_) {
         LOG(ERROR) << "Socket already opened.";
         throw "Socket already opened.";
       }
-      this->socket_ = new asio::ip::tcp::socket(this->io_service_);
+      this->socket_ = new asio::ip::tcp::socket(*this->io_service_);
 
       try {
         LOG(INFO) << "Connecting to " << std::string(this->host_) << ":" << std::to_string(this->port_);
@@ -41,6 +39,7 @@ namespace lc2pp {
     void Connection::Close() {
       if (!this->is_connected_) {
         LOG(WARNING) << "Socket already closed.";
+        return;
       }
 
       LOG(INFO) << "Closing connection.";
@@ -264,6 +263,7 @@ namespace lc2pp {
 
 
     Connection::~Connection() {
+      // TODO: Free memory of socket, io_service in connection desctructor
       this->Close();
     }
   }

@@ -6,7 +6,6 @@
 */
 namespace {
   TEST_F(ConnectionTest, SendEmptyMessage) {
-    lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
     connection->Open();
 
     lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
@@ -15,7 +14,6 @@ namespace {
   }
 
   TEST_F(ConnectionTest, SendMessageWhenClosed) {
-    lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
     connection->Open();
 
     lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
@@ -24,7 +22,6 @@ namespace {
   }
 
   TEST_F(ConnectionTest, SendAttachment) {
-    lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
     connection->Open();
 
     std::string binary_data = "abcdeϮ";
@@ -40,8 +37,8 @@ namespace {
 
     size_t N = 64;
     for (size_t i = 0; i < N; i++) {
-      lc2pp::core::Connection* connection = new lc2pp::core::Connection("127.0.0.1", 7654, 10);
-      connections.push_back(connection);
+      lc2pp::core::Connection* con = new lc2pp::core::Connection("127.0.0.1", 7654);
+      connections.push_back(con);
     }
 
     for (lc2pp::core::Connection* connection : connections)

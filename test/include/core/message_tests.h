@@ -15,16 +15,16 @@
 class MessageTest : public ::testing::Test {
  protected:
   MessageTest() {
+    simple_header_ = {
+      {"run", "testService"},
+      {"callID", 0}
+    };
   }
 
   virtual ~MessageTest() {
   }
 
   virtual void SetUp() {
-    simple_header_ = {
-      {"run", "testService"},
-      {"callID", 0}
-    };
   }
 
   virtual void TearDown() {

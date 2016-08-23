@@ -17,8 +17,7 @@ namespace lc2pp {
 
       MD5 md5;
       std::string md5sum = md5(attachment->data, attachment->size);
-
-      // TODO: Add procedure to allow arbitrary names for attachments in the header
+      
       bool attachment_header_missing = true;
       for (json element : this->header_) {
         if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {

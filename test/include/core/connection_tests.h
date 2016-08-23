@@ -16,22 +16,25 @@
 class ConnectionTest : public ::testing::Test {
  protected:
   ConnectionTest() {
-  }
-
-  virtual ~ConnectionTest() {
-  }
-
-  virtual void SetUp() {
     simple_header_ = {
       {"run", "testService"},
       {"callID", 0}
     };
   }
 
+  virtual ~ConnectionTest() {
+  }
+
+  virtual void SetUp() {
+    connection = new lc2pp::core::Connection("127.0.0.1", 7654);
+  }
+
   virtual void TearDown() {
+    delete connection;
   }
 
   json simple_header_;
+  lc2pp::core::Connection* connection;
 };
 
 #endif

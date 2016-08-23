@@ -12,13 +12,13 @@ namespace lc2pp {
     ~Service(void) {};
     void Register(Connection* connection);
     void Unregister(Connection* connection);
-  
+
   protected:
-    friend void Connection::DelegateMessage HandleRunMessage(Message* message);
-    friend void Connection::DelegateMessage HandleCancelMessage(Message* message);
-    friend void Connection::DelegateMessage HandleProgressMessage(Message* message);
-    friend void Connection::DelegateMessage HandleResultMessage(Message* message);
-    friend void Connection::DelegateMessage HandleErrorMessage(Message* message);
+    virtual friend void Connection::DelegateMessage HandleRunMessage(Message* message);
+    virtual friend void Connection::DelegateMessage HandleCancelMessage(Message* message);
+    virtual friend void Connection::DelegateMessage HandleProgressMessage(Message* message);
+    virtual friend void Connection::DelegateMessage HandleResultMessage(Message* message);
+    virtual friend void Connection::DelegateMessage HandleErrorMessage(Message* message);
   };
 }
 
