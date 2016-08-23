@@ -5,8 +5,8 @@ LOGFLAGS=-DELPP_THREAD_SAFE -DELPP_DISABLE_DEFAULT_CRASH_HANDLING
 GMOCK_DIR=test/include/googletest/googlemock
 GTEST_DIR=test/include/googletest/googletest
 
-DEBUGFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC
-BUILDFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC -DELPP_DISABLE_LOGS
+DEBUGFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC -DASIO_STANDALONE
+BUILDFLAGS = -Iinclude $(LDFLAGS) $(LOGFLAGS) -g -shared -fPIC -DELPP_DISABLE_LOGS -DASIO_STANDALONE
 TESTFLAGS=-Iinclude -Itest/include -I$(GMOCK_DIR)/include -I$(GTEST_DIR)/include
 
 .PHONY: build test docs clean

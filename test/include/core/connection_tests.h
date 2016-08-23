@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <memory>
 
 // Only a stub for later use
 class ConnectionTest : public ::testing::Test {
@@ -27,14 +28,15 @@ class ConnectionTest : public ::testing::Test {
 
   virtual void SetUp() {
     connection = new lc2pp::core::Connection("127.0.0.1", 7654);
+    //connection = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
   }
 
   virtual void TearDown() {
-    delete connection;
   }
 
   json simple_header_;
   lc2pp::core::Connection* connection;
+  //std::shared_ptr<lc2pp::core::Connection> connection;
 };
 
 #endif

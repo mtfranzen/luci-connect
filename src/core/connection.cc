@@ -1,5 +1,9 @@
 #include "lc2pp/core/connection.h"
 
+
+using std::placeholders::_1;
+using std::placeholders::_2;
+
 namespace lc2pp {
   namespace core {
     // TODO: Make connection class asynchronous
@@ -35,6 +39,22 @@ namespace lc2pp {
         LOG(ERROR) << "Connection could not be established.";
         throw "Connection could not be established.";
       }
+
+      try {
+        LOG(INFO) << "Registering handlers for sending / accepting messages";
+      }
+      catch (std::exception& err) {
+        LOG(ERROR) << "An occured while registering handlers to the connection.";
+      }
+
+      try {
+        LOG(INFO) << "Starting to receive asynchronously.";
+        // TODO: Write async_accept into dedicated wrapper method
+        this->acceptor_->async_accept(*this->socket_, std::bind(&Connection::AcceptHandler, this, _1));
+      }
+      catch (std::exception& err) {
+        LOG(ERROR) << "An occured while listening to the connection.";
+      }
     }
 
     void Connection::Close() {
@@ -58,17 +78,39 @@ namespace lc2pp {
     }
 
     void Connection::RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback) {
-
+      // TODO: Write registration method for message delegations
     }
 
     void Connection::DelegateMessage(Message* message) {
-
+      // TODO: Write dmethod performating the message delegations
     }
 
-    void Connection::AcceptMessage(const asio::error_code& ec) {
-
+    void Connection::SendHandler(const asio::error_code& error, std::size_t size_transferred) {
+      // TODO: Find out whether send handler is called
+      if (!error)
+      {
+        LOG(INFO) << "Buffer sent successfully.";
+      }
+      else
+      {
+        LOG(ERROR) << "An error occured when sending a message: " << error;
+        throw "An error occured when sending a message.";
+      }
     }
 
+    void Connection::AcceptHandler(const asio::error_code& error) {
+      // TODO: Find out whether accept handler is called
+
+      if (!error) {
+        // TODO: Delegate received messages
+        this->Receive();
+        this->acceptor_->async_accept(*this->socket_, std::bind(&Connection::AcceptHandler, this, _1));
+      }
+      else {
+        LOG(ERROR) << "An error occured while accepting a message" << error;
+        throw "An error occured while accepting a message";
+      }
+    }
 
     void Connection::Send(Message* message) {
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
@@ -150,22 +192,11 @@ namespace lc2pp {
       }
 
       try {
-        asio::async_write(*this->socket_, data,\
-            [this](std::error_code ec, std::size_t)
-            {
-              if (!ec)
-              {
-                LOG(INFO) << "Buffer sent successfully.";
-              }
-              else
-              {
-                LOG(ERROR) << "An error occured when sending a message:" << ec;
-                throw "An error occured when sending a message.";
-              }
-            });
+        //auto self(this->shared_from_this());
+        asio::async_write(*this->socket_, data, std::bind(&Connection::SendHandler, this, _1, _2));
       }
       catch (std::exception& err) {
-        LOG(ERROR) << "An error occured when sending a message:" << err.what();
+        LOG(ERROR) << "An error occured when sending a message: " << err.what();
         throw "An error occured when sending a message.";
       }
     }

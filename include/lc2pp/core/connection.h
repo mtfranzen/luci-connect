@@ -11,6 +11,7 @@
 #include <string>
 #include <algorithm> // std::reverse
 #include <functional>
+#include <memory>
 
 using json = nlohmann::json;
 
@@ -41,7 +42,7 @@ namespace lc2pp {
      * // receive reply
      * Message* reply = connection->Receive();
      * ``` */
-    class Connection {
+    class Connection : public std::enable_shared_from_this<Connection> {
     public:
       /** Initializes the connection to a specific LC2 instance. The host
        * should be a valid ip or dns address like "127.0.0.1" or "localhost".
@@ -70,6 +71,10 @@ namespace lc2pp {
       */
       void RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback);
 
+      // TODO: Document handlers in connection class
+      void SendHandler(const asio::error_code& error, std::size_t bytes_transferred);
+      void AcceptHandler(const asio::error_code& error);
+
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
 
@@ -91,7 +96,6 @@ namespace lc2pp {
 
       // handlers for asynchronous message handling
       void DelegateMessage(Message* message);
-      void AcceptMessage(const asio::error_code& ec);
 
       // member functions for message receiving
       int64_t ReceiveHeaderSize(); // x = 8 byte bigendian signed
