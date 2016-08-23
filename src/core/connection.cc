@@ -56,6 +56,19 @@ namespace lc2pp {
       }
     }
 
+    void Connection::RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback) {
+
+    }
+
+    void Connection::DelegateMessage(Message* message) {
+
+    }
+
+    void Connection::AcceptMessage(const asio::error_code& ec) {
+
+    }
+
+
     void Connection::Send(Message* message) {
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
       this->SendHeaderSize(message);

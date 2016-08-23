@@ -70,13 +70,6 @@ namespace lc2pp {
       */
       void RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback);
 
-      /**
-      * A handler for asynchronous message receival. The method is called
-      * whenever the socket has accepted a TCP PSH message. It then receives the
-      * message and forwards it to all registered delegates.
-      */
-      void HandleAsynchronousReceive(asio::error_code ec);
-
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
 
@@ -87,13 +80,18 @@ namespace lc2pp {
       bool is_connected_;
 
       // socket stuff
-      asio::ip::tcp::resolver::iterator iterator_;
       asio::ip::tcp::socket* socket_;
       asio::io_service* io_service_;
+      asio::ip::tcp::acceptor acceptor_;
+      asio::ip::tcp::resolver::iterator iterator_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.
       Message* tmp_message_;
+
+      // handlers for asynchronous message handling
+      void DelegateMessage(Message* message);
+      void AcceptMessage(const asio::error_code& ec);
 
       // member functions for message receiving
       int64_t ReceiveHeaderSize(); // x = 8 byte bigendian signed
