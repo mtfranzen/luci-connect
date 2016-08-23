@@ -13,6 +13,7 @@ namespace lc2pp {
       this->io_service_ = new asio::io_service();
       asio::ip::tcp::resolver resolver(*this->io_service_);
       this->iterator_ = resolver.resolve({host, std::to_string(port)});
+      this->acceptor_ = new asio::ip::tcp::acceptor(*this->io_service_);
     }
 
     void Connection::Open() {
@@ -24,7 +25,7 @@ namespace lc2pp {
 
       try {
         LOG(INFO) << "Connecting to " << std::string(this->host_) << ":" << std::to_string(this->port_);
-        asio::connect(*(this->socket_), this->iterator_);
+        asio::connect(*this->socket_, this->iterator_);
         asio::socket_base::keep_alive option(true);
         this->socket_->set_option(option);
         this->is_connected_ = true;
@@ -129,12 +130,11 @@ namespace lc2pp {
     void Connection::SendInt64(int64_t data) {
       // we are converting the data here to a constant so both SendInt64 and
       // SendString share the same buffer output type (const_buffers_1).
-
       char c_data[sizeof(int64_t)];
       std::memcpy(c_data, &data, sizeof(int64_t));
       std::reverse(c_data, c_data + sizeof(int64_t));
-
       const char* r_data = c_data;
+
       this->SendBuffer(asio::buffer(r_data, sizeof(int64_t)));
     }
 
@@ -150,11 +150,22 @@ namespace lc2pp {
       }
 
       try {
-        this->socket_->set_option(asio::ip::tcp::no_delay(true));
-        asio::write(*(this->socket_), data);
+        asio::async_write(*this->socket_, data,\
+            [this](std::error_code ec, std::size_t)
+            {
+              if (!ec)
+              {
+                LOG(INFO) << "Buffer sent successfully.";
+              }
+              else
+              {
+                LOG(ERROR) << "An error occured when sending a message:" << ec;
+                throw "An error occured when sending a message.";
+              }
+            });
       }
       catch (std::exception& err) {
-        LOG(ERROR) << "An error occured when sending a message.";
+        LOG(ERROR) << "An error occured when sending a message:" << err.what();
         throw "An error occured when sending a message.";
       }
     }

@@ -82,7 +82,7 @@ namespace lc2pp {
       // socket stuff
       asio::ip::tcp::socket* socket_;
       asio::io_service* io_service_;
-      asio::ip::tcp::acceptor acceptor_;
+      asio::ip::tcp::acceptor* acceptor_;
       asio::ip::tcp::resolver::iterator iterator_;
 
       // the message that is currently being processed. Used for both sending
