@@ -22,7 +22,6 @@ namespace lc2pp {
 /// OPEN AND CLOSE
 
     void Connection::Open() {
-
       // Checking if connected
       if (this->is_connected_) {
         LOG(ERROR) << "Socket already opened.";
@@ -49,6 +48,7 @@ namespace lc2pp {
       try {
         LOG(INFO) << "Starting threads.";
         this->thread_waiting_for_events_ = new std::thread(&Connection::WaitForHandlers, shared_from_this());
+        this->thread_waiting_for_events_ = new std::thread(&Connection::WaitForReceival, shared_from_this());
       }
       catch (std::exception& err) {
         LOG(ERROR) << "An occured while starting threads: " << err.what();
@@ -56,10 +56,6 @@ namespace lc2pp {
     }
 
     void Connection::Close() {
-      // Waiting for sending / receiving to finish
-      this->mutex_sending_.lock();
-      this->mutex_receiving_.lock();
-
       // Check if we're connected
       if (!this->is_connected_) {
         LOG(WARNING) << "Socket already closed.";
@@ -67,11 +63,14 @@ namespace lc2pp {
       }
 
       // Pulling back worker thread
-      // notify waiting threads to finish execution
-      this->is_connected_ = false;
       this->mutex_waiting_for_events_.lock();
-      this->thread_waiting_for_events_->join();
+      this->mutex_waiting_for_receival_.lock();
+      this->is_connected_ = false; // notifies waiting threads to finish execution
+      this->mutex_waiting_for_receival_.unlock();
       this->mutex_waiting_for_events_.unlock();
+
+      this->thread_waiting_for_events_->join();
+      this->thread_waiting_for_receival_->join();
 
       // Closing connection
       LOG(INFO) << "Closing connection.";
@@ -80,17 +79,11 @@ namespace lc2pp {
 
       if (ec) {
         LOG(ERROR) << "An error occured while closing connection: " << ec;
-        this->mutex_sending_.unlock();
-        this->mutex_receiving_.unlock();
         throw "An error occured while closing connection.";
       }
       else {
         LOG(INFO) << "Connection closed.";
       }
-
-      // Unlocking sending / receiving
-      this->mutex_sending_.unlock();
-      this->mutex_receiving_.unlock();
     }
 
 /// THREADING
@@ -102,6 +95,15 @@ namespace lc2pp {
         this->io_service_->reset();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
         this->mutex_waiting_for_events_.unlock();
+      }
+    }
+
+    void Connection::WaitForReceival() {
+      while (this->is_connected_) {
+        this->mutex_waiting_for_receival_.lock();
+        this->ReceiveAsync();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        this->mutex_waiting_for_receival_.unlock();
       }
     }
 
@@ -127,8 +129,7 @@ namespace lc2pp {
 
 /// SENDING: Stepwise
 
-    void Connection::Send(Message* message) {
-      this->mutex_sending_.lock();
+    void Connection::SendAsync(Message* message) {
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
       this->SendHeaderSize(message);
       this->SendBodySize(message);
@@ -138,7 +139,6 @@ namespace lc2pp {
         this->SendAttachmentSize(message, i);
         this->SendAttachment(message, i);
       }
-      this->mutex_sending_.unlock();
     }
 
     void Connection::SendHeaderSize(Message* message) {
@@ -207,7 +207,6 @@ namespace lc2pp {
     void Connection::SendBuffer(asio::const_buffers_1 data) {
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to send while connection is closed.";
-        this->mutex_sending_.unlock();
         throw "Trying to send a message while connection is closed.";
       }
 
@@ -217,15 +216,14 @@ namespace lc2pp {
       }
       catch (std::exception& err) {
         LOG(ERROR) << "An error occured when sending a message: " << err.what();
-        this->mutex_sending_.unlock();
         throw "An error occured when sending a message.";
       }
     }
 
 /// RECEIVING: Stepwise
 
-    void Connection::Receive() {
-      this->mutex_receiving_.lock();
+    void Connection::ReceiveAsync() {
+      // TODO: Make receival async
       int64_t validation_size = 8; // see LC2 documentation
 
       // Receive header
@@ -238,7 +236,6 @@ namespace lc2pp {
       }
       catch (std::exception& err) {
         LOG(WARNING) << "Message parsing failed: header corrupted.";
-        this->mutex_receiving_.unlock();
         throw "Message parsing failed: header corrupted.";
       }
 
@@ -259,8 +256,6 @@ namespace lc2pp {
         LOG(WARNING) << "Message validation failed. Entering panic mode.";
         // TODO: Enter panic mode when message validation fails
       }
-
-      this->mutex_receiving_.unlock();
     }
 
     int64_t Connection::ReceiveHeaderSize() {
@@ -325,7 +320,6 @@ namespace lc2pp {
     std::string Connection::ReceiveString(size_t length) {
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to receive a message while connection is closed.";
-        this->mutex_receiving_.unlock();
         throw "Trying to receive a message while connection is closed.";
       }
 
@@ -337,7 +331,6 @@ namespace lc2pp {
       }
       catch(std::exception& e) {
         LOG(ERROR) << "An error occured while trying to receive.";
-        this->mutex_receiving_.unlock();
         throw "An error occured while trying to receive.";
       }
 

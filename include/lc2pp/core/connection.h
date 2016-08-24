@@ -61,10 +61,10 @@ namespace lc2pp {
       void Close();
 
       /** Sends a message to the connected LC2 instance */
-      void Send(Message* message);
+      void SendAsync(Message* message);
 
       /** Receives a message and delegates it*/
-      void Receive();
+      void ReceiveAsync();
 
       /**
       * The method registers a handler method for asynchronous message receiving.
@@ -77,7 +77,7 @@ namespace lc2pp {
       // TODO: Document handlers in connection class
       void SendHandler(const asio::error_code& error, std::size_t bytes_transferred);
       void WaitForHandlers(); // called when sending / receiving is finished
-      void WaitForMessageReceival(); // called when message is ready to be received
+      void WaitForReceival(); // called when message is ready to be received
 
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
@@ -96,9 +96,9 @@ namespace lc2pp {
 
       // threading
       std::thread* thread_waiting_for_events_;
-      std::mutex mutex_sending_;
-      std::mutex mutex_receiving_;
+      std::thread* thread_waiting_for_receival_;
       std::mutex mutex_waiting_for_events_;
+      std::mutex mutex_waiting_for_receival_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.

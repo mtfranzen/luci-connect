@@ -9,7 +9,7 @@ namespace {
     connection->Open();
 
     lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
-    connection->Send(message);
+    connection->SendAsync(message);
     connection->Close();
   }
 
@@ -18,7 +18,7 @@ namespace {
 
     lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
     connection->Close();
-    ASSERT_ANY_THROW(connection->Send(message));
+    ASSERT_ANY_THROW(connection->SendAsync(message));
   }
 
   TEST_F(ConnectionTest, SendAttachment) {
@@ -28,7 +28,7 @@ namespace {
     lc2pp::core::Attachment attachment = {binary_data.size(), binary_data.c_str(), "float32 array", "testname"};
     lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
     message->AddAttachment(&attachment);
-    connection->Send(message);
+    connection->SendAsync(message);
 
     connection->Close();
   }
@@ -43,9 +43,9 @@ namespace {
     con3->Open();
 
     lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
-    con1->Send(message);
-    con2->Send(message);
-    con3->Send(message);
+    con1->SendAsync(message);
+    con2->SendAsync(message);
+    con3->SendAsync(message);
 
     con1->Close();
     con2->Close();
