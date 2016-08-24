@@ -1,6 +1,5 @@
 #include "lc2pp/core/connection.h"
 
-
 using std::placeholders::_1;
 using std::placeholders::_2;
 
@@ -20,62 +19,103 @@ namespace lc2pp {
       this->acceptor_ = new asio::ip::tcp::acceptor(*this->io_service_);
     }
 
+/// OPEN AND CLOSE
+
     void Connection::Open() {
+
+      // Checking if connected
       if (this->is_connected_) {
         LOG(ERROR) << "Socket already opened.";
         throw "Socket already opened.";
       }
+
+      // Creating socket
       this->socket_ = new asio::ip::tcp::socket(*this->io_service_);
 
+      // Connecting...
       try {
         LOG(INFO) << "Connecting to " << std::string(this->host_) << ":" << std::to_string(this->port_);
         asio::connect(*this->socket_, this->iterator_);
         asio::socket_base::keep_alive option(true);
         this->socket_->set_option(option);
         this->is_connected_ = true;
-        LOG(INFO) << "Connection established.";
       }
       catch (std::exception& err) {
         LOG(ERROR) << "Connection could not be established.";
         throw "Connection could not be established.";
       }
 
+      // Starting threads...
       try {
-        LOG(INFO) << "Registering handlers for sending / accepting messages";
+        LOG(INFO) << "Starting threads.";
+        this->thread_waiting_for_events_ = new std::thread(&Connection::WaitForHandlers, shared_from_this());
       }
       catch (std::exception& err) {
-        LOG(ERROR) << "An occured while registering handlers to the connection.";
-      }
-
-      try {
-        LOG(INFO) << "Starting to receive asynchronously.";
-        // TODO: Write async_accept into dedicated wrapper method
-        this->acceptor_->async_accept(*this->socket_, std::bind(&Connection::AcceptHandler, this, _1));
-      }
-      catch (std::exception& err) {
-        LOG(ERROR) << "An occured while listening to the connection.";
+        LOG(ERROR) << "An occured while starting threads: " << err.what();
       }
     }
 
     void Connection::Close() {
+      // Waiting for sending / receiving to finish
+      this->mutex_sending_.lock();
+      this->mutex_receiving_.lock();
+
+      // Check if we're connected
       if (!this->is_connected_) {
         LOG(WARNING) << "Socket already closed.";
         return;
       }
 
+      // Pulling back worker thread
+      // notify waiting threads to finish execution
+      this->is_connected_ = false;
+      this->mutex_waiting_for_events_.lock();
+      this->thread_waiting_for_events_->join();
+      this->mutex_waiting_for_events_.unlock();
+
+      // Closing connection
       LOG(INFO) << "Closing connection.";
       asio::error_code ec;
       this->socket_->close(ec);
-      this->is_connected_ = false;
 
       if (ec) {
         LOG(ERROR) << "An error occured while closing connection: " << ec;
+        this->mutex_sending_.unlock();
+        this->mutex_receiving_.unlock();
         throw "An error occured while closing connection.";
       }
       else {
         LOG(INFO) << "Connection closed.";
       }
+
+      // Unlocking sending / receiving
+      this->mutex_sending_.unlock();
+      this->mutex_receiving_.unlock();
     }
+
+/// THREADING
+
+    void Connection::WaitForHandlers() {
+      while (this->is_connected_) {
+        this->mutex_waiting_for_events_.lock();
+        this->io_service_->run();
+        this->io_service_->reset();
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        this->mutex_waiting_for_events_.unlock();
+      }
+    }
+
+    void Connection::SendHandler(const asio::error_code& error, std::size_t size_transferred) {
+        if (!error)
+        {
+          LOG(INFO) << "Buffer sent successfully.";
+        }
+        else
+        {
+          LOG(ERROR) << "An error occured when sending a message: " << error;
+          throw "An error occured when sending a message.";
+        }
+      }
 
     void Connection::RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback) {
       // TODO: Write registration method for message delegations
@@ -85,34 +125,10 @@ namespace lc2pp {
       // TODO: Write dmethod performating the message delegations
     }
 
-    void Connection::SendHandler(const asio::error_code& error, std::size_t size_transferred) {
-      // TODO: Find out whether send handler is called
-      if (!error)
-      {
-        LOG(INFO) << "Buffer sent successfully.";
-      }
-      else
-      {
-        LOG(ERROR) << "An error occured when sending a message: " << error;
-        throw "An error occured when sending a message.";
-      }
-    }
-
-    void Connection::AcceptHandler(const asio::error_code& error) {
-      // TODO: Find out whether accept handler is called
-
-      if (!error) {
-        // TODO: Delegate received messages
-        this->Receive();
-        this->acceptor_->async_accept(*this->socket_, std::bind(&Connection::AcceptHandler, this, _1));
-      }
-      else {
-        LOG(ERROR) << "An error occured while accepting a message" << error;
-        throw "An error occured while accepting a message";
-      }
-    }
+/// SENDING: Stepwise
 
     void Connection::Send(Message* message) {
+      this->mutex_sending_.lock();
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
       this->SendHeaderSize(message);
       this->SendBodySize(message);
@@ -122,6 +138,7 @@ namespace lc2pp {
         this->SendAttachmentSize(message, i);
         this->SendAttachment(message, i);
       }
+      this->mutex_sending_.unlock();
     }
 
     void Connection::SendHeaderSize(Message* message) {
@@ -169,6 +186,8 @@ namespace lc2pp {
       this->SendString(attachment);
     }
 
+/// SENDING: Primitives
+
     void Connection::SendInt64(int64_t data) {
       // we are converting the data here to a constant so both SendInt64 and
       // SendString share the same buffer output type (const_buffers_1).
@@ -188,20 +207,25 @@ namespace lc2pp {
     void Connection::SendBuffer(asio::const_buffers_1 data) {
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to send while connection is closed.";
+        this->mutex_sending_.unlock();
         throw "Trying to send a message while connection is closed.";
       }
 
       try {
         //auto self(this->shared_from_this());
-        asio::async_write(*this->socket_, data, std::bind(&Connection::SendHandler, this, _1, _2));
+        asio::async_write(*this->socket_, data, std::bind(&Connection::SendHandler, shared_from_this(), _1, _2));
       }
       catch (std::exception& err) {
         LOG(ERROR) << "An error occured when sending a message: " << err.what();
+        this->mutex_sending_.unlock();
         throw "An error occured when sending a message.";
       }
     }
 
-    Message* Connection::Receive() {
+/// RECEIVING: Stepwise
+
+    void Connection::Receive() {
+      this->mutex_receiving_.lock();
       int64_t validation_size = 8; // see LC2 documentation
 
       // Receive header
@@ -214,6 +238,7 @@ namespace lc2pp {
       }
       catch (std::exception& err) {
         LOG(WARNING) << "Message parsing failed: header corrupted.";
+        this->mutex_receiving_.unlock();
         throw "Message parsing failed: header corrupted.";
       }
 
@@ -234,7 +259,8 @@ namespace lc2pp {
         LOG(WARNING) << "Message validation failed. Entering panic mode.";
         // TODO: Enter panic mode when message validation fails
       }
-      return message;
+
+      this->mutex_receiving_.unlock();
     }
 
     int64_t Connection::ReceiveHeaderSize() {
@@ -280,6 +306,8 @@ namespace lc2pp {
       return (char*)attachment_binary;
     }
 
+/// RECEIVING: Primitives
+
     int64_t Connection::ReceiveInt64() {
       std::string buffer = this->ReceiveString(sizeof(int64_t));
       const char* c_buffer = buffer.c_str();
@@ -297,6 +325,7 @@ namespace lc2pp {
     std::string Connection::ReceiveString(size_t length) {
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to receive a message while connection is closed.";
+        this->mutex_receiving_.unlock();
         throw "Trying to receive a message while connection is closed.";
       }
 
@@ -308,14 +337,17 @@ namespace lc2pp {
       }
       catch(std::exception& e) {
         LOG(ERROR) << "An error occured while trying to receive.";
+        this->mutex_receiving_.unlock();
         throw "An error occured while trying to receive.";
       }
 
       // convert output to char pointer
       std::string s_data(buffer.begin(), buffer.end());
+
       return s_data;
     }
 
+/// DESTRUCTOR
 
     Connection::~Connection() {
       // TODO: Free memory of socket, io_service in connection desctructor

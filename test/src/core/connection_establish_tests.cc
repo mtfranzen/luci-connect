@@ -16,18 +16,16 @@ namespace {
   }
 
   TEST_F(ConnectionTest, EstablishConcurrentConnections) {
-    std::vector<lc2pp::core::Connection*> connections;
+    std::shared_ptr<lc2pp::core::Connection> con1 = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    std::shared_ptr<lc2pp::core::Connection> con2 = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    std::shared_ptr<lc2pp::core::Connection> con3 = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
 
-    size_t N = 64;
-    for (size_t i = 0; i < N; i++) {
-      lc2pp::core::Connection* con = new lc2pp::core::Connection("127.0.0.1", 7654);
-      connections.push_back(con);
-    }
-
-    for (lc2pp::core::Connection* con : connections)
-      con->Open();
-
-    for (lc2pp::core::Connection* con : connections)
-      con->Close();
+    con1->Open();
+    con2->Open();
+    con3->Open();
+    
+    con1->Close();
+    con2->Close();
+    con3->Close();
   }
 }

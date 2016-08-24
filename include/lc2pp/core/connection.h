@@ -12,6 +12,9 @@
 #include <algorithm> // std::reverse
 #include <functional>
 #include <memory>
+#include <thread>
+#include <mutex>
+#include <chrono> // for sleeping
 
 using json = nlohmann::json;
 
@@ -60,8 +63,8 @@ namespace lc2pp {
       /** Sends a message to the connected LC2 instance */
       void Send(Message* message);
 
-      /** Returns the last successfully parsed message from Luci */
-      Message* Receive();
+      /** Receives a message and delegates it*/
+      void Receive();
 
       /**
       * The method registers a handler method for asynchronous message receiving.
@@ -73,7 +76,8 @@ namespace lc2pp {
 
       // TODO: Document handlers in connection class
       void SendHandler(const asio::error_code& error, std::size_t bytes_transferred);
-      void AcceptHandler(const asio::error_code& error);
+      void WaitForHandlers(); // called when sending / receiving is finished
+      void WaitForMessageReceival(); // called when message is ready to be received
 
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
@@ -90,9 +94,16 @@ namespace lc2pp {
       asio::ip::tcp::acceptor* acceptor_;
       asio::ip::tcp::resolver::iterator iterator_;
 
+      // threading
+      std::thread* thread_waiting_for_events_;
+      std::mutex mutex_sending_;
+      std::mutex mutex_receiving_;
+      std::mutex mutex_waiting_for_events_;
+
       // the message that is currently being processed. Used for both sending
       // and receiving.
       Message* tmp_message_;
+
 
       // handlers for asynchronous message handling
       void DelegateMessage(Message* message);
