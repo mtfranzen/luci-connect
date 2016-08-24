@@ -5,7 +5,6 @@
 #include "core/message.h"
 
 namespace lc2pp {
-  // TODO: Document service class
   class Node {
   public:
     Service(void) {};

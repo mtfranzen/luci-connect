@@ -5,7 +5,7 @@ using std::placeholders::_2;
 
 namespace lc2pp {
   namespace core {
-    // TODO: Make connection class asynchronous
+    // TODO: Add timeout for connection
 
     Connection::Connection(std::string host, uint16_t port) {
       this->host_ = host;
@@ -18,8 +18,6 @@ namespace lc2pp {
       this->iterator_ = resolver.resolve({host, std::to_string(port)});
       this->acceptor_ = new asio::ip::tcp::acceptor(*this->io_service_);
     }
-
-/// OPEN AND CLOSE
 
     void Connection::Open() {
       // Checking if connected
@@ -47,8 +45,9 @@ namespace lc2pp {
       // Starting threads...
       try {
         LOG(INFO) << "Starting threads.";
+
         this->thread_waiting_for_events_ = new std::thread(&Connection::WaitForHandlers, shared_from_this());
-        this->thread_waiting_for_events_ = new std::thread(&Connection::WaitForReceival, shared_from_this());
+        this->thread_waiting_for_receival_ = new std::thread(&Connection::WaitForReceival, shared_from_this());
       }
       catch (std::exception& err) {
         LOG(ERROR) << "An occured while starting threads: " << err.what();
@@ -56,19 +55,22 @@ namespace lc2pp {
     }
 
     void Connection::Close() {
+      std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
       // Check if we're connected
       if (!this->is_connected_) {
         LOG(WARNING) << "Socket already closed.";
         return;
       }
 
-      // Pulling back worker thread
+      // Notify waiting threads to stop execution
       this->mutex_waiting_for_events_.lock();
       this->mutex_waiting_for_receival_.lock();
-      this->is_connected_ = false; // notifies waiting threads to finish execution
+      this->is_connected_ = false;
       this->mutex_waiting_for_receival_.unlock();
       this->mutex_waiting_for_events_.unlock();
 
+      // Pulling back threads
       this->thread_waiting_for_events_->join();
       this->thread_waiting_for_receival_->join();
 
@@ -85,8 +87,6 @@ namespace lc2pp {
         LOG(INFO) << "Connection closed.";
       }
     }
-
-/// THREADING
 
     void Connection::WaitForHandlers() {
       while (this->is_connected_) {
@@ -108,26 +108,24 @@ namespace lc2pp {
     }
 
     void Connection::SendHandler(const asio::error_code& error, std::size_t size_transferred) {
-        if (!error)
-        {
-          LOG(INFO) << "Buffer sent successfully.";
-        }
-        else
-        {
-          LOG(ERROR) << "An error occured when sending a message: " << error;
-          throw "An error occured when sending a message.";
-        }
+      if (!error)
+      {
+        LOG(INFO) << "Buffer sent successfully.";
       }
+      else
+      {
+        LOG(ERROR) << "An error occured when sending a message: " << error;
+        throw "An error occured when sending a message.";
+      }
+    }
 
     void Connection::RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback) {
-      // TODO: Write registration method for message delegations
+      // TODO: -
     }
 
     void Connection::DelegateMessage(Message* message) {
-      // TODO: Write dmethod performating the message delegations
+      // TODO: -
     }
-
-/// SENDING: Stepwise
 
     void Connection::SendAsync(Message* message) {
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
@@ -186,8 +184,6 @@ namespace lc2pp {
       this->SendString(attachment);
     }
 
-/// SENDING: Primitives
-
     void Connection::SendInt64(int64_t data) {
       // we are converting the data here to a constant so both SendInt64 and
       // SendString share the same buffer output type (const_buffers_1).
@@ -220,92 +216,92 @@ namespace lc2pp {
       }
     }
 
-/// RECEIVING: Stepwise
-
     void Connection::ReceiveAsync() {
-      // TODO: Make receival async
-      int64_t validation_size = 8; // see LC2 documentation
+      this->mutex_receiving_.lock();
+      this->ReceiveHeaderSize();
+    }
 
-      // Receive header
-      int64_t header_size = this->ReceiveHeaderSize();
-      int64_t body_size = this->ReceiveBodySize();
+    void Connection::ReceiveHeaderSize() {
+      LOG(DEBUG) << "Receiving header size";
+      this->buf_recv_header_size_ = std::vector<char>(sizeof(int64_t));
+      asio::async_read(*this->socket_, asio::buffer(this->buf_recv_header_size_), std::bind(&Connection::ReceiveBodySize, shared_from_this(), _1, _2));
+    }
 
+    void Connection::ReceiveBodySize(const asio::error_code& error, size_t bytes_transferred) {
+      LOG(DEBUG) << "Receiving body size";
+      this->buf_recv_body_size_ = std::vector<char>(sizeof(int64_t));
+      asio::async_read(*this->socket_, asio::buffer(this->buf_recv_body_size_), std::bind(&Connection::ReceiveHeader, shared_from_this(), _1, _2));
+    }
+
+    void Connection::ReceiveHeader(const asio::error_code& error, size_t bytes_transferred) {
+      LOG(DEBUG) << "Receiving header";
+      this->buf_validation_size_ = 24 + (size_t)this->ParseInt64(this->buf_recv_header_size_);
+      this->buf_recv_header_ = std::vector<char>(this->ParseInt64(this->buf_recv_header_size_));
+      asio::async_read(*this->socket_, asio::buffer(this->buf_recv_header_), std::bind(&Connection::ReceiveNumberOfAttachments, shared_from_this(), _1, _2));
+    }
+
+    void Connection::ReceiveNumberOfAttachments(const asio::error_code& error, size_t bytes_transferred) {
       json header;
       try {
-        header = json::parse(this->ReceiveHeader(header_size));
+        header = json::parse(this->ParseString(this->buf_recv_header_));
       }
       catch (std::exception& err) {
         LOG(WARNING) << "Message parsing failed: header corrupted.";
         throw "Message parsing failed: header corrupted.";
       }
-
       // Construct message
-      Message* message = new Message(header);
+      this->buf_message_ = new Message(header);
 
-      // Add attachments
-      int64_t num_attachments = this->ReceiveNumberOfAttachments();
-      for (int i = 0; i < num_attachments; i++) {
-        size_t attachment_size = this->ReceiveAttachmentSize();
-        validation_size += attachment_size + 8;
-        char* attachment_data = this->ReceiveAttachmentData(attachment_size);
-        Attachment attachment = {attachment_size, attachment_data};
-        message->AddAttachment(&attachment);
-      }
-
-      if (body_size != validation_size) {
-        LOG(WARNING) << "Message validation failed. Entering panic mode.";
-        // TODO: Enter panic mode when message validation fails
-      }
-    }
-
-    int64_t Connection::ReceiveHeaderSize() {
-      LOG(DEBUG) << "Receiving header size";
-      int64_t header_size = this->ReceiveInt64();
-      LOG(DEBUG) << "Received header size: " << std::to_string(header_size);
-      return header_size;
-    }
-
-    int64_t Connection::ReceiveBodySize() {
-      LOG(DEBUG) << "Receiving body size";
-      int64_t body_size = this->ReceiveInt64();
-      LOG(DEBUG) << "Received body size: " << std::to_string(body_size);
-      return body_size;
-    }
-
-    std::string Connection::ReceiveHeader(size_t length) {
-      LOG(DEBUG) << "Receiving header of length " << std::to_string(length);
-      std::string header = this->ReceiveString(length);
-      LOG(DEBUG) << "Received header: " << header;
-      return header;
-    }
-
-    int64_t Connection::ReceiveNumberOfAttachments() {
       LOG(DEBUG) << "Receiving number of attachments";
-      int64_t  num_attachments = this->ReceiveInt64();
-      LOG(DEBUG) << "Received number of attachments: " << std::to_string(num_attachments);
-      return num_attachments;
+      this->buf_recv_num_attachments_ = std::vector<char>(sizeof(int64_t));
+      asio::async_read(*this->socket_, asio::buffer(this->buf_recv_num_attachments_), std::bind(&Connection::ReceiveAttachmentSize, shared_from_this(), _1, _2));
     }
 
-    int64_t Connection::ReceiveAttachmentSize() {
-      LOG(DEBUG) << "Receiving attachment size";
-      int64_t attachment_size = this->ReceiveInt64();
-      LOG(DEBUG) << "Received attachment size: " << std::to_string(attachment_size);
-      return attachment_size;
+    void Connection::ReceiveAttachmentSize(const asio::error_code& error, size_t bytes_transferred) {
+      if (this->buf_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->buf_recv_num_attachments_)) {
+        LOG(DEBUG) << "Receiving attachment size";
+        this->buf_recv_attachment_size_ = std::vector<char>(sizeof(int64_t));
+        asio::async_read(*this->socket_, asio::buffer(this->buf_recv_attachment_size_), std::bind(&Connection::ReceiveAttachmentData, shared_from_this(), _1, _2));
+      }
+      else {
+        this->FinalizeMessage();
+      }
     }
 
-    char* Connection::ReceiveAttachmentData(size_t length) {
-      LOG(DEBUG) << "Receiving attachment of size " << std::to_string(length);
-      std::string attachment = this->ReceiveString(length);
-      LOG(DEBUG) << "Received attachment.";
-      const char* attachment_binary = attachment.c_str();
-      return (char*)attachment_binary;
+    void Connection::ReceiveAttachmentData(const asio::error_code& error, size_t bytes_transferred) {
+      LOG(DEBUG) << "Receiving attachment";
+      this->buf_validation_size_ += 8 + (size_t)this->ParseInt64(this->buf_recv_attachment_size_);
+      this->buf_recv_attachment_data_ = std::vector<char>(this->ParseInt64(this->buf_recv_attachment_size_));
+      asio::async_read(*this->socket_, asio::buffer(this->buf_recv_attachment_data_), std::bind(&Connection::ReceiveNextAttachment, shared_from_this(), _1, _2));
     }
 
-/// RECEIVING: Primitives
+    void Connection::ReceiveNextAttachment(const asio::error_code& error, size_t bytes_transferred) {
+      size_t attachment_size = this->ParseInt64(this->buf_recv_attachment_size_);
+      const char* attachment_data = this->ParseString(this->buf_recv_attachment_data_).c_str();
+      Attachment attachment = {attachment_size, attachment_data};
+      this->buf_message_->AddAttachment(&attachment);
 
-    int64_t Connection::ReceiveInt64() {
-      std::string buffer = this->ReceiveString(sizeof(int64_t));
-      const char* c_buffer = buffer.c_str();
+      if (this->buf_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->buf_recv_num_attachments_)) {
+        LOG(DEBUG) << "Receiving attachment size";
+        this->buf_recv_attachment_size_ = std::vector<char>(sizeof(int64_t));
+        asio::async_read(*this->socket_, asio::buffer(this->buf_recv_attachment_size_), std::bind(&Connection::ReceiveAttachmentData, shared_from_this(), _1, _2));
+      }
+      else {
+        this->FinalizeMessage();
+      }
+    }
+
+    void Connection::FinalizeMessage() {
+      if (this->buf_validation_size_ != (size_t)this->ParseInt64(this->buf_recv_body_size_)) {
+        LOG(ERROR) << "Message validation failed: Wrong body size.";
+        throw "Message validation failed: Wrong body size.";
+      }
+      this->mutex_receiving_.unlock();
+    }
+
+    int64_t Connection::ParseInt64(std::vector<char> buffer) {
+      std::string buffer_s = this->ParseString(buffer);
+      const char* c_buffer = buffer_s.c_str();
 
       int64_t tmp;
       std::memcpy(&tmp, c_buffer, sizeof(int64_t));
@@ -317,30 +313,10 @@ namespace lc2pp {
       return tmp;
     }
 
-    std::string Connection::ReceiveString(size_t length) {
-      if (!this->is_connected_) {
-        LOG(ERROR) << "Trying to receive a message while connection is closed.";
-        throw "Trying to receive a message while connection is closed.";
-      }
-
-      asio::error_code ec;
-
-      std::vector<char> buffer(length);
-      try {
-        asio::read(*(this->socket_), asio::buffer(buffer));
-      }
-      catch(std::exception& e) {
-        LOG(ERROR) << "An error occured while trying to receive.";
-        throw "An error occured while trying to receive.";
-      }
-
-      // convert output to char pointer
+    std::string Connection::ParseString(std::vector<char> buffer) {
       std::string s_data(buffer.begin(), buffer.end());
-
       return s_data;
     }
-
-/// DESTRUCTOR
 
     Connection::~Connection() {
       // TODO: Free memory of socket, io_service in connection desctructor

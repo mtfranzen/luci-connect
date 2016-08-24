@@ -17,7 +17,7 @@ namespace lc2pp {
 
       MD5 md5;
       std::string md5sum = md5(attachment->data, attachment->size);
-      
+
       bool attachment_header_missing = true;
       for (json element : this->header_) {
         if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {
@@ -97,7 +97,14 @@ namespace lc2pp {
       progressC = this->header_.count("progress");
       errorC = this->header_.count("error");
 
-      if (runC + cancelC + resultC + progressC + errorC != 1) {
+      size_t totalC = runC + cancelC + resultC + progressC + errorC;
+      
+      if (totalC < 1) {
+        LOG(WARNING) << "Message contains no type keyword.";
+        return false;
+      }
+
+      if (totalC > 1) {
         LOG(WARNING) << "Message contains more than two type keywords.";
         return false;
       }

@@ -28,11 +28,16 @@ namespace lc2pp {
      *
      * Usage:
      * ```
+     * void receiveHandler(Message* message) {
+     *   // do something with the message
+     * }
+     *
      * json header = {{"name", "test"}, {"abc", "def"}};
      * Attachment attachment = {5, "abcde"};
      *
      * // connect to luci
-     * Connection* connection = new Connection("127.0.0.1", 8008);
+     * std::shared_ptr<Connection> connection = std::make_shared<Connection>("127.0.0.1", 8008);
+     * connection->RegisterDelegate(std::function<void(Message*>(receiveHandler)));
      * connection->Open();
      *
      * // compose message
@@ -40,10 +45,7 @@ namespace lc2pp {
      * message->AddAttachment(attachment);
      *
      * // send message
-     * connection->Send(message);
-     *
-     * // receive reply
-     * Message* reply = connection->Receive();
+     * connection->SendAsync(message);
      * ``` */
     class Connection : public std::enable_shared_from_this<Connection> {
     public:
@@ -63,9 +65,6 @@ namespace lc2pp {
       /** Sends a message to the connected LC2 instance */
       void SendAsync(Message* message);
 
-      /** Receives a message and delegates it*/
-      void ReceiveAsync();
-
       /**
       * The method registers a handler method for asynchronous message receiving.
       * If a message is received, the type is checked and forwarded to the
@@ -74,15 +73,40 @@ namespace lc2pp {
       */
       void RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback);
 
-      // TODO: Document handlers in connection class
-      void SendHandler(const asio::error_code& error, std::size_t bytes_transferred);
-      void WaitForHandlers(); // called when sending / receiving is finished
-      void WaitForReceival(); // called when message is ready to be received
-
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
 
     private:
+      void ReceiveAsync();
+
+      void SendHandler(const asio::error_code& error, std::size_t bytes_transferred);
+
+      void WaitForHandlers(); // called when sending / receiving is finished
+
+      void WaitForReceival(); // called when message is ready to be received
+
+      void ReceiveHeaderSize(); // x = 8 byte bigendian signed
+
+      void ReceiveBodySize(const asio::error_code& error,
+        std::size_t size_transferred); // y = 8 byte bigendian signed
+
+      void ReceiveHeader(const asio::error_code& error,
+        std::size_t size_transferred); // x bytes bigendian
+
+      void ReceiveNumberOfAttachments(const asio::error_code& error,
+        std::size_t size_transferred); // N = 8 byte bigendian signed
+
+      void ReceiveAttachmentSize(const asio::error_code& error,
+        std::size_t size_transferred); // yi = 8 byte bigendian signed
+
+      void ReceiveAttachmentData(const asio::error_code& error,
+        std::size_t size_transferred); // yi by
+
+      void ReceiveNextAttachment(const asio::error_code& error,
+        std::size_t size_transferred);
+
+      void FinalizeMessage();
+
       // connection parameters
       std::string host_;
       uint16_t port_;
@@ -99,22 +123,21 @@ namespace lc2pp {
       std::thread* thread_waiting_for_receival_;
       std::mutex mutex_waiting_for_events_;
       std::mutex mutex_waiting_for_receival_;
+      std::mutex mutex_receiving_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.
-      Message* tmp_message_;
-
+      Message* buf_message_;
+      size_t buf_validation_size_;
+      std::vector<char> buf_recv_header_size_;
+      std::vector<char> buf_recv_body_size_;
+      std::vector<char> buf_recv_header_;
+      std::vector<char> buf_recv_num_attachments_;
+      std::vector<char> buf_recv_attachment_size_;
+      std::vector<char> buf_recv_attachment_data_;
 
       // handlers for asynchronous message handling
       void DelegateMessage(Message* message);
-
-      // member functions for message receiving
-      int64_t ReceiveHeaderSize(); // x = 8 byte bigendian signed
-      int64_t ReceiveBodySize(); // y = 8 byte bigendian signed
-      std::string ReceiveHeader(size_t length); // x bytes bigendian
-      int64_t ReceiveNumberOfAttachments(); // N = 8 byte bigendian signed
-      int64_t ReceiveAttachmentSize(); // yi = 8 byte bigendian signed
-      char* ReceiveAttachmentData(size_t length); // yi bytes bigendian
 
       // member functions for message sending
       void SendHeaderSize(Message* message);
@@ -124,14 +147,14 @@ namespace lc2pp {
       void SendAttachmentSize(Message* message, size_t position);
       void SendAttachment(Message* message, size_t position);
 
-      // Low-Level receive functions
-      int64_t ReceiveInt64();
-      std::string ReceiveString(size_t length);
-
       // Low-Level send functions
       void SendString(std::string data);
       void SendInt64(int64_t data);
       void SendBuffer(asio::const_buffers_1 data);
+
+      // Low-Level receive functions
+      int64_t ParseInt64(std::vector<char> buffer);
+      std::string ParseString(std::vector<char> buffer);
     };
 
     /** Connects to a LC2 instance given its host address and tcp port. The host
