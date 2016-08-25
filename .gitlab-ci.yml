@@ -27,7 +27,7 @@ test:
    stage: test
 
    script:
-   - apt-get install -y openjdk-8-jdk maven
+   - apt-get install -y openjdk-8-jdk maven haskell-stack llvm-3.5
    - make test
 
    only:
