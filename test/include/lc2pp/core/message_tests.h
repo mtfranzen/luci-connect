@@ -1,5 +1,5 @@
-#ifndef LC2PP_TEST_MESSAGE_H
-#define LC2PP_TEST_MESSAGE_H
+#ifndef LC2PP_TEST_NODE_H
+#define LC2PP_TEST_NODE_H
 
 #include "lc2pp/core/message.h"
 
@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+
 
 // Only a stub for later use
 class MessageTest : public ::testing::Test {

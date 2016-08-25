@@ -1,4 +1,4 @@
-#include "core/message_tests.h"
+#include "lc2pp/core/message_tests.h"
 
 /**
 * Contains tests for constructing messages.

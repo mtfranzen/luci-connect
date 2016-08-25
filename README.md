@@ -14,6 +14,8 @@ git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
 1. Install the following requirements:
  * *openjdk-9-jdk*
  * *maven*
+ * *haskell-stack*
+ * *llvm*
 2. Run:
 ```make test```
 

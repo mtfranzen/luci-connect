@@ -1,24 +1,32 @@
-#ifndef LC2PP_SERVICE_H_
-#define LC2PP_SERVICE_H_
+#ifndef LC2PP_NODE_H_
+#define LC2PP_NODE_H_
 
 #include "core/connection.h"
 #include "core/message.h"
 
+using std::placeholders::_1;
+
 namespace lc2pp {
-  // TODO: Document service class
   class Node {
   public:
-    Service(void) {};
-    ~Service(void) {};
-    void Register(Connection* connection);
-    void Unregister(Connection* connection);
+    Node(std::string host, uint16_t port);
+    ~Node();
+
+    // These need to be implemented:
+    virtual void Run() = 0;
 
   protected:
-    virtual friend void Connection::DelegateMessage HandleRunMessage(Message* message);
-    virtual friend void Connection::DelegateMessage HandleCancelMessage(Message* message);
-    virtual friend void Connection::DelegateMessage HandleProgressMessage(Message* message);
-    virtual friend void Connection::DelegateMessage HandleResultMessage(Message* message);
-    virtual friend void Connection::DelegateMessage HandleErrorMessage(Message* message);
+    // the connection class needs access to the message handlers
+    friend class core::Connection;
+
+    // the connection
+    std::shared_ptr<core::Connection> connection_;
+
+    // this is implemented
+    void HandleMessage(core::Message message);
+
+    // these need to be implemented:
+    // TODO:
   };
 }
 

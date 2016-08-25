@@ -29,10 +29,26 @@ namespace lc2pp {
     * contain arbitrary binary data.
     */
     typedef struct Attachment {
-      // TODO: Document different attachment constructors
+      /**
+      * Creates a new attachment with size `s` and data `d`.
+      */
       Attachment(size_t s, char* d) : size(s), data(d) {}
+
+      /**
+      * Creates a new attachment with size `s`, data `d`, format `f` and
+      * name `n`.
+      */
       Attachment(size_t s, char* d, std::string f, std::string n) : size(s), data(d), format(f), name(n) {}
+
+      /**
+      * Creates a new attachment with size `s` and data `d`.
+      */
       Attachment(size_t s, const char* d) : size(s), data(d) {}
+
+      /**
+      * Creates a new attachment with size `s`, data `d`, format `f` and
+      * name `n`.
+      */
       Attachment(size_t s, const char* d, std::string f, std::string n) : size(s), data(d), format(f), name(n) {}
 
       /**
