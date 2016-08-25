@@ -9,6 +9,8 @@ namespace lc2pp {
       this->host_ = host;
       this->port_ = port;
       this->is_connected_ = false;
+      this->is_disconnecting_ = false;
+      this->is_receiving_ = false;
 
       // create I/O iterator from host / port
       this->io_service_ = new asio::io_service();
@@ -84,6 +86,10 @@ namespace lc2pp {
       }
     }
 
+    void Connection::RegisterDelegate(std::function<void(Message)> callback) {
+      this->receive_handlers_.push_back(callback);
+    }
+
     void Connection::SendAsync(Message* message) {
       // receiving procedure.
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
@@ -132,20 +138,33 @@ namespace lc2pp {
     void Connection::HandleMessageReceived() {
       // Note that this method is called in the i/o handling thread. So no
       // send or receive is being handled at the same time!
+      LOG(DEBUG) << "Message Received!";
+      LOG(DEBUG) << "\tNumber of Attachments: " << std::to_string(this->recv_message_->GetNumAttachments());
+      LOG(DEBUG) << "\tHeader: " << this->recv_message_->GetHeader().dump();
+      LOG(DEBUG) << "\tBody-Size: " << std::to_string(this->ParseInt64(this->recv_buf_body_size_));
+      LOG(DEBUG) << "\tValidation-Size: " << std::to_string(this->recv_validation_size_);
 
       // Check LC2 validation method
       if (this->recv_validation_size_ != (size_t)this->ParseInt64(this->recv_buf_body_size_)) {
         LOG(ERROR) << "Message validation failed: Wrong body size.";
         throw "Message validation failed: Wrong body size.";
       }
-      //this->DelegateMessage(*this->recv_message_);
+
+      // create copy of message
+      Message received_message = *this->recv_message_;
+
+      // run registered delegates
+      for (std::function<void(Message)> handler : this->receive_handlers_)
+        handler(received_message);
+
 
       // This variable is set at the beginning of a receive operation
       // and avoids that is put on the stack an infinite number of times
       // however, receive() is blocking the i/o thread anyway
       this->is_receiving_ = false;
+
     }
-    
+
     void Connection::SendHeaderSize(Message* message) {
       std::string header = message->GetHeader().dump();
       int64_t header_size = header.size() * sizeof(char);
@@ -255,7 +274,7 @@ namespace lc2pp {
         throw "An error occured while reading the body size.";
       }
       LOG(DEBUG) << "Receiving header";
-      this->recv_validation_size_ = 24 + (size_t)this->ParseInt64(this->recv_buf_header_size_);
+      this->recv_validation_size_ = 8;
       this->recv_buf_header_ = std::vector<char>(this->ParseInt64(this->recv_buf_header_size_));
       asio::async_read(*this->socket_, asio::buffer(this->recv_buf_header_), std::bind(&Connection::ReceiveNumberOfAttachments, shared_from_this(), _1, _2));
     }

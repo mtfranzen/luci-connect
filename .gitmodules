@@ -10,3 +10,6 @@
 [submodule "test/bin/luci2"]
 	path = test/bin/luci2
 	url = https://bitbucket.org/treyerl/luci2.git
+[submodule "test/bin/qua-kit"]
+	path = test/bin/qua-kit
+	url = https://github.com/achirkin/qua-kit.git

@@ -73,7 +73,7 @@ namespace lc2pp {
       * appointed callback functions. Not that multiple functions can
       * handle a certain message type.
       */
-      void RegisterDelegate(MessageType messagetype, std::function<void(Message*)> callback);
+      void RegisterDelegate(std::function<void(Message)> callback);
 
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
@@ -83,8 +83,11 @@ namespace lc2pp {
       std::string host_;
       uint16_t port_;
 
+      // handlers, registered by nodes and called upon message arrival
+      std::vector<std::function<void(Message)>> receive_handlers_;
+
       // state indicators
-      bool is_connected_;
+      bool is_connected_ = false;
       std::atomic<bool> is_disconnecting_;
       std::atomic<bool> is_receiving_;
 
@@ -139,9 +142,6 @@ namespace lc2pp {
 
       void ReceiveNextAttachment(const asio::error_code& error,
         std::size_t size_transferred);
-
-      // handlers for asynchronous message handling
-      void DelegateMessage(Message* message);
 
       // member functions for message sending
       void SendHeaderSize(Message* message);

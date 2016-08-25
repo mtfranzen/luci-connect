@@ -17,7 +17,7 @@ build:
 debug:
 	$(CXX) $(CXXFLAGS) $(DEBUGFLAGS) -o lib/liblc2pp.a src/core/*.cc src/*.cc include/md5/md5.cpp
 
-test: build
+test-luci: build
 	# compiling luci2
 	mvn -f test/bin/luci2/pom.xml clean install
 
@@ -37,6 +37,27 @@ test: build
 
 	# killing luci2 test server
 	kill `cat /tmp/luci2.pid`
+
+test: build
+	# compiling helen
+	(cd test/bin/qua-kit/libs/hs/helen && stack install)
+
+	# start helen
+	(helen & echo $$!> /tmp/helon.pid)
+
+	# compiling googletest library
+	$(CXX) -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o test/bin/gtest-all.o
+	$(CXX) -isystem $(GMOCK_DIR)/include -I$(GMOCK_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GMOCK_DIR)/src/gmock-all.cc -o test/bin/gmock-all.o
+	ar -rv test/lib/libgmock.a test/bin/gtest-all.o test/bin/gmock-all.o
+
+	# compiling test file
+	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/core/*.cc test/src/*.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
+
+	# run tests
+	LD_LIBRARY_PATH=lib/ test/bin/main.o
+
+	# killing helen test server
+	kill `cat /tmp/helen.pid`
 
 docs:
 	doxygen doc/Doxyfile
