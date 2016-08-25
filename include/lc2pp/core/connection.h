@@ -110,7 +110,10 @@ namespace lc2pp {
       // connection parameters
       std::string host_;
       uint16_t port_;
-      bool is_connected_;
+
+      // state indicators
+      std::atomic<bool> is_connected_;
+      std::atomic<bool> is_disconnecting_;
 
       // socket stuff
       asio::ip::tcp::socket* socket_;
@@ -120,10 +123,8 @@ namespace lc2pp {
 
       // threading
       std::thread* thread_waiting_for_events_;
-      std::thread* thread_waiting_for_receival_;
-      std::mutex mutex_waiting_for_events_;
-      std::mutex mutex_waiting_for_receival_;
-      std::mutex mutex_receiving_;
+      std::thread* thread_waiting_for_receival_; // TODO: Rename threads
+      std::timed_mutex mutex_receiving_;
 
       // the message that is currently being processed. Used for both sending
       // and receiving.

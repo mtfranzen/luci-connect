@@ -5,8 +5,6 @@ using std::placeholders::_2;
 
 namespace lc2pp {
   namespace core {
-    // TODO: Add timeout for connection
-
     Connection::Connection(std::string host, uint16_t port) {
       this->host_ = host;
       this->port_ = port;
@@ -55,8 +53,6 @@ namespace lc2pp {
     }
 
     void Connection::Close() {
-      std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-
       // Check if we're connected
       if (!this->is_connected_) {
         LOG(WARNING) << "Socket already closed.";
@@ -64,11 +60,8 @@ namespace lc2pp {
       }
 
       // Notify waiting threads to stop execution
-      this->mutex_waiting_for_events_.lock();
-      this->mutex_waiting_for_receival_.lock();
-      this->is_connected_ = false;
-      this->mutex_waiting_for_receival_.unlock();
-      this->mutex_waiting_for_events_.unlock();
+      this->is_disconnecting_ = true;
+      this->io_service_->stop();
 
       // Pulling back threads
       this->thread_waiting_for_events_->join();
@@ -77,6 +70,7 @@ namespace lc2pp {
       // Closing connection
       LOG(INFO) << "Closing connection.";
       asio::error_code ec;
+      this->socket_->cancel();
       this->socket_->close(ec);
 
       if (ec) {
@@ -85,25 +79,21 @@ namespace lc2pp {
       }
       else {
         LOG(INFO) << "Connection closed.";
+        this->is_connected_ = false;
+        this->is_disconnecting_ = false;
       }
     }
 
     void Connection::WaitForHandlers() {
-      while (this->is_connected_) {
-        this->mutex_waiting_for_events_.lock();
+      while (!this->is_disconnecting_) {
         this->io_service_->run();
         this->io_service_->reset();
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        this->mutex_waiting_for_events_.unlock();
       }
     }
 
     void Connection::WaitForReceival() {
-      while (this->is_connected_) {
-        this->mutex_waiting_for_receival_.lock();
+      while (!this->is_disconnecting_) {
         this->ReceiveAsync();
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        this->mutex_waiting_for_receival_.unlock();
       }
     }
 
@@ -217,7 +207,17 @@ namespace lc2pp {
     }
 
     void Connection::ReceiveAsync() {
-      this->mutex_receiving_.lock();
+      // The ReceiveAsync class creates a chain of receive parts. First
+      // ReceiveHeaderSize which runs ReceiveBodySize upon successful
+      // receival. This chain is performed until the message has successfully
+      // been received.
+
+      // the mutex indicates that now other receive process should be started until
+      // until this one has terminated. Note that asynchronous send messages on the
+      // other hand CAN be started.
+      if (!this->mutex_receiving_.try_lock_for(std::chrono::milliseconds(10)))
+        return;
+
       this->ReceiveHeaderSize();
     }
 
@@ -228,12 +228,20 @@ namespace lc2pp {
     }
 
     void Connection::ReceiveBodySize(const asio::error_code& error, size_t bytes_transferred) {
+      if (error) {
+        LOG(ERROR) << "An error occured while reading the header size.";
+        throw "An error occured while reading the header size.";
+      }
       LOG(DEBUG) << "Receiving body size";
       this->buf_recv_body_size_ = std::vector<char>(sizeof(int64_t));
       asio::async_read(*this->socket_, asio::buffer(this->buf_recv_body_size_), std::bind(&Connection::ReceiveHeader, shared_from_this(), _1, _2));
     }
 
     void Connection::ReceiveHeader(const asio::error_code& error, size_t bytes_transferred) {
+      if (error) {
+        LOG(ERROR) << "An error occured while reading the body size.";
+        throw "An error occured while reading the body size.";
+      }
       LOG(DEBUG) << "Receiving header";
       this->buf_validation_size_ = 24 + (size_t)this->ParseInt64(this->buf_recv_header_size_);
       this->buf_recv_header_ = std::vector<char>(this->ParseInt64(this->buf_recv_header_size_));
@@ -241,6 +249,11 @@ namespace lc2pp {
     }
 
     void Connection::ReceiveNumberOfAttachments(const asio::error_code& error, size_t bytes_transferred) {
+      if (error) {
+        LOG(ERROR) << "An error occured while reading the header.";
+        throw "An error occured while reading the header.";
+      }
+
       json header;
       try {
         header = json::parse(this->ParseString(this->buf_recv_header_));
@@ -258,6 +271,11 @@ namespace lc2pp {
     }
 
     void Connection::ReceiveAttachmentSize(const asio::error_code& error, size_t bytes_transferred) {
+      if (error) {
+        LOG(ERROR) << "An error occured while reading the number of attachments.";
+        throw "An error occured while reading the number of attachments.";
+      }
+
       if (this->buf_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->buf_recv_num_attachments_)) {
         LOG(DEBUG) << "Receiving attachment size";
         this->buf_recv_attachment_size_ = std::vector<char>(sizeof(int64_t));
@@ -269,6 +287,11 @@ namespace lc2pp {
     }
 
     void Connection::ReceiveAttachmentData(const asio::error_code& error, size_t bytes_transferred) {
+      if (error) {
+        LOG(ERROR) << "An error occured while reading an attachment size.";
+        throw "An error occured while reading an attachment size.";
+      }
+
       LOG(DEBUG) << "Receiving attachment";
       this->buf_validation_size_ += 8 + (size_t)this->ParseInt64(this->buf_recv_attachment_size_);
       this->buf_recv_attachment_data_ = std::vector<char>(this->ParseInt64(this->buf_recv_attachment_size_));
@@ -276,6 +299,11 @@ namespace lc2pp {
     }
 
     void Connection::ReceiveNextAttachment(const asio::error_code& error, size_t bytes_transferred) {
+      if (error) {
+        LOG(ERROR) << "An error occured while reading attachment data.";
+        throw "An error occured while reading attachment data.";
+      }
+
       size_t attachment_size = this->ParseInt64(this->buf_recv_attachment_size_);
       const char* attachment_data = this->ParseString(this->buf_recv_attachment_data_).c_str();
       Attachment attachment = {attachment_size, attachment_data};
