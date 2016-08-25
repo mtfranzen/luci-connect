@@ -43,7 +43,7 @@ test: build
 	(cd test/bin/qua-kit/libs/hs/helen && stack install)
 
 	# start helen
-	(helen & echo $$!> /tmp/helon.pid)
+	helen >> /dev/null &
 
 	# compiling googletest library
 	$(CXX) -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -isystem $(GTEST_DIR)/include -I$(GMOCK_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc -o test/bin/gtest-all.o
@@ -51,13 +51,13 @@ test: build
 	ar -rv test/lib/libgmock.a test/bin/gtest-all.o test/bin/gmock-all.o
 
 	# compiling test file
-	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/core/*.cc test/src/*.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
+	$(CXX) $(CXXFLAGS) $(TESTFLAGS) -o test/bin/main.o test/src/lc2pp/core/*.cc test/src/lc2pp/*.cc test/src/*.cc -Llib/ -llc2pp -Ltest/lib -lgmock $(LDFLAGS) $(LOGFLAGS)
 
 	# run tests
 	LD_LIBRARY_PATH=lib/ test/bin/main.o
 
 	# killing helen test server
-	kill `cat /tmp/helen.pid`
+	killall helen
 
 docs:
 	doxygen doc/Doxyfile

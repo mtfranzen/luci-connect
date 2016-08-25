@@ -1,4 +1,4 @@
-#include "node_tests.h"
+#include "lc2pp/node_tests.h"
 
 namespace {
   TEST_F(AbstractNodeTest, Simple) {

@@ -1,4 +1,4 @@
-#include "core/connection_tests.h"
+#include "lc2pp/core/connection_tests.h"
 
 /**
 * Contains tests for establishing a connection (low-level), see protocoltest.cc
