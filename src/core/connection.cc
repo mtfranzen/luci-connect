@@ -8,6 +8,8 @@ namespace lc2pp {
     Connection::Connection(std::string host, uint16_t port) {
       this->host_ = host;
       this->port_ = port;
+
+      // initial state
       this->is_connected_ = false;
       this->is_disconnecting_ = false;
       this->is_receiving_ = false;
@@ -61,6 +63,8 @@ namespace lc2pp {
         return;
       }
 
+      LOG(INFO) << "Closing connection.";
+
       // Notify waiting threads to stop execution
       this->is_disconnecting_ = true;
       this->io_service_->stop();
@@ -70,7 +74,6 @@ namespace lc2pp {
       this->thread_waiting_for_receival_->join();
 
       // Closing connection
-      LOG(INFO) << "Closing connection.";
       asio::error_code ec;
       this->socket_->cancel();
       this->socket_->close(ec);
@@ -93,6 +96,12 @@ namespace lc2pp {
     void Connection::SendAsync(Message* message) {
       // receiving procedure.
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
+      
+      if (!this->is_connected_) {
+        LOG(ERROR) << "Trying to send while not connected.";
+        throw "Trying to send while not connected.";
+      }
+
       this->SendHeaderSize(message);
       this->SendBodySize(message);
       this->SendHeader(message);
@@ -131,7 +140,6 @@ namespace lc2pp {
       else
       {
         LOG(ERROR) << "An error occured when sending a message: " << error;
-        throw "An error occured when sending a message.";
       }
     }
 
@@ -229,7 +237,6 @@ namespace lc2pp {
     void Connection::SendBuffer(asio::const_buffers_1 data) {
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to send while connection is closed.";
-        throw "Trying to send a message while connection is closed.";
       }
 
       try {
@@ -238,7 +245,6 @@ namespace lc2pp {
       }
       catch (std::exception& err) {
         LOG(ERROR) << "An error occured when sending a message: " << err.what();
-        throw "An error occured when sending a message.";
       }
     }
 
@@ -261,7 +267,6 @@ namespace lc2pp {
     void Connection::ReceiveBodySize(const asio::error_code& error, size_t bytes_transferred) {
       if (error) {
         LOG(ERROR) << "An error occured while reading the header size.";
-        throw "An error occured while reading the header size.";
       }
       LOG(DEBUG) << "Receiving body size";
       this->recv_buf_body_size_ = std::vector<char>(sizeof(int64_t));
@@ -271,7 +276,6 @@ namespace lc2pp {
     void Connection::ReceiveHeader(const asio::error_code& error, size_t bytes_transferred) {
       if (error) {
         LOG(ERROR) << "An error occured while reading the body size.";
-        throw "An error occured while reading the body size.";
       }
       LOG(DEBUG) << "Receiving header";
       this->recv_validation_size_ = 8;
@@ -282,7 +286,6 @@ namespace lc2pp {
     void Connection::ReceiveNumberOfAttachments(const asio::error_code& error, size_t bytes_transferred) {
       if (error) {
         LOG(ERROR) << "An error occured while reading the header.";
-        throw "An error occured while reading the header.";
       }
 
       json header;
@@ -291,7 +294,6 @@ namespace lc2pp {
       }
       catch (std::exception& err) {
         LOG(WARNING) << "Message parsing failed: header corrupted.";
-        throw "Message parsing failed: header corrupted.";
       }
       // Construct message
       this->recv_message_ = new Message(header);
@@ -304,7 +306,6 @@ namespace lc2pp {
     void Connection::ReceiveAttachmentSize(const asio::error_code& error, size_t bytes_transferred) {
       if (error) {
         LOG(ERROR) << "An error occured while reading the number of attachments.";
-        throw "An error occured while reading the number of attachments.";
       }
 
       if (this->recv_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->recv_buf_num_attachments_)) {
@@ -320,7 +321,6 @@ namespace lc2pp {
     void Connection::ReceiveAttachmentData(const asio::error_code& error, size_t bytes_transferred) {
       if (error) {
         LOG(ERROR) << "An error occured while reading an attachment size.";
-        throw "An error occured while reading an attachment size.";
       }
 
       LOG(DEBUG) << "Receiving attachment";
@@ -332,7 +332,6 @@ namespace lc2pp {
     void Connection::ReceiveNextAttachment(const asio::error_code& error, size_t bytes_transferred) {
       if (error) {
         LOG(ERROR) << "An error occured while reading attachment data.";
-        throw "An error occured while reading attachment data.";
       }
 
       size_t attachment_size = this->ParseInt64(this->recv_buf_attachment_size_);
@@ -370,7 +369,6 @@ namespace lc2pp {
     }
 
     Connection::~Connection() {
-      // TODO: Free memory of socket, io_service in connection desctructor
       this->Close();
     }
   }

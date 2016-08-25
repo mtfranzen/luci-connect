@@ -20,8 +20,6 @@ using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {
-    // TODO: Add custom exception in connection class
-
     /** The connection class handles all low-level tcp communication with the
      * LC2 instance. It can send and receive messages, keeps a record of the
      * connection and parsing state and takes care of miscarried packages

@@ -12,6 +12,6 @@ namespace lc2pp {
   }
 
   Node::~Node() {
-    // TODO
+    // TODO: Add destructor to node class
   }
 }

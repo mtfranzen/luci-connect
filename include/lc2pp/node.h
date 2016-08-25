@@ -26,7 +26,7 @@ namespace lc2pp {
     void HandleMessage(core::Message message);
 
     // these need to be implemented:
-    // TODO:
+    // TODO: Add session handling to Node class
   };
 }
 
