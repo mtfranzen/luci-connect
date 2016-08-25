@@ -98,7 +98,7 @@ namespace lc2pp {
       errorC = this->header_.count("error");
 
       size_t totalC = runC + cancelC + resultC + progressC + errorC;
-      
+
       if (totalC < 1) {
         LOG(WARNING) << "Message contains no type keyword.";
         return false;
@@ -179,15 +179,16 @@ namespace lc2pp {
     }
 
     bool Message::ValidateProgressMessage() {
-      json progress;
+      json intermediateResult;
       std::string serviceName;
 
       try {
-        progress = this->header_["progress"];
+        (int64_t)this->header_["progress"];
         serviceName = this->header_["serviceName"];
         (int64_t)this->header_["callID"];
         (int64_t)this->header_["taskID"];
-        (int64_t)this->header_["percentage"];
+        if (this->header_.count("intermediateResult") > 0)
+          intermediateResult = this->header_["intermediateResult"];
         return true;
       }
       catch (std::exception& err) {

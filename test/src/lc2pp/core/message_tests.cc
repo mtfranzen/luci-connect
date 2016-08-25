@@ -144,26 +144,24 @@ namespace {
   }
 
   TEST_F(MessageTest,ProgressMessageMissingFields) {
-    json hd1 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"percentage", 1}};
-    json hd2 = {{"progress", {}},{"callID", 0},{"taskID", 5},{"percentage", 1}};
-    json hd3 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"percentage", 1}};
-    json hd4 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5}};
+    json hd1 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
+    json hd2 = {{"progress", 0},{"callID", 0},{"taskID", 5}};
+    json hd3 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"}};
     new lc2pp::core::Message(hd1);
     ASSERT_ANY_THROW(new lc2pp::core::Message(hd2));
     ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd4));
   }
 
   TEST_F(MessageTest,ProgressMessageWrongFieldTypes) {
-    json hd3 = {{"progress", {}},{"callID", 0},{"serviceName", 5},{"taskID", 5},{"percentage", 1}};
-    json hd4 = {{"progress", {}},{"callID", 0},{"serviceName", {}},{"taskID", 5},{"percentage", 1}};
-    json hd5 = {{"progress", {}},{"callID", 0},{"serviceName", nullptr},{"taskID", 5},{"percentage", 1}};
-    json hd6 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", ""},{"percentage", 1}};
-    json hd7 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", {}},{"percentage", 1}};
-    json hd8 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", nullptr},{"percentage", 1}};
-    json hd9 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"percentage", ""}};
-    json hd10 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"percentage", {}}};
-    json hd11 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"percentage", nullptr}};
+    json hd3 = {{"progress", 0},{"callID", 0},{"serviceName", 5},{"taskID", 5},{"intermediateResult", {}}};
+    json hd4 = {{"progress", 0},{"callID", 0},{"serviceName", {}},{"taskID", 5},{"intermediateResult", {}}};
+    json hd5 = {{"progress", 0},{"callID", 0},{"serviceName", nullptr},{"taskID", 5},{"intermediateResult", {}}};
+    json hd6 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", ""},{"intermediateResult", {}}};
+    json hd7 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", {}},{"intermediateResult", {}}};
+    json hd8 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", nullptr},{"intermediateResult", {}}};
+    json hd9 = {{"progress", nullptr},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
+    json hd10 = {{"progress", ""},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
+    json hd11 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
 
     ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
     ASSERT_ANY_THROW(new lc2pp::core::Message(hd4));
