@@ -20,6 +20,8 @@ using json = nlohmann::json;
 
 namespace lc2pp {
   namespace core {
+    // TODO: Add custom exception in connection class
+
     /** The connection class handles all low-level tcp communication with the
      * LC2 instance. It can send and receive messages, keeps a record of the
      * connection and parsing state and takes care of miscarried packages
@@ -77,9 +79,42 @@ namespace lc2pp {
       ~Connection();
 
     private:
-      void ReceiveAsync();
+      // connection parameters
+      std::string host_;
+      uint16_t port_;
 
-      void SendHandler(const asio::error_code& error, std::size_t bytes_transferred);
+      // state indicators
+      bool is_connected_;
+      std::atomic<bool> is_disconnecting_;
+      std::atomic<bool> is_receiving_;
+
+      // socket stuff
+      asio::ip::tcp::socket* socket_;
+      asio::io_service* io_service_;
+      asio::ip::tcp::acceptor* acceptor_;
+      asio::ip::tcp::resolver::iterator iterator_;
+
+      // threading
+      std::thread* thread_waiting_for_events_;
+      std::thread* thread_waiting_for_receival_;
+
+      // the message that is currently being processed. Used for both sending
+      // and receiving.
+      Message* recv_message_;
+      size_t recv_validation_size_;
+      std::vector<char> recv_buf_header_size_;
+      std::vector<char> recv_buf_body_size_;
+      std::vector<char> recv_buf_header_;
+      std::vector<char> recv_buf_num_attachments_;
+      std::vector<char> recv_buf_attachment_size_;
+      std::vector<char> recv_buf_attachment_data_;
+
+      void HandleMessageReceived();
+
+      void HandleBufferSent(const asio::error_code& error,
+        std::size_t bytes_transferred);
+
+      void ReceiveAsync();
 
       void WaitForHandlers(); // called when sending / receiving is finished
 
@@ -104,38 +139,6 @@ namespace lc2pp {
 
       void ReceiveNextAttachment(const asio::error_code& error,
         std::size_t size_transferred);
-
-      void FinalizeMessage();
-
-      // connection parameters
-      std::string host_;
-      uint16_t port_;
-
-      // state indicators
-      std::atomic<bool> is_connected_;
-      std::atomic<bool> is_disconnecting_;
-
-      // socket stuff
-      asio::ip::tcp::socket* socket_;
-      asio::io_service* io_service_;
-      asio::ip::tcp::acceptor* acceptor_;
-      asio::ip::tcp::resolver::iterator iterator_;
-
-      // threading
-      std::thread* thread_waiting_for_events_;
-      std::thread* thread_waiting_for_receival_; // TODO: Rename threads
-      std::timed_mutex mutex_receiving_;
-
-      // the message that is currently being processed. Used for both sending
-      // and receiving.
-      Message* buf_message_;
-      size_t buf_validation_size_;
-      std::vector<char> buf_recv_header_size_;
-      std::vector<char> buf_recv_body_size_;
-      std::vector<char> buf_recv_header_;
-      std::vector<char> buf_recv_num_attachments_;
-      std::vector<char> buf_recv_attachment_size_;
-      std::vector<char> buf_recv_attachment_data_;
 
       // handlers for asynchronous message handling
       void DelegateMessage(Message* message);
