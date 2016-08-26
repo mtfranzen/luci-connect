@@ -1,20 +1,22 @@
 #include "lc2pp/core/message_tests.h"
 
+
 /**
 * Contains tests for constructing messages.
 */
 namespace {
+  using namespace lc2pp::core;
 
   TEST_F(MessageTest, CreateMessageAndGetHeader) {
-    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
+    Message* message = new Message(simple_header_);
 
     json header2 = message->GetHeader();
     ASSERT_EQ(simple_header_, header2);
   }
 
   TEST_F(MessageTest, CompareMessage) {
-    lc2pp::core::Attachment atc1(1, "a", "float32 array", "atc1");
-    lc2pp::core::Attachment atc2(1, "a", "float32 array", "atc2");;
+    Attachment atc1(1, "a", "float32 array", "atc1");
+    Attachment atc2(1, "a", "float32 array", "atc2");;
 
     json hd1 = {
       {"run", "test.Randomly"},
@@ -26,8 +28,8 @@ namespace {
       {"callID", 0}
     };
 
-    lc2pp::core::Message* msg1 = new lc2pp::core::Message(hd1);
-    lc2pp::core::Message* msg2 = new lc2pp::core::Message(hd1);
+    Message* msg1 = new Message(hd1);
+    Message* msg2 = new Message(hd1);
     msg1->AddAttachment(&atc1);
     ASSERT_NE(*msg1, *msg2);
     msg2->AddAttachment(&atc1);
@@ -42,7 +44,7 @@ namespace {
     ASSERT_NE(*msg1, *msg2);
 
     // different header
-    lc2pp::core::Message* msg3 = new lc2pp::core::Message(hd2);
+    Message* msg3 = new Message(hd2);
     ASSERT_NE(*msg1, *msg3);
   }
 
@@ -51,19 +53,19 @@ namespace {
       {"run", "serviceName"},
       {"someinput", "42"}
     };
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
 
     header["callID"] = 0;
-    new lc2pp::core::Message(header);
+    new Message(header);
   }
 
   TEST_F(MessageTest, WrongCallIdType) {
     json hd1 = {{"run", "serviceName"},{"callID", nullptr}};
     json hd2 = {{"run", "serviceName"},{"callID", ""}};
     json hd3 = {{"run", "serviceName"},{"callID", {}}};
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd1));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd2));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
+    ASSERT_ANY_THROW(new Message(hd1));
+    ASSERT_ANY_THROW(new Message(hd2));
+    ASSERT_ANY_THROW(new Message(hd3));
   }
 
   TEST_F(MessageTest, NoMessageType) {
@@ -73,7 +75,7 @@ namespace {
       {"callID", 0}
     };
 
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
   }
 
   TEST_F(MessageTest, MultipleMessageTypes) {
@@ -83,7 +85,7 @@ namespace {
       {"callID", 0}
     };
 
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
   }
 
   TEST_F(MessageTest, RunMessageEmptyObject) {
@@ -92,7 +94,7 @@ namespace {
       {"callID", 0}
     };
 
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
   }
 
   TEST_F(MessageTest, RunMessageEmptyString) {
@@ -100,7 +102,7 @@ namespace {
       {"run", ""},
       {"callID", 0}
     };
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
   }
 
   TEST_F(MessageTest, RunMessageIntegerName) {
@@ -108,7 +110,7 @@ namespace {
       {"run", 5},
       {"callID", 0}
     };
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
   }
 
   TEST_F(MessageTest, CancelMessageInconsistentCallIds) {
@@ -116,7 +118,7 @@ namespace {
       {"cancel", 1},
       {"callID", 0}
     };
-    ASSERT_ANY_THROW(new lc2pp::core::Message(header));
+    ASSERT_ANY_THROW(new Message(header));
   }
 
   TEST_F(MessageTest, CancelMessageConsistentCallIds) {
@@ -124,7 +126,7 @@ namespace {
       {"cancel", 0},
       {"callID", 0}
     };
-    new lc2pp::core::Message(header);
+    new Message(header);
   }
 
   TEST_F(MessageTest, CancelMessageNoCancelValue) {
@@ -132,7 +134,7 @@ namespace {
       {"cancel", nullptr},
       {"callID", 0}
     };
-    new lc2pp::core::Message(header);
+    new Message(header);
   }
 
   TEST_F(MessageTest, CancelMessageEmptyObjectCancelValue) {
@@ -140,63 +142,24 @@ namespace {
       {"cancel", {}},
       {"callID", 0}
     };
-    new lc2pp::core::Message(header);
+    new Message(header);
   }
 
   TEST_F(MessageTest,ProgressMessageMissingFields) {
-    json hd1 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
-    json hd2 = {{"progress", 0},{"callID", 0},{"taskID", 5}};
-    json hd3 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"}};
-    new lc2pp::core::Message(hd1);
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd2));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
+    json hd1 = {{"progress", 0},{"callID", 0},{"intermediateResult", {}}};
+    json hd2 = {{"progress", 0},{"callID", 0}};
+    new Message(hd1);
+    new Message(hd2);
   }
 
   TEST_F(MessageTest,ProgressMessageWrongFieldTypes) {
-    json hd3 = {{"progress", 0},{"callID", 0},{"serviceName", 5},{"taskID", 5},{"intermediateResult", {}}};
-    json hd4 = {{"progress", 0},{"callID", 0},{"serviceName", {}},{"taskID", 5},{"intermediateResult", {}}};
-    json hd5 = {{"progress", 0},{"callID", 0},{"serviceName", nullptr},{"taskID", 5},{"intermediateResult", {}}};
-    json hd6 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", ""},{"intermediateResult", {}}};
-    json hd7 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", {}},{"intermediateResult", {}}};
-    json hd8 = {{"progress", 0},{"callID", 0},{"serviceName", "testService"},{"taskID", nullptr},{"intermediateResult", {}}};
-    json hd9 = {{"progress", nullptr},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
-    json hd10 = {{"progress", ""},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
-    json hd11 = {{"progress", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5},{"intermediateResult", {}}};
+    json hd9 = {{"progress", nullptr},{"callID", 0},{"intermediateResult", {}}};
+    json hd10 = {{"progress", ""},{"callID", 0},{"intermediateResult", {}}};
+    json hd11 = {{"progress", {}},{"callID", 0},{"intermediateResult", {}}};
 
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd4));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd5));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd6));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd7));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd8));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd9));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd10));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd11));
-  }
-
-  TEST_F(MessageTest,ResultMessageMissingFields) {
-    json hd1 = {{"result", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", 5}};
-    json hd2 = {{"result", {}},{"callID", 0},{"taskID", 5}};
-    json hd3 = {{"result", {}},{"callID", 0},{"serviceName", "testService"}};
-    new lc2pp::core::Message(hd1);
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd2));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
-  }
-
-  TEST_F(MessageTest,ResultMessageWrongFieldTypes) {
-    json hd3 = {{"result", {}},{"callID", 0},{"serviceName", 5},{"taskID", 5}};
-    json hd4 = {{"result", {}},{"callID", 0},{"serviceName", {}},{"taskID", 5}};
-    json hd5 = {{"result", {}},{"callID", 0},{"serviceName", nullptr},{"taskID", 5}};
-    json hd6 = {{"result", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", ""}};
-    json hd7 = {{"result", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", {}}};
-    json hd8 = {{"result", {}},{"callID", 0},{"serviceName", "testService"},{"taskID", nullptr}};
-
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd4));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd5));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd6));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd7));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd8));
+    ASSERT_ANY_THROW(new Message(hd9));
+    ASSERT_ANY_THROW(new Message(hd10));
+    ASSERT_ANY_THROW(new Message(hd11));
   }
 
   TEST_F(MessageTest, ErrorMessageWrongFieldTypes) {
@@ -204,9 +167,17 @@ namespace {
     json hd1 = {{"error", {}},{"callID", 0}};
     json hd2 = {{"error", 0},{"callID", 0}};
     json hd3 = {{"error", nullptr},{"callID", 0}};
-    new lc2pp::core::Message(hd0);
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd1));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd2));
-    ASSERT_ANY_THROW(new lc2pp::core::Message(hd3));
+    new Message(hd0);
+    ASSERT_ANY_THROW(new Message(hd1));
+    ASSERT_ANY_THROW(new Message(hd2));
+    ASSERT_ANY_THROW(new Message(hd3));
+  }
+
+  TEST_F(MessageTest, StaticConstructors) {
+    Message::RunMessage(0, "serviceName", (json){{"some input", "value"}});
+    Message::CancelMessage(0);
+    Message::ErrorMessage(0, "some error");
+    Message::ResultMessage(0, (json){"some result"});
+    Message::ProgressMessage(0, 90, (json){"some result"});
   }
 }

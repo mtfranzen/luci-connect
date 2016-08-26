@@ -11,6 +11,40 @@ namespace lc2pp {
       }
     }
 
+    Message* Message::RunMessage(int64_t callId, std::string serviceName, json inputs) {
+      json header = {{"run", serviceName},{"callID", callId}};
+      for (json::iterator it = inputs.begin(); it != inputs.end(); ++it)
+        header[it.key()] = it.value();
+      return new Message(header);
+    }
+
+    Message* Message::CancelMessage(int64_t callId) {
+      json header = {{"cancel", callId}, {"callID", callId}};
+      return new Message(header);
+    }
+
+    Message* Message::ResultMessage(int64_t callId, json result) {
+      json header = {
+        {"result", result},
+        {"callID", callId}
+      };
+      return new Message(header);
+    }
+
+    Message* Message::ProgressMessage(int64_t callId, int64_t percentage, json intermediateResult) {
+      json header = {
+        {"progress", percentage},
+        {"callID", callId},
+        {"intermediateResult", intermediateResult}
+      };
+      return new Message(header);
+    }
+
+    Message* Message::ErrorMessage(int64_t callId, std::string error) {
+      json header = {{"error", error}, {"callID", callId}};
+      return new Message(header);
+    }
+
     size_t Message::AddAttachment(Attachment* attachment) {
       size_t index = this->attachments_.size();
       size_t position = index + 1; // LC2 position starts at 1
@@ -83,6 +117,11 @@ namespace lc2pp {
       return header;
     }
 
+    MessageType Message::GetType() {
+      // copy header
+      return this->type_;
+    }
+
     bool Message::ValidateHeader() {
       if (this->header_.count("callID") != 1) {
         LOG(WARNING) << "Message does not contain a callID.";
@@ -144,7 +183,7 @@ namespace lc2pp {
         return !serviceName.empty();
       }
       catch (std::exception& err) {
-        LOG(WARNING) << "Message of type `run` - validation failed";
+        LOG(WARNING) << "Message of type `run` - validation failed. Header: " << this->header_.dump();;
         return false;
       }
     }
@@ -156,7 +195,7 @@ namespace lc2pp {
          || this->header_["cancel"] == this->header_["callID"];
       }
       catch (std::exception& err) {
-        LOG(WARNING) << "Message of type `cancel` - validation failed";
+        LOG(WARNING) << "Message of type `cancel` - validation failed. Header: " << this->header_.dump();;
         return false;
       }
     }
@@ -167,13 +206,11 @@ namespace lc2pp {
 
       try {
         result = this->header_["result"];
-        serviceName = this->header_["serviceName"];
         (int64_t)this->header_["callID"];
-        (int64_t)this->header_["taskID"];
         return true;
       }
       catch (std::exception& err) {
-        LOG(WARNING) << "Message of type `result` - validation failed";
+        LOG(WARNING) << "Message of type `result` - validation failed. Header: " << this->header_.dump();
         return false;
       }
     }
@@ -184,15 +221,13 @@ namespace lc2pp {
 
       try {
         (int64_t)this->header_["progress"];
-        serviceName = this->header_["serviceName"];
         (int64_t)this->header_["callID"];
-        (int64_t)this->header_["taskID"];
         if (this->header_.count("intermediateResult") > 0)
           intermediateResult = this->header_["intermediateResult"];
         return true;
       }
       catch (std::exception& err) {
-        LOG(WARNING) << "Message of type `progress` - validation failed";
+        LOG(WARNING) << "Message of type `progress` - validation failed. Header: " << this->header_.dump();;
         return false;
       }
     }
@@ -202,10 +237,11 @@ namespace lc2pp {
 
       try {
         error = this->header_["error"];
+        (int64_t)this->header_["callID"];
         return true;
       }
       catch (std::exception& err) {
-        LOG(WARNING) << "Message of type `error` - validation failed";
+        LOG(WARNING) << "Message of type `error` - validation failed. Header: " << this->header_.dump();;
         return false;
       }
     }

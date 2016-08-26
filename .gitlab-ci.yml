@@ -28,6 +28,7 @@ test:
 
    script:
    - apt-get install -y openjdk-8-jdk maven haskell-stack llvm-3.5
+   - stack upgrade
    - make test
 
    only:

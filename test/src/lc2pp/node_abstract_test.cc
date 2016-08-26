@@ -5,18 +5,37 @@ namespace {
   // Mock simply sending one message
   class NodeMock : lc2pp::Node {
   public:
-    NodeMock(std::string host, uint16_t port) : lc2pp::Node(host, port) {}
+    NodeMock(std::shared_ptr<lc2pp::core::Connection> connection) : lc2pp::Node(connection) {}
 
     void Run() {
-      json simple_header_ = {{"run", "testService"},{"callID", 0}};
-      lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
-      this->connection_->SendAsync(message);
+      this->connection_->SendAsync(lc2pp::core::Message::RunMessage(0, "ServiceList"));
     }
+
+    void HandleRun(int64_t callId, std::string serviceName, json inputs) {
+      LOG(DEBUG) << "handling run: " << serviceName << "\n" << inputs.dump();
+    };
+
+    void HandleCancel(int64_t callId) {
+      LOG(DEBUG) << "handling cancel: " << std::to_string(callId);
+    };
+
+    void HandleResult(int64_t callId, json result) {
+      LOG(DEBUG) << "handling result: " << "\n" << result.dump();
+    };
+
+    void HandleProgress(int64_t callId, int64_t percentage, json intermediateResult) {
+      LOG(DEBUG) << "handling progress (" << std::to_string(percentage) << "\n" << intermediateResult.dump();
+    };
+
+    void HandleError(int64_t callId, std::string error) {
+      LOG(DEBUG) << "handling error: " << error;
+    };
   };
 
 
   TEST_F(AbstractNodeTest, Simple) {
-    NodeMock* node_ = new NodeMock("127.0.0.1", 7654);
+    std::shared_ptr<lc2pp::core::Connection> connection = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    NodeMock* node_ = new NodeMock(connection);
     node_->Run();
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }

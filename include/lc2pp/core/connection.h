@@ -64,6 +64,7 @@ namespace lc2pp {
       * An enum representing different types of receiving errors.
       */
       typedef enum ReceivingError {
+        ConnectionClosed,
         MessageCorrupted,
         MessageValidationFailed
       } ReceivingError;

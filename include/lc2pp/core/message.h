@@ -79,29 +79,49 @@ namespace lc2pp {
      *
      * Composing a message:
      * ```
-     * json header = {{"name", "test"}, {"abc", "def"}};
+     * json inputs = {{"name", "test"}, {"abc", "def"}};
      * Attachment attachment = {5, "abcde"};
      *
      * // compose message
-     * Message* message = new Message(header);
-     * message->AddAttachment(attachment);
+     * Message* message = Message::RunMessage(0, "randomService"); //callId, serviceName
      * ```
-     *
-     * Reading a message:
-     * ```
-     * json header = message->GetHeader();
-     * for(int i = 0; i < message->GetNumAttachments(); i++) {
-     *   Attachment attachment = message->GetAttachment(i);
-     * }
-     * ``` */
+    */
     class Message {
       // TODO: Add destructor to message class
     public:
       /** Creates a new message object with the specified header. */
       Message(json header);
 
+      /**
+      * Convencience method for the creation of run messages.
+      */
+      static Message* RunMessage(int64_t callId, std::string serviceName, json inputs = {});
+
+      /**
+      * Convencience method for the creation of cancel messages.
+      */
+      static Message* CancelMessage(int64_t callId);
+
+      /**
+      * Convencience method for the creation of result messages.
+      */
+      static Message* ResultMessage(int64_t callId, json result = {});
+
+      /**
+      * Convencience method for the creation of progress messages.
+      */
+      static Message* ProgressMessage(int64_t callId, int64_t percentage, json intermediateResult = {});
+
+      /**
+      * Convencience method for the creation of error messages.
+      */
+      static Message* ErrorMessage(int64_t callId, std::string error);
+
       /** Returns the message header. */
       json GetHeader();
+
+      /** Returns the message type. */
+      MessageType GetType();
 
       /** Returns the number of attachments */
       size_t GetNumAttachments();
@@ -171,7 +191,6 @@ namespace lc2pp {
       return !(msg1 == msg2);
     }
 
-    // TODO: Add inline methods for creating messages of a certain type
   }
 }
 #endif
