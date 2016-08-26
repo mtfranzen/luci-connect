@@ -101,7 +101,7 @@ namespace lc2pp {
       this->receive_error_handlers_.push_back(callback);
     }
 
-    void Connection::RegisterOnSendingError(std::function<void(SendingError)> callback) {
+    void Connection::RegisterOnSendingError(std::function<void(Message, SendingError)> callback) {
       this->send_error_handlers_.push_back(callback);
     }
 
@@ -171,12 +171,9 @@ namespace lc2pp {
         // TODO: Add panicking when message validation failed
       }
 
-      // create copy of message
-      Message received_message = *message;
-
       // run registered delegates
       for (std::function<void(Message)> handler : this->receive_handlers_)
-        handler(received_message);
+        handler(*message);
 
 
       // This variable is set at the beginning of a receive operation
@@ -187,11 +184,9 @@ namespace lc2pp {
 
     void Connection::HandleMessageSent(Message* message) {
       // TODO: Return pointer to message instead of copy in HandleMessageSent
-      // create copy of message
-      Message received_message = *message;
 
       for (std::function<void(Message)> handler : this->send_handlers_)
-        handler(received_message);
+        handler(*message);
 
       // TODO: Call HandleMessageSent in Connection at appropriate places
     }
@@ -202,9 +197,9 @@ namespace lc2pp {
       // TODO: Call HandleReceivingError in Connection at appropriate places
     }
 
-    void Connection::HandleSendingError(SendingError error) {
-      for (std::function<void(SendingError)> handler : this->send_error_handlers_)
-        handler(error);
+    void Connection::HandleSendingError(Message* message, SendingError error) {
+      for (std::function<void(Message, SendingError)> handler : this->send_error_handlers_)
+        handler(*message, error);
 
       // TODO: Call HandleSendingError in Connection class at appropriate places
     }

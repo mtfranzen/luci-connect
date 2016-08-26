@@ -110,7 +110,7 @@ namespace lc2pp {
       * If a message has been sent *unsuccessfully*, the handling thread will call
       * all here registered handlers.
       */
-      void RegisterOnSendingError(std::function<void(SendingError)> callback);
+      void RegisterOnSendingError(std::function<void(Message, SendingError)> callback);
 
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
@@ -124,7 +124,7 @@ namespace lc2pp {
       std::vector<std::function<void(Message)>> receive_handlers_;
       std::vector<std::function<void(Message)>> send_handlers_;
       std::vector<std::function<void(ReceivingError)>> receive_error_handlers_;
-      std::vector<std::function<void(SendingError)>> send_error_handlers_;
+      std::vector<std::function<void(Message, SendingError)>> send_error_handlers_;
 
       // state indicators
       bool is_connected_ = false;
@@ -158,7 +158,7 @@ namespace lc2pp {
 
       void HandleReceivingError(ReceivingError error);
 
-      void HandleSendingError(SendingError error);
+      void HandleSendingError(Message* message, SendingError error);
 
       void HandleBufferSent(const asio::error_code& error,
         std::size_t bytes_transferred);

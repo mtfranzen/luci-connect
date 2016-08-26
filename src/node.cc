@@ -8,7 +8,7 @@ namespace lc2pp {
     this->connection_->RegisterOnReceived(std::bind(&Node::HandleReceived, this, _1));
     this->connection_->RegisterOnSent(std::bind(&Node::HandleSent, this, _1));
     this->connection_->RegisterOnReceivingError(std::bind(&Node::HandleReceivingError, this, _1));
-    this->connection_->RegisterOnSendingError(std::bind(&Node::HandleSendingError, this, _1));
+    this->connection_->RegisterOnSendingError(std::bind(&Node::HandleSendingError, this, _1, _2));
 
     // open connection
     this->connection_->Open();
@@ -27,7 +27,7 @@ namespace lc2pp {
     // TODO: Implement HandleReceivingError in Node class
   }
 
-  void Node::HandleSendingError(core::Connection::SendingError) {
+  void Node::HandleSendingError(core::Message message, core::Connection::SendingError) {
     // TODO: Implement HandleSendingError in Node class
   }
 

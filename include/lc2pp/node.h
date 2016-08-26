@@ -5,6 +5,7 @@
 #include "core/message.h"
 
 using std::placeholders::_1;
+using std::placeholders::_2;
 
 namespace lc2pp {
   // TODO: Document Node class
@@ -31,7 +32,7 @@ namespace lc2pp {
 
     void HandleReceivingError(core::Connection::ReceivingError error);
 
-    void HandleSendingError(core::Connection::SendingError error);
+    void HandleSendingError(core::Message message, core::Connection::SendingError error);
 
     // these need to be implemented:
     // TODO: Add session handling to Node class
