@@ -93,15 +93,15 @@ namespace lc2pp {
       this->receive_handlers_.push_back(callback);
     }
 
-    void Connection::RegisterOnSent(std::function<void(void)> callback) {
+    void Connection::RegisterOnSent(std::function<void(Message)> callback) {
       this->send_handlers_.push_back(callback);
     }
 
-    void Connection::RegisterOnReceivingError(std::function<void(void)> callback) {
+    void Connection::RegisterOnReceivingError(std::function<void(ReceivingError)> callback) {
       this->receive_error_handlers_.push_back(callback);
     }
 
-    void Connection::RegisterOnSendingError(std::function<void(void)> callback) {
+    void Connection::RegisterOnSendingError(std::function<void(SendingError)> callback) {
       this->send_error_handlers_.push_back(callback);
     }
 
@@ -154,7 +154,8 @@ namespace lc2pp {
       }
     }
 
-    void Connection::HandleMessageReceived() {
+    void Connection::HandleMessageReceived(Message* message) {
+      // TODO: Return pointer to message instead of copy in HandleMessageReceived
       // Note that this method is called in the i/o handling thread. So no
       // send or receive is being handled at the same time!
       LOG(DEBUG) << "Message Received!";
@@ -171,7 +172,7 @@ namespace lc2pp {
       }
 
       // create copy of message
-      Message received_message = *this->recv_message_;
+      Message received_message = *message;
 
       // run registered delegates
       for (std::function<void(Message)> handler : this->receive_handlers_)
@@ -182,25 +183,28 @@ namespace lc2pp {
       // and avoids that is put on the stack an infinite number of times
       // however, receive() is blocking the i/o thread anyway
       this->is_receiving_ = false;
-
     }
 
-    void Connection::HandleMessageSent() {
-      for (std::function<void(void)> handler : this->send_handlers_)
-        handler();
+    void Connection::HandleMessageSent(Message* message) {
+      // TODO: Return pointer to message instead of copy in HandleMessageSent
+      // create copy of message
+      Message received_message = *message;
+
+      for (std::function<void(Message)> handler : this->send_handlers_)
+        handler(received_message);
 
       // TODO: Call HandleMessageSent in Connection at appropriate places
     }
 
-    void Connection::HandleReceivingError() {
-      for (std::function<void(void)> handler : this->receive_error_handlers_)
-        handler();
+    void Connection::HandleReceivingError(ReceivingError error) {
+      for (std::function<void(ReceivingError)> handler : this->receive_error_handlers_)
+        handler(error);
       // TODO: Call HandleReceivingError in Connection at appropriate places
     }
 
-    void Connection::HandleSendingError() {
-      for (std::function<void(void)> handler : this->send_error_handlers_)
-        handler();
+    void Connection::HandleSendingError(SendingError error) {
+      for (std::function<void(SendingError)> handler : this->send_error_handlers_)
+        handler(error);
 
       // TODO: Call HandleSendingError in Connection class at appropriate places
     }
@@ -346,7 +350,7 @@ namespace lc2pp {
         asio::async_read(*this->socket_, asio::buffer(this->recv_buf_attachment_size_), std::bind(&Connection::ReceiveAttachmentData, shared_from_this(), _1, _2));
       }
       else {
-        this->HandleMessageReceived();
+        this->HandleMessageReceived(this->recv_message_);
       }
     }
 
@@ -377,7 +381,7 @@ namespace lc2pp {
         asio::async_read(*this->socket_, asio::buffer(this->recv_buf_attachment_size_), std::bind(&Connection::ReceiveAttachmentData, shared_from_this(), _1, _2));
       }
       else {
-        this->HandleMessageReceived();
+        this->HandleMessageReceived(this->recv_message_);
       }
     }
 

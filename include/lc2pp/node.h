@@ -27,11 +27,11 @@ namespace lc2pp {
     // this is implemented
     void HandleReceived(core::Message message);
 
-    void HandleSent();
+    void HandleSent(core::Message message);
 
-    void HandleReceivingError();
+    void HandleReceivingError(core::Connection::ReceivingError error);
 
-    void HandleSendingError();
+    void HandleSendingError(core::Connection::SendingError error);
 
     // these need to be implemented:
     // TODO: Add session handling to Node class
