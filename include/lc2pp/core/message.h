@@ -95,6 +95,7 @@ namespace lc2pp {
      * }
      * ``` */
     class Message {
+      // TODO: Add destructor to message class
     public:
       /** Creates a new message object with the specified header. */
       Message(json header);
@@ -169,6 +170,8 @@ namespace lc2pp {
     inline bool operator!=(Message msg1, Message msg2) {
       return !(msg1 == msg2);
     }
+
+    // TODO: Add inline methods for creating messages of a certain type
   }
 }
 #endif

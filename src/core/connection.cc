@@ -89,14 +89,26 @@ namespace lc2pp {
       }
     }
 
-    void Connection::RegisterDelegate(std::function<void(Message)> callback) {
+    void Connection::RegisterOnReceived(std::function<void(Message)> callback) {
       this->receive_handlers_.push_back(callback);
+    }
+
+    void Connection::RegisterOnSent(std::function<void(void)> callback) {
+      this->send_handlers_.push_back(callback);
+    }
+
+    void Connection::RegisterOnReceivingError(std::function<void(void)> callback) {
+      this->receive_error_handlers_.push_back(callback);
+    }
+
+    void Connection::RegisterOnSendingError(std::function<void(void)> callback) {
+      this->send_error_handlers_.push_back(callback);
     }
 
     void Connection::SendAsync(Message* message) {
       // receiving procedure.
       LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
-      
+
       if (!this->is_connected_) {
         LOG(ERROR) << "Trying to send while not connected.";
         throw "Trying to send while not connected.";
@@ -132,7 +144,6 @@ namespace lc2pp {
     }
 
     void Connection::HandleBufferSent(const asio::error_code& error, std::size_t size_transferred) {
-      // TODO: Make Sending procedure asynchronously chained like receive
       if (!error)
       {
         LOG(INFO) << "Buffer sent successfully.";
@@ -156,6 +167,7 @@ namespace lc2pp {
       if (this->recv_validation_size_ != (size_t)this->ParseInt64(this->recv_buf_body_size_)) {
         LOG(ERROR) << "Message validation failed: Wrong body size.";
         throw "Message validation failed: Wrong body size.";
+        // TODO: Add panicking when message validation failed
       }
 
       // create copy of message
@@ -171,6 +183,26 @@ namespace lc2pp {
       // however, receive() is blocking the i/o thread anyway
       this->is_receiving_ = false;
 
+    }
+
+    void Connection::HandleMessageSent() {
+      for (std::function<void(void)> handler : this->send_handlers_)
+        handler();
+
+      // TODO: Call HandleMessageSent in Connection at appropriate places
+    }
+
+    void Connection::HandleReceivingError() {
+      for (std::function<void(void)> handler : this->receive_error_handlers_)
+        handler();
+      // TODO: Call HandleReceivingError in Connection at appropriate places
+    }
+
+    void Connection::HandleSendingError() {
+      for (std::function<void(void)> handler : this->send_error_handlers_)
+        handler();
+
+      // TODO: Call HandleSendingError in Connection class at appropriate places
     }
 
     void Connection::SendHeaderSize(Message* message) {

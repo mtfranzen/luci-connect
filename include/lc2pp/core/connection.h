@@ -71,7 +71,22 @@ namespace lc2pp {
       * appointed callback functions. Not that multiple functions can
       * handle a certain message type.
       */
-      void RegisterDelegate(std::function<void(Message)> callback);
+      void RegisterOnReceived(std::function<void(Message)> callback);
+
+      /**
+      * TODO: Document RegisterOnSent in Connection class
+      */
+      void RegisterOnSent(std::function<void(void)> callback);
+
+      /**
+      * TODO Document RegisterOnSent in Connection class
+      */
+      void RegisterOnReceivingError(std::function<void(void)> callback);
+
+      /**
+      * TODO Document RegisterOnError in Connection class
+      */
+      void RegisterOnSendingError(std::function<void(void)> callback);
 
       /** Closes all left-over sockets and cleanly destroys the object */
       ~Connection();
@@ -83,6 +98,9 @@ namespace lc2pp {
 
       // handlers, registered by nodes and called upon message arrival
       std::vector<std::function<void(Message)>> receive_handlers_;
+      std::vector<std::function<void(void)>> send_handlers_;
+      std::vector<std::function<void(void)>> receive_error_handlers_;
+      std::vector<std::function<void(void)>> send_error_handlers_;
 
       // state indicators
       bool is_connected_ = false;
@@ -111,6 +129,12 @@ namespace lc2pp {
       std::vector<char> recv_buf_attachment_data_;
 
       void HandleMessageReceived();
+
+      void HandleMessageSent();
+
+      void HandleReceivingError();
+
+      void HandleSendingError();
 
       void HandleBufferSent(const asio::error_code& error,
         std::size_t bytes_transferred);

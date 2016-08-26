@@ -7,6 +7,7 @@
 using std::placeholders::_1;
 
 namespace lc2pp {
+  // TODO: Document Node class
   class Node {
   public:
     Node(std::string host, uint16_t port);
@@ -16,14 +17,21 @@ namespace lc2pp {
     virtual void Run() = 0;
 
   protected:
-    // the connection class needs access to the message handlers
-    friend class core::Connection;
-
     // the connection
     std::shared_ptr<core::Connection> connection_;
 
+  private:
+    // the connection class needs access to the message handlers
+    friend class core::Connection;
+
     // this is implemented
-    void HandleMessage(core::Message message);
+    void HandleReceived(core::Message message);
+
+    void HandleSent();
+
+    void HandleReceivingError();
+
+    void HandleSendingError();
 
     // these need to be implemented:
     // TODO: Add session handling to Node class
