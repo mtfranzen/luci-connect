@@ -11,11 +11,14 @@ namespace lc2pp {
       }
     }
 
-    Message* Message::RunMessage(int64_t callId, std::string serviceName, json inputs) {
+    Message* Message::RunMessage(int64_t callId, std::string serviceName, json inputs, std::vector<Attachment*> attachments) {
       json header = {{"run", serviceName},{"callID", callId}};
       for (json::iterator it = inputs.begin(); it != inputs.end(); ++it)
         header[it.key()] = it.value();
-      return new Message(header);
+      Message* message = new Message(header);
+      for (core::Attachment* atc : attachments)
+        message->AddAttachment(atc);
+      return message;
     }
 
     Message* Message::CancelMessage(int64_t callId) {
@@ -23,21 +26,27 @@ namespace lc2pp {
       return new Message(header);
     }
 
-    Message* Message::ResultMessage(int64_t callId, json result) {
+    Message* Message::ResultMessage(int64_t callId, json result, std::vector<Attachment*> attachments) {
       json header = {
         {"result", result},
         {"callID", callId}
       };
-      return new Message(header);
+      Message* message = new Message(header);
+      for (core::Attachment* atc : attachments)
+        message->AddAttachment(atc);
+      return message;
     }
 
-    Message* Message::ProgressMessage(int64_t callId, int64_t percentage, json intermediateResult) {
+    Message* Message::ProgressMessage(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments, json intermediateResult) {
       json header = {
         {"progress", percentage},
         {"callID", callId},
         {"intermediateResult", intermediateResult}
       };
-      return new Message(header);
+      Message* message = new Message(header);
+      for (core::Attachment* atc : attachments)
+        message->AddAttachment(atc);
+      return message;
     }
 
     Message* Message::ErrorMessage(int64_t callId, std::string error) {
@@ -105,6 +114,10 @@ namespace lc2pp {
         throw "Index out of bounds";
       }
       return this->attachments_[index];
+    }
+
+    std::vector<Attachment*> Message::GetAttachments() {
+      return this->attachments_;
     }
 
     size_t Message::GetNumAttachments() {

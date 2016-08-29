@@ -32,7 +32,7 @@ namespace lc2pp {
             if (it.key() != "callID" && it.key() != "run")
               inputs[it.key()] = it.value();
 
-          this->HandleRun(callId, serviceName, inputs);
+          this->HandleRun(callId, serviceName, inputs, message.GetAttachments());
         }
         break;
 
@@ -46,7 +46,7 @@ namespace lc2pp {
         {
           json result = header["result"];
 
-          this->HandleResult(callId, result);
+          this->HandleResult(callId, result, message.GetAttachments());
         }
         break;
 
@@ -55,10 +55,10 @@ namespace lc2pp {
           int64_t percentage = header["progress"];
           if (header.count("intermediateResult") > 0) {
             json intermediateResult = header["intermediateResult"];
-            this->HandleProgress(callId, percentage, intermediateResult);
+            this->HandleProgress(callId, percentage, message.GetAttachments(), intermediateResult);
           }
           else {
-            this->HandleProgress(callId, percentage);
+            this->HandleProgress(callId, percentage, message.GetAttachments());
           }
         }
         break;
@@ -85,8 +85,8 @@ namespace lc2pp {
     // TODO: Implement HandleSendingError in Node class
   }
 
-  void Node::SendRun(int64_t callId, std::string serviceName, json inputs) {
-    core::Message* message = core::Message::RunMessage(callId, serviceName, inputs);
+  void Node::SendRun(int64_t callId, std::string serviceName, json inputs, std::vector<core::Attachment*> attachments) {
+    core::Message* message = core::Message::RunMessage(callId, serviceName, inputs, attachments);
     this->connection_->SendAsync(message);
   }
 
@@ -95,13 +95,13 @@ namespace lc2pp {
     this->connection_->SendAsync(message);
   }
 
-  void Node::SendResult(int64_t callId, json result) {
-    core::Message* message = core::Message::ResultMessage(callId, result);
+  void Node::SendResult(int64_t callId, json result, std::vector<core::Attachment*> attachments) {
+    core::Message* message = core::Message::ResultMessage(callId, result, attachments);
     this->connection_->SendAsync(message);
   }
 
-  void Node::SendProgress(int64_t callId, int64_t percentage, json intermediateResult) {
-    core::Message* message = core::Message::ProgressMessage(callId, percentage, intermediateResult);
+  void Node::SendProgress(int64_t callId, int64_t percentage, std::vector<core::Attachment*> attachments, json intermediateResult) {
+    core::Message* message = core::Message::ProgressMessage(callId, percentage, attachments, intermediateResult);
     this->connection_->SendAsync(message);
   }
 

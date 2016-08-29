@@ -37,7 +37,7 @@ namespace {
   int64_t progress = -1;
 
   protected:
-    void HandleRun(int64_t callId, std::string serviceName, json inputs) {
+    void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<lc2pp::core::Attachment*> attachments) {
       if (inputs.count("arg1") != 1 || inputs.count("arg2") != 1)
         throw "Erroneous message";
 
@@ -52,11 +52,11 @@ namespace {
       this->canceled = true;
     };
 
-    void HandleResult(int64_t callId, json result) {
+    void HandleResult(int64_t callId, json result, std::vector<lc2pp::core::Attachment*> attachments) {
       this->result = result;
     };
 
-    void HandleProgress(int64_t callId, int64_t percentage, json intermediateResult) {
+    void HandleProgress(int64_t callId, int64_t percentage, std::vector<lc2pp::core::Attachment*> attachments, json intermediateResult) {
       this->progress = percentage;
     };
 
@@ -81,18 +81,18 @@ namespace {
     int64_t progress = -1;
 
   protected:
-    void HandleRun(int64_t callId, std::string serviceName, json inputs) {
+    void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<lc2pp::core::Attachment*> attachments) {
     };
 
     void HandleCancel(int64_t callId) {
       this->canceled = true;
     };
 
-    void HandleResult(int64_t callId, json result) {
+    void HandleResult(int64_t callId, json result, std::vector<lc2pp::core::Attachment*> attachments) {
       this->result = result;
     };
 
-    void HandleProgress(int64_t callId, int64_t percentage, json intermediateResult) {
+    void HandleProgress(int64_t callId, int64_t percentage, std::vector<lc2pp::core::Attachment*> attachments, json intermediateResult) {
       this->progress = percentage;
     };
 
@@ -100,7 +100,6 @@ namespace {
       this->error = true;
     };
   };
-
 
   TEST_F(AbstractNodeTest, ClientRunWrongService) {
     std::shared_ptr<lc2pp::core::Connection> connection = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);

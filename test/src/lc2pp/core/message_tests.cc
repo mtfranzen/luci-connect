@@ -178,6 +178,6 @@ namespace {
     Message::CancelMessage(0);
     Message::ErrorMessage(0, "some error");
     Message::ResultMessage(0, (json){"some result"});
-    Message::ProgressMessage(0, 90, (json){"some result"});
+    Message::ProgressMessage(0, 90, {}, (json){"some result"});
   }
 }

@@ -55,7 +55,7 @@ namespace lc2pp {
     /**
     * Sends a run message to the connected Luci instance.
     */
-    void SendRun(int64_t callId, std::string serviceName, json inputs = {});
+    void SendRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<core::Attachment*> attachments = {});
 
     /**
     * Sends a cancel message to the connected Luci instance.
@@ -65,12 +65,12 @@ namespace lc2pp {
     /**
     * Sends a result message to the connected Luci instance.
     */
-    void SendResult(int64_t callId, json result);
+    void SendResult(int64_t callId, json result, std::vector<core::Attachment*> attachments = {});
 
     /**
     * Sends a progress message to the connected Luci instance.
     */
-    void SendProgress(int64_t callId, int64_t percentage, json intermediateResult = {});
+    void SendProgress(int64_t callId, int64_t percentage, std::vector<core::Attachment*> attachments = {}, json intermediateResult = {});
 
     /**
     * Sends an error message to the connected Luci instance.
@@ -81,7 +81,7 @@ namespace lc2pp {
     * Called when a **run** message has been received. This is a required method
     * for a service or client implementation!
     */
-    virtual void HandleRun(int64_t callId, std::string serviceName, json inputs = {}) = 0;
+    virtual void HandleRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<core::Attachment*> attachments = {}) = 0;
 
     /**
     * Called when a **cancel** message has been received. This is a required method
@@ -94,13 +94,13 @@ namespace lc2pp {
     * Called when a **result** message has been received. This is a required method
     * for a service or client implementation!
     */
-    virtual void HandleResult(int64_t callId, json result) = 0;
+    virtual void HandleResult(int64_t callId, json result, std::vector<core::Attachment*> attachments = {}) = 0;
 
     /**
     * Called when a **progress** message has been received. This is a required method
     * for a service or client implementation!
     */
-    virtual void HandleProgress(int64_t callId, int64_t percentage, json intermediateResult = {}) = 0;
+    virtual void HandleProgress(int64_t callId, int64_t percentage, std::vector<core::Attachment*> attachments = {}, json intermediateResult = {}) = 0;
 
     /**
     * Called when an **error** message has been received. This is a required method

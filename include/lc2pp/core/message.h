@@ -87,7 +87,6 @@ namespace lc2pp {
      * ```
     */
     class Message {
-      // TODO: Add destructor to message class
     public:
       /** Creates a new message object with the specified header. */
       Message(json header);
@@ -95,7 +94,7 @@ namespace lc2pp {
       /**
       * Convencience method for the creation of run messages.
       */
-      static Message* RunMessage(int64_t callId, std::string serviceName, json inputs = {});
+      static Message* RunMessage(int64_t callId, std::string serviceName, json inputs = {}, std::vector<Attachment*> attachments = {});
 
       /**
       * Convencience method for the creation of cancel messages.
@@ -105,12 +104,12 @@ namespace lc2pp {
       /**
       * Convencience method for the creation of result messages.
       */
-      static Message* ResultMessage(int64_t callId, json result = {});
+      static Message* ResultMessage(int64_t callId, json result = {}, std::vector<Attachment*> attachments = {});
 
       /**
       * Convencience method for the creation of progress messages.
       */
-      static Message* ProgressMessage(int64_t callId, int64_t percentage, json intermediateResult = {});
+      static Message* ProgressMessage(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments = {}, json intermediateResult = {});
 
       /**
       * Convencience method for the creation of error messages.
@@ -131,6 +130,11 @@ namespace lc2pp {
       * with 0.
       */
       Attachment* GetAttachment(size_t index);
+
+      /**
+      * Returns all the message's attachments.
+      */
+      std::vector<Attachment*> GetAttachments();
 
       /** Adds an attachment to the message and returns the index of the
       * newly added attachment. If a header attribute is specified that
