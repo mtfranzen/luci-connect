@@ -1,10 +1,10 @@
-#include "lc2pp/node_tests.h"
+#include "lucipp/node_tests.h"
 
 namespace {
 
-  class ServiceMock : lc2pp::Node {
+  class ServiceMock : lucipp::Node {
   public:
-    ServiceMock(std::shared_ptr<lc2pp::core::Connection> connection) : lc2pp::Node(connection) {}
+    ServiceMock(std::shared_ptr<lucipp::core::Connection> connection) : lucipp::Node(connection) {}
 
     void Run() {
       this->Connect();
@@ -37,7 +37,7 @@ namespace {
   int64_t progress = -1;
 
   protected:
-    void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<lc2pp::core::Attachment*> attachments) {
+    void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<lucipp::core::Attachment*> attachments) {
       if (inputs.count("arg1") != 1 || inputs.count("arg2") != 1)
         throw "Erroneous message";
 
@@ -52,11 +52,11 @@ namespace {
       this->canceled = true;
     };
 
-    void HandleResult(int64_t callId, json result, std::vector<lc2pp::core::Attachment*> attachments) {
+    void HandleResult(int64_t callId, json result, std::vector<lucipp::core::Attachment*> attachments) {
       this->result = result;
     };
 
-    void HandleProgress(int64_t callId, int64_t percentage, std::vector<lc2pp::core::Attachment*> attachments, json intermediateResult) {
+    void HandleProgress(int64_t callId, int64_t percentage, std::vector<lucipp::core::Attachment*> attachments, json intermediateResult) {
       this->progress = percentage;
     };
 
@@ -66,9 +66,9 @@ namespace {
   };
 
   // Mock simply sending one message
-  class ClientMock : lc2pp::Node {
+  class ClientMock : lucipp::Node {
   public:
-    ClientMock(std::shared_ptr<lc2pp::core::Connection> connection) : lc2pp::Node(connection) {}
+    ClientMock(std::shared_ptr<lucipp::core::Connection> connection) : lucipp::Node(connection) {}
 
     void Run() {
       this->Connect();
@@ -81,18 +81,18 @@ namespace {
     int64_t progress = -1;
 
   protected:
-    void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<lc2pp::core::Attachment*> attachments) {
+    void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<lucipp::core::Attachment*> attachments) {
     };
 
     void HandleCancel(int64_t callId) {
       this->canceled = true;
     };
 
-    void HandleResult(int64_t callId, json result, std::vector<lc2pp::core::Attachment*> attachments) {
+    void HandleResult(int64_t callId, json result, std::vector<lucipp::core::Attachment*> attachments) {
       this->result = result;
     };
 
-    void HandleProgress(int64_t callId, int64_t percentage, std::vector<lc2pp::core::Attachment*> attachments, json intermediateResult) {
+    void HandleProgress(int64_t callId, int64_t percentage, std::vector<lucipp::core::Attachment*> attachments, json intermediateResult) {
       this->progress = percentage;
     };
 
@@ -102,7 +102,7 @@ namespace {
   };
 
   TEST_F(AbstractNodeTest, ClientRunWrongService) {
-    std::shared_ptr<lc2pp::core::Connection> connection = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    std::shared_ptr<lucipp::core::Connection> connection = std::make_shared<lucipp::core::Connection>("127.0.0.1", 7654);
     ClientMock* node_ = new ClientMock(connection);
     node_->Run();
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -111,7 +111,7 @@ namespace {
   }
 
   TEST_F(AbstractNodeTest, ServiceRegister) {
-    std::shared_ptr<lc2pp::core::Connection> connection = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    std::shared_ptr<lucipp::core::Connection> connection = std::make_shared<lucipp::core::Connection>("127.0.0.1", 7654);
     ServiceMock* node_ = new ServiceMock(connection);
     node_->Run();
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -121,12 +121,12 @@ namespace {
   }
 
   TEST_F(AbstractNodeTest, ClientServiceRun) {
-    std::shared_ptr<lc2pp::core::Connection> connection1 = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    std::shared_ptr<lucipp::core::Connection> connection1 = std::make_shared<lucipp::core::Connection>("127.0.0.1", 7654);
     ServiceMock* service = new ServiceMock(connection1);
     service->Run();
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    std::shared_ptr<lc2pp::core::Connection> connection2 = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    std::shared_ptr<lucipp::core::Connection> connection2 = std::make_shared<lucipp::core::Connection>("127.0.0.1", 7654);
     ClientMock* client = new ClientMock(connection2);
     client->Run();
     std::this_thread::sleep_for(std::chrono::milliseconds(100));

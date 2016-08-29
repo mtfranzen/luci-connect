@@ -1,9 +1,9 @@
-#include "lc2pp/core/connection.h"
+#include "lucipp/core/connection.h"
 
 using std::placeholders::_1;
 using std::placeholders::_2;
 
-namespace lc2pp {
+namespace lucipp {
   namespace core {
     Connection::Connection(std::string host, uint16_t port) {
       this->host_ = host;

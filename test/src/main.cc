@@ -1,6 +1,6 @@
-#include "lc2pp/core/message_tests.h"
-#include "lc2pp/core/connection_tests.h"
-#include "lc2pp/node_tests.h"
+#include "lucipp/core/message_tests.h"
+#include "lucipp/core/connection_tests.h"
+#include "lucipp/node_tests.h"
 
 INITIALIZE_EASYLOGGINGPP
 

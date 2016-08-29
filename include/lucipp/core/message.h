@@ -1,5 +1,5 @@
-#ifndef LC2PP_MESSAGE_H
-#define LC2PP_MESSAGE_H
+#ifndef lucipp_MESSAGE_H
+#define lucipp_MESSAGE_H
 
 #include "md5/md5.h"
 #include "json/src/json.hpp"
@@ -11,7 +11,7 @@
 
 using json = nlohmann::json;
 
-namespace lc2pp {
+namespace lucipp {
   namespace core {
     /**
     * An enum representing the different message types that Luci understands.

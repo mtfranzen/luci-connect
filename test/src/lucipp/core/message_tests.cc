@@ -1,11 +1,11 @@
-#include "lc2pp/core/message_tests.h"
+#include "lucipp/core/message_tests.h"
 
 
 /**
 * Contains tests for constructing messages.
 */
 namespace {
-  using namespace lc2pp::core;
+  using namespace lucipp::core;
 
   TEST_F(MessageTest, CreateMessageAndGetHeader) {
     Message* message = new Message(simple_header_);

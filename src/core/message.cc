@@ -1,6 +1,6 @@
-#include "lc2pp/core/message.h"
+#include "lucipp/core/message.h"
 
-namespace lc2pp {
+namespace lucipp {
   namespace core {
     Message::Message(json header) {
       this->header_ = header;

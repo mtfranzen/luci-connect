@@ -1,11 +1,11 @@
-#include "lc2pp/core/message_tests.h"
+#include "lucipp/core/message_tests.h"
 
 /**
 * Contains tests for constructing messages.
 */
 namespace {
   TEST_F(MessageTest, CreateCompleteAttachments) {
-    lc2pp::core::Attachment attachment = {
+    lucipp::core::Attachment attachment = {
       5,
       "abcde",
       "float32 array",
@@ -14,20 +14,20 @@ namespace {
   }
 
   TEST_F(MessageTest, CreateIncompleteAttachment) {
-      lc2pp::core::Attachment atc1(5, "abcde");
+      lucipp::core::Attachment atc1(5, "abcde");
   }
 
   TEST_F(MessageTest, CompareCompleteAttachments) {
-    lc2pp::core::Attachment atc1(5, "abcde", "format", "name");
-    lc2pp::core::Attachment atc2(5, "abcde", "format", "name");
-    lc2pp::core::Attachment atc3(5, "edcba", "format", "name");
-    lc2pp::core::Attachment atc4(5, "edcba", "format", "name");
-    lc2pp::core::Attachment atc5(5, "edcba", "tamrof", "name");
-    lc2pp::core::Attachment atc6(5, "edcba", "tamrof", "name");
-    lc2pp::core::Attachment atc7(5, "edcba", "tamrof", "eman");
-    lc2pp::core::Attachment atc8(5, "edcba", "tamrof", "eman");
-    lc2pp::core::Attachment atc9(6, "edcba1", "tamrof", "eman");
-    lc2pp::core::Attachment atc10(6, "edcba1", "tamrof", "eman");
+    lucipp::core::Attachment atc1(5, "abcde", "format", "name");
+    lucipp::core::Attachment atc2(5, "abcde", "format", "name");
+    lucipp::core::Attachment atc3(5, "edcba", "format", "name");
+    lucipp::core::Attachment atc4(5, "edcba", "format", "name");
+    lucipp::core::Attachment atc5(5, "edcba", "tamrof", "name");
+    lucipp::core::Attachment atc6(5, "edcba", "tamrof", "name");
+    lucipp::core::Attachment atc7(5, "edcba", "tamrof", "eman");
+    lucipp::core::Attachment atc8(5, "edcba", "tamrof", "eman");
+    lucipp::core::Attachment atc9(6, "edcba1", "tamrof", "eman");
+    lucipp::core::Attachment atc10(6, "edcba1", "tamrof", "eman");
 
     ASSERT_EQ(atc1, atc2);
     ASSERT_NE(atc2, atc3);
@@ -41,10 +41,10 @@ namespace {
   }
 
   TEST_F(MessageTest, CompareIncompleteAttachments) {
-    lc2pp::core::Attachment atc1(5, "abcde");
-    lc2pp::core::Attachment atc2(5, "abcde");
-    lc2pp::core::Attachment atc3(5, "edfba");
-    lc2pp::core::Attachment atc4(6, "abcdef");
+    lucipp::core::Attachment atc1(5, "abcde");
+    lucipp::core::Attachment atc2(5, "abcde");
+    lucipp::core::Attachment atc3(5, "edfba");
+    lucipp::core::Attachment atc4(6, "abcdef");
 
     ASSERT_EQ(atc1, atc2);
     ASSERT_NE(atc2, atc3);
@@ -52,28 +52,28 @@ namespace {
   }
 
   TEST_F(MessageTest, ChangeAttachment) {
-    lc2pp::core::Attachment attachment = {5, "Test1"};
+    lucipp::core::Attachment attachment = {5, "Test1"};
     attachment.data = "Test2";
 
     ASSERT_EQ(attachment.data, "Test2");
   }
 
   TEST_F(MessageTest, AddCompleteAttachmentWithoutHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde", "format", "name");
-    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
+    lucipp::core::Attachment atc1(5, "abcde", "format", "name");
+    lucipp::core::Message* message = new lucipp::core::Message(simple_header_);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddIncompleteAttachmentWithoutHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde");
-    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
+    lucipp::core::Attachment atc1(5, "abcde");
+    lucipp::core::Message* message = new lucipp::core::Message(simple_header_);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddCompleteAttachmentWithHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde", "format", "atc1");
+    lucipp::core::Attachment atc1(5, "abcde", "format", "atc1");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -88,13 +88,13 @@ namespace {
         {"format", "format"}
       }}
     };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lucipp::core::Message* message = new lucipp::core::Message(header);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddIncompleteAttachmentWithHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde");
+    lucipp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -109,16 +109,16 @@ namespace {
           {"format", "format"}
       }}
     };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lucipp::core::Message* message = new lucipp::core::Message(header);
     message->AddAttachment(&atc1);
 
-    lc2pp::core::Attachment atc2(5, "abcde", "format", "atc1");
-    lc2pp::core::Attachment atc1p = *message->GetAttachment(0);
+    lucipp::core::Attachment atc2(5, "abcde", "format", "atc1");
+    lucipp::core::Attachment atc1p = *message->GetAttachment(0);
     ASSERT_EQ(atc2, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddAttachmentWrongChecksumInHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde");
+    lucipp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -133,12 +133,12 @@ namespace {
           {"format", "format"}
       }}
     };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lucipp::core::Message* message = new lucipp::core::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
   }
 
   TEST_F(MessageTest, AddAttachmentWrongLengthInHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde");
+    lucipp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -153,12 +153,12 @@ namespace {
           {"format", "format"}
       }}
     };
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lucipp::core::Message* message = new lucipp::core::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
   }
 
   TEST_F(MessageTest, AddAttachmentIncompleteHeader) {
-    lc2pp::core::Attachment atc1(5, "abcde");
+    lucipp::core::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -170,33 +170,33 @@ namespace {
       }}
     };
 
-    lc2pp::core::Message* message = new lc2pp::core::Message(header);
+    lucipp::core::Message* message = new lucipp::core::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["name"] = "atc1";
-    message = new lc2pp::core::Message(header);
+    message = new lucipp::core::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["format"] = "format";
-    message = new lc2pp::core::Message(header);
+    message = new lucipp::core::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["attachment"]["length"] = 5;
-    message = new lc2pp::core::Message(header);
+    message = new lucipp::core::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["attachment"]["checksum"] = "ab56b4d92b40713acc5af89985d4b786";
-    message = new lc2pp::core::Message(header);
+    message = new lucipp::core::Message(header);
     message->AddAttachment(&atc1);
   }
 
   TEST_F(MessageTest, AddMultipleAttachments) {
-    lc2pp::core::Message* message = new lc2pp::core::Message(simple_header_);
-    std::vector<lc2pp::core::Attachment*> attachments;
+    lucipp::core::Message* message = new lucipp::core::Message(simple_header_);
+    std::vector<lucipp::core::Attachment*> attachments;
 
     size_t N = 64;
     for (size_t i = 0; i < N; i++) {
-      lc2pp::core::Attachment attachment(5, "abcde");
+      lucipp::core::Attachment attachment(5, "abcde");
       attachments.push_back(&attachment);
       message->AddAttachment(&attachment);
     }

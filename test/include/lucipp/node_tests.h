@@ -1,7 +1,7 @@
-#ifndef LC2PP_TEST_NODE_H
-#define LC2PP_TEST_NODE_H
+#ifndef lucipp_TEST_MESSAGE_H
+#define lucipp_TEST_MESSAGE_H
 
-#include "lc2pp/core/message.h"
+#include "lucipp/node.h"
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
@@ -13,16 +13,12 @@
 
 
 // Only a stub for later use
-class MessageTest : public ::testing::Test {
+class AbstractNodeTest : public ::testing::Test {
  protected:
-  MessageTest() {
-    simple_header_ = {
-      {"run", "testService"},
-      {"callID", 0}
-    };
+  AbstractNodeTest() {
   }
 
-  virtual ~MessageTest() {
+  virtual ~AbstractNodeTest() {
   }
 
   virtual void SetUp() {
@@ -30,8 +26,6 @@ class MessageTest : public ::testing::Test {
 
   virtual void TearDown() {
   }
-
-  json simple_header_;
 };
 
 #endif

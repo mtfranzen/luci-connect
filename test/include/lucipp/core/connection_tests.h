@@ -1,8 +1,8 @@
-#ifndef LC2PP_TEST_CONNECTION_H
-#define LC2PP_TEST_CONNECTION_H
+#ifndef lucipp_TEST_CONNECTION_H
+#define lucipp_TEST_CONNECTION_H
 
-#include "lc2pp/core/message.h"
-#include "lc2pp/core/connection.h"
+#include "lucipp/core/message.h"
+#include "lucipp/core/connection.h"
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
@@ -27,16 +27,16 @@ class ConnectionTest : public ::testing::Test {
   }
 
   virtual void SetUp() {
-    //connection = new lc2pp::core::Connection("127.0.0.1", 7654);
-    connection = std::make_shared<lc2pp::core::Connection>("127.0.0.1", 7654);
+    //connection = new lucipp::core::Connection("127.0.0.1", 7654);
+    connection = std::make_shared<lucipp::core::Connection>("127.0.0.1", 7654);
   }
 
   virtual void TearDown() {
   }
 
   json simple_header_;
-  //lc2pp::core::Connection* connection;
-  std::shared_ptr<lc2pp::core::Connection> connection;
+  //lucipp::core::Connection* connection;
+  std::shared_ptr<lucipp::core::Connection> connection;
 };
 
 #endif

@@ -1,6 +1,6 @@
 /*
-#ifndef LC2PP_SERVICE_H_
-#define LC2PP_SERVICE_H_
+#ifndef lucipp_SERVICE_H_
+#define lucipp_SERVICE_H_
 
 #include "core/connection.h"
 #include "core/message.h"
@@ -8,7 +8,7 @@
 using std::placeholders::_1;
 using std::placeholders::_2;
 
-namespace lc2pp {
+namespace lucipp {
   class Service : Node{
   public:
     Service() {

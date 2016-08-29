@@ -1,6 +1,6 @@
-#include "lc2pp/node.h"
+#include "lucipp/node.h"
 
-namespace lc2pp {
+namespace lucipp {
   Node::Node(std::shared_ptr<core::Connection> connection) {
     this->connection_ = connection;
 
