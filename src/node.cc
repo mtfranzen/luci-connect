@@ -9,9 +9,14 @@ namespace lc2pp {
     this->connection_->RegisterOnSent(std::bind(&Node::HandleSent, this, _1));
     this->connection_->RegisterOnReceivingError(std::bind(&Node::HandleReceivingError, this, _1));
     this->connection_->RegisterOnSendingError(std::bind(&Node::HandleSendingError, this, _1, _2));
+  }
 
-    // open connection
+  void Node::Connect() {
     this->connection_->Open();
+  }
+
+  void Node::Disconnect() {
+    this->connection_->Close();
   }
 
   void Node::HandleReceived(core::Message message) {

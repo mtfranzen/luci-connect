@@ -26,8 +26,7 @@ namespace lc2pp {
   class Node {
   public:
     /**
-    * Initializes the node and connects to the connection. The connection is
-    * opened afterwards.
+    * Initializes the node. Call Node::Connect() to connect to the server.
     */
     Node(std::shared_ptr<core::Connection> connection);
 
@@ -42,6 +41,16 @@ namespace lc2pp {
     * A reference to the Luci connection.
     */
     std::shared_ptr<core::Connection> connection_;
+
+    /**
+    * Opens the connection to the Luci server
+    */
+    void Connect();
+
+    /**
+    * Closes the connection to the Luci server
+    */
+    void Disconnect();
 
     /**
     * Sends a run message to the connected Luci instance.
@@ -76,7 +85,8 @@ namespace lc2pp {
 
     /**
     * Called when a **cancel** message has been received. This is a required method
-    * for a service or client implementation!
+    * for a service or client implementation! **Make sure to make HandleRun asynchronous
+    * if you want to use this method!**
     */
     virtual void HandleCancel(int64_t callId) = 0;
 
