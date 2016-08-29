@@ -31,5 +31,4 @@ git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
 To compile the examples to `/samples/bin/`, run
 ```make samples```
 
-To try it, run Luci or, preferably `helen`. Then run the example `SimpleService.o` to register an example service in Luci that adds two numbers. Note that both these processes run continuously.
-Finally, run `SimpleClient.o <arg1> <arg2>` to sum up the two arguments.
+To try it, run Luci or, preferably `helen`. Then run the example `SimpleService.o` to register an example service that adds two numbers delivered by some client via Luci. Finally, run `SimpleClient.o <arg1> <arg2>` in a third terminal to sum up the two arguments.
