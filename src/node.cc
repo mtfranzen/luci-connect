@@ -1,6 +1,6 @@
-#include "lucipp/node.h"
+#include "luciconnect/node.h"
 
-namespace lucipp {
+namespace luciconnect {
   Node::Node(std::shared_ptr<core::Connection> connection) {
     this->connection_ = connection;
 

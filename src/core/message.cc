@@ -1,6 +1,6 @@
-#include "lucipp/core/message.h"
+#include "luciconnect/core/message.h"
 
-namespace lucipp {
+namespace luciconnect {
   namespace core {
     Message::Message(json header) {
       this->header_ = header;

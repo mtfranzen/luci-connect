@@ -1,7 +1,7 @@
-#ifndef lucipp_TEST_MESSAGE_H
-#define lucipp_TEST_MESSAGE_H
+#ifndef luciconnect_TEST_MESSAGE_H
+#define luciconnect_TEST_MESSAGE_H
 
-#include "lucipp/core/message.h"
+#include "luciconnect/node.h"
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
@@ -11,17 +11,14 @@
 #include <vector>
 #include <iostream>
 
+
 // Only a stub for later use
-class MessageTest : public ::testing::Test {
+class AbstractNodeTest : public ::testing::Test {
  protected:
-  MessageTest() {
-    simple_header_ = {
-      {"run", "testService"},
-      {"callID", 0}
-    };
+  AbstractNodeTest() {
   }
 
-  virtual ~MessageTest() {
+  virtual ~AbstractNodeTest() {
   }
 
   virtual void SetUp() {
@@ -29,8 +26,6 @@ class MessageTest : public ::testing::Test {
 
   virtual void TearDown() {
   }
-
-  json simple_header_;
 };
 
 #endif

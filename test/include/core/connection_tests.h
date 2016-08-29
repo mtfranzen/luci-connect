@@ -1,8 +1,8 @@
-#ifndef lucipp_TEST_CONNECTION_H
-#define lucipp_TEST_CONNECTION_H
+#ifndef LUCI_CONNECT_TEST_CONNECTION_H
+#define LUCI_CONNECT_TEST_CONNECTION_H
 
-#include "lucipp/core/message.h"
-#include "lucipp/core/connection.h"
+#include "luci-connect/core/message.h"
+#include "luci-connect/core/connection.h"
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
@@ -26,7 +26,7 @@ class ConnectionTest : public ::testing::Test {
   }
 
   virtual void SetUp() {
-    connection = new lucipp::core::Connection("127.0.0.1", 7654);
+    connection = new luci-connect::core::Connection("127.0.0.1", 7654);
   }
 
   virtual void TearDown() {
@@ -34,7 +34,7 @@ class ConnectionTest : public ::testing::Test {
   }
 
   json simple_header_;
-  lucipp::core::Connection* connection;
+  luci-connect::core::Connection* connection;
 };
 
 #endif

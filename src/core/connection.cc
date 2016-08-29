@@ -1,9 +1,9 @@
-#include "lucipp/core/connection.h"
+#include "luciconnect/core/connection.h"
 
 using std::placeholders::_1;
 using std::placeholders::_2;
 
-namespace lucipp {
+namespace luciconnect {
   namespace core {
     Connection::Connection(std::string host, uint16_t port) {
       this->host_ = host;

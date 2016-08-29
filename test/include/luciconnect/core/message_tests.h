@@ -1,7 +1,7 @@
-#ifndef lucipp_TEST_NODE_H
-#define lucipp_TEST_NODE_H
+#ifndef luciconnect_TEST_NODE_H
+#define luciconnect_TEST_NODE_H
 
-#include "lucipp/core/message.h"
+#include "luciconnect/core/message.h"
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"

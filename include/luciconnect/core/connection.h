@@ -1,7 +1,7 @@
-#ifndef lucipp_CONNECTION_H
-#define lucipp_CONNECTION_H
+#ifndef luciconnect_CONNECTION_H
+#define luciconnect_CONNECTION_H
 
-#include "lucipp/core/message.h"
+#include "luciconnect/core/message.h"
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
@@ -18,7 +18,7 @@
 
 using json = nlohmann::json;
 
-namespace lucipp {
+namespace luciconnect {
   namespace core {
     /** The connection class handles all low-level tcp communication with the
      * LC2 instance. It can send and receive messages, keeps a record of the

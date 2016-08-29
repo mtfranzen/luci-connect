@@ -1,5 +1,5 @@
-#ifndef lucipp_NODE_H_
-#define lucipp_NODE_H_
+#ifndef luciconnect_NODE_H_
+#define luciconnect_NODE_H_
 
 #include "core/connection.h"
 #include "core/message.h"
@@ -7,7 +7,7 @@
 using std::placeholders::_1;
 using std::placeholders::_2;
 
-namespace lucipp {
+namespace luciconnect {
   /**
   * The Node class is the super classes for all services and clients of Luci.
   *

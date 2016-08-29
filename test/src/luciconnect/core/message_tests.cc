@@ -1,11 +1,11 @@
-#include "lucipp/core/message_tests.h"
+#include "luciconnect/core/message_tests.h"
 
 
 /**
 * Contains tests for constructing messages.
 */
 namespace {
-  using namespace lucipp::core;
+  using namespace luciconnect::core;
 
   TEST_F(MessageTest, CreateMessageAndGetHeader) {
     Message* message = new Message(simple_header_);
