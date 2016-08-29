@@ -25,3 +25,11 @@ git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
  * *doxygen*
 2. Run:
 ```make docs```
+
+## Examples
+
+To compile the examples to `/samples/bin/`, run
+```make samples```
+
+To try it, run Luci or, preferably `helen`. Then run the example `SimpleService.o` to register an example service in Luci that adds two numbers. Note that both these processes run continuously.
+Finally, run `SimpleClient.o <arg1> <arg2>` to sum up the two arguments.
