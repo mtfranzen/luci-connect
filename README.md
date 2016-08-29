@@ -1,7 +1,7 @@
 ## Building from source
 1. Clone the repository including submodules using the `--recursive` tag:
 ```
-git clone --recursive http://129.132.6.17/ADvISE/QUA-Services.git
+git clone --recursive https://github.com/mtfranzen/luci-connect.git
 ```
 2. Install the following requirements:
  * *make*
