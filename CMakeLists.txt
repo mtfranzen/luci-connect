@@ -16,7 +16,7 @@ set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 # Requirements
 find_package(Threads REQUIRED)
 find_package(Asio REQUIRED)
-find_package(GTest REQUIRED)
+find_package(GTest)
 
 # Headers
 include_directories (${PROJECT_SOURCE_DIR}/include)
