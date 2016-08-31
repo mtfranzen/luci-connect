@@ -10,7 +10,7 @@ git clone --recursive https://github.com/mtfranzen/luci-connect.git
  * *g++*
 
 3. Run:
-```cmake && make``
+```cmake && make```
 
 ## Tests
 1. Install the following requirements:
