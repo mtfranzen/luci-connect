@@ -6,7 +6,7 @@
 
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
-#include "googletest/googletest/include/gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #include <string>
 #include <vector>

@@ -1,7 +1,8 @@
 #ifndef luciconnect_MESSAGE_H
 #define luciconnect_MESSAGE_H
 
-#include "md5/md5.h"
+#include "luciconnect/md5/md5.h"
+
 #include "json/src/json.hpp"
 #include "easylogging/src/easylogging++.h"
 
