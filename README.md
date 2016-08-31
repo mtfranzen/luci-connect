@@ -10,7 +10,9 @@ git clone --recursive https://github.com/mtfranzen/luci-connect.git
  * *g++*
 
 3. Run:
-```cmake && make```
+```
+cmake && make
+```
 
 ## Tests
 1. Install the following requirements:
@@ -18,14 +20,18 @@ git clone --recursive https://github.com/mtfranzen/luci-connect.git
  * *haskell-stack*
  * *llvm*
 2. Run:
-```./bin/tests```
+```
+./bin/tests
+```
 
 ## Documentation
 1. Install the following requirements:
  * *graphviz*
  * *doxygen*
 2. Run:
-```doxygen doc/Doxyfile```
+```
+doxygen doc/Doxyfile
+```
 
 ## Examples
 
