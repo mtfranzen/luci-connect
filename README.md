@@ -35,6 +35,6 @@ doxygen doc/Doxyfile
 
 ## Examples
 
-(TODO)
-
-To try it, run Luci or, preferably `helen`. Then run the example `SimpleService.o` to register an example service that adds two numbers delivered by some client via Luci. Finally, run `SimpleClient.o <arg1> <arg2>` in a third terminal to sum up the two arguments.
+1. Start `helen` or `luci` and run `cmake CMakeLists.txt && make` in the directory `samples/`.
+2. Run the sample service `bin/simple-service` to register an example service that adds two numbers delivered by some client via Luci
+3. Run the sample client `bin/simple-client <number1> <number2>` in a third terminal to sum up the two arguments.

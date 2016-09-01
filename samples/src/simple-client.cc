@@ -15,7 +15,7 @@ public:
       {"arg1", arg1},
       {"arg2", arg2}
     };
-    this->SendRun(0, "AddingNumbers", input);
+    this->SendRun(0, "AddingNumbersService", input);
   }
 
   bool waiting_for_result = true;

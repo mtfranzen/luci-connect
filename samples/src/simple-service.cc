@@ -16,7 +16,7 @@ public:
 
 protected:
   const json register_message_ = {
-    {"serviceName", "AddingNumbers"},
+    {"serviceName", "AddingNumbersService"},
     {"description", "Adds two numbers"},
     {"qua-view-compliant", false},
     {"inputs", {

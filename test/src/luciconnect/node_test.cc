@@ -116,7 +116,7 @@ namespace {
     std::shared_ptr<luciconnect::core::Connection> connection = std::make_shared<luciconnect::core::Connection>("127.0.0.1", 7654);
     ServiceMock* node_ = new ServiceMock(connection);
     node_->Run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     ASSERT_EQ(node_->result.count("registeredName"), 1);
     ASSERT_EQ(node_->result["registeredName"], "addingNumbers");
@@ -126,12 +126,12 @@ namespace {
     std::shared_ptr<luciconnect::core::Connection> connection1 = std::make_shared<luciconnect::core::Connection>("127.0.0.1", 7654);
     ServiceMock* service = new ServiceMock(connection1);
     service->Run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     std::shared_ptr<luciconnect::core::Connection> connection2 = std::make_shared<luciconnect::core::Connection>("127.0.0.1", 7654);
     ClientMock* client = new ClientMock(connection2);
     client->Run();
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     json expected_result = {{"sum", 12}};
     ASSERT_EQ(client->result, expected_result);

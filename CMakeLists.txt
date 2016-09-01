@@ -19,12 +19,12 @@ find_package(Asio REQUIRED)
 find_package(GTest)
 
 # Headers
-include_directories (${PROJECT_SOURCE_DIR}/include)
+include_directories (${CMAKE_SOURCE_DIR}/include)
 include_directories (${THREADS_INCLUDE_DIR})
 include_directories (${ASIO_INCLUDE_DIR})
 
 # Linker
-link_directories (${PROJECT_SOURCE_DIR}/lib)
+link_directories (${CMAKE_SOURCE_DIR}/lib)
 link_libraries (${THREADS_LIBRARY})
 
 # Compiler
@@ -56,7 +56,14 @@ if (GTEST_FOUND)
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/connection_send_tests.cc"
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
   )
-  target_link_libraries(tests "${GTEST_BOTH_LIBRARIES}" "pthread")
+
+  if (WIN32)
+    target_link_libraries (tests ${THREAD_LIBRARY})
+  else (WIN32)
+    target_link_libraries (tests pthread)
+  endif (WIN32)
+
+  target_link_libraries(tests ${GTEST_BOTH_LIBRARIES})
   target_link_libraries(tests luciconnect)
 
   include_directories (${PROJECT_SOURCE_DIR}/test/include)
