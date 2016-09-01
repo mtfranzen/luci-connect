@@ -12,7 +12,6 @@ namespace {
       json register_message = {
         {"serviceName", "addingNumbers"},
         {"description", "Adds two numbers"},
-        {"qua-view-compliant", false},
         {"inputs", {
           {"arg1", "number"},
           {"arg2", "number"}
@@ -54,13 +53,16 @@ namespace {
 
     void HandleResult(int64_t callId, json result, std::vector<luciconnect::core::Attachment*> attachments) {
       this->result = result;
+      LOG(DEBUG) << "result: " << result.dump();
     };
 
     void HandleProgress(int64_t callId, int64_t percentage, std::vector<luciconnect::core::Attachment*> attachments, json intermediateResult) {
       this->progress = percentage;
+      LOG(DEBUG) << "progress";
     };
 
     void HandleError(int64_t callId, std::string error) {
+      LOG(DEBUG) << "error: " << error;
       this->error = true;
     };
   };
@@ -116,8 +118,8 @@ namespace {
     node_->Run();
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    json expected_result = {{"registeredName", "addingNumbers"}};
-    ASSERT_EQ(node_->result, expected_result);
+    ASSERT_EQ(node_->result.count("registeredName"), 1);
+    ASSERT_EQ(node_->result["registeredName"], "addingNumbers");
   }
 
   TEST_F(AbstractNodeTest, ClientServiceRun) {
