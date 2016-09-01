@@ -25,7 +25,7 @@ git clone --recursive https://github.com/mtfranzen/luci-connect.git
 cmake samples/CMakeLists.txt && (cd samples && make)
 ```
 3. Run the sample service `samples/bin/simple-service` to register an example service that adds two numbers delivered by some client via Luci
-4 Run the sample client `samples/bin/simple-client <number1> <number2>` in a third terminal to sum up the two arguments.
+4. Run the sample client `samples/bin/simple-client <number1> <number2>` in a third terminal to sum up the two arguments.
 
 ## Documentation
 1. Install the following requirements:
