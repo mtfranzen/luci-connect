@@ -38,7 +38,7 @@ add_definitions(-Wall)
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DELPP_DISABLE_LOGS")
 
 # Library files
-add_library(luciconnect
+add_library(luciconnect SHARED
   "${CMAKE_SOURCE_DIR}/src/node.cc"
   "${CMAKE_SOURCE_DIR}/src/core/connection.cc"
   "${CMAKE_SOURCE_DIR}/src/core/message.cc"
