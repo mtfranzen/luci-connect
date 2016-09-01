@@ -30,6 +30,8 @@ endif (WIN32)
 # Compiler
 add_definitions(-std=c++14)
 add_definitions(-Wall)
+add_definitions(-DELPP_THREAD_SAFE)
+add_definitions(-DELPP_DISABLE_DEFAULT_CRASH_HANDLING)
 
 # Library
 add_executable(simple-client "${CMAKE_SOURCE_DIR}/src/simple-client.cc")

@@ -1,5 +1,6 @@
 logs
 bin
+lib
 
 # Compiled Object files
 *.slo
