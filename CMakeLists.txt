@@ -25,7 +25,13 @@ include_directories (${ASIO_INCLUDE_DIR})
 
 # Linker
 link_directories (${CMAKE_SOURCE_DIR}/lib)
-link_libraries (${THREADS_LIBRARY})
+if(THREADS_HAVE_PTHREAD_ARG)
+  compile_options(PUBLIC"-pthread")
+endif()
+
+if(CMAKE_THREAD_LIBS_INIT)
+  link_libraries(${CMAKE_THREAD_LIBS_INIT})
+endif()
 
 # Compiler
 add_definitions(-std=c++14)
@@ -56,13 +62,6 @@ if (GTEST_FOUND)
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/connection_send_tests.cc"
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
   )
-
-  if (WIN32)
-    target_link_libraries (tests ${THREAD_LIBRARY})
-  else (WIN32)
-    target_link_libraries (tests pthread)
-  endif (WIN32)
-
   target_link_libraries(tests ${GTEST_BOTH_LIBRARIES})
   target_link_libraries(tests luciconnect)
 
