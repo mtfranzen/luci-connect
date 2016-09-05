@@ -20,8 +20,15 @@ find_package(GTest)
 
 # Headers
 include_directories (${CMAKE_SOURCE_DIR}/include)
-include_directories (${THREADS_INCLUDE_DIR})
 include_directories (${ASIO_INCLUDE_DIR})
+
+if(THREADS_HAVE_PTHREAD_ARG)
+  compile_options(PUBLIC"-pthread")
+endif()
+
+if(CMAKE_THREAD_LIBS_INIT)
+  link_libraries(${CMAKE_THREAD_LIBS_INIT})
+endif()
 
 # Linker
 link_directories (${CMAKE_SOURCE_DIR}/lib)
@@ -62,6 +69,7 @@ if (GTEST_FOUND)
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/connection_send_tests.cc"
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
   )
+
   target_link_libraries(tests ${GTEST_BOTH_LIBRARIES})
   target_link_libraries(tests luciconnect)
 
