@@ -1,4 +1,5 @@
-#include "luciconnect/node.h"
+#include "luciconnect/luciconnect.h"
+
 INITIALIZE_EASYLOGGINGPP
 
 class SimpleClient: luciconnect::Node {

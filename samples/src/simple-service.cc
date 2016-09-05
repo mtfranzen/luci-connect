@@ -1,4 +1,5 @@
-#include "luciconnect/node.h"
+#include "luciconnect/luciconnect.h"
+
 #include <signal.h>
 
 INITIALIZE_EASYLOGGINGPP

@@ -1,16 +1,8 @@
 #ifndef luciconnect_TEST_NODE_H
 #define luciconnect_TEST_NODE_H
 
-#include "luciconnect/core/message.h"
-
-#include "json/src/json.hpp"
-#include "easylogging/src/easylogging++.h"
+#include "luciconnect/luciconnect.h"
 #include <gtest/gtest.h>
-
-#include <string>
-#include <vector>
-#include <iostream>
-
 
 // Only a stub for later use
 class MessageTest : public ::testing::Test {

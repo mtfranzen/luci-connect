@@ -1,16 +1,10 @@
 #ifndef luciconnect_TEST_CONNECTION_H
 #define luciconnect_TEST_CONNECTION_H
 
-#include "luciconnect/core/message.h"
-#include "luciconnect/core/connection.h"
-
-#include "json/src/json.hpp"
-#include "easylogging/src/easylogging++.h"
+#include "luciconnect/luciconnect.h"
 #include <gtest/gtest.h>
 
 #include <string>
-#include <vector>
-#include <iostream>
 #include <memory>
 
 // Only a stub for later use

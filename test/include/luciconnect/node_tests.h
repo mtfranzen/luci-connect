@@ -1,15 +1,8 @@
 #ifndef luciconnect_TEST_MESSAGE_H
 #define luciconnect_TEST_MESSAGE_H
 
-#include "luciconnect/node.h"
-
-#include "json/src/json.hpp"
-#include "easylogging/src/easylogging++.h"
+#include "luciconnect/luciconnect.h"
 #include <gtest/gtest.h>
-
-#include <string>
-#include <vector>
-#include <iostream>
 
 
 // Only a stub for later use
