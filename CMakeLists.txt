@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.1)
 
 # CMAKE
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
@@ -41,14 +41,18 @@ if(CMAKE_THREAD_LIBS_INIT)
 endif()
 
 # Compiler
-add_definitions(-std=c++14)
+set (CMAKE_CXX_STANDARD 11)
 add_definitions(-DASIO_STANDALONE)
 add_definitions(-DELPP_THREAD_SAFE)
 add_definitions(-DELPP_DISABLE_DEFAULT_CRASH_HANDLING)
 add_definitions(-Wall)
 
-# Debug Flags
-set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DELPP_DISABLE_LOGS")
+# Release Flags
+if (WIN32)
+  set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /DELPP_DISABLE_LOGS")
+else ()
+  set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DELPP_DISABLE_LOGS")
+endif()
 
 # Library files
 add_library(luciconnect SHARED
