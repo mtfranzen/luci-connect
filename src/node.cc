@@ -1,7 +1,7 @@
 #include "luciconnect/node.h"
 
 namespace luciconnect {
-  Node::Node(std::shared_ptr<core::Connection> connection) {
+  Node::Node(std::shared_ptr<Connection> connection) {
     this->connection_ = connection;
 
     // register delegates for the connection
@@ -19,12 +19,12 @@ namespace luciconnect {
     this->connection_->Close();
   }
 
-  void Node::HandleReceived(core::Message message) {
+  void Node::HandleReceived(Message message) {
     json header = message.GetHeader();
     int64_t callId = header["callID"];
 
     switch (message.GetType()) {
-      case core::MessageType::run:
+      case MessageType::run:
         {
           std::string serviceName = header["run"];
           json inputs = {};
@@ -36,13 +36,13 @@ namespace luciconnect {
         }
         break;
 
-      case core::MessageType::cancel:
+      case MessageType::cancel:
         {
           this->HandleCancel(callId);
         }
         break;
 
-      case core::MessageType::result:
+      case MessageType::result:
         {
           json result = header["result"];
 
@@ -50,7 +50,7 @@ namespace luciconnect {
         }
         break;
 
-      case core::MessageType::progress:
+      case MessageType::progress:
         {
           int64_t percentage = header["progress"];
           if (header.count("intermediateResult") > 0) {
@@ -63,7 +63,7 @@ namespace luciconnect {
         }
         break;
 
-      case core::MessageType::error:
+      case MessageType::error:
         {
           std::string error = header["error"];
 
@@ -73,40 +73,40 @@ namespace luciconnect {
     }
   }
 
-  void Node::HandleSent(core::Message message) {
+  void Node::HandleSent(Message message) {
     // TODO: Implement HandleSent in Node class
   }
 
-  void Node::HandleReceivingError(core::Connection::ReceivingError) {
+  void Node::HandleReceivingError(Connection::ReceivingError) {
     // TODO: Implement HandleReceivingError in Node class
   }
 
-  void Node::HandleSendingError(core::Message message, core::Connection::SendingError) {
+  void Node::HandleSendingError(Message message, Connection::SendingError) {
     // TODO: Implement HandleSendingError in Node class
   }
 
-  void Node::SendRun(int64_t callId, std::string serviceName, json inputs, std::vector<core::Attachment*> attachments) {
-    core::Message* message = core::Message::RunMessage(callId, serviceName, inputs, attachments);
+  void Node::SendRun(int64_t callId, std::string serviceName, json inputs, std::vector<Attachment*> attachments) {
+    Message* message = Message::RunMessage(callId, serviceName, inputs, attachments);
     this->connection_->SendAsync(message);
   }
 
   void Node::SendCancel(int64_t callId) {
-    core::Message* message = core::Message::CancelMessage(callId);
+    Message* message = Message::CancelMessage(callId);
     this->connection_->SendAsync(message);
   }
 
-  void Node::SendResult(int64_t callId, json result, std::vector<core::Attachment*> attachments) {
-    core::Message* message = core::Message::ResultMessage(callId, result, attachments);
+  void Node::SendResult(int64_t callId, json result, std::vector<Attachment*> attachments) {
+    Message* message = Message::ResultMessage(callId, result, attachments);
     this->connection_->SendAsync(message);
   }
 
-  void Node::SendProgress(int64_t callId, int64_t percentage, std::vector<core::Attachment*> attachments, json intermediateResult) {
-    core::Message* message = core::Message::ProgressMessage(callId, percentage, attachments, intermediateResult);
+  void Node::SendProgress(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments, json intermediateResult) {
+    Message* message = Message::ProgressMessage(callId, percentage, attachments, intermediateResult);
     this->connection_->SendAsync(message);
   }
 
   void Node::SendError(int64_t callId, std::string error) {
-    core::Message* message = core::Message::ErrorMessage(callId, error);
+    Message* message = Message::ErrorMessage(callId, error);
     this->connection_->SendAsync(message);
   }
 }

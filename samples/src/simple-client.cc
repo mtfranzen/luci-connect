@@ -1,11 +1,11 @@
-#include "luciconnect/luciconnect.h"
+#include <luciconnect/luciconnect.h>
 
 INITIALIZE_EASYLOGGINGPP
 
 class SimpleClient: luciconnect::Node {
 
 public:
-  SimpleClient(std::shared_ptr<luciconnect::core::Connection> connection) : luciconnect::Node(connection) {}
+  SimpleClient(std::shared_ptr<luciconnect::Connection> connection) : luciconnect::Node(connection) {}
 
   void Run() {
     this->Connect();
@@ -22,22 +22,22 @@ public:
   bool waiting_for_result = true;
 
 protected:
-  void HandleResult(int64_t callId, json result, std::vector<luciconnect::core::Attachment*> attachments) {
+  void HandleResult(int64_t callId, json result, std::vector<luciconnect::Attachment*> attachments) {
     std::cout << result.dump() << std::endl;
     this->waiting_for_result = false;
   }
 
-  void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<luciconnect::core::Attachment*> attachments) {}
+  void HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<luciconnect::Attachment*> attachments) {}
 
   void HandleCancel(int64_t callId) {}
 
-  void HandleProgress(int64_t callId, int64_t percentage, std::vector<luciconnect::core::Attachment*> attachments, json intermediateResult) {}
+  void HandleProgress(int64_t callId, int64_t percentage, std::vector<luciconnect::Attachment*> attachments, json intermediateResult) {}
 
   void HandleError(int64_t callId, std::string error) {}
 };
 
 int main(int argc, char **argv) {
-  std::shared_ptr<luciconnect::core::Connection> connection = std::make_shared<luciconnect::core::Connection>("127.0.0.1", 7654);
+  std::shared_ptr<luciconnect::Connection> connection = std::make_shared<luciconnect::Connection>("127.0.0.1", 7654);
   SimpleClient* client = new SimpleClient(connection);
 
   client->Run();

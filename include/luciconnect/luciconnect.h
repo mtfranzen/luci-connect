@@ -1,11 +1,10 @@
 #ifndef luciconnect_LUCICONNECT_H
 #define luciconnect_LUCICONNECT_H
 
-#include "easylogging/src/easylogging++.h"
-#include "json/src/json.hpp"
-
-#include "luciconnect/core/connection.h"
-#include "luciconnect/core/message.h"
+#include "luciconnect/json/json.hpp"
+#include "luciconnect/easylogging/easylogging++.h"
+#include "luciconnect/connection.h"
+#include "luciconnect/message.h"
 #include "luciconnect/node.h"
 
 #endif

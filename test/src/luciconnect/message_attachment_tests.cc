@@ -1,11 +1,11 @@
-#include "luciconnect/core/message_tests.h"
+#include "luciconnect/message_tests.h"
 
 /**
 * Contains tests for constructing messages.
 */
 namespace {
   TEST_F(MessageTest, CreateCompleteAttachments) {
-    luciconnect::core::Attachment attachment = {
+    luciconnect::Attachment attachment = {
       5,
       "abcde",
       "float32 array",
@@ -14,20 +14,20 @@ namespace {
   }
 
   TEST_F(MessageTest, CreateIncompleteAttachment) {
-      luciconnect::core::Attachment atc1(5, "abcde");
+      luciconnect::Attachment atc1(5, "abcde");
   }
 
   TEST_F(MessageTest, CompareCompleteAttachments) {
-    luciconnect::core::Attachment atc1(5, "abcde", "format", "name");
-    luciconnect::core::Attachment atc2(5, "abcde", "format", "name");
-    luciconnect::core::Attachment atc3(5, "edcba", "format", "name");
-    luciconnect::core::Attachment atc4(5, "edcba", "format", "name");
-    luciconnect::core::Attachment atc5(5, "edcba", "tamrof", "name");
-    luciconnect::core::Attachment atc6(5, "edcba", "tamrof", "name");
-    luciconnect::core::Attachment atc7(5, "edcba", "tamrof", "eman");
-    luciconnect::core::Attachment atc8(5, "edcba", "tamrof", "eman");
-    luciconnect::core::Attachment atc9(6, "edcba1", "tamrof", "eman");
-    luciconnect::core::Attachment atc10(6, "edcba1", "tamrof", "eman");
+    luciconnect::Attachment atc1(5, "abcde", "format", "name");
+    luciconnect::Attachment atc2(5, "abcde", "format", "name");
+    luciconnect::Attachment atc3(5, "edcba", "format", "name");
+    luciconnect::Attachment atc4(5, "edcba", "format", "name");
+    luciconnect::Attachment atc5(5, "edcba", "tamrof", "name");
+    luciconnect::Attachment atc6(5, "edcba", "tamrof", "name");
+    luciconnect::Attachment atc7(5, "edcba", "tamrof", "eman");
+    luciconnect::Attachment atc8(5, "edcba", "tamrof", "eman");
+    luciconnect::Attachment atc9(6, "edcba1", "tamrof", "eman");
+    luciconnect::Attachment atc10(6, "edcba1", "tamrof", "eman");
 
     ASSERT_EQ(atc1, atc2);
     ASSERT_NE(atc2, atc3);
@@ -41,10 +41,10 @@ namespace {
   }
 
   TEST_F(MessageTest, CompareIncompleteAttachments) {
-    luciconnect::core::Attachment atc1(5, "abcde");
-    luciconnect::core::Attachment atc2(5, "abcde");
-    luciconnect::core::Attachment atc3(5, "edfba");
-    luciconnect::core::Attachment atc4(6, "abcdef");
+    luciconnect::Attachment atc1(5, "abcde");
+    luciconnect::Attachment atc2(5, "abcde");
+    luciconnect::Attachment atc3(5, "edfba");
+    luciconnect::Attachment atc4(6, "abcdef");
 
     ASSERT_EQ(atc1, atc2);
     ASSERT_NE(atc2, atc3);
@@ -52,28 +52,28 @@ namespace {
   }
 
   TEST_F(MessageTest, ChangeAttachment) {
-    luciconnect::core::Attachment attachment = {5, "Test1"};
+    luciconnect::Attachment attachment = {5, "Test1"};
     attachment.data = "Test2";
 
     ASSERT_EQ(attachment.data, "Test2");
   }
 
   TEST_F(MessageTest, AddCompleteAttachmentWithoutHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde", "format", "name");
-    luciconnect::core::Message* message = new luciconnect::core::Message(simple_header_);
+    luciconnect::Attachment atc1(5, "abcde", "format", "name");
+    luciconnect::Message* message = new luciconnect::Message(simple_header_);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddIncompleteAttachmentWithoutHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde");
-    luciconnect::core::Message* message = new luciconnect::core::Message(simple_header_);
+    luciconnect::Attachment atc1(5, "abcde");
+    luciconnect::Message* message = new luciconnect::Message(simple_header_);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddCompleteAttachmentWithHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde", "format", "atc1");
+    luciconnect::Attachment atc1(5, "abcde", "format", "atc1");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -88,13 +88,13 @@ namespace {
         {"format", "format"}
       }}
     };
-    luciconnect::core::Message* message = new luciconnect::core::Message(header);
+    luciconnect::Message* message = new luciconnect::Message(header);
     message->AddAttachment(&atc1);
     ASSERT_EQ(atc1, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddIncompleteAttachmentWithHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde");
+    luciconnect::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -109,16 +109,16 @@ namespace {
           {"format", "format"}
       }}
     };
-    luciconnect::core::Message* message = new luciconnect::core::Message(header);
+    luciconnect::Message* message = new luciconnect::Message(header);
     message->AddAttachment(&atc1);
 
-    luciconnect::core::Attachment atc2(5, "abcde", "format", "atc1");
-    luciconnect::core::Attachment atc1p = *message->GetAttachment(0);
+    luciconnect::Attachment atc2(5, "abcde", "format", "atc1");
+    luciconnect::Attachment atc1p = *message->GetAttachment(0);
     ASSERT_EQ(atc2, *message->GetAttachment(0));
   }
 
   TEST_F(MessageTest, AddAttachmentWrongChecksumInHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde");
+    luciconnect::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -133,12 +133,12 @@ namespace {
           {"format", "format"}
       }}
     };
-    luciconnect::core::Message* message = new luciconnect::core::Message(header);
+    luciconnect::Message* message = new luciconnect::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
   }
 
   TEST_F(MessageTest, AddAttachmentWrongLengthInHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde");
+    luciconnect::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -153,12 +153,12 @@ namespace {
           {"format", "format"}
       }}
     };
-    luciconnect::core::Message* message = new luciconnect::core::Message(header);
+    luciconnect::Message* message = new luciconnect::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
   }
 
   TEST_F(MessageTest, AddAttachmentIncompleteHeader) {
-    luciconnect::core::Attachment atc1(5, "abcde");
+    luciconnect::Attachment atc1(5, "abcde");
     json header = {
       {"run", "test.Randomly"},
       {"test", {0,1,2}},
@@ -170,33 +170,33 @@ namespace {
       }}
     };
 
-    luciconnect::core::Message* message = new luciconnect::core::Message(header);
+    luciconnect::Message* message = new luciconnect::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["name"] = "atc1";
-    message = new luciconnect::core::Message(header);
+    message = new luciconnect::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["format"] = "format";
-    message = new luciconnect::core::Message(header);
+    message = new luciconnect::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["attachment"]["length"] = 5;
-    message = new luciconnect::core::Message(header);
+    message = new luciconnect::Message(header);
     ASSERT_ANY_THROW(message->AddAttachment(&atc1));
 
     header["atc1"]["attachment"]["checksum"] = "ab56b4d92b40713acc5af89985d4b786";
-    message = new luciconnect::core::Message(header);
+    message = new luciconnect::Message(header);
     message->AddAttachment(&atc1);
   }
 
   TEST_F(MessageTest, AddMultipleAttachments) {
-    luciconnect::core::Message* message = new luciconnect::core::Message(simple_header_);
-    std::vector<luciconnect::core::Attachment*> attachments;
+    luciconnect::Message* message = new luciconnect::Message(simple_header_);
+    std::vector<luciconnect::Attachment*> attachments;
 
     size_t N = 64;
     for (size_t i = 0; i < N; i++) {
-      luciconnect::core::Attachment attachment(5, "abcde");
+      luciconnect::Attachment attachment(5, "abcde");
       attachments.push_back(&attachment);
       message->AddAttachment(&attachment);
     }

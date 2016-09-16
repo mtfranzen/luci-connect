@@ -21,16 +21,16 @@ class ConnectionTest : public ::testing::Test {
   }
 
   virtual void SetUp() {
-    //connection = new luciconnect::core::Connection("127.0.0.1", 7654);
-    connection = std::make_shared<luciconnect::core::Connection>("127.0.0.1", 7654);
+    //connection = new luciconnect::Connection("127.0.0.1", 7654);
+    connection = std::make_shared<luciconnect::Connection>("127.0.0.1", 7654);
   }
 
   virtual void TearDown() {
   }
 
   json simple_header_;
-  //luciconnect::core::Connection* connection;
-  std::shared_ptr<luciconnect::core::Connection> connection;
+  //luciconnect::Connection* connection;
+  std::shared_ptr<luciconnect::Connection> connection;
 };
 
 #endif

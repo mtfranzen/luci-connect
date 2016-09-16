@@ -1,8 +1,8 @@
 #ifndef luciconnect_NODE_H_
 #define luciconnect_NODE_H_
 
-#include "core/connection.h"
-#include "core/message.h"
+#include "connection.h"
+#include "message.h"
 
 using std::placeholders::_1;
 using std::placeholders::_2;
@@ -28,7 +28,7 @@ namespace luciconnect {
     /**
     * Initializes the node. Call Node::Connect() to connect to the server.
     */
-    Node(std::shared_ptr<core::Connection> connection);
+    Node(std::shared_ptr<Connection> connection);
 
     /**
     * Starts the node. This is a required method for a service or client
@@ -40,7 +40,7 @@ namespace luciconnect {
     /**
     * A reference to the Luci connection.
     */
-    std::shared_ptr<core::Connection> connection_;
+    std::shared_ptr<Connection> connection_;
 
     /**
     * Opens the connection to the Luci server
@@ -55,7 +55,7 @@ namespace luciconnect {
     /**
     * Sends a run message to the connected Luci instance.
     */
-    void SendRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<core::Attachment*> attachments = {});
+    void SendRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<Attachment*> attachments = {});
 
     /**
     * Sends a cancel message to the connected Luci instance.
@@ -65,12 +65,12 @@ namespace luciconnect {
     /**
     * Sends a result message to the connected Luci instance.
     */
-    void SendResult(int64_t callId, json result, std::vector<core::Attachment*> attachments = {});
+    void SendResult(int64_t callId, json result, std::vector<Attachment*> attachments = {});
 
     /**
     * Sends a progress message to the connected Luci instance.
     */
-    void SendProgress(int64_t callId, int64_t percentage, std::vector<core::Attachment*> attachments = {}, json intermediateResult = {});
+    void SendProgress(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments = {}, json intermediateResult = {});
 
     /**
     * Sends an error message to the connected Luci instance.
@@ -81,7 +81,7 @@ namespace luciconnect {
     * Called when a **run** message has been received. This is a required method
     * for a service or client implementation!
     */
-    virtual void HandleRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<core::Attachment*> attachments = {}) = 0;
+    virtual void HandleRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<Attachment*> attachments = {}) = 0;
 
     /**
     * Called when a **cancel** message has been received. This is a required method
@@ -94,13 +94,13 @@ namespace luciconnect {
     * Called when a **result** message has been received. This is a required method
     * for a service or client implementation!
     */
-    virtual void HandleResult(int64_t callId, json result, std::vector<core::Attachment*> attachments = {}) = 0;
+    virtual void HandleResult(int64_t callId, json result, std::vector<Attachment*> attachments = {}) = 0;
 
     /**
     * Called when a **progress** message has been received. This is a required method
     * for a service or client implementation!
     */
-    virtual void HandleProgress(int64_t callId, int64_t percentage, std::vector<core::Attachment*> attachments = {}, json intermediateResult = {}) = 0;
+    virtual void HandleProgress(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments = {}, json intermediateResult = {}) = 0;
 
     /**
     * Called when an **error** message has been received. This is a required method
@@ -109,15 +109,15 @@ namespace luciconnect {
     virtual void HandleError(int64_t callId, std::string error) = 0;
 
   private:
-    friend class core::Connection;
+    friend class Connection;
 
-    void HandleReceived(core::Message message);
+    void HandleReceived(Message message);
 
-    void HandleSent(core::Message message);
+    void HandleSent(Message message);
 
-    void HandleReceivingError(core::Connection::ReceivingError error);
+    void HandleReceivingError(Connection::ReceivingError error);
 
-    void HandleSendingError(core::Message message, core::Connection::SendingError error);
+    void HandleSendingError(Message message, Connection::SendingError error);
   };
 }
 

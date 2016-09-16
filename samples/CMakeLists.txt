@@ -14,11 +14,9 @@ set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 find_package(Threads REQUIRED)
 
 # Headers
-include_directories (${CMAKE_SOURCE_DIR}/../include)
 include_directories (${THREADS_INCLUDE_DIR})
 
 # Linker
-link_directories (${CMAKE_SOURCE_DIR}/../lib)
 link_libraries (luciconnect)
 
 if (WIN32)

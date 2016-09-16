@@ -53,8 +53,8 @@ set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DELPP_DISABLE_LOGS")
 # Library files
 add_library(luciconnect SHARED
   "${CMAKE_SOURCE_DIR}/src/node.cc"
-  "${CMAKE_SOURCE_DIR}/src/core/connection.cc"
-  "${CMAKE_SOURCE_DIR}/src/core/message.cc"
+  "${CMAKE_SOURCE_DIR}/src/connection.cc"
+  "${CMAKE_SOURCE_DIR}/src/message.cc"
   "${CMAKE_SOURCE_DIR}/src/md5/md5.cc")
 
 # Testing
@@ -63,10 +63,10 @@ if (GTEST_FOUND)
   add_executable(
     tests
     "${CMAKE_SOURCE_DIR}/test/src/main.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/message_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/message_attachment_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/connection_establish_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/core/connection_send_tests.cc"
+    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/message_tests.cc"
+    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/message_attachment_tests.cc"
+    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/connection_establish_tests.cc"
+    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/connection_send_tests.cc"
     "${CMAKE_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
   )
 
@@ -79,4 +79,6 @@ endif (GTEST_FOUND)
 
 # Installation
 install(DIRECTORY include/luciconnect DESTINATION /usr/include)
+install(FILES include/easylogging/src/easylogging++.h DESTINATION /usr/include/luciconnect/easylogging)
+install(FILES include/json/src/json.hpp DESTINATION /usr/include/luciconnect/json)
 install(TARGETS luciconnect DESTINATION /usr/lib)
