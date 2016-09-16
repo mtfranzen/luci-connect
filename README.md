@@ -1,4 +1,6 @@
 ## Linux
+
+### Build
 1. Clone the repository including submodules using the `--recursive` tag:
 ```
 git clone --recursive https://github.com/mtfranzen/luci-connect.git
@@ -10,6 +12,10 @@ git clone --recursive https://github.com/mtfranzen/luci-connect.git
  * *g++*
 
 3. Run `cmake CMakeLists.txt && make`
+
+### Install
+
+To install the library system-wide run `make install`.
 
 ### Tests
 1. Run `helen` or `luci`

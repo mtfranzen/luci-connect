@@ -76,3 +76,7 @@ if (GTEST_FOUND)
   include_directories (${PROJECT_SOURCE_DIR}/test/include)
   include_directories (${GTEST_INCLUDE_DIRS})
 endif (GTEST_FOUND)
+
+# Installation
+install(DIRECTORY include/luciconnect DESTINATION /usr/include)
+install(TARGETS luciconnect DESTINATION /usr/lib)
