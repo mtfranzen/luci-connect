@@ -25,7 +25,8 @@ Afterwards, run CMake and choose the cloned repository as source directory.
  * *doxygen*
 2. Run:
 ```
-doxygen doc/Doxyfile```
+doxygen doc/Doxyfile
+```
 
 # Examples
 1. Start `helen` or `luci`
