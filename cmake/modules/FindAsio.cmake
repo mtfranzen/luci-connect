@@ -1,5 +1,7 @@
 if (WIN32)
-  #TODO: Find asio on Windows
+  find_package(Boost REQUIRED)
+  set (ASIO_INCLUDE_DIR "${BOOST_INCLUDE_DIR}/asio")
+  set (ASIO_LIBRARY ${ASIO_INCLUDE_DIR})
 else (WIN32)
   find_path (ASIO_INCLUDE_DIR NAMES asio HINTS "/usr/include" "/usr/local/include" "/opt/local/include")
   set (ASIO_LIBRARY ${ASIO_INCLUDE_DIR})
