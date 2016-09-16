@@ -1,30 +1,33 @@
-## Linux
-
-### Build
-1. Clone the repository including submodules using the `--recursive` tag:
+# Installation
+To install luciconnect, clone the repository including submodules using the `--recursive` tag:
 ```
 git clone --recursive https://github.com/mtfranzen/luci-connect.git
 ```
-2. Install the following requirements:
+
+## Linux
+Install the following requirements and run `cmake CMakeLists.txt && sudo make install`
  * *cmake*
  * *make*
  * *libasio-dev*
  * *g++*
 
-3. Run `cmake CMakeLists.txt && make`
+## Windows
+The easiest way to get things running on Windows is to install
+  * Visual C++
+  * CMake
+  * [Boost](https://sourceforge.net/projects/boost/files/boost-binaries/)
 
-### Install
+Afterwards, run CMake and choose the cloned repository as source directory.
 
-To install the library system-wide run `make install`.
+# Documentation
+1. Install the following requirements:
+ * *graphviz*
+ * *doxygen*
+2. Run:
+```
+doxygen doc/Doxyfile```
 
-### Tests
-1. Run `helen` or `luci`
-2. Install the following requirements:
- * *libgtest-dev* (you need to compile from source and place the binaries in /usr/lib)
-3. Run `./bin/tests`
-
-### Examples
-
+# Examples
 1. Start `helen` or `luci`
 2. Build the samples
 ```
@@ -33,15 +36,8 @@ cmake samples/CMakeLists.txt && (cd samples && make)
 3. Run the sample service `samples/bin/simple-service` to register an example service that adds two numbers delivered by some client via Luci
 4. Run the sample client `samples/bin/simple-client <number1> <number2>` in a third terminal to sum up the two arguments.
 
-### Documentation
-1. Install the following requirements:
- * *graphviz*
- * *doxygen*
-2. Run:
-```
-doxygen doc/Doxyfile
-```
-
-## Windows / Mac
-
-The project should compile on Windows and Mac as well with VS / XCode after running `cmake CMakeLists.txt`.
+# Tests
+1. Run `helen` or `luci`
+2. Install the following requirements:
+ * *libgtest-dev*
+3. Run `./bin/tests`

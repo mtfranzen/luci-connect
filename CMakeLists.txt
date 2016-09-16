@@ -15,8 +15,14 @@ set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 # Requirements
 find_package(Threads REQUIRED)
-find_package(Asio REQUIRED)
 find_package(GTest)
+
+if (WIN32)
+  find_package(Boost REQUIRED)
+  set (ASIO_INCLUDE_DIR "${BOOST_INCLUDE_DIR}/asio")
+else (WIN32)
+  find_package(Asio REQUIRED)
+endif (WIN32)
 
 # Headers
 include_directories (${CMAKE_SOURCE_DIR}/include)
