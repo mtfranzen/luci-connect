@@ -81,8 +81,10 @@ if (GTEST_FOUND)
   include_directories (${GTEST_INCLUDE_DIRS})
 endif (GTEST_FOUND)
 
+# Copy files to include-directory
+file(COPY include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
+file(COPY include/json/src/json.hpp DESTINATION include/luciconnect/json)
+
 # Installation
 install(DIRECTORY include/luciconnect DESTINATION /usr/include)
-install(FILES include/easylogging/src/easylogging++.h DESTINATION /usr/include/luciconnect/easylogging)
-install(FILES include/json/src/json.hpp DESTINATION /usr/include/luciconnect/json)
 install(TARGETS luciconnect DESTINATION /usr/lib)
