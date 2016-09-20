@@ -9,4 +9,4 @@ endif (WIN32)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Asio DEFAULT_MSG ASIO_LIBRARY ASIO_INCLUDE_DIR)
-mark_as_advanced(VULKAN_INCLUDE_DIR VULKAN_LIBRARY)
+mark_as_advanced(ASIO_INCLUDE_DIR ASIO_LIBRARY)

@@ -2,6 +2,11 @@ logs
 bin
 lib
 
+# CPack
+CPack*
+_CPack_Packages
+*.deb
+
 # Compiled Object files
 *.slo
 *.lo

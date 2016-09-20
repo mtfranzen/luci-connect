@@ -1,6 +1,8 @@
 # Installation
-## Dependencies
-To install Luciconnect on Windows or Debian/Ubuntu, choose one of the available [release binaries](https://github.com/mtfranzen/luci-connect/releases) or [build the project from source](#Building_from_source). Note that [Asio](http://www.think-async.com) needs to be installed which is shipped as standalone (libasio-dev) **or** via boost (libboost-dev).
+To install Luciconnect on Windows or Debian/Ubuntu, choose one of the available [release binaries](https://github.com/mtfranzen/luci-connect/releases).
+
+## Dependencies:
+ * [Asio](http://www.think-async.com) - Either by installing the standalone version or using the boost-libraries.
 
 # Build from Source
 The project can be compiled on both Linux and Windows using CMake and the respective build system such as *make* or *Visual++*
