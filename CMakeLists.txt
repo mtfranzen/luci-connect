@@ -8,8 +8,8 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
 # Project
 project(luci-connect)
-set (VERSION_MAJOR 1)
-set (VERSION_MINOR 0)
+set (VERSION_MAJOR 0)
+set (VERSION_MINOR 1)
 set (VERSION_PATCH 0)
 set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
@@ -85,6 +85,33 @@ endif (GTEST_FOUND)
 file(COPY include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
 file(COPY include/json/src/json.hpp DESTINATION include/luciconnect/json)
 
-# Installation
-install(DIRECTORY include/luciconnect DESTINATION /usr/include)
-install(TARGETS luciconnect DESTINATION /usr/lib)
+install(DIRECTORY include/luciconnect DESTINATION include COMPONENT headers)
+install(TARGETS luciconnect DESTINATION lib COMPONENT libraries)
+
+# Packaging
+include (InstallRequiredSystemLibraries)
+set (CPACK_PACKAGE_CONTACT "franzen@arch.ethz.ch")
+set (CPACK_PACKAGE_MAINTAINER "Michael Franzen <franzen@arch.ethz.ch>")
+set (CPACK_PACKAGE_NAME "libluciconnect-dev")
+set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Library and C++-Header files to develop services and clients for Luci" )
+set (CPACK_COMPONENTS_ALL libraries headers)
+set (CPACK_COMPONENT_LIBRARIES_DISPLAY_NAME "Library")
+set (CPACK_COMPONENT_LIBRARIES_DESCRIPTION "Shared Library for Luciconnect")
+set (CPACK_COMPONENT_HEADERS_DISPLAY_NAME "C++ Headers")
+set (CPACK_COMPONENT_HEADERS_DESCRIPTION "C++ Headers for Luciconnect")
+set (CPACK_COMPONENT_HEADERS_DEPENDS libraries)
+set (CPACK_COMPONENT_LIBRARIES_GROUP "Development")
+set (CPACK_COMPONENT_HEADERS_GROUP "Development")
+set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set (CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
+set (CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
+set (CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
+
+if (WIN32)
+  set (CPACK_NSIS_MODIFY_PATH ON)
+  set (CPACK_GENERATOR "NSIS")
+else (WIN32)
+  set (CPACK_GENERATOR "DEB")
+endif (WIN32)
+
+include (CPack)

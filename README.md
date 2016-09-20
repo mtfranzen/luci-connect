@@ -1,44 +1,16 @@
 # Installation
-To install luciconnect, clone the repository including submodules using the `--recursive` tag:
-```
-git clone --recursive https://github.com/mtfranzen/luci-connect.git
-```
+## Dependencies
+To install Luciconnect on Windows or Debian/Ubuntu, choose one of the available [release binaries](https://github.com/mtfranzen/luci-connect/releases) or [build the project from source](#Building_from_source). Note that [Asio](http://www.think-async.com) needs to be installed which is shipped as standalone (libasio-dev) **or** via boost (libboost-dev).
 
-## Linux
-Install the following requirements and run `cmake CMakeLists.txt && sudo make install`
- * *cmake*
- * *make*
- * *libasio-dev*
- * *g++*
+# Build from Source
+The project can be compiled on both Linux and Windows using CMake and the respective build system such as *make* or *Visual++*
 
-## Windows
-The easiest way to get things running on Windows is to install
-  * Visual C++
-  * CMake
-  * [Boost](https://sourceforge.net/projects/boost/files/boost-binaries/)
+## Documentation
+The documentation can be generated using Doxygen.
 
-Afterwards, run CMake and choose the cloned repository as source directory.
+## Tests
+The tests depend on [GTest](https://github.com/google/googletest). To run the tests after compiling, execute the binary `bin/tests` after startin *Helen* or *Luci*.
 
-# Documentation
-1. Install the following requirements:
- * *graphviz*
- * *doxygen*
-2. Run:
-```
-doxygen doc/Doxyfile
-```
 
-# Examples
-1. Start `helen` or `luci`
-2. Build the samples
-```
-cmake samples/CMakeLists.txt && (cd samples && make)
-```
-3. Run the sample service `samples/bin/simple-service` to register an example service that adds two numbers delivered by some client via Luci
-4. Run the sample client `samples/bin/simple-client <number1> <number2>` in a third terminal to sum up the two arguments.
-
-# Tests
-1. Run `helen` or `luci`
-2. Install the following requirements:
- * *libgtest-dev*
-3. Run `./bin/tests`
+## Examples
+Compile the samples in the `samples/` folder. The binary  `samples/bin/simple-service` registers a simple service for adding two numbers provided by a client. A client can be  such as the binary `samples/bin/simple-client <number1> <number2>`. Not that an instance of *Helen* or *Luci* must be running.
