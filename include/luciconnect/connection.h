@@ -14,6 +14,7 @@
 #include <thread>
 #include <mutex>
 #include <chrono> // for sleeping
+#include <atomic>
 
 using json = nlohmann::json;
 
