@@ -4,8 +4,8 @@
 #include "luciconnect/json/json.hpp"
 #include "luciconnect/easylogging/easylogging++.h"
 #include "luciconnect/message.h"
+#include "luciconnect/asio.h"
 
-#include <asio.hpp>
 #include <vector>
 #include <string>
 #include <algorithm> // std::reverse

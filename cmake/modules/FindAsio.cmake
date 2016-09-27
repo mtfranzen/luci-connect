@@ -1,12 +1,25 @@
-if (WIN32)
-  find_package(Boost REQUIRED)
-  set (ASIO_INCLUDE_DIR "${Boost_INCLUDE_DIR}")
-  set (ASIO_LIBRARY ${ASIO_INCLUDE_DIR})
-else (WIN32)
-  find_path (ASIO_INCLUDE_DIR NAMES asio HINTS "/usr/include" "/usr/local/include" "/opt/local/include")
-  set (ASIO_LIBRARY ${ASIO_INCLUDE_DIR})
-endif (WIN32)
+if (NOT ASIO_FOUND)
+	# Try standalone Asio first
+	find_path (ASIO_INCLUDE_DIR NAMES asio HINTS "/usr/include" "/usr/local/include" "/opt/local/include")
 
-include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(Asio DEFAULT_MSG ASIO_LIBRARY ASIO_INCLUDE_DIR)
-mark_as_advanced(ASIO_INCLUDE_DIR ASIO_LIBRARY)
+	if (NOT ASIO_INCLUDE_DIR)
+	  # Try Boost.Asio
+	  find_package(Boost COMPONENTS system REQUIRED)
+	  set (ASIO_STANDALONE FALSE)
+	else()
+	  set (ASIO_STANDALONE TRUE)
+	endif()
+
+	if (ASIO_STANDALONE)
+		add_library(asio INTERFACE IMPORTED)
+		set_target_properties(asio PROPERTIES
+			INTERFACE_INCLUDE_DIRECTORIES ${ASIO_INCLUDE_DIR}
+		)
+	else()
+		add_library(asio INTERFACE IMPORTED)
+		set_target_properties(asio PROPERTIES
+			INTERFACE_INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
+			INTERFACE_LINK_LIBRARIES ${Boost_SYSTEM_LIBRARY}
+		)
+	endif()
+endif()

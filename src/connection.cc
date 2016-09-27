@@ -1,5 +1,7 @@
 #include "luciconnect/connection.h"
 
+#include <boost/asio/connect.hpp>
+
 using std::placeholders::_1;
 using std::placeholders::_2;
 
