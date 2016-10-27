@@ -79,6 +79,8 @@ if (GTEST_FOUND)
 
   include_directories (${PROJECT_SOURCE_DIR}/test/include)
   include_directories (${GTEST_INCLUDE_DIRS})
+else (GTEST_FOUND)
+  message(WARNING "Not compiling tests")
 endif (GTEST_FOUND)
 
 # Copy files to include-directory
