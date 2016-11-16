@@ -199,6 +199,7 @@ namespace luciconnect {
     // Low-Level send functions
     void SendString(std::string data);
     void SendInt64(int64_t data);
+    void SendBinary(const char* data, size_t size);
     void SendBuffer(asio::const_buffers_1 data);
 
     // Low-Level receive functions

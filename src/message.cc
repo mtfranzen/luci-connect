@@ -61,7 +61,7 @@ namespace luciconnect {
     std::string md5sum = md5(attachment->data, attachment->size);
 
     bool attachment_header_missing = true;
-    for (json element : this->header_) {
+    for (json element : this->header_["result"]) {
       if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {
           if (element.count("format") == 0  || element.count("name") == 0) {
             LOG(ERROR) << "Attachment header is incomplete";
@@ -101,7 +101,7 @@ namespace luciconnect {
       };
       attachmentjson["name"] = attachment->name;
 
-      this->header_[attachment->name] = attachmentjson;
+      this->header_["result"][attachment->name] = attachmentjson;
     }
 
     this->attachments_.push_back(attachment);

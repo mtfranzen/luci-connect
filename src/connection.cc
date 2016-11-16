@@ -233,10 +233,8 @@ namespace luciconnect {
   }
 
   void Connection::SendAttachment(Message* message, size_t index) {
-    std::string attachment(message->GetAttachment(index)->data);
-
     LOG(DEBUG) << "Sending attachment #" << std::to_string(index+1);
-    this->SendString(attachment);
+    this->SendBinary(message->GetAttachment(index)->data, message->GetAttachment(index)->size);
   }
 
   void Connection::SendInt64(int64_t data) {
@@ -253,6 +251,10 @@ namespace luciconnect {
   void Connection::SendString(std::string data) {
     const char* c_data = data.c_str();
     this->SendBuffer(asio::buffer(c_data, data.size()));
+  }
+
+  void Connection::SendBinary(const char* data, size_t size) {
+    this->SendBuffer(asio::buffer(data, size));
   }
 
   void Connection::SendBuffer(asio::const_buffers_1 data) {
