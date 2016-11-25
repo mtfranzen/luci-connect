@@ -20,7 +20,6 @@ find_package(GTest)
 
 # Headers
 include_directories (${CMAKE_SOURCE_DIR}/include)
-include_directories (${ASIO_INCLUDE_DIR})
 
 if(THREADS_HAVE_PTHREAD_ARG)
   compile_options(PUBLIC"-pthread")
@@ -42,7 +41,9 @@ endif()
 
 # Compiler
 set (CMAKE_CXX_STANDARD 11)
-add_definitions(-DASIO_STANDALONE)
+if (ASIO_STANDALONE)
+  add_definitions(-DASIO_STANDALONE=1)
+endif()
 add_definitions(-DELPP_THREAD_SAFE)
 add_definitions(-DELPP_DISABLE_DEFAULT_CRASH_HANDLING)
 add_definitions(-Wall)
@@ -60,6 +61,7 @@ add_library(luciconnect SHARED
   "${CMAKE_SOURCE_DIR}/src/connection.cc"
   "${CMAKE_SOURCE_DIR}/src/message.cc"
   "${CMAKE_SOURCE_DIR}/src/md5/md5.cc")
+target_link_libraries(luciconnect PUBLIC asio)
 
 # Testing
 if (GTEST_FOUND)
