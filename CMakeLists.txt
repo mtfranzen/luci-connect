@@ -1,10 +1,10 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 3.1)
 
 # CMAKE
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
-set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
-set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 # Project
 project(luci-connect)
@@ -19,7 +19,7 @@ find_package(Asio REQUIRED)
 find_package(GTest)
 
 # Headers
-include_directories (${CMAKE_SOURCE_DIR}/include)
+include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 if(THREADS_HAVE_PTHREAD_ARG)
   compile_options(PUBLIC"-pthread")
@@ -30,7 +30,7 @@ if(CMAKE_THREAD_LIBS_INIT)
 endif()
 
 # Linker
-link_directories (${CMAKE_SOURCE_DIR}/lib)
+link_directories (${CMAKE_CURRENT_SOURCE_DIR}/lib)
 if(THREADS_HAVE_PTHREAD_ARG)
   compile_options(PUBLIC"-pthread")
 endif()
@@ -57,10 +57,10 @@ endif()
 
 # Library files
 add_library(luciconnect SHARED
-  "${CMAKE_SOURCE_DIR}/src/node.cc"
-  "${CMAKE_SOURCE_DIR}/src/connection.cc"
-  "${CMAKE_SOURCE_DIR}/src/message.cc"
-  "${CMAKE_SOURCE_DIR}/src/md5/md5.cc")
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/node.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/connection.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/message.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/md5/md5.cc")
 target_link_libraries(luciconnect PUBLIC asio)
 
 # Testing
@@ -68,12 +68,12 @@ if (GTEST_FOUND)
   enable_testing()
   add_executable(
     tests
-    "${CMAKE_SOURCE_DIR}/test/src/main.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/message_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/message_attachment_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/connection_establish_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/connection_send_tests.cc"
-    "${CMAKE_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/main.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/message_tests.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/message_attachment_tests.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/connection_establish_tests.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/connection_send_tests.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
   )
 
   target_link_libraries(tests ${GTEST_BOTH_LIBRARIES})
@@ -86,10 +86,10 @@ else (GTEST_FOUND)
 endif (GTEST_FOUND)
 
 # Copy files to include-directory
-file(COPY include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
-file(COPY include/json/src/json.hpp DESTINATION include/luciconnect/json)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/json/src/json.hpp DESTINATION include/luciconnect/json)
 
-install(DIRECTORY include/luciconnect DESTINATION include COMPONENT headers)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/luciconnect DESTINATION include COMPONENT headers)
 install(TARGETS luciconnect DESTINATION lib COMPONENT libraries)
 
 # Packaging

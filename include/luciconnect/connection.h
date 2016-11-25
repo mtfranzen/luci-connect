@@ -6,6 +6,10 @@
 #include "luciconnect/message.h"
 #include "luciconnect/asio.h"
 
+#ifndef ASIO_STANDALONE
+#include <boost/asio/connect.hpp>
+#endif
+
 #include <vector>
 #include <string>
 #include <algorithm> // std::reverse
