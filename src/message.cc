@@ -135,7 +135,8 @@ namespace luciconnect {
   }
 
   bool Message::ValidateHeader() {
-    if (this->header_.count("callID") != 1) {
+    // callID-check currently not enforced for error messages => handling also doesn't work! // TODO
+    if (this->header_.count("error") == 0 && this->header_.count("callID") != 1) {
       LOG(WARNING) << "Message does not contain a callID.";
       return false;
     }
