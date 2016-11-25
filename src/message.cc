@@ -60,8 +60,13 @@ namespace luciconnect {
     MD5 md5;
     std::string md5sum = md5(attachment->data, attachment->size);
 
+    // Attachments are only for result-messages in the "result" dicitionary,
+    // other wise on root level.
+    json base_element = this->header_;
+    if (this->header_.count("result") > 0) base_element = this->header_["result"];
+
     bool attachment_header_missing = true;
-    for (json element : this->header_["result"]) {
+    for (json element : base_element) {
       if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {
           if (element.count("format") == 0  || element.count("name") == 0) {
             LOG(ERROR) << "Attachment header is incomplete";
@@ -101,7 +106,14 @@ namespace luciconnect {
       };
       attachmentjson["name"] = attachment->name;
 
-      this->header_["result"][attachment->name] = attachmentjson;
+      base_element[attachment->name] = attachmentjson;
+    }
+
+    if (this->header_.count("result") > 0) {
+      this->header_["result"] = base_element;
+    }
+    else {
+      this->header_ = base_element;
     }
 
     this->attachments_.push_back(attachment);

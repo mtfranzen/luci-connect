@@ -363,10 +363,8 @@ namespace luciconnect {
       LOG(ERROR) << "An error occured while reading attachment data.";
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
-
-    size_t attachment_size = this->ParseInt64(this->recv_buf_attachment_size_);
-    const char* attachment_data = this->ParseString(this->recv_buf_attachment_data_).c_str();
-    Attachment attachment = {attachment_size, attachment_data};
+    
+    Attachment attachment = {this->recv_buf_attachment_data_.size(), this->recv_buf_attachment_data_.data()};
     this->recv_message_->AddAttachment(&attachment);
 
     if (this->recv_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->recv_buf_num_attachments_)) {
