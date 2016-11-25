@@ -165,6 +165,7 @@ namespace luciconnect {
     }
 
     // run registered delegates
+    LOG(INFO) << "Delegating message to nodes.";
     for (std::function<void(Message)> handler : this->receive_handlers_)
       handler(*message);
 
@@ -363,7 +364,7 @@ namespace luciconnect {
       LOG(ERROR) << "An error occured while reading attachment data.";
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
-    
+
     Attachment attachment = {this->recv_buf_attachment_data_.size(), this->recv_buf_attachment_data_.data()};
     this->recv_message_->AddAttachment(&attachment);
 
