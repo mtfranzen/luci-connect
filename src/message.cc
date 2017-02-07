@@ -66,9 +66,11 @@ namespace luciconnect {
     if (this->header_.count("result") > 0) base_element = this->header_["result"];
 
     bool attachment_header_missing = true;
-    for (json element : base_element) {
+    for (json::iterator it = base_element.begin(); it != base_element.end(); ++it) {
+      json element = it.value();
+      std::string element_name = it.key();
       if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {
-          if (element.count("format") == 0  || element.count("name") == 0) {
+          if (element.count("format") == 0) {
             LOG(ERROR) << "Attachment header is incomplete";
             throw "Attachment header is incomplete";
           }
@@ -91,7 +93,7 @@ namespace luciconnect {
 
           attachment_header_missing = false;
           attachment->format = element["format"];
-          attachment->name = element["name"];
+          attachment->name = element_name;
       }
     }
 
