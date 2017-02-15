@@ -48,6 +48,10 @@ add_definitions(-DELPP_THREAD_SAFE)
 add_definitions(-DELPP_DISABLE_DEFAULT_CRASH_HANDLING)
 add_definitions(-Wall)
 
+if (WIN32)
+   add_definitions(-DELPP_EXPORT)
+endif (WIN32)
+
 # Release Flags
 if (WIN32)
   set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /DELPP_DISABLE_LOGS")
