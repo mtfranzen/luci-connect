@@ -2,7 +2,6 @@
 #define luciconnect_MESSAGE_H
 
 #include "luciconnect/json/json.hpp"
-#include "luciconnect/easylogging/easylogging++.h"
 #include "luciconnect/md5/md5.h"
 
 #include <vector>

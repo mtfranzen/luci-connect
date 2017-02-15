@@ -4,7 +4,6 @@
 #include "luciconnect/asio.h"
 
 #include "luciconnect/json/json.hpp"
-#include "luciconnect/easylogging/easylogging++.h"
 #include "luciconnect/message.h"
 
 #include <vector>

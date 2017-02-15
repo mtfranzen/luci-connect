@@ -4,6 +4,7 @@ if (NOT ASIO_FOUND)
 
   if (NOT ASIO_INCLUDE_DIR)
     # Try Boost.Asio
+	#set(Boost_USE_STATIC_LIBS ON)
     find_package(Boost COMPONENTS system REQUIRED)
     set (ASIO_STANDALONE FALSE)
   else()
@@ -21,6 +22,5 @@ if (NOT ASIO_FOUND)
       INTERFACE_INCLUDE_DIRECTORIES "${Boost_INCLUDE_DIR}"
       INTERFACE_LINK_LIBRARY "${Boost_SYSTEM_LIBRARY}"
     )
-    message(WARNING "${Boost_SYSTEM_LIBRARY}")
   endif()
 endif()
