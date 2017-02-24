@@ -8,23 +8,43 @@
 
 namespace luciconnect {
   namespace quaview {
+    // TODO Comment
     class Service : public luciconnect::Node {
     public:
+
+      // TODO Comment
       Service(std::shared_ptr<Connection> connection);
+
+      // TODO Comment
       void Run() override;
 
-    protected:
+      // TODO Comment
+      std::string name;
+
+      // TODO Comment
+      std::string description;
+
+      // TODO Comment
+      std::string unit;
+
+      // TODO Comment
       json inputs;
-      json outputs;
+
+      // TODO Comment
+      json constraints;
+
+      // TODO Comment
       bool supports_point_mode;
 
+      // TODO Comment
+      virtual std::vector<float> ComputeOnPoints(std::vector<vec3> scenario_triangles, std::vector<vec3> points) = 0; // TODO
+
+    protected:
       void HandleRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<Attachment*> attachments = {}) override;
       void HandleCancel(int64_t callId) override;
       void HandleResult(int64_t callId, json result, std::vector<Attachment*> attachments = {}) override;
       void HandleProgress(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments = {}, json intermediateResult = {}) override;
       void HandleError(int64_t callId, std::string error) override;
-
-      virtual std::vector<float> ComputeOnPoints(std::vector<vec3> scenario_triangles, std::vector<vec3> points) = 0; // TODO
 
     private:
       void Register();

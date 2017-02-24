@@ -14,7 +14,37 @@ namespace luciconnect {
     }
 
     void Service::Register() {
+      json register_message = {};
+      register_message["name"] = this->name;
+      register_message["description"] = this->description;
+      register_message["qua-view-compliant"] = true;
+
+      register_message["inputs"] = this->inputs;
+      register_message["inputs"]["ScID"] = "number";
+      register_message["inputs"]["mode"] = "string";
+      register_message["inputs"]["points"] = "attachment";
+
+      register_message["outputs"] = {{"unit", "string"}, {"values", "number"}};
+
+      register_message["constraints"] = this->constraints;
+      std::vector<std::string> modes;
+      if (this->supports_point_mode) modes.push_back("points"); // TODO: Other modes
+      register_message["constraints"]["mode"] = modes;
+
+      register_message["exampleCall"] = {
+        {"run", this->name},
+        {"callId", 42},
+        {"mode", modes[0]},
+        {"attachment", {
+          {"length", 512},
+          {"position", 1},
+          {"checksum", "abc"}
+        }} // TODO: Other inputs
+      };
+
+
       this->register_callid = rand() % 10000;
+      this->SendRun(this->register_callid, "RemoteRegister", register_message);
     }
 
     void Service::HandleRun(int64_t callId, std::string serviceName, json inputs, std::vector<Attachment*> attachments) {
