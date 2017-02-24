@@ -69,26 +69,28 @@ add_library(luciconnect SHARED
 target_link_libraries(luciconnect PUBLIC asio)
 
 # Testing
-if (GTEST_FOUND)
-  enable_testing()
-  add_executable(
-    tests
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/main.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/message_tests.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/message_attachment_tests.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/connection_establish_tests.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/connection_send_tests.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
-  )
+if (TEST_LUCICONNECT)
+  if (GTEST_FOUND)
+    enable_testing()
+    add_executable(
+      tests
+      "${CMAKE_CURRENT_SOURCE_DIR}/test/src/main.cc"
+      "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/message_tests.cc"
+      "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/message_attachment_tests.cc"
+      "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/connection_establish_tests.cc"
+      "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/connection_send_tests.cc"
+      "${CMAKE_CURRENT_SOURCE_DIR}/test/src/luciconnect/node_test.cc"
+    )
 
-  target_link_libraries(tests ${GTEST_BOTH_LIBRARIES})
-  target_link_libraries(tests luciconnect)
+    target_link_libraries(tests ${GTEST_BOTH_LIBRARIES})
+    target_link_libraries(tests luciconnect)
 
-  include_directories (${PROJECT_SOURCE_DIR}/test/include)
-  include_directories (${GTEST_INCLUDE_DIRS})
-else (GTEST_FOUND)
-  message(WARNING "Not compiling tests")
-endif (GTEST_FOUND)
+    include_directories (${PROJECT_SOURCE_DIR}/test/include)
+    include_directories (${GTEST_INCLUDE_DIRS})
+  else (GTEST_FOUND)
+    message(WARNING "Not compiling tests")
+  endif (GTEST_FOUND)
+endif (TEST_LUCICONNECT)
 
 # Copy files to include-directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)

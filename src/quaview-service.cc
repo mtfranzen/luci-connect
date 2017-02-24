@@ -15,31 +15,31 @@ namespace luciconnect {
 
     void Service::Register() {
       json register_message = {};
-      register_message["name"] = this->name;
-      register_message["description"] = this->description;
+      register_message["serviceName"] = this->GetName();
+      register_message["description"] = this->GetDescription();
       register_message["qua-view-compliant"] = true;
 
-      register_message["inputs"] = this->inputs;
+      register_message["inputs"] = this->GetInputs();
       register_message["inputs"]["ScID"] = "number";
       register_message["inputs"]["mode"] = "string";
       register_message["inputs"]["points"] = "attachment";
 
       register_message["outputs"] = {{"unit", "string"}, {"values", "number"}};
 
-      register_message["constraints"] = this->constraints;
+      register_message["constraints"] = this->GetConstraints();
       std::vector<std::string> modes;
-      if (this->supports_point_mode) modes.push_back("points"); // TODO: Other modes
+      if (this->SupportsPointMode()) modes.push_back("points"); // TODO: Other modes
       register_message["constraints"]["mode"] = modes;
 
       register_message["exampleCall"] = {
-        {"run", this->name},
-        {"callId", 42},
+        {"run", this->GetName()},
+        {"callID", 42},
         {"mode", modes[0]},
         {"attachment", {
           {"length", 512},
           {"position", 1},
           {"checksum", "abc"}
-        }} // TODO: Other inputs
+        }} // TODO
       };
 
 
@@ -53,7 +53,7 @@ namespace luciconnect {
 
       if (inputs["mode"] == "points") { // TODO: Other modes
         this->client_mode = "points";
-        if (!this->supports_point_mode) {
+        if (!this->SupportsPointMode()) {
           this->SendError(callId, "Mode not Supported.");
         }
 
@@ -62,7 +62,8 @@ namespace luciconnect {
         this->client_points = std::vector<vec3>(raw, raw + attachments[0]->size / sizeof(vec3));
         this->client_scenario_id = inputs["ScID"];
       }
-
+      std::cout << inputs << std::endl;
+      this->client_inputs = inputs;
       this->scenario_callid = rand() % 10000;
       this->SendRun(this->scenario_callid, "scenario.geojson.Get", {{"ScID", this->client_scenario_id}});
     }
@@ -80,10 +81,12 @@ namespace luciconnect {
           std::vector<vec3> scenario_triangles = geojson::parse(result["geometry_output"]["geometry"].dump());
           std::vector<vec3> points = this->client_points;
 
-          std::vector<float> results = this->ComputeOnPoints(scenario_triangles, points);
-          luciconnect::Attachment atc {results.size()*sizeof(float), (const char*)atc.data, "Float32Array", "values"};
+          std::vector<float> results = this->ComputeOnPoints(scenario_triangles, points, this->client_inputs);
+          float* raw = results.data();
+          luciconnect::Attachment atc {results.size()*sizeof(float), (const char*)raw, "Float32Array", "values"};
           std::vector<luciconnect::Attachment*> atcs = {&atc};
-          this->SendResult(this->client_callid, result, atcs);
+          json result_header = {{"units", this->GetUnit()},{"mode", "points"}};
+          this->SendResult(this->client_callid, result_header, atcs);
         }
 
         this->is_busy.unlock();
@@ -92,6 +95,9 @@ namespace luciconnect {
 
     void Service::HandleCancel(int64_t callId) {}
     void Service::HandleProgress(int64_t callId, int64_t percentage, std::vector<Attachment*> attachments, json intermediateResult) {}
-    void Service::HandleError(int64_t callId, std::string error) {}
+
+    void Service::HandleError(int64_t callId, std::string error) {
+      std::cout << "ERROR " << error << std::endl;
+    }
   }
 }

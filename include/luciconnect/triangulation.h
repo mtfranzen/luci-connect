@@ -153,6 +153,7 @@ namespace luciconnect {
       std::vector<vec2> triangles = {};
       std::vector<vec2> unmarked { points.begin(), points.end() };
 
+
       vec2 p0, p1, p2;
       int index1 = 0;
       int index2 = 1;

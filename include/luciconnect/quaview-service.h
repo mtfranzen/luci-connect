@@ -18,26 +18,20 @@ namespace luciconnect {
       // TODO Comment
       void Run() override;
 
-      // TODO Comment
-      std::string name;
+      virtual std::string GetName() = 0;
+
+      virtual std::string GetDescription() = 0;
+
+      virtual std::string GetUnit() = 0;
+
+      virtual json GetInputs() = 0;
+
+      virtual json GetConstraints() = 0;
+
+      virtual bool SupportsPointMode() = 0;
 
       // TODO Comment
-      std::string description;
-
-      // TODO Comment
-      std::string unit;
-
-      // TODO Comment
-      json inputs;
-
-      // TODO Comment
-      json constraints;
-
-      // TODO Comment
-      bool supports_point_mode;
-
-      // TODO Comment
-      virtual std::vector<float> ComputeOnPoints(std::vector<vec3> scenario_triangles, std::vector<vec3> points) = 0; // TODO
+      virtual std::vector<float> ComputeOnPoints(std::vector<vec3> scenario_triangles, std::vector<vec3> points, json inputs) = 0; // TODO
 
     protected:
       void HandleRun(int64_t callId, std::string serviceName, json inputs = {}, std::vector<Attachment*> attachments = {}) override;
@@ -61,6 +55,7 @@ namespace luciconnect {
       int64_t client_scenario_id;
       std::vector<vec3> client_points;
       std::vector<int64_t> client_objects;
+      json client_inputs;
     };
   }
 }
