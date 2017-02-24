@@ -6,6 +6,7 @@
 #else
 #include <boost/asio.hpp>
 #include <boost/system/error_code.hpp>
+#include <boost/asio/connect.hpp>
 namespace asio
 {
 	using namespace boost::asio;

@@ -1,14 +1,11 @@
 #ifndef luciconnect_CONNECTION_H
 #define luciconnect_CONNECTION_H
 
+#include "luciconnect/asio.h"
+
 #include "luciconnect/json/json.hpp"
 #include "luciconnect/easylogging/easylogging++.h"
 #include "luciconnect/message.h"
-#include "luciconnect/asio.h"
-
-#ifndef ASIO_STANDALONE
-#include <boost/asio/connect.hpp>
-#endif
 
 #include <vector>
 #include <string>

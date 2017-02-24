@@ -10,7 +10,7 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 project(luci-connect)
 set (VERSION_MAJOR 0)
 set (VERSION_MINOR 1)
-set (VERSION_PATCH 0)
+set (VERSION_PATCH 1)
 set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 # Requirements
@@ -47,6 +47,10 @@ endif()
 add_definitions(-DELPP_THREAD_SAFE)
 add_definitions(-DELPP_DISABLE_DEFAULT_CRASH_HANDLING)
 add_definitions(-Wall)
+
+if (WIN32)
+   add_definitions(-DELPP_EXPORT)
+endif (WIN32)
 
 # Release Flags
 if (WIN32)

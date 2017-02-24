@@ -66,9 +66,11 @@ namespace luciconnect {
     if (this->header_.count("result") > 0) base_element = this->header_["result"];
 
     bool attachment_header_missing = true;
-    for (json element : base_element) {
-      if (element.count("attachment") > 0 && element["attachment"]["position"] == position) {
-          if (element.count("format") == 0  || element.count("name") == 0) {
+    for (json::iterator it = base_element.begin(); it != base_element.end(); ++it) {
+      json element = it.value();
+      std::string element_name = it.key();
+      if (element.count("attachment") > 0 && element["attachment"]["position"].get<std::size_t>() == position) {
+          if (element.count("format") == 0) {
             LOG(ERROR) << "Attachment header is incomplete";
             throw "Attachment header is incomplete";
           }
@@ -84,14 +86,14 @@ namespace luciconnect {
             throw "Attachment checksums do not match up";
           }
 
-          if (attachment->size != element["attachment"]["length"]) {
+          if (attachment->size != element["attachment"]["length"].get<std::size_t>()) {
             LOG(ERROR) << "Attachment sizes do not match up.";
             throw "Attachment sizes do not match up";
           }
 
           attachment_header_missing = false;
-          attachment->format = element["format"];
-          attachment->name = element["name"];
+          attachment->format = element["format"].get<std::string>();
+          attachment->name = element_name;
       }
     }
 
@@ -204,7 +206,7 @@ namespace luciconnect {
   bool Message::ValidateRunMessage() {
     std::string serviceName;
     try {
-      serviceName = this->header_["run"];
+      serviceName =this->header_["run"].get<std::string>();
       return !serviceName.empty();
     }
     catch (std::exception& err) {
@@ -216,7 +218,7 @@ namespace luciconnect {
   bool Message::ValidateCancelMessage() {
     try {
       return this->header_["cancel"] == nullptr\
-       || this->header_["cancel"] == (json){}\
+		  || this->header_["cancel"] == new json{}\
        || this->header_["cancel"] == this->header_["callID"];
     }
     catch (std::exception& err) {
@@ -261,7 +263,7 @@ namespace luciconnect {
     std::string error;
 
     try {
-      error = this->header_["error"];
+      error = this->header_["error"].get<std::string>();
       (int64_t)this->header_["callID"];
       return true;
     }
