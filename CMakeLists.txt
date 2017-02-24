@@ -60,6 +60,7 @@ add_library(luciconnect SHARED
   "${CMAKE_CURRENT_SOURCE_DIR}/src/node.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/connection.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/message.cc"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/quaview-service.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/md5/md5.cc")
 target_link_libraries(luciconnect PUBLIC asio)
 
@@ -89,6 +90,9 @@ endif (GTEST_FOUND)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/json/src/json.hpp DESTINATION include/luciconnect/json)
 
+
+# Installation
+set (CMAKE_INSTALL_PREFIX "/usr/")
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/luciconnect DESTINATION include COMPONENT headers)
 install(TARGETS luciconnect DESTINATION lib COMPONENT libraries)
 
