@@ -1,0 +1,8 @@
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/asio.h
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/connection.h
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/easylogging/easylogging++.h
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/json/json.hpp
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/luciconnect.h
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/md5/md5.h
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/message.h
+C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/headers/include/luciconnect/node.h

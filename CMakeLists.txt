@@ -60,7 +60,7 @@ else ()
 endif()
 
 # Library files
-add_library(luciconnect SHARED
+add_library(luciconnect STATIC
   "${CMAKE_CURRENT_SOURCE_DIR}/src/node.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/connection.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/message.cc"
