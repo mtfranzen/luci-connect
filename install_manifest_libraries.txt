@@ -1,1 +1,0 @@
-C:/Users/Michael/Source/Repos/luci-connect/_CPack_Packages/win64/NSIS/libluciconnect-dev-0.1.1-win64/libraries/lib/luciconnect.lib
