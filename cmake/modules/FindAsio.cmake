@@ -22,6 +22,7 @@ if (NOT ASIO_FOUND)
     set_target_properties(asio PROPERTIES
 	  INTERFACE_INCLUDE_DIRECTORIES "${Boost_INCLUDE_DIR}"
   	  INTERFACE_LINK_LIBRARY "${Boost_SYSTEM_LIBRARY}"
+      IMPORTED_LOCATION "${BOOST_LIBRARYDIR}"
     )
   endif()
 endif()

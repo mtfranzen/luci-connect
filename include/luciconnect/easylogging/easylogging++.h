@@ -1588,8 +1588,8 @@ namespace el {
                                         || term == "screen-256color";
                                     }
                                 };
-                                extern ELPP_EXPORT std::string s_currentUser;
-                                extern ELPP_EXPORT std::string s_currentHost;
+                                extern std::string s_currentUser;
+                                extern std::string s_currentHost;
                                 extern bool s_termSupportsColor;
 #define ELPP_INITI_BASIC_DECLR \
 namespace el {\

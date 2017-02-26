@@ -3,7 +3,7 @@
 
 #include "luciconnect/asio.h"
 #include "luciconnect/json/json.hpp"
-#include "luciconnect/easylogging/easylogging++.h"
+//#include "luciconnect/easylogging/easylogging++.h"
 #include "luciconnect/geometry.h"
 #include "luciconnect/triangulation.h"
 #include "luciconnect/geojson.h"
