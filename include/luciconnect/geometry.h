@@ -44,15 +44,15 @@ namespace luciconnect {
     }
   } vec2;
 
-  float abs(float x) {
+  inline float abs(float x) {
     return x > 0 ? x : -x;
   }
 
-  float abs(vec2 p) {
+  inline float abs(vec2 p) {
     return sqrt(p*p);
   }
 
-  float ccw(vec2 p1, vec2 p2, vec2 p3) {
+  inline float ccw(vec2 p1, vec2 p2, vec2 p3) {
     return (p2.x - p1.x)*(p3.y - p1.y) - (p2.y - p1.y)*(p3.x - p1.x);
   }
 
@@ -93,7 +93,7 @@ namespace luciconnect {
     }
   } vec3;
 
-  float abs(vec3 p) {
+  inline float abs(vec3 p) {
     return sqrt(p*p);
   }
 

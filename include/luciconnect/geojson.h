@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 namespace luciconnect {
   namespace geojson {
-    std::vector<vec3> triangulate_polygon(json js) {
+    inline std::vector<vec3> triangulate_polygon(json js) {
       std::vector<vec3> points = {};
       std::vector<vec3> triangles = {};
 
@@ -22,7 +22,7 @@ namespace luciconnect {
       return triangulation::triangulate(points);
     }
 
-    std::vector<vec3> get_triangles(json js) {
+    inline std::vector<vec3> get_triangles(json js) {
       std::vector<vec3> triangles = {};
 
       if (js.count("type") > 0) {
@@ -51,7 +51,7 @@ namespace luciconnect {
       return triangles;
     }
 
-    std::vector<vec3> parse(std::string text) {
+    inline std::vector<vec3> parse(std::string text) {
       json js = json::parse(text);
       std::vector<vec3> triangles = get_triangles(js);
       return triangles;

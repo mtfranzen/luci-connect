@@ -13,7 +13,7 @@ namespace luciconnect {
     /**
      * Inverted base change using orthogonal basis of Subvectorspace spanned by polygon
      */
-    std::vector<vec3> to3d(std::vector<vec2> points, std::vector<vec3> basis, vec3 origin) {
+    inline std::vector<vec3> to3d(std::vector<vec2> points, std::vector<vec3> basis, vec3 origin) {
       std::vector<vec3> points3d (points.size());
       for (size_t i = 0; i < points.size(); i++) {
         // multiply by transposed (=inverted) base change matrix
@@ -26,7 +26,7 @@ namespace luciconnect {
     /**
      * Base change using orthogonal basis of Subvectorspace spanned by polygon
      */
-    std::vector<vec2> to2d(std::vector<vec3> points, std::vector<vec3> basis, vec3 origin) {
+    inline std::vector<vec2> to2d(std::vector<vec3> points, std::vector<vec3> basis, vec3 origin) {
       std::vector<vec2> points2d(points.size());
       for (size_t i = 0; i < points.size(); i++) {
         // multiply by base change matrix (row-wise orthogonal vectors)
@@ -40,7 +40,7 @@ namespace luciconnect {
     /**
      * Gram-Schmidt orthogonalization, returns the orthogonal basis of the 2d-subspace
      */
-    std::vector<vec3> gramschmidt(std::vector<vec3> points) {
+    inline std::vector<vec3> gramschmidt(std::vector<vec3> points) {
       std::vector<vec3> b(2);
       vec3 v1 = points[2] - points[1];
       b[0] = points[1] - points[0];
@@ -52,7 +52,7 @@ namespace luciconnect {
       return b;
     }
 
-    bool intriangle2d(vec2 p, vec2 t1, vec2 t2, vec2 t3) {
+    inline bool intriangle2d(vec2 p, vec2 t1, vec2 t2, vec2 t3) {
       bool b1, b2, b3;
       b1 = ccw(p, t1, t2) < 0;
       b2 = ccw(p, t2, t3) < 0;
@@ -65,7 +65,7 @@ namespace luciconnect {
      * Augments the polygon with edges to create a suitible structure to use the
      * ear-clipping algorithm
      */
-    std::vector<vec2> join_holes(std::vector<vec2> points) {
+    inline std::vector<vec2> join_holes(std::vector<vec2> points) {
       // TODO: Allow nested holes
       // divide the point sequence into one outer polygon and multiple inner polygons (holes)
       std::vector<vec2> outer_polygon = {};
@@ -148,7 +148,7 @@ namespace luciconnect {
     /**
      * Triangulates a 2d polygon with one level of holes
      */
-    std::vector<vec2> triangulate2d(std::vector<vec2> points) {
+    inline std::vector<vec2> triangulate2d(std::vector<vec2> points) {
       points = join_holes(points);
       std::vector<vec2> triangles = {};
       std::vector<vec2> unmarked { points.begin(), points.end() };
@@ -201,7 +201,7 @@ namespace luciconnect {
       return triangles;
     }
 
-    std::vector<vec3> triangulate(std::vector<vec3> points) {
+    inline std::vector<vec3> triangulate(std::vector<vec3> points) {
       if (points.size() < 4) return points;
 
       // First, we compute the orthogonal basis of the points'
