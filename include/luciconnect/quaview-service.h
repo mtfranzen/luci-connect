@@ -6,6 +6,9 @@
 #include "node.h"
 #include "geojson.h"
 
+#include <chrono>
+#include <thread>
+
 namespace luciconnect {
   namespace quaview {
     // TODO Comment

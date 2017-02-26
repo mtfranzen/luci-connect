@@ -5,6 +5,7 @@ if (NOT ASIO_FOUND)
   if (NOT ASIO_INCLUDE_DIR)
     # Try Boost.Asio
 	set(Boost_USE_STATIC_LIBS ON)
+	set(BOOST_COMPONENTS_NEEDED system)
     find_package(Boost COMPONENTS system REQUIRED)
     set (ASIO_STANDALONE FALSE)
   else()
@@ -12,12 +13,12 @@ if (NOT ASIO_FOUND)
   endif()
 
   if (ASIO_STANDALONE)
-    add_library(asio INTERFACE IMPORTED)
+    add_library(asio STATIC IMPORTED)
     set_target_properties(asio PROPERTIES
       INTERFACE_INCLUDE_DIRECTORIES ${ASIO_INCLUDE_DIR}
     )
   else()
-    add_library(asio INTERFACE IMPORTED)
+    add_library(asio STATIC IMPORTED)
     set_target_properties(asio PROPERTIES
 	  INTERFACE_INCLUDE_DIRECTORIES "${Boost_INCLUDE_DIR}"
   	  INTERFACE_LINK_LIBRARY "${Boost_SYSTEM_LIBRARY}"

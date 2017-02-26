@@ -1,6 +1,7 @@
 #ifndef luciconnect_LUCICONNECT_H
 #define luciconnect_LUCICONNECT_H
 
+#include "luciconnect/asio.h"
 #include "luciconnect/json/json.hpp"
 #include "luciconnect/easylogging/easylogging++.h"
 #include "luciconnect/geometry.h"

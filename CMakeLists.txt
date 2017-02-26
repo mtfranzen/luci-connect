@@ -66,7 +66,11 @@ add_library(luciconnect STATIC
   "${CMAKE_CURRENT_SOURCE_DIR}/src/message.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/quaview-service.cc"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/md5/md5.cc")
-target_link_libraries(luciconnect PUBLIC asio)
+if (ASIO_STANDALONE)
+	target_link_libraries (luciconnect PUBLIC asio)
+else (ASIO_STANDALONE)
+	target_link_libraries (luciconnect asio "${Boost_SYSTEM_LIBRARY}")
+endif (ASIO_STANDALONE)
 
 # Testing
 if (TEST_LUCICONNECT)
@@ -95,28 +99,53 @@ endif (TEST_LUCICONNECT)
 # Copy files to include-directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/json/src/json.hpp DESTINATION include/luciconnect/json)
-
+if (ASIO_STANDALONE)
+	file(COPY ${ASIO_INCLUDE_DIR} DESTINATION include/asio)
+else (ASIO_STANDALONE)
+	file(COPY ${Boost_INCLUDE_DIR}/boost/ DESTINATION include/boost)
+endif (ASIO_STANDALONE)
 
 # Installation
 set (CMAKE_INSTALL_PREFIX "/usr/")
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/luciconnect DESTINATION include COMPONENT headers)
 install(TARGETS luciconnect DESTINATION lib COMPONENT libraries)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/luciconnect DESTINATION include COMPONENT headers)
+if (ASIO_STANDALONE)
+	install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/asio DESTINATION include COMPONENT asio)
+else (ASIO_STANDALONE)
+	install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/boost DESTINATION include COMPONENT boost)
+endif (ASIO_STANDALONE)
 
 # Packaging
 include (InstallRequiredSystemLibraries)
 set (CPACK_PACKAGE_CONTACT "franzen@arch.ethz.ch")
 set (CPACK_PACKAGE_MAINTAINER "Michael Franzen <franzen@arch.ethz.ch>")
-set (CPACK_PACKAGE_NAME "libluciconnect-dev")
-set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Library and C++-Header files to develop services and clients for Luci" )
-set (CPACK_COMPONENTS_ALL libraries headers)
-set (CPACK_COMPONENT_LIBRARIES_DISPLAY_NAME "Library")
-set (CPACK_COMPONENT_LIBRARIES_DESCRIPTION "Shared Library for Luciconnect")
-set (CPACK_COMPONENT_LIBRARIES_REQUIRED Asio)
-set (CPACK_COMPONENT_HEADERS_DISPLAY_NAME "C++ Headers")
-set (CPACK_COMPONENT_HEADERS_DESCRIPTION "C++ Headers for Luciconnect")
-set (CPACK_COMPONENT_HEADERS_DEPENDS libraries)
-set (CPACK_COMPONENT_LIBRARIES_GROUP "Development")
-set (CPACK_COMPONENT_HEADERS_GROUP "Development")
+set (CPACK_PACKAGE_NAME "Luciconnect")
+set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Library and Header files to develop services and clients for Luci" )
+
+if (ASIO_STANDALONE)
+	set (CPACK_COMPONENTS_ALL libraries headers asio)
+else (ASIO_STANDALONE)
+	set (CPACK_COMPONENTS_ALL libraries headers boost)
+endif (ASIO_STANDALONE)
+
+set (CPACK_COMPONENT_LIBRARIES_DISPLAY_NAME "Luciconnect Library")
+set (CPACK_COMPONENT_LIBRARIES_DESCRIPTION "Static Library for Luciconnect")
+set (CPACK_COMPONENT_LIBRARIES_GROUP "Library Files")
+
+set (CPACK_COMPONENT_HEADERS_DISPLAY_NAME "Luciconnect Headers")
+set (CPACK_COMPONENT_HEADERS_DESCRIPTION "Header files for Luciconnect")
+set (CPACK_COMPONENT_HEADERS_GROUP "Header Files")
+
+if (ASIO_STANDALONE)
+	set (CPACK_COMPONENT_ASIO_DISPLAY_NAME "Asio")
+	set (CPACK_COMPONENT_ASIO_DESCRIPTION "Asio Library")
+	set (CPACK_COMPONENT_ASIO_GROUP "Additional")
+else (ASIO_STANDALONE)
+	set (CPACK_COMPONENT_BOOST_DISPLAY_NAME "Boost Headers")
+	set (CPACK_COMPONENT_BOOST_DESCRIPTION "Boost Headers")
+	set (CPACK_COMPONENT_BOOST_GROUP "Additional")
+endif (ASIO_STANDALONE)
+
 set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set (CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
 set (CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")

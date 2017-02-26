@@ -9,7 +9,7 @@ namespace luciconnect {
     void Service::Run() {
       this->Connect();
       this->Register();
-      while (!this->terminated) usleep(50);
+      while (!this->terminated) std::this_thread::sleep_for(std::chrono::microseconds(50));;
       this->Disconnect();
     }
 
