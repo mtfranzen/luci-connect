@@ -4,14 +4,13 @@
 # Install Binaries
 
 # Install from Source
-
 To build and install libluciconnect from source, clone the repository  using the **recursive** tag:
  ```git clone --recursive git@github.com:mtfranzen/luci-connect.git```
 
 ## Linux
 1. Install [CMake](https://cmake.org/)
 2. Build the project using CMake and Make (**tested with g++**)
-  ```cmake . && make```
+  ```cmake . && make install```
 
 ## Windows
 1. Install [Boost](http://www.boost.org/)
@@ -19,6 +18,7 @@ To build and install libluciconnect from source, clone the repository  using the
 3. Build the project using CMake and MSVC (**tested with Visual Studio 2015**), make sure to specify the correct foldes
   ```cmake -DBOOST_ROOT="C:/local/boost_1_63_0/" -DBOOST_LIBRARYDIR="C:/local/boost_1_63_0/lib64-msvc-14.0" -DBoost_COMPILER="-vc140" -G "Visual Studio 14 2015 Win64"```
 4. Open the generated solution in VS
+5. Compile the Package `INSTALL` or `PACKAGE` with subsequently running the generated installer
 
 ## Documentation
 The documentation can be generated using Doxygen.
