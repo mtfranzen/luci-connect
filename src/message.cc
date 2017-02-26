@@ -5,7 +5,7 @@ namespace luciconnect {
     this->header_ = header;
 
     if(!this->ValidateHeader()) {
-      //LOG(ERROR) << "Header validation failed";
+      std::cout << "ERROR: Header validation failed" << std::endl;
       throw "Header validation failed";
     }
   }
@@ -71,23 +71,23 @@ namespace luciconnect {
       std::string element_name = it.key();
       if (element.count("attachment") > 0 && element["attachment"]["position"].get<std::size_t>() == position) {
           if (element.count("format") == 0) {
-            //LOG(ERROR) << "Attachment header is incomplete";
+            std::cout << "ERROR: Attachment header is incomplete" << std::endl;
             throw "Attachment header is incomplete";
           }
 
           if (element["attachment"].count("length") == 0  || element["attachment"].count("checksum") == 0) {
-            //LOG(ERROR) << "Attachment subheader is incomplete";
+            std::cout << "ERROR: Attachment subheader is incomplete" << std::endl;
             throw "Attachment subheader is incomplete";
           }
 
           // validate
           if (md5sum != element["attachment"]["checksum"]) {
-            //LOG(ERROR) << "Attachment checksums do not match up";
+            std::cout << "ERROR: Attachment checksums do not match up" << std::endl;
             throw "Attachment checksums do not match up";
           }
 
           if (attachment->size != element["attachment"]["length"].get<std::size_t>()) {
-            //LOG(ERROR) << "Attachment sizes do not match up.";
+            std::cout << "ERROR: Attachment sizes do not match up." << std::endl;
             throw "Attachment sizes do not match up";
           }
 
@@ -151,7 +151,7 @@ namespace luciconnect {
   bool Message::ValidateHeader() {
     // callID-check currently not enforced for error messages => handling also doesn't work! // TODO
     if (this->header_.count("error") == 0 && this->header_.count("callID") != 1) {
-      //LOG(WARNING) << "Message does not contain a callID.";
+      std::cout << "WARNING: Message does not contain a callID." << std::endl;
       return false;
     }
     this->callId_ = this->header_["callID"];
@@ -166,12 +166,12 @@ namespace luciconnect {
     size_t totalC = runC + cancelC + resultC + progressC + errorC;
 
     if (totalC < 1) {
-      //LOG(WARNING) << "Message contains no type keyword.";
+      std::cout << "WARNING: Message contains no type keyword." << std::endl;
       return false;
     }
 
     if (totalC > 1) {
-      //LOG(WARNING) << "Message contains more than two type keywords.";
+      std::cout << "WARNING: Message contains more than two type keywords." << std::endl;
       return false;
     }
 
@@ -210,7 +210,7 @@ namespace luciconnect {
       return !serviceName.empty();
     }
     catch (std::exception& err) {
-      //LOG(WARNING) << "Message of type `run` - validation failed. Header: " << this->header_.dump();;
+      std::cout << "WARNING " << this->header_.dump() << std::endl;;
       return false;
     }
   }
@@ -222,7 +222,7 @@ namespace luciconnect {
        || this->header_["cancel"] == this->header_["callID"];
     }
     catch (std::exception& err) {
-      //LOG(WARNING) << "Message of type `cancel` - validation failed. Header: " << this->header_.dump();;
+      std::cout << "WARNING " << this->header_.dump() << std::endl;;
       return false;
     }
   }
@@ -237,7 +237,7 @@ namespace luciconnect {
       return true;
     }
     catch (std::exception& err) {
-      //LOG(WARNING) << "Message of type `result` - validation failed. Header: " << this->header_.dump();
+      std::cout << "WARNING " << this->header_.dump() << std::endl;
       return false;
     }
   }
@@ -254,7 +254,7 @@ namespace luciconnect {
       return true;
     }
     catch (std::exception& err) {
-      //LOG(WARNING) << "Message of type `progress` - validation failed. Header: " << this->header_.dump();;
+      std::cout << "WARNING " << this->header_.dump() << std::endl;;
       return false;
     }
   }
@@ -268,7 +268,7 @@ namespace luciconnect {
       return true;
     }
     catch (std::exception& err) {
-      //LOG(WARNING) << "Message of type `error` - validation failed. Header: " << this->header_.dump();;
+      std::cout << "WARNING " << this->header_.dump() << std::endl;;
       return false;
     }
   }

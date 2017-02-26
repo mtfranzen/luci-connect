@@ -23,7 +23,7 @@ namespace luciconnect {
   void Connection::Open() {
     // Checking if connected
     if (this->is_connected_) {
-      //LOG(ERROR) << "Socket already opened.";
+      std::cout << "ERROR: Socket already opened." << std::endl;
       throw "Socket already opened.";
     }
 
@@ -32,37 +32,37 @@ namespace luciconnect {
 
     // Connecting...
     try {
-      //LOG(INFO) << "Connecting to " << std::string(this->host_) << ":" << std::to_string(this->port_);
+      std::cout << "INFO " << std::to_string(this->port_) << std::endl;
       asio::connect(*this->socket_, this->iterator_);
       asio::socket_base::keep_alive option(true);
       this->socket_->set_option(option);
       this->is_connected_ = true;
     }
     catch (std::exception& err) {
-      #//LOG(ERROR) << "Connection could not be established.";
+      std::cout << "ERROR: Connection could not be established." << std::endl;
       throw "Connection could not be established.";
     }
 
     // Starting threads...
     try {
-      //LOG(INFO) << "Starting threads.";
+      std::cout << "INFO: Starting threads." << std::endl;
 
       this->thread_waiting_for_events_ = new std::thread(&Connection::WaitForHandlers, shared_from_this());
       this->thread_waiting_for_receival_ = new std::thread(&Connection::WaitForReceival, shared_from_this());
     }
     catch (std::exception& err) {
-      //LOG(ERROR) << "An occured while starting threads: " << err.what();
+      std::cout << "ERROR " << err.what() << std::endl;
     }
   }
 
   void Connection::Close() {
     // Check if we're connected
     if (!this->is_connected_) {
-      //LOG(WARNING) << "Socket already closed.";
+      std::cout << "WARNING: Socket already closed." << std::endl;
       return;
     }
 
-    //LOG(INFO) << "Closing connection.";
+    std::cout << "INFO: Closing connection." << std::endl;
 
     // Notify waiting threads to stop execution
     this->is_disconnecting_ = true;
@@ -78,11 +78,11 @@ namespace luciconnect {
     this->socket_->close(ec);
 
     if (ec) {
-      //LOG(ERROR) << "An error occured while closing connection: " << ec;
+      std::cout << "ERROR " << ec << std::endl;
       throw "An error occured while closing connection.";
     }
     else {
-      //LOG(INFO) << "Connection closed.";
+      std::cout << "INFO: Connection closed." << std::endl;
       this->is_connected_ = false;
       this->is_disconnecting_ = false;
     }
@@ -106,10 +106,10 @@ namespace luciconnect {
 
   void Connection::SendAsync(Message* message) {
     // receiving procedure.
-    //LOG(INFO) << "Starting to send Message " << message->GetHeader().dump();
+    std::cout << "INFO " << message->GetHeader().dump() << std::endl;
 
     if (!this->is_connected_) {
-      //LOG(ERROR) << "Trying to send while not connected.";
+      std::cout << "ERROR: Trying to send while not connected." << std::endl;
       throw "Trying to send while not connected.";
     }
 
@@ -145,11 +145,11 @@ namespace luciconnect {
   void Connection::HandleBufferSent(const asio::error_code& error, std::size_t size_transferred) {
     if (!error)
     {
-      //LOG(INFO) << "Buffer sent successfully.";
+      std::cout << "INFO: Buffer sent successfully." << std::endl;
     }
     else
     {
-      //LOG(ERROR) << "An error occured when sending a message: " << error;
+      std::cout << "ERROR " << error << std::endl;
     }
   }
 
@@ -159,13 +159,13 @@ namespace luciconnect {
 
     // Check LC2 validation method
     if (this->recv_validation_size_ != (size_t)this->ParseInt64(this->recv_buf_body_size_)) {
-      //LOG(ERROR) << "Message validation failed: Wrong body size.";
+      std::cout << "ERROR: Message validation failed: Wrong body size." << std::endl;
       this->HandleReceivingError(ReceivingError::MessageValidationFailed);
       // TODO: Add panicking when message validation failed
     }
 
     // run registered delegates
-    //LOG(INFO) << "Delegating message to nodes.";
+    std::cout << "INFO: Delegating message to nodes." << std::endl;
     for (std::function<void(Message)> handler : this->receive_handlers_)
       handler(*message);
 
@@ -199,7 +199,7 @@ namespace luciconnect {
     std::string header = message->GetHeader().dump();
     int64_t header_size = header.size() * sizeof(char);
 
-    //LOG(DEBUG) << "Sending header size " << std::to_string(header_size);
+    std::cout << "DEBUG " << std::to_string(header_size) << std::endl;
     this->SendInt64(header_size);
   }
 
@@ -208,33 +208,33 @@ namespace luciconnect {
     for (size_t i = 0; i < message->GetNumAttachments(); i++)
       body_size += message->GetAttachment(i)->size + 8;
 
-    //LOG(DEBUG) << "Sending body size " << std::to_string(body_size);
+    std::cout << "DEBUG " << std::to_string(body_size) << std::endl;
     this->SendInt64(body_size);
   }
 
   void Connection::SendHeader(Message* message) {
     std::string header = message->GetHeader().dump();
 
-    //LOG(DEBUG) << "Sending header " << header;
+    std::cout << "DEBUG " << header << std::endl;
     this->SendString(header);
   }
 
   void Connection::SendNumberOfAttachments(Message* message) {
     int64_t num_attachments = message->GetNumAttachments();
 
-    //LOG(DEBUG) << "Sending number of attachments " << std::to_string(num_attachments);
+    std::cout << "DEBUG " << std::to_string(num_attachments) << std::endl;
     this->SendInt64(num_attachments);
   }
 
   void Connection::SendAttachmentSize(Message* message, size_t index) {
     int64_t attachment_size = message->GetAttachment(index)->size;
 
-    //LOG(DEBUG) << "Sending attachment size #" << std::to_string(index+1) << ": " << std::to_string(attachment_size);
+    std::cout << "DEBUG " << std::to_string(attachment_size) << std::endl;
     this->SendInt64(attachment_size);
   }
 
   void Connection::SendAttachment(Message* message, size_t index) {
-    //LOG(DEBUG) << "Sending attachment #" << std::to_string(index+1);
+    std::cout << "DEBUG " << std::to_string(index+1) << std::endl;
     this->SendBinary(message->GetAttachment(index)->data, message->GetAttachment(index)->size);
   }
 
@@ -260,7 +260,7 @@ namespace luciconnect {
 
   void Connection::SendBuffer(asio::const_buffers_1 data) {
     if (!this->is_connected_) {
-      //LOG(ERROR) << "Trying to send while connection is closed.";
+      std::cout << "ERROR: Trying to send while connection is closed." << std::endl;
     }
 
     try {
@@ -268,7 +268,7 @@ namespace luciconnect {
       asio::async_write(*this->socket_, data, std::bind(&Connection::HandleBufferSent, shared_from_this(), _1, _2));
     }
     catch (std::exception& err) {
-      //LOG(ERROR) << "An error occured when sending a message: " << err.what();
+      std::cout << "ERROR " << err.what() << std::endl;
     }
   }
 
@@ -283,27 +283,27 @@ namespace luciconnect {
   }
 
   void Connection::ReceiveHeaderSize() {
-    //LOG(DEBUG) << "Receiving header size";
+    std::cout << "DEBUG: Receiving header size" << std::endl;
     this->recv_buf_header_size_ = std::vector<char>(sizeof(int64_t));
     asio::async_read(*this->socket_, asio::buffer(this->recv_buf_header_size_), std::bind(&Connection::ReceiveBodySize, shared_from_this(), _1, _2));
   }
 
   void Connection::ReceiveBodySize(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
-      //LOG(ERROR) << "An error occured while reading the header size.";
+      std::cout << "ERROR: An error occured while reading the header size." << std::endl;
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
-    //LOG(DEBUG) << "Receiving body size";
+    std::cout << "DEBUG: Receiving body size" << std::endl;
     this->recv_buf_body_size_ = std::vector<char>(sizeof(int64_t));
     asio::async_read(*this->socket_, asio::buffer(this->recv_buf_body_size_), std::bind(&Connection::ReceiveHeader, shared_from_this(), _1, _2));
   }
 
   void Connection::ReceiveHeader(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
-      //LOG(ERROR) << "An error occured while reading the body size.";
+      std::cout << "ERROR: An error occured while reading the body size." << std::endl;
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
-    //LOG(DEBUG) << "Receiving header";
+    std::cout << "DEBUG: Receiving header" << std::endl;
     this->recv_validation_size_ = 8;
     this->recv_buf_header_ = std::vector<char>(this->ParseInt64(this->recv_buf_header_size_));
     asio::async_read(*this->socket_, asio::buffer(this->recv_buf_header_), std::bind(&Connection::ReceiveNumberOfAttachments, shared_from_this(), _1, _2));
@@ -311,7 +311,7 @@ namespace luciconnect {
 
   void Connection::ReceiveNumberOfAttachments(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
-      //LOG(ERROR) << "An error occured while reading the header.";
+      std::cout << "ERROR: An error occured while reading the header." << std::endl;
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
 
@@ -320,25 +320,25 @@ namespace luciconnect {
       header = json::parse(this->ParseString(this->recv_buf_header_));
     }
     catch (std::exception& err) {
-      //LOG(WARNING) << "Message parsing failed: header corrupted.";
+      std::cout << "WARNING: Message parsing failed: header corrupted." << std::endl;
       this->HandleReceivingError(ReceivingError::MessageCorrupted);
     }
     // Construct message
     this->recv_message_ = new Message(header);
 
-    //LOG(DEBUG) << "Receiving number of attachments";
+    std::cout << "DEBUG: Receiving number of attachments" << std::endl;
     this->recv_buf_num_attachments_ = std::vector<char>(sizeof(int64_t));
     asio::async_read(*this->socket_, asio::buffer(this->recv_buf_num_attachments_), std::bind(&Connection::ReceiveAttachmentSize, shared_from_this(), _1, _2));
   }
 
   void Connection::ReceiveAttachmentSize(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
-      //LOG(ERROR) << "An error occured while reading the number of attachments.";
+      std::cout << "ERROR: An error occured while reading the number of attachments." << std::endl;
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
 
     if (this->recv_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->recv_buf_num_attachments_)) {
-      //LOG(DEBUG) << "Receiving attachment size";
+      std::cout << "DEBUG: Receiving attachment size" << std::endl;
       this->recv_buf_attachment_size_ = std::vector<char>(sizeof(int64_t));
       asio::async_read(*this->socket_, asio::buffer(this->recv_buf_attachment_size_), std::bind(&Connection::ReceiveAttachmentData, shared_from_this(), _1, _2));
     }
@@ -349,11 +349,11 @@ namespace luciconnect {
 
   void Connection::ReceiveAttachmentData(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
-      //LOG(ERROR) << "An error occured while reading an attachment size.";
+      std::cout << "ERROR: An error occured while reading an attachment size." << std::endl;
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
 
-    //LOG(DEBUG) << "Receiving attachment";
+    std::cout << "DEBUG: Receiving attachment" << std::endl;
     this->recv_validation_size_ += 8 + (size_t)this->ParseInt64(this->recv_buf_attachment_size_);
     this->recv_buf_attachment_data_ = std::vector<char>(this->ParseInt64(this->recv_buf_attachment_size_));
     asio::async_read(*this->socket_, asio::buffer(this->recv_buf_attachment_data_), std::bind(&Connection::ReceiveNextAttachment, shared_from_this(), _1, _2));
@@ -361,7 +361,7 @@ namespace luciconnect {
 
   void Connection::ReceiveNextAttachment(const asio::error_code& error, size_t bytes_transferred) {
     if (error) {
-      //LOG(ERROR) << "An error occured while reading attachment data.";
+      std::cout << "ERROR: An error occured while reading attachment data." << std::endl;
       this->HandleReceivingError(ReceivingError::ConnectionClosed);
     }
 
@@ -369,7 +369,7 @@ namespace luciconnect {
     this->recv_message_->AddAttachment(&attachment);
 
     if (this->recv_message_->GetNumAttachments() < (size_t)this->ParseInt64(this->recv_buf_num_attachments_)) {
-      //LOG(DEBUG) << "Receiving attachment size";
+      std::cout << "DEBUG: Receiving attachment size" << std::endl;
       this->recv_buf_attachment_size_ = std::vector<char>(sizeof(int64_t));
       asio::async_read(*this->socket_, asio::buffer(this->recv_buf_attachment_size_), std::bind(&Connection::ReceiveAttachmentData, shared_from_this(), _1, _2));
     }
