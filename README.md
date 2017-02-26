@@ -1,11 +1,12 @@
 ## Dependencies:
  * [Asio](http://www.think-async.com) - Either by installing the standalone version (`libasio-dev`) or using the boost-libraries.
 
+# Install Binaries
+
 # Install from Source
 
 To build and install libluciconnect from source, clone the repository  using the **recursive** tag:
  ```git clone --recursive git@github.com:mtfranzen/luci-connect.git```
-
 
 ## Linux
 1. Install [CMake](https://cmake.org/)
@@ -15,10 +16,9 @@ To build and install libluciconnect from source, clone the repository  using the
 ## Windows
 1. Install [Boost](http://www.boost.org/)
 2. Install [CMake](https://cmake.org/)
-3. Build the project using CMake and MSVC (**tested with MSVC 19.10.24930.0**)
-  ```cmake -DBOOST_ROOT="C:/local/boost_1_63_0/" -DBOOST_LIBRARYDIR="C:/local/boost_1_63_0/lib64-msvc-14.0" -DBoost_COMPILER="-vc140" -G "Visual Studio 15 2017 Win64"```
+3. Build the project using CMake and MSVC (**tested with Visual Studio 2015**), make sure to specify the correct foldes
+  ```cmake -DBOOST_ROOT="C:/local/boost_1_63_0/" -DBOOST_LIBRARYDIR="C:/local/boost_1_63_0/lib64-msvc-14.0" -DBoost_COMPILER="-vc140" -G "Visual Studio 14 2015 Win64"```
 4. Open the generated solution in VS
-5. Add the boost linker directory (Properties->Linker->General->Additional Library Directories)
 
 ## Documentation
 The documentation can be generated using Doxygen.
