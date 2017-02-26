@@ -167,7 +167,7 @@ namespace luciconnect {
     // run registered delegates
     std::cout << "INFO: Delegating message to nodes." << std::endl;
     for (std::function<void(Message)> handler : this->receive_handlers_)
-      handler(*message);
+	  handler(*message);
 
 
     // This variable is set at the beginning of a receive operation

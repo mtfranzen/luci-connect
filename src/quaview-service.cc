@@ -42,7 +42,7 @@ namespace luciconnect {
         }} // TODO
       };
 
-
+      srand (time(NULL));
       this->register_callid = rand() % 10000;
       this->SendRun(this->register_callid, "RemoteRegister", register_message);
     }
@@ -64,6 +64,7 @@ namespace luciconnect {
       }
       std::cout << inputs << std::endl;
       this->client_inputs = inputs;
+	  srand (time(NULL)+1);
       this->scenario_callid = rand() % 10000;
       this->SendRun(this->scenario_callid, "scenario.geojson.Get", {{"ScID", this->client_scenario_id}});
     }

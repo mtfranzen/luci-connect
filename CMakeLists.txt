@@ -102,6 +102,11 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/json/src/json.hpp DESTINATION incl
 if (ASIO_STANDALONE)
 else (ASIO_STANDALONE)
 	file(COPY ${Boost_INCLUDE_DIR}/boost/ DESTINATION include/boost)
+	foreach (BOOSTLIB ${Boost_LIBRARIES})
+		if(NOT ${BOOSTLIB} STREQUAL "debug" AND NOT ${BOOSTLIB} STREQUAL "optimized")
+			file(COPY ${BOOSTLIB} DESTINATION lib/boost/)
+		endif ()
+	endforeach ()
 endif (ASIO_STANDALONE)
 
 # Installation
@@ -110,6 +115,7 @@ install(TARGETS luciconnect DESTINATION lib COMPONENT libraries)
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/luciconnect DESTINATION include COMPONENT headers)
 if (ASIO_STANDALONE)
 else (ASIO_STANDALONE)
+	install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib/ DESTINATION lib COMPONENT boost)
 	install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/boost DESTINATION include COMPONENT boost)
 endif (ASIO_STANDALONE)
 

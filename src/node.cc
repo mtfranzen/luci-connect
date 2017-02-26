@@ -45,7 +45,6 @@ namespace luciconnect {
       case MessageType::result:
         {
           json result = header["result"];
-
           this->HandleResult(callId, result, message.GetAttachments());
         }
         break;
