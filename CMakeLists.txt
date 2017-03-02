@@ -97,7 +97,6 @@ if (TEST_LUCICONNECT)
 endif (TEST_LUCICONNECT)
 
 # Copy files to include-directory
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/easylogging/src/easylogging++.h DESTINATION include/luciconnect/easylogging)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/include/json/src/json.hpp DESTINATION include/luciconnect/json)
 if (ASIO_STANDALONE)
 else (ASIO_STANDALONE)
