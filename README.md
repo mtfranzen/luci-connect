@@ -2,6 +2,7 @@
  * [Asio](http://www.think-async.com) - Either by installing the standalone version (`libasio-dev`) or using the boost-libraries.
 
 # Install Binaries
+See [Releases](https://github.com/mtfranzen/luci-connect/releases)
 
 # Install from Source
 To build and install libluciconnect from source, clone the repository  using the **recursive** tag:
